@@ -5,7 +5,7 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<h2><a href="/"><img src="/favicon.svg" alt="" class="site-logo" />{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Articles</HeaderLink>
@@ -34,6 +34,12 @@ import { SITE_TITLE } from '../consts';
 	h2 {
 		margin: 0;
 		font-size: 1em;
+	}
+	.site-logo {
+		width: 32px;
+		height: 32px;
+		vertical-align: middle;
+		margin-right: 0.4em;
 	}
 
 	h2 a,
