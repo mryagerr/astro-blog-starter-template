@@ -3,63 +3,62 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="About Data Journal"
-	description="What is Data Journal and what you will learn here."
+	title="About Low Hanging Data"
+	description="What Low Hanging Data is and why concise, transparent analysis matters."
 	pubDate={new Date('March 01 2025')}
 	heroImage="/blog-placeholder-about.jpg"
 >
 	<p>
-		<strong>Data Journal</strong> is a practical reference site for people who work with data — or
-		want to. It focuses on the foundational skills that come before analysis: finding data sources,
-		pulling data through APIs, handling different file formats, and organizing everything into a
-		clean, queryable structure.
+		<strong>Low Hanging Data</strong> is a project built on a simple conviction: the best data analysis
+		is the simplest analysis that answers the question. Before reaching for a model, a complex pipeline,
+		or an elaborate visualization, pick the fruit that's already within reach.
 	</p>
 
-	<h2>What You Will Find Here</h2>
+	<h2>The Three Principles</h2>
 	<p>
-		Every article is built around a real, repeatable task. You will not find abstract theory or
-		academic definitions. Instead, each guide walks through a specific problem — like paginating
-		through an API, deduplicating a CSV, or joining two tables in SQL — with working code examples
-		and explanations of each step.
+		Every article and analysis published here is held to three standards:
 	</p>
+	<ul>
+		<li>
+			<strong>Concise</strong> — Analysis should be as short as it needs to be and no shorter.
+			If a finding requires three paragraphs to explain, it either isn't clear yet or wasn't
+			worth finding. Good analysis fits in a headline with supporting evidence.
+		</li>
+		<li>
+			<strong>Transparent</strong> — Sources, assumptions, and limitations are stated plainly.
+			Reproducibility is not optional. If someone else can't verify the work, the work isn't finished.
+		</li>
+		<li>
+			<strong>Low Hanging Fruit First</strong> — Always start with the most direct question.
+			Counts, sums, averages, and distributions come before clustering, forecasting, or causal
+			inference. Complexity is only added when it changes a conclusion.
+		</li>
+	</ul>
+
+	<h2>What This Is Not</h2>
 	<p>
-		Articles are organized as a progressive sequence. If you read them in order, you will go from
-		"I have a data source I want to use" to "I have an automated pipeline that keeps my data fresh
-		and organized." If you already know the basics, each article also stands on its own as a
-		reference.
+		This is not a machine learning tutorial. It is not a data engineering course. It does not
+		cover advanced statistics for its own sake. There are excellent resources for all of those
+		things. This project is specifically about the discipline of restraint — of doing less and
+		communicating more clearly.
 	</p>
 
 	<h2>Who This Is For</h2>
 	<p>
-		Data Journal is written for:
+		Low Hanging Data is written for anyone who works with data and wants to produce analysis
+		that decision-makers actually trust and use:
 	</p>
 	<ul>
-		<li><strong>Developers</strong> who need to integrate data from external APIs or files into their applications.</li>
-		<li><strong>Analysts</strong> who receive messy exports and need to clean and reshape them before running queries.</li>
-		<li><strong>Researchers</strong> who are collecting data from public sources and need a reproducible workflow.</li>
-		<li><strong>Students</strong> who understand statistics but have never connected a script to a live data source.</li>
+		<li><strong>Analysts</strong> who want their work to have more impact with less overhead.</li>
+		<li><strong>Developers</strong> building data features who need to communicate findings to non-technical stakeholders.</li>
+		<li><strong>Researchers</strong> who want their methodology to be reproducible and their conclusions defensible.</li>
+		<li><strong>Anyone</strong> who has ever been asked "so what does this actually mean?" after presenting data.</li>
 	</ul>
 
-	<h2>Tools and Languages</h2>
+	<h2>Articles</h2>
 	<p>
-		Most examples use <strong>Python</strong> with the standard library plus pandas and requests,
-		or plain <strong>SQL</strong> (compatible with SQLite, PostgreSQL, and MySQL). Some articles
-		use <strong>curl</strong> and <strong>jq</strong> for quick command-line data work.
-	</p>
-	<p>
-		The goal is to teach transferable patterns, not to lock you into a specific tool. Once you
-		understand how pagination works, you can implement it in any language. Once you know what
-		a join does, you can write it in SQL or reproduce it with pandas <code>merge()</code>.
-	</p>
-
-	<h2>How to Use This Site</h2>
-	<p>
-		If you are starting from scratch, follow the <a href="/">Start Here</a> sequence on the home
-		page. Each article links to the next in the series. If you are looking for something specific,
-		use the <a href="/blog">Articles</a> index to browse by topic.
-	</p>
-	<p>
-		Code blocks throughout the site can be copied directly. Variables like <code>YOUR_API_KEY</code>
-		are always called out clearly so you know exactly what to replace.
+		The <a href="/blog">Articles</a> section contains practical guides that apply these principles
+		to real tasks — pulling data, cleaning it, querying it, and presenting results. Each article
+		leads with the simplest viable approach and explains when (and whether) to go further.
 	</p>
 </Layout>
