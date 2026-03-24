@@ -3,60 +3,63 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
+	title="About Data Journal"
+	description="What is Data Journal and what you will learn here."
+	pubDate={new Date('March 01 2025')}
 	heroImage="/blog-placeholder-about.jpg"
 >
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+		<strong>Data Journal</strong> is a practical reference site for people who work with data — or
+		want to. It focuses on the foundational skills that come before analysis: finding data sources,
+		pulling data through APIs, handling different file formats, and organizing everything into a
+		clean, queryable structure.
 	</p>
 
+	<h2>What You Will Find Here</h2>
 	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
+		Every article is built around a real, repeatable task. You will not find abstract theory or
+		academic definitions. Instead, each guide walks through a specific problem — like paginating
+		through an API, deduplicating a CSV, or joining two tables in SQL — with working code examples
+		and explanations of each step.
+	</p>
+	<p>
+		Articles are organized as a progressive sequence. If you read them in order, you will go from
+		"I have a data source I want to use" to "I have an automated pipeline that keeps my data fresh
+		and organized." If you already know the basics, each article also stands on its own as a
+		reference.
 	</p>
 
+	<h2>Who This Is For</h2>
 	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+		Data Journal is written for:
+	</p>
+	<ul>
+		<li><strong>Developers</strong> who need to integrate data from external APIs or files into their applications.</li>
+		<li><strong>Analysts</strong> who receive messy exports and need to clean and reshape them before running queries.</li>
+		<li><strong>Researchers</strong> who are collecting data from public sources and need a reproducible workflow.</li>
+		<li><strong>Students</strong> who understand statistics but have never connected a script to a live data source.</li>
+	</ul>
+
+	<h2>Tools and Languages</h2>
+	<p>
+		Most examples use <strong>Python</strong> with the standard library plus pandas and requests,
+		or plain <strong>SQL</strong> (compatible with SQLite, PostgreSQL, and MySQL). Some articles
+		use <strong>curl</strong> and <strong>jq</strong> for quick command-line data work.
+	</p>
+	<p>
+		The goal is to teach transferable patterns, not to lock you into a specific tool. Once you
+		understand how pagination works, you can implement it in any language. Once you know what
+		a join does, you can write it in SQL or reproduce it with pandas <code>merge()</code>.
 	</p>
 
+	<h2>How to Use This Site</h2>
 	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
+		If you are starting from scratch, follow the <a href="/">Start Here</a> sequence on the home
+		page. Each article links to the next in the series. If you are looking for something specific,
+		use the <a href="/blog">Articles</a> index to browse by topic.
 	</p>
-
 	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+		Code blocks throughout the site can be copied directly. Variables like <code>YOUR_API_KEY</code>
+		are always called out clearly so you know exactly what to replace.
 	</p>
 </Layout>

@@ -14,7 +14,7 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`Articles — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
 			main {
 				width: 960px;
@@ -88,6 +88,8 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
+			<h1>Articles</h1>
+			<p>All guides, organized by publish date. Start with the <a href="/">Start Here</a> sequence if you're new.</p>
 			<section>
 				<ul>
 					{

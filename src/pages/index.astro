@@ -13,38 +13,104 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+			<h1>Data Journal</h1>
+			<p class="lead">
+				A practical reference for anyone learning to <strong>pull, clean, and organize data</strong>.
+				Whether you're working with APIs, databases, spreadsheets, or raw files — this journal
+				covers the patterns and tools you need.
+			</p>
+
+			<hr />
+
+			<h2>Start Here</h2>
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				New to working with data? Start with the fundamentals before diving into tools and code.
+				These articles build on each other, so reading in order will give you the clearest path.
+			</p>
+
+			<ol class="guide-list">
+				<li>
+					<a href="/blog/getting-started-with-data">Getting Started with Data Collection</a>
+					— Understand data sources, formats, and the basic collection workflow.
+				</li>
+				<li>
+					<a href="/blog/working-with-csv-and-json">Working with CSV and JSON</a>
+					— The two most common data formats and how to read, write, and convert them.
+				</li>
+				<li>
+					<a href="/blog/pulling-data-from-apis">Pulling Data from REST APIs</a>
+					— Use HTTP requests to fetch structured data from any public or private API.
+				</li>
+				<li>
+					<a href="/blog/organizing-data-with-sql">Organizing Data with SQL</a>
+					— Filter, sort, join, and aggregate data using standard SQL queries.
+				</li>
+				<li>
+					<a href="/blog/python-pandas-data-wrangling">Python &amp; Pandas for Data Wrangling</a>
+					— Load messy data into a DataFrame and reshape it into something usable.
+				</li>
+				<li>
+					<a href="/blog/building-your-first-data-pipeline">Building Your First Data Pipeline</a>
+					— Combine everything into a repeatable end-to-end workflow.
+				</li>
+			</ol>
+
+			<hr />
+
+			<h2>Why a Data Journal?</h2>
+			<p>
+				Most data tutorials jump straight to machine learning or dashboards without covering the
+				unglamorous middle work: finding a data source, figuring out the right API endpoint,
+				handling pagination, dealing with missing values, and getting everything into a consistent
+				shape before you can analyze it.
 			</p>
 			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+				This journal focuses on exactly that middle work — the part that takes up 80% of real
+				data projects. Every article is written to be copy-paste practical, with real code
+				examples and explanations of <em>why</em> each step matters.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+
+			<hr />
+
+			<h2>Topics Covered</h2>
+			<ul class="topic-grid">
+				<li><strong>Data Sources</strong> — APIs, databases, files, web scraping</li>
+				<li><strong>Formats</strong> — CSV, JSON, Parquet, XML, spreadsheets</li>
+				<li><strong>Tools</strong> — Python, SQL, curl, jq, pandas</li>
+				<li><strong>Patterns</strong> — Pagination, authentication, rate limiting</li>
+				<li><strong>Cleaning</strong> — Missing values, type coercion, deduplication</li>
+				<li><strong>Organizing</strong> — Schemas, normalization, folder structures</li>
 			</ul>
+
 			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+				Browse all articles in the <a href="/blog">Articles</a> section, or read more
+				<a href="/about">about this journal</a>.
 			</p>
 		</main>
 		<Footer />
 	</body>
 </html>
+<style>
+	.lead {
+		font-size: 1.1em;
+		color: rgb(var(--gray-dark));
+	}
+	.guide-list {
+		line-height: 2.2;
+	}
+	.guide-list a {
+		font-weight: 700;
+	}
+	.topic-grid {
+		columns: 2;
+		column-gap: 2em;
+	}
+	@media (max-width: 720px) {
+		.topic-grid {
+			columns: 1;
+		}
+	}
+	hr {
+		margin: 2em 0;
+	}
+</style>
