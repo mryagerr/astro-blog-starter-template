@@ -28,7 +28,7 @@ import { SITE_TITLE } from '../consts';
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
+		background: var(--surface, white);
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
 	h2 {
@@ -66,8 +66,15 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 	}
 	@media (max-width: 720px) {
+		nav {
+			flex-wrap: wrap;
+		}
 		.social-links {
-			display: none;
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			padding: 0.25em 0 0.5em;
+			border-top: 1px solid rgba(var(--gray-light), 0.5);
 		}
 	}
 </style>
