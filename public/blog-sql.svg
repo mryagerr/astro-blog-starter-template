@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="58" text-anchor="middle" font-family="ui-monospace,monospace" font-size="28" font-weight="bold" fill="#e2e8f0">Organizing Data with</text>
+  <text x="510" y="96" text-anchor="middle" font-family="ui-monospace,monospace" font-size="40" font-weight="bold" fill="#38bdf8">SQL</text>
+
+  <!-- Table -->
+  <rect x="55" y="115" width="910" height="260" rx="12" fill="#071828" stroke="#38bdf8" stroke-width="1.5"/>
+
+  <!-- Header row -->
+  <rect x="55" y="115" width="910" height="42" rx="12" fill="#38bdf8" opacity="0.18"/>
+  <rect x="55" y="140" width="910" height="17" fill="#38bdf8" opacity="0.18"/>
+
+  <!-- Column header text -->
+  <text x="115" y="143" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">id</text>
+  <text x="225" y="143" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">name</text>
+  <text x="385" y="143" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">city</text>
+  <text x="550" y="143" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">category</text>
+  <text x="710" y="143" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">value</text>
+  <text x="840" y="143" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">created_at</text>
+
+  <!-- Column dividers -->
+  <line x1="185" y1="115" x2="185" y2="375" stroke="#38bdf8" stroke-width="1" opacity="0.15"/>
+  <line x1="345" y1="115" x2="345" y2="375" stroke="#38bdf8" stroke-width="1" opacity="0.15"/>
+  <line x1="505" y1="115" x2="505" y2="375" stroke="#38bdf8" stroke-width="1" opacity="0.15"/>
+  <line x1="680" y1="115" x2="680" y2="375" stroke="#38bdf8" stroke-width="1" opacity="0.15"/>
+  <line x1="800" y1="115" x2="800" y2="375" stroke="#38bdf8" stroke-width="1" opacity="0.15"/>
+
+  <!-- Row 1 (highlighted by WHERE clause) -->
+  <rect x="56" y="157" width="908" height="36" rx="0" fill="#38bdf8" opacity="0.07"/>
+  <text x="115" y="181" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">1</text>
+  <text x="225" y="181" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Alice</text>
+  <text x="385" y="181" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Seattle</text>
+  <text x="550" y="181" font-family="ui-monospace,monospace" font-size="12" fill="#f59e0b">premium</text>
+  <text x="710" y="181" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">4820</text>
+  <text x="840" y="181" font-family="ui-monospace,monospace" font-size="12" fill="#475569">2024-01-15</text>
+
+  <!-- Row 2 (dim - filtered out) -->
+  <text x="115" y="218" font-family="ui-monospace,monospace" font-size="12" fill="#334155">2</text>
+  <text x="225" y="218" font-family="ui-monospace,monospace" font-size="12" fill="#334155">Bob</text>
+  <text x="385" y="218" font-family="ui-monospace,monospace" font-size="12" fill="#334155">Austin</text>
+  <text x="550" y="218" font-family="ui-monospace,monospace" font-size="12" fill="#334155">free</text>
+  <text x="710" y="218" font-family="ui-monospace,monospace" font-size="12" fill="#334155">120</text>
+  <text x="840" y="218" font-family="ui-monospace,monospace" font-size="12" fill="#334155">2024-02-03</text>
+
+  <!-- Row 3 (highlighted) -->
+  <rect x="56" y="229" width="908" height="36" rx="0" fill="#38bdf8" opacity="0.07"/>
+  <text x="115" y="253" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">3</text>
+  <text x="225" y="253" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Carol</text>
+  <text x="385" y="253" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Denver</text>
+  <text x="550" y="253" font-family="ui-monospace,monospace" font-size="12" fill="#f59e0b">premium</text>
+  <text x="710" y="253" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">3140</text>
+  <text x="840" y="253" font-family="ui-monospace,monospace" font-size="12" fill="#475569">2024-03-10</text>
+
+  <!-- Row 4 (dim) -->
+  <text x="115" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#334155">4</text>
+  <text x="225" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#334155">David</text>
+  <text x="385" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#334155">Miami</text>
+  <text x="550" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#334155">basic</text>
+  <text x="710" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#334155">780</text>
+  <text x="840" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#334155">2024-04-22</text>
+
+  <!-- Row 5 (highlighted) -->
+  <rect x="56" y="302" width="908" height="36" rx="0" fill="#38bdf8" opacity="0.07"/>
+  <text x="115" y="325" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">5</text>
+  <text x="225" y="325" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Eve</text>
+  <text x="385" y="325" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Boston</text>
+  <text x="550" y="325" font-family="ui-monospace,monospace" font-size="12" fill="#f59e0b">premium</text>
+  <text x="710" y="325" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">5210</text>
+  <text x="840" y="325" font-family="ui-monospace,monospace" font-size="12" fill="#475569">2024-05-08</text>
+
+  <text x="115" y="362" font-family="ui-monospace,monospace" font-size="12" fill="#334155">...</text>
+
+  <!-- SQL query block -->
+  <rect x="55" y="388" width="910" height="72" rx="10" fill="#0d1f0d" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="80" y="412" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">SELECT</text>
+  <text x="147" y="412" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">  city,  </text>
+  <text x="235" y="412" font-family="ui-monospace,monospace" font-size="13" fill="#f59e0b">SUM</text>
+  <text x="265" y="412" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">(value)  </text>
+  <text x="355" y="412" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">AS</text>
+  <text x="378" y="412" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">  total_value</text>
+  <text x="80" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">FROM</text>
+  <text x="127" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">  orders  </text>
+  <text x="38" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#475569">·</text>
+  <text x="230" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">WHERE</text>
+  <text x="290" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">  category = </text>
+  <text x="412" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#22c55e">'premium'</text>
+  <text x="490" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">  GROUP BY</text>
+  <text x="591" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">  city</text>
+  <text x="636" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">  ORDER BY</text>
+  <text x="740" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">  total_value </text>
+  <text x="858" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">DESC</text>
+  <text x="900" y="435" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">;</text>
+</svg>

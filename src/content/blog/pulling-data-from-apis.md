@@ -2,7 +2,7 @@
 title: 'Pulling Data from REST APIs'
 description: 'Use HTTP requests to fetch structured data from any REST API — including authentication, pagination, rate limiting, and error handling.'
 pubDate: 'Mar 10 2025'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/blog-rest-apis.svg'
 ---
 
 REST APIs are the most common way to pull structured data from external services. Once you understand the pattern, you can collect data from virtually any source that exposes an HTTP endpoint — weather services, financial data providers, government databases, SaaS platforms, and more.
