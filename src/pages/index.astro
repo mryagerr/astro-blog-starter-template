@@ -13,78 +13,73 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>Data Journal</h1>
+			<h1>Low Hanging Data</h1>
 			<p class="lead">
-				A practical reference for anyone learning to <strong>pull, clean, and organize data</strong>.
-				Whether you're working with APIs, databases, spreadsheets, or raw files — this journal
-				covers the patterns and tools you need.
+				Data analysis should be <strong>concise</strong>, <strong>transparent</strong>, and
+				laser-focused on the <strong>low hanging fruit first</strong>.
+				Before chasing complex models or elaborate dashboards, ask: what does the data already
+				tell us plainly?
 			</p>
 
 			<hr />
 
-			<h2>Start Here</h2>
+			<h2>The Philosophy</h2>
 			<p>
-				New to working with data? Start with the fundamentals before diving into tools and code.
-				These articles build on each other, so reading in order will give you the clearest path.
-			</p>
-
-			<ol class="guide-list">
-				<li>
-					<a href="/blog/getting-started-with-data">Getting Started with Data Collection</a>
-					— Understand data sources, formats, and the basic collection workflow.
-				</li>
-				<li>
-					<a href="/blog/working-with-csv-and-json">Working with CSV and JSON</a>
-					— The two most common data formats and how to read, write, and convert them.
-				</li>
-				<li>
-					<a href="/blog/pulling-data-from-apis">Pulling Data from REST APIs</a>
-					— Use HTTP requests to fetch structured data from any public or private API.
-				</li>
-				<li>
-					<a href="/blog/organizing-data-with-sql">Organizing Data with SQL</a>
-					— Filter, sort, join, and aggregate data using standard SQL queries.
-				</li>
-				<li>
-					<a href="/blog/python-pandas-data-wrangling">Python &amp; Pandas for Data Wrangling</a>
-					— Load messy data into a DataFrame and reshape it into something usable.
-				</li>
-				<li>
-					<a href="/blog/building-your-first-data-pipeline">Building Your First Data Pipeline</a>
-					— Combine everything into a repeatable end-to-end workflow.
-				</li>
-			</ol>
-
-			<hr />
-
-			<h2>Why a Data Journal?</h2>
-			<p>
-				Most data tutorials jump straight to machine learning or dashboards without covering the
-				unglamorous middle work: finding a data source, figuring out the right API endpoint,
-				handling pagination, dealing with missing values, and getting everything into a consistent
-				shape before you can analyze it.
+				Most analyses fail not because the analyst lacks skill, but because they skip straight
+				to sophistication. The result is work that is hard to reproduce, hard to explain, and
+				answers questions nobody asked.
 			</p>
 			<p>
-				This journal focuses on exactly that middle work — the part that takes up 80% of real
-				data projects. Every article is written to be copy-paste practical, with real code
-				examples and explanations of <em>why</em> each step matters.
+				<strong>Low Hanging Data</strong> is built around three commitments:
 			</p>
-
-			<hr />
-
-			<h2>Topics Covered</h2>
-			<ul class="topic-grid">
-				<li><strong>Data Sources</strong> — APIs, databases, files, web scraping</li>
-				<li><strong>Formats</strong> — CSV, JSON, Parquet, XML, spreadsheets</li>
-				<li><strong>Tools</strong> — Python, SQL, curl, jq, pandas</li>
-				<li><strong>Patterns</strong> — Pagination, authentication, rate limiting</li>
-				<li><strong>Cleaning</strong> — Missing values, type coercion, deduplication</li>
-				<li><strong>Organizing</strong> — Schemas, normalization, folder structures</li>
+			<ul class="principles">
+				<li>
+					<strong>Concise</strong> — Say what the data shows in as few words and charts as needed.
+					If you can't explain the finding in one sentence, the analysis isn't done yet.
+				</li>
+				<li>
+					<strong>Transparent</strong> — Show your sources, your assumptions, and your limitations.
+					An analysis nobody can verify is an opinion with extra steps.
+				</li>
+				<li>
+					<strong>Low Hanging Fruit First</strong> — Start with counts, averages, and distributions
+					before reaching for machine learning. Simple questions answered clearly deliver more value
+					than complex models that nobody trusts.
+				</li>
 			</ul>
 
+			<hr />
+
+			<h2>Why This Matters</h2>
 			<p>
-				Browse all articles in the <a href="/blog">Articles</a> section, or read more
-				<a href="/about">about this journal</a>.
+				The data field has a bias toward complexity. Practitioners are rewarded for using
+				sophisticated tools and impressive jargon. Meanwhile, the most useful insights often
+				come from a well-structured pivot table or a single well-chosen chart.
+			</p>
+			<p>
+				This site exists to push back against that bias. Every article here starts with the
+				simplest possible approach and only adds complexity when it's genuinely warranted.
+				The bar for "complex enough" is always: does this additional complexity change a decision?
+				If not, drop it.
+			</p>
+
+			<hr />
+
+			<h2>What Low Hanging Fruit Looks Like</h2>
+			<ul class="topic-grid">
+				<li><strong>Counts &amp; totals</strong> — How many? How much?</li>
+				<li><strong>Distributions</strong> — Where does most of the data cluster?</li>
+				<li><strong>Trends over time</strong> — Is it going up, down, or flat?</li>
+				<li><strong>Top &amp; bottom N</strong> — Who or what stands out?</li>
+				<li><strong>Missing data</strong> — What don't we know, and does it matter?</li>
+				<li><strong>Simple comparisons</strong> — Is A bigger than B?</li>
+			</ul>
+
+			<hr />
+
+			<p>
+				Browse the <a href="/blog">Articles</a> for practical guides on applying these principles,
+				or read more <a href="/about">about this project</a>.
 			</p>
 		</main>
 		<Footer />
@@ -95,11 +90,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		font-size: 1.1em;
 		color: rgb(var(--gray-dark));
 	}
-	.guide-list {
-		line-height: 2.2;
+	.principles {
+		list-style: none;
+		padding: 0;
 	}
-	.guide-list a {
-		font-weight: 700;
+	.principles li {
+		padding: 0.75em 1em;
+		margin-bottom: 0.75em;
+		border-left: 4px solid var(--accent);
+		background: rgba(var(--gray-light), 0.5);
 	}
 	.topic-grid {
 		columns: 2;
