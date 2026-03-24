@@ -2,7 +2,7 @@
 title: 'Building Your First Data Pipeline'
 description: 'Combine data collection, cleaning, and storage into a repeatable automated workflow that keeps your data fresh and organized.'
 pubDate: 'Mar 22 2025'
-heroImage: '/blog-placeholder-1.jpg'
+heroImage: '/blog-pipeline.svg'
 ---
 
 A data pipeline is a sequence of steps that moves data from a source to a destination in a repeatable, automated way. At its simplest, it's just a script you can run on a schedule. This article shows how to combine the techniques from earlier articles in this series into a working end-to-end pipeline.

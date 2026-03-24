@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="58" text-anchor="middle" font-family="ui-monospace,monospace" font-size="34" font-weight="bold" fill="#e2e8f0">Working with</text>
+  <text x="510" y="98" text-anchor="middle" font-family="ui-monospace,monospace" font-size="38" font-weight="bold" fill="#38bdf8">CSV  &amp;  JSON</text>
+
+  <!-- LEFT panel: CSV -->
+  <rect x="40" y="120" width="430" height="330" rx="12" fill="#071a2e" stroke="#38bdf8" stroke-width="1.5"/>
+  <rect x="40" y="120" width="430" height="38" rx="12" fill="#38bdf8" opacity="0.15"/>
+  <rect x="40" y="145" width="430" height="13" fill="#38bdf8" opacity="0.15"/>
+  <text x="265" y="145" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8" letter-spacing="2">CSV</text>
+
+  <!-- Column headers -->
+  <line x1="40" y1="158" x2="470" y2="158" stroke="#38bdf8" stroke-width="1" opacity="0.4"/>
+  <text x="90" y="178" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#38bdf8">name</text>
+  <text x="200" y="178" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#38bdf8">age</text>
+  <text x="290" y="178" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#38bdf8">city</text>
+  <text x="390" y="178" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#38bdf8">score</text>
+  <line x1="40" y1="185" x2="470" y2="185" stroke="#38bdf8" stroke-width="1" opacity="0.3"/>
+
+  <!-- Row 1 -->
+  <rect x="40" y="185" width="430" height="36" fill="#38bdf8" opacity="0.04"/>
+  <text x="90" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Alice</text>
+  <text x="200" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">28</text>
+  <text x="290" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Seattle</text>
+  <text x="390" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">92.4</text>
+
+  <!-- Row 2 -->
+  <text x="90" y="244" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Bob</text>
+  <text x="200" y="244" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">34</text>
+  <text x="290" y="244" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Austin</text>
+  <text x="390" y="244" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">78.1</text>
+
+  <!-- Row 3 -->
+  <rect x="40" y="257" width="430" height="36" fill="#38bdf8" opacity="0.04"/>
+  <text x="90" y="280" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Carol</text>
+  <text x="200" y="280" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">22</text>
+  <text x="290" y="280" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Denver</text>
+  <text x="390" y="280" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">85.7</text>
+
+  <!-- Row 4 -->
+  <text x="90" y="316" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">David</text>
+  <text x="200" y="316" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">41</text>
+  <text x="290" y="316" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">Miami</text>
+  <text x="390" y="316" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">91.0</text>
+
+  <!-- Row 5 -->
+  <rect x="40" y="329" width="430" height="36" fill="#38bdf8" opacity="0.04"/>
+  <text x="90" y="352" font-family="ui-monospace,monospace" font-size="12" fill="#475569">Eve</text>
+  <text x="200" y="352" font-family="ui-monospace,monospace" font-size="12" fill="#475569">30</text>
+  <text x="290" y="352" font-family="ui-monospace,monospace" font-size="12" fill="#475569">Boston</text>
+  <text x="390" y="352" font-family="ui-monospace,monospace" font-size="12" fill="#475569">88.3</text>
+
+  <text x="90" y="388" font-family="ui-monospace,monospace" font-size="12" fill="#334155">...</text>
+
+  <!-- CSV raw text preview -->
+  <rect x="55" y="405" width="400" height="32" rx="6" fill="#0d2137"/>
+  <text x="72" y="426" font-family="ui-monospace,monospace" font-size="11" fill="#64748b">name,age,city,score</text>
+
+  <!-- VS Divider -->
+  <line x1="510" y1="130" x2="510" y2="450" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <rect x="488" y="243" width="44" height="26" rx="8" fill="#1e293b"/>
+  <text x="510" y="261" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#475569">VS</text>
+
+  <!-- RIGHT panel: JSON -->
+  <rect x="550" y="120" width="430" height="330" rx="12" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="550" y="120" width="430" height="38" rx="12" fill="#f59e0b" opacity="0.1"/>
+  <rect x="550" y="145" width="430" height="13" fill="#f59e0b" opacity="0.1"/>
+  <text x="765" y="145" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f59e0b" letter-spacing="2">JSON</text>
+
+  <line x1="550" y1="158" x2="980" y2="158" stroke="#f59e0b" stroke-width="1" opacity="0.3"/>
+
+  <!-- JSON content -->
+  <text x="575" y="190" font-family="ui-monospace,monospace" font-size="13" fill="#f59e0b">[</text>
+  <text x="593" y="213" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">{</text>
+  <text x="611" y="234" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">"name"</text><text x="677" y="234" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">: </text><text x="695" y="234" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">"Alice"</text><text x="753" y="234" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">,</text>
+  <text x="611" y="255" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">"age"</text><text x="659" y="255" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">:  </text><text x="677" y="255" font-family="ui-monospace,monospace" font-size="12" fill="#f59e0b">28</text><text x="697" y="255" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">,</text>
+  <text x="611" y="276" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">"city"</text><text x="665" y="276" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">: </text><text x="683" y="276" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">"Seattle"</text><text x="757" y="276" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">,</text>
+  <text x="611" y="297" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">"score"</text><text x="671" y="297" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">: </text><text x="689" y="297" font-family="ui-monospace,monospace" font-size="12" fill="#f59e0b">92.4</text>
+  <text x="593" y="318" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">},</text>
+  <text x="593" y="340" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">{</text>
+  <text x="611" y="361" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">"name"</text><text x="677" y="361" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">: </text><text x="695" y="361" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">"Bob"</text>
+  <text x="611" y="382" font-family="ui-monospace,monospace" font-size="12" fill="#334155">...</text>
+  <text x="593" y="403" font-family="ui-monospace,monospace" font-size="13" fill="#334155">},</text>
+  <text x="575" y="424" font-family="ui-monospace,monospace" font-size="13" fill="#f59e0b">  ...</text>
+  <text x="575" y="443" font-family="ui-monospace,monospace" font-size="13" fill="#f59e0b">]</text>
+</svg>

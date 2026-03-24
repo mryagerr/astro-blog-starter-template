@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="65" text-anchor="middle" font-family="ui-monospace,monospace" font-size="28" font-weight="bold" fill="#e2e8f0">Getting Started with</text>
+  <text x="510" y="103" text-anchor="middle" font-family="ui-monospace,monospace" font-size="38" font-weight="bold" fill="#38bdf8">Data Collection</text>
+
+  <!-- Center hub -->
+  <rect x="400" y="210" width="220" height="100" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+  <text x="510" y="257" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#38bdf8">Your Dataset</text>
+  <text x="510" y="278" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">collected &amp; organized</text>
+
+  <!-- Source 1: SQL Database (top-left) -->
+  <rect x="55" y="130" width="180" height="105" rx="10" fill="#071a2e" stroke="#38bdf8" stroke-width="1.5"/>
+  <ellipse cx="145" cy="163" rx="30" ry="9" fill="#38bdf8" opacity="0.8"/>
+  <rect x="115" y="163" width="60" height="28" fill="#38bdf8" opacity="0.4"/>
+  <ellipse cx="145" cy="191" rx="30" ry="9" fill="#38bdf8" opacity="0.8"/>
+  <text x="145" y="221" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">SQL Database</text>
+  <!-- Arrow -->
+  <line x1="237" y1="182" x2="397" y2="245" stroke="#38bdf8" stroke-width="1.8" opacity="0.5"/>
+  <polygon points="390,240 402,250 406,236" fill="#38bdf8" opacity="0.5"/>
+
+  <!-- Source 2: REST API (top-right) -->
+  <rect x="785" y="130" width="180" height="105" rx="10" fill="#1a1000" stroke="#f59e0b" stroke-width="1.5"/>
+  <circle cx="875" cy="170" r="26" fill="none" stroke="#f59e0b" stroke-width="2"/>
+  <ellipse cx="875" cy="170" rx="11" ry="26" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="849" y1="170" x2="901" y2="170" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="850" y1="157" x2="900" y2="157" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="850" y1="183" x2="900" y2="183" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <text x="875" y="221" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">REST APIs</text>
+  <!-- Arrow -->
+  <line x1="783" y1="182" x2="623" y2="245" stroke="#f59e0b" stroke-width="1.8" opacity="0.5"/>
+  <polygon points="630,240 618,250 614,236" fill="#f59e0b" opacity="0.5"/>
+
+  <!-- Source 3: CSV Files (bottom-left) -->
+  <rect x="55" y="290" width="180" height="105" rx="10" fill="#001a0a" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="105" y="312" width="48" height="58" rx="4" fill="none" stroke="#22c55e" stroke-width="2"/>
+  <path d="M137 312 L153 312 L153 328 L137 328 Z" fill="#22c55e" opacity="0.6"/>
+  <line x1="113" y1="340" x2="145" y2="340" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="113" y1="350" x2="145" y2="350" stroke="#22c55e" stroke-width="1.5"/>
+  <line x1="113" y1="360" x2="135" y2="360" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="145" y="382" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">CSV / JSON</text>
+  <!-- Arrow -->
+  <line x1="237" y1="340" x2="397" y2="288" stroke="#22c55e" stroke-width="1.8" opacity="0.5"/>
+  <polygon points="390,295 402,284 406,298" fill="#22c55e" opacity="0.5"/>
+
+  <!-- Source 4: Web scraping (bottom-right) -->
+  <rect x="785" y="290" width="180" height="105" rx="10" fill="#1a0010" stroke="#f43f5e" stroke-width="1.5"/>
+  <rect x="820" y="310" width="85" height="58" rx="6" fill="none" stroke="#f43f5e" stroke-width="2"/>
+  <line x1="820" y1="326" x2="905" y2="326" stroke="#f43f5e" stroke-width="1.5"/>
+  <circle cx="833" cy="318" r="3" fill="#f43f5e" opacity="0.7"/>
+  <circle cx="845" cy="318" r="3" fill="#f43f5e" opacity="0.7"/>
+  <circle cx="857" cy="318" r="3" fill="#f43f5e" opacity="0.7"/>
+  <text x="833" y="344" font-family="ui-monospace,monospace" font-size="9" fill="#f43f5e" opacity="0.8">&lt;html&gt;</text>
+  <text x="829" y="357" font-family="ui-monospace,monospace" font-size="9" fill="#f43f5e" opacity="0.5">  &lt;body&gt;</text>
+  <text x="833" y="370" font-family="ui-monospace,monospace" font-size="9" fill="#f43f5e" opacity="0.8">&lt;/html&gt;</text>
+  <text x="875" y="382" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">Web Scraping</text>
+  <!-- Arrow -->
+  <line x1="783" y1="340" x2="623" y2="288" stroke="#f43f5e" stroke-width="1.8" opacity="0.5"/>
+  <polygon points="630,295 618,284 614,298" fill="#f43f5e" opacity="0.5"/>
+
+  <text x="510" y="462" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#334155">know your sources before you write a single line of code</text>
+</svg>
