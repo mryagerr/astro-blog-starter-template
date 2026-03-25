@@ -3,6 +3,7 @@ title: 'Working with Parquet and DuckDB'
 description: 'Use columnar storage and an in-process SQL engine to query millions of rows faster than pandas — without a database server.'
 pubDate: 'Mar 25 2025'
 heroImage: '/blog-sql.svg'
+difficulty: 'high'
 ---
 
 CSV and SQLite work fine up to a few million rows. Beyond that, query times start climbing and memory usage becomes a problem. Parquet and DuckDB solve both issues — Parquet stores data in a columnar format that compresses well and reads fast, and DuckDB queries it with SQL without loading the entire file into memory. Together they handle datasets that would bring pandas to its knees, without requiring a database server.
