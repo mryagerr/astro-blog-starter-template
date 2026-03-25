@@ -2,7 +2,13 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const recentPosts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 6);
 ---
 
 <!doctype html>
@@ -81,6 +87,29 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				Browse the <a href="/blog">Articles</a> for practical guides on applying these principles,
 				or read more <a href="/about">about this project</a>.
 			</p>
+
+			<hr />
+
+			<h2>Latest Articles</h2>
+			<ul class="post-grid">
+				{
+					recentPosts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								{post.data.heroImage && (
+									<img src={post.data.heroImage} alt="" width={720} height={360} />
+								)}
+								<h4 class="post-title">{post.data.title}</h4>
+								<p class="post-desc">{post.data.description}</p>
+								<p class="post-date">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<p class="view-all"><a href="/blog">View all articles →</a></p>
 		</main>
 		<Footer />
 	</body>
@@ -111,5 +140,62 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	}
 	hr {
 		margin: 2em 0;
+	}
+	.post-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 1.5rem 0;
+	}
+	.post-grid li {
+		width: calc(50% - 0.75rem);
+	}
+	.post-grid li a {
+		display: block;
+		text-decoration: none;
+		border: 1px solid rgba(var(--gray-light), 1);
+		border-radius: 8px;
+		overflow: hidden;
+		transition: box-shadow 0.2s ease;
+	}
+	.post-grid li a:hover {
+		box-shadow: var(--box-shadow);
+	}
+	.post-grid img {
+		width: 100%;
+		height: 160px;
+		object-fit: cover;
+		display: block;
+	}
+	.post-title {
+		margin: 0.75rem 1rem 0.25rem;
+		color: rgb(var(--black));
+		font-size: 1rem;
+		line-height: 1.3;
+	}
+	.post-desc {
+		margin: 0 1rem 0.5rem;
+		font-size: 0.85rem;
+		color: rgb(var(--gray));
+		line-height: 1.4;
+	}
+	.post-date {
+		margin: 0 1rem 0.75rem;
+		font-size: 0.8rem;
+		color: rgb(var(--gray));
+	}
+	.post-grid li a:hover .post-title {
+		color: rgb(var(--accent));
+	}
+	.view-all {
+		text-align: right;
+		font-size: 0.95rem;
+	}
+	@media (max-width: 720px) {
+		.post-grid li {
+			width: 100%;
+		}
 	}
 </style>
