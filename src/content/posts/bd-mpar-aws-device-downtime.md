@@ -1,6 +1,6 @@
 ---
 title: 'How BD Used AWS to Stop Guessing When Medical Devices Would Fail'
-description: 'A look at Becton Dickinson's MPAR system — a real-world example of turning device telemetry into proactive maintenance intelligence using AppFlow, Lambda, Athena, and QuickSight.'
+description: "A look at Becton Dickinson's MPAR system — a real-world example of turning device telemetry into proactive maintenance intelligence using AppFlow, Lambda, Athena, and QuickSight."
 pubDate: 'Mar 25 2026'
 ---
 
