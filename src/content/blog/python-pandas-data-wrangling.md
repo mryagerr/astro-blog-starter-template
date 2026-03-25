@@ -3,6 +3,7 @@ title: 'Python & Pandas for Data Wrangling'
 description: 'Load messy data into a DataFrame and use pandas to clean, reshape, and prepare it for analysis or storage.'
 pubDate: 'Mar 18 2025'
 heroImage: '/blog-pandas.svg'
+difficulty: 'low'
 ---
 
 Data wrangling is the work of transforming raw data into a clean, consistent shape. Raw data from APIs, exports, and file dumps almost always needs cleaning before it's useful — missing values, wrong types, inconsistent formatting, duplicate rows. Pandas is the standard Python tool for this work.

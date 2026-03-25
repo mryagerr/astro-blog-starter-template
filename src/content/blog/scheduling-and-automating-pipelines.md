@@ -3,6 +3,7 @@ title: 'Scheduling and Automating Data Pipelines'
 description: 'Move from manually running scripts to pipelines that run on a schedule — using cron, Python schedulers, and lightweight orchestration tools.'
 pubDate: 'Mar 25 2025'
 heroImage: '/blog-pipeline.svg'
+difficulty: 'high'
 ---
 
 A script you run manually is a chore. A script that runs on a schedule is a pipeline. Automation is what turns a one-off data pull into a reliable data feed. This article covers the progression from simple cron jobs to lightweight orchestration — with the right tool for each stage.

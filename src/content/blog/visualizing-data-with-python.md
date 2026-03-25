@@ -3,6 +3,7 @@ title: 'Visualizing Data with Python'
 description: 'Turn raw numbers into charts that reveal patterns — using matplotlib, seaborn, and plotly for static and interactive visualizations.'
 pubDate: 'Mar 25 2025'
 heroImage: '/blog-pandas.svg'
+difficulty: 'low'
 ---
 
 Numbers in a spreadsheet hide their patterns. A well-chosen chart reveals them instantly. Visualization is not decoration — it is the fastest way to find outliers, understand distributions, and communicate findings. This article covers the three Python libraries that cover most visualization needs, and when to use each.

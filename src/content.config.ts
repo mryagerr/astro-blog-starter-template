@@ -8,6 +8,7 @@ const articleSchema = z.object({
 	pubDate: z.coerce.date(),
 	updatedDate: z.coerce.date().optional(),
 	heroImage: z.string().optional(),
+	difficulty: z.enum(['low', 'high']).optional(),
 });
 
 const blog = defineCollection({

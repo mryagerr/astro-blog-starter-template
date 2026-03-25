@@ -3,6 +3,7 @@ title: 'Working with WebSockets and Streaming Data'
 description: 'Move beyond request-response APIs and collect real-time data streams using WebSockets — with practical examples for market data, news feeds, and social platforms.'
 pubDate: 'Mar 25 2025'
 heroImage: '/blog-rest-apis.svg'
+difficulty: 'high'
 ---
 
 Most data collection tutorials focus on REST APIs — you send a request, you get a response. But some data doesn't fit that model. Stock prices tick continuously. Order books update hundreds of times per second. News breaks in real time. For these sources, you need a persistent connection that pushes data to you as it happens. That's what WebSockets are for.

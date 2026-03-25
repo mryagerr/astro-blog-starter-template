@@ -3,6 +3,7 @@ title: 'Data Cleaning and Validation'
 description: 'Practical techniques for finding and fixing dirty data — missing values, duplicates, type mismatches, and outliers — before it breaks your pipeline.'
 pubDate: 'Mar 25 2025'
 heroImage: '/blog-pandas.svg'
+difficulty: 'low'
 ---
 
 Raw data is almost never clean. Missing values, duplicates, inconsistent formatting, and impossible values are the rule, not the exception. Cleaning is not glamorous work, but skipping it silently poisons every downstream analysis. This article covers the most common problems and how to fix them systematically.
