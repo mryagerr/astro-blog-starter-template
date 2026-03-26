@@ -301,4 +301,4 @@ The model gets to ~54% accuracy on unseen data with this feature set. That tells
 
 **The model overfit to the training era.** Training on 2020–2021 (meme stocks, pandemic volatility, high Reddit engagement) and testing on 2022+ (calmer markets, lower retail sentiment influence) produces a distribution shift that no hyperparameter tuning will fix. The features themselves had different predictive properties in those two periods.
 
-The pipeline as built is a solid baseline. The improvements with the highest expected return — longer prediction horizons, news headline sentiment via the LM dictionary, tree-based models — are covered in the [data sources article](/blog/low-hanging-data-sources-for-stock-prediction) and the [project retrospective](/stock-trader-project-writeup).
+The pipeline as built is a solid baseline. The improvements with the highest expected return — longer prediction horizons, news headline sentiment via the LM dictionary, tree-based models — are covered in the [data sources article](/blog/low-hanging-data-sources-for-stock-prediction) and the [project retrospective](/posts/stock-trader-project-writeup).
