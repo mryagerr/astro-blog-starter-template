@@ -7,21 +7,21 @@
   <rect x="61" y="50" width="12" height="60" rx="3" fill="#38bdf8"/>
   <rect x="79" y="35" width="12" height="75" rx="3" fill="#38bdf8"/>
 
-  <!-- Apple (refined data-point fruit) -->
+  <!-- Apple (bigger) -->
   <g>
     <!-- Body -->
-    <circle cx="49" cy="63" r="4.8" fill="#f43f5e"/>
+    <circle cx="49" cy="63" r="11" fill="#f43f5e"/>
 
     <!-- Subtle highlight -->
-    <circle cx="47.5" cy="61.5" r="1.3" fill="#ffffff" opacity="0.35"/>
+    <circle cx="45.5" cy="59" r="3" fill="#ffffff" opacity="0.35"/>
 
     <!-- Stem -->
-    <line x1="49" y1="58.5" x2="49" y2="56.5"
-          stroke="#a16207" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="49" y1="52" x2="49" y2="48"
+          stroke="#a16207" stroke-width="1.8" stroke-linecap="round"/>
 
     <!-- Leaf -->
-    <ellipse cx="51.5" cy="57" rx="2" ry="1.1"
-             fill="#22c55e" transform="rotate(25 51.5 57)"/>
+    <ellipse cx="54" cy="49" rx="5" ry="2.2"
+             fill="#22c55e" transform="rotate(25 54 49)"/>
   </g>
 
   <!-- Trend line -->
