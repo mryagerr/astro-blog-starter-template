@@ -1,9 +1,9 @@
 ---
-const today = new Date();
+import { getCurrentYear } from '../utils/formatDate';
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Low Hanging Data. All rights reserved.
+	&copy; {getCurrentYear()} Low Hanging Data. All rights reserved.
 	<div class="tagline">Concise. Transparent. Low hanging fruit first.</div>
 </footer>
 <style>
