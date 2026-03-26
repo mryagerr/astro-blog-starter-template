@@ -5,10 +5,9 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { SITE_TITLE } from '../../consts';
 import { getCollection } from 'astro:content';
+import { sortByPubDateDesc } from '../../utils/sort';
 
-const posts = (await getCollection('posts')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = sortByPubDateDesc(await getCollection('posts'));
 ---
 
 <!doctype html>
