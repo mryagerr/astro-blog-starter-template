@@ -4,7 +4,7 @@ description: "A look at Becton Dickinson's MPAR system — a real-world example 
 pubDate: 'Mar 25 2026'
 ---
 
-Michael Petrillo — the same data scientist behind the Reddit-based stock prediction work covered [elsewhere on this site](/posts/stock-trader-project-writeup) — published an AWS case study in 2022 that deserves more attention than it got. It's a clean, real-world example of the low-hanging-fruit philosophy applied to a high-stakes domain: keeping medical devices online in hospitals.
+Michael Petrillo — the same data scientist behind the Reddit-based stock prediction work covered [elsewhere on this site](/article/stock-trader-project-writeup) — published an AWS case study in 2022 that deserves more attention than it got. It's a clean, real-world example of the low-hanging-fruit philosophy applied to a high-stakes domain: keeping medical devices online in hospitals.
 
 The article: [Reducing Device Downtime Using Actionable Intelligence on AWS](https://aws.amazon.com/blogs/industries/reducing-device-downtime-using-actionable-intelligence-on-aws/), co-authored with Stephanie Dattoli of AWS.
 
