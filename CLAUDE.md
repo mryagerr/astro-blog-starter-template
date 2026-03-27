@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a personal blog and data-focused content site called **Low Hanging Data**, built with [Astro](https://astro.build) and deployed to **Cloudflare Workers**. It publishes technical articles on data collection, processing, and analysis, alongside shorter blog posts and project writeups.
+This is a data-focused content site called **Low Hanging Data**, built with [Astro](https://astro.build) and deployed to **Cloudflare Workers**. It publishes technical articles on data collection, processing, and analysis.
 
 - **Live site:** https://lowhangingdata.com
 - **Framework:** Astro 5.x (output: SSR via Cloudflare adapter)
@@ -43,26 +43,24 @@ There is no test runner configured (no Jest, Vitest, etc.). Validation is done v
 astro-blog-starter-template/
 ├── public/                  # Static assets (served as-is)
 │   ├── fonts/               # Atkinson web font files
-│   ├── blog-placeholder-*.jpg/svg  # Hero image placeholders
+│   ├── blog-*.svg           # Hero images and OG image for articles
 │   ├── favicon.svg
 │   └── robots.txt
 ├── src/
 │   ├── components/          # Reusable .astro components
 │   ├── content/             # Markdown/MDX content files
-│   │   ├── blog/            # Technical articles (~14 files)
-│   │   └── posts/           # Short blog posts (~3 files)
+│   │   └── blog/            # All articles (~16 files)
 │   ├── layouts/
-│   │   └── BlogPost.astro   # Shared layout for articles and posts
+│   │   └── BlogPost.astro   # Shared layout for all articles
 │   ├── pages/               # File-based routing
 │   │   ├── index.astro      # Homepage
 │   │   ├── about.astro      # About page
-│   │   ├── blog/            # Articles section (/blog/*)
-│   │   ├── posts/           # Blog posts section (/posts/*)
+│   │   ├── article/         # Articles section (/article/*)
 │   │   └── rss.xml.js       # RSS feed endpoint
 │   ├── styles/
 │   │   └── global.css       # Global CSS (Bear Blog-inspired)
 │   ├── consts.ts            # SITE_TITLE, SITE_DESCRIPTION
-│   ├── content.config.ts    # Content collection schemas
+│   ├── content.config.ts    # Content collection schema
 │   └── env.d.ts             # TypeScript environment declarations
 ├── astro.config.mjs         # Astro configuration
 ├── wrangler.json            # Cloudflare Workers config
@@ -73,9 +71,9 @@ astro-blog-starter-template/
 
 ---
 
-## Content Collections
+## Content Collection
 
-Defined in `src/content.config.ts`. Both collections share the same schema.
+Defined in `src/content.config.ts`. There is **one collection: `blog`**, which backs the `/article/` route.
 
 ### Schema
 
@@ -90,16 +88,15 @@ Defined in `src/content.config.ts`. Both collections share the same schema.
 }
 ```
 
-### Collections
+### Collection
 
 | Collection | Directory | Route | Purpose |
 |---|---|---|---|
-| `blog` | `src/content/blog/` | `/blog/{id}` | Technical data articles |
-| `posts` | `src/content/posts/` | `/posts/{id}` | Short blog posts & writeups |
+| `blog` | `src/content/blog/` | `/article/{id}` | All articles |
 
 ### Adding Content
 
-Create a `.md` or `.mdx` file in the appropriate collection directory with valid frontmatter:
+Create a `.md` or `.mdx` file in `src/content/blog/` with valid frontmatter:
 
 ```yaml
 ---
@@ -107,12 +104,12 @@ title: 'Your Article Title'
 description: 'A concise summary of the content.'
 pubDate: 'Mar 26 2026'
 updatedDate: 'Mar 27 2026'   # optional
-heroImage: '/blog-placeholder-1.jpg'  # optional
+heroImage: '/blog-placeholder-1.svg'  # optional
 difficulty: 'low'             # optional: 'low' or 'high'
 ---
 ```
 
-The filename becomes the URL slug (e.g., `my-article.md` → `/blog/my-article`).
+The filename becomes the URL slug (e.g., `my-article.md` → `/article/my-article`).
 
 ---
 
@@ -123,7 +120,7 @@ Located in `src/components/`. All are `.astro` files.
 | Component | Purpose |
 |---|---|
 | `BaseHead.astro` | `<head>` tags: charset, viewport, SEO meta, OG tags, Twitter cards, font preloading |
-| `Header.astro` | Site header with navigation links (Home, Articles, Blog, About) and GitHub link |
+| `Header.astro` | Site header with navigation links (Home, Articles, About) and GitHub link |
 | `HeaderLink.astro` | Nav link that auto-applies active styles based on current route |
 | `Footer.astro` | Site footer with dynamic copyright year and site tagline |
 | `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03 2025") |
@@ -152,7 +149,7 @@ const { propName, optionalProp } = Astro.props;
 
 ### `BlogPost.astro`
 
-The only layout. Used by both `/blog/[...slug].astro` and `/posts/[...slug].astro`.
+The only layout. Used by `/article/[...slug].astro`.
 
 **Props:** Same as the content collection schema (`title`, `description`, `pubDate`, `updatedDate`, `heroImage`, `difficulty`).
 
@@ -173,11 +170,9 @@ Astro uses file-based routing from `src/pages/`.
 |---|---|---|
 | `index.astro` | `/` | Homepage with featured articles and philosophy section |
 | `about.astro` | `/about` | Static about page (uses BlogPost layout) |
-| `blog/index.astro` | `/blog` | Grid listing of all technical articles |
-| `blog/[...slug].astro` | `/blog/{id}` | Dynamic article page |
-| `posts/index.astro` | `/posts` | List of blog posts |
-| `posts/[...slug].astro` | `/posts/{id}` | Dynamic blog post page |
-| `rss.xml.js` | `/rss.xml` | RSS feed (blog collection only) |
+| `article/index.astro` | `/article` | Grid listing of all articles |
+| `article/[...slug].astro` | `/article/{id}` | Dynamic article page |
+| `rss.xml.js` | `/rss.xml` | RSS feed (blog collection) |
 
 ### Dynamic Routes
 
@@ -187,10 +182,10 @@ Dynamic pages use `getStaticPaths()` with `getCollection()`:
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
+  const articles = await getCollection('blog');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: article,
   }));
 }
 ```
@@ -248,7 +243,7 @@ Sensitive config goes in `.env` files (gitignored). Cloudflare environment bindi
 ### TypeScript
 
 - Strict mode is enforced (`astro/tsconfigs/strict` + `strictNullChecks: true`).
-- Use `CollectionEntry<'blog'>` and `CollectionEntry<'posts'>` types for content.
+- Use `CollectionEntry<'blog'>` type for article content.
 - Props interfaces are declared inside the frontmatter fence of `.astro` files.
 
 ### Naming
@@ -263,7 +258,7 @@ Sensitive config goes in `.env` files (gitignored). Cloudflare environment bindi
 Articles are always sorted by `pubDate` descending:
 
 ```typescript
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+articles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ```
 
 ### Site Constants
@@ -281,7 +276,7 @@ export const SITE_DESCRIPTION = '...';
 
 ### RSS
 
-The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you add a new collection and want it in the feed, update `src/pages/rss.xml.js`.
+The RSS feed at `/rss.xml` is generated from the `blog` collection, served at `/article/` URLs.
 
 ---
 
@@ -305,5 +300,6 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 - Do not change the `astro.config.mjs` site URL without updating DNS/Cloudflare configuration.
 - Do not add environment variables to source files — use `.env` (gitignored) or Cloudflare secrets.
 - Do not skip `npm run check` before deploying — it validates the full build pipeline.
-- Do not add content files outside of `src/content/blog/` or `src/content/posts/` — content collections are scoped to those directories.
+- Do not add content files outside of `src/content/blog/` — all content lives in this single collection.
+- Do not create a separate posts or blog section — there is only one section: Articles at `/article/`.
 - Do not add a testing framework without also updating the `check` script to run tests.
