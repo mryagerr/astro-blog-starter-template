@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="58" text-anchor="middle" font-family="ui-monospace,monospace" font-size="28" font-weight="bold" fill="#e2e8f0">Stock Prediction Classifier</text>
+  <text x="510" y="96" text-anchor="middle" font-family="ui-monospace,monospace" font-size="38" font-weight="bold" fill="#38bdf8">SVM + scikit-learn</text>
+
+  <!-- LEFT: Confusion matrix -->
+  <rect x="40" y="116" width="420" height="280" rx="12" fill="#071828" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="66" y="136" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">confusion matrix  (test set: 37,636 rows)</text>
+
+  <!-- Matrix labels -->
+  <text x="230" y="162" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">Predicted</text>
+  <text x="190" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#f43f5e">↓ Down</text>
+  <text x="320" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#22c55e">↑ Up</text>
+
+  <!-- "Actual" rotated label -->
+  <text x="82" y="270" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569" transform="rotate(-90 82 270)">Actual</text>
+  <text x="108" y="235" font-family="ui-monospace,monospace" font-size="10" fill="#f43f5e">↓ Down</text>
+  <text x="108" y="295" font-family="ui-monospace,monospace" font-size="10" fill="#22c55e">↑ Up</text>
+
+  <!-- Matrix cells: TP, FP, FN, TN -->
+  <!-- True Down (correct) -->
+  <rect x="152" y="188" width="112" height="80" rx="6" fill="#22c55e" opacity="0.25" stroke="#22c55e" stroke-width="2"/>
+  <text x="208" y="228" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#22c55e">9,380</text>
+  <text x="208" y="248" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#22c55e">TN</text>
+
+  <!-- False Up (wrong) -->
+  <rect x="272" y="188" width="112" height="80" rx="6" fill="#f43f5e" opacity="0.15" stroke="#f43f5e" stroke-width="1.5"/>
+  <text x="328" y="228" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#f43f5e">9,052</text>
+  <text x="328" y="248" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#f43f5e">FP</text>
+
+  <!-- False Down (wrong) -->
+  <rect x="152" y="276" width="112" height="80" rx="6" fill="#f43f5e" opacity="0.15" stroke="#f43f5e" stroke-width="1.5"/>
+  <text x="208" y="316" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#f43f5e">8,265</text>
+  <text x="208" y="336" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#f43f5e">FN</text>
+
+  <!-- True Up (correct) -->
+  <rect x="272" y="276" width="112" height="80" rx="6" fill="#22c55e" opacity="0.25" stroke="#22c55e" stroke-width="2"/>
+  <text x="328" y="316" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#22c55e">10,939</text>
+  <text x="328" y="336" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#22c55e">TP</text>
+
+  <!-- Metrics below -->
+  <text x="66" y="382" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">precision</text>
+  <text x="160" y="382" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">0.54</text>
+  <text x="210" y="382" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">recall</text>
+  <text x="268" y="382" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">0.57</text>
+  <text x="318" y="382" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">f1</text>
+  <text x="342" y="382" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">0.55</text>
+  <text x="66" y="402" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">accuracy</text>
+  <text x="160" y="402" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f59e0b">54%</text>
+  <text x="210" y="402" font-family="ui-monospace,monospace" font-size="11" fill="#475569">vs 50% random baseline</text>
+
+  <!-- RIGHT: Feature importance bar chart -->
+  <rect x="490" y="116" width="490" height="280" rx="12" fill="#0d1a00" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="516" y="136" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">feature importance  (RandomForest proxy)</text>
+
+  <!-- Bars for each feature -->
+  <!-- ret_1d -->
+  <text x="516" y="168" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">ret_1d</text>
+  <rect x="640" y="154" width="300" height="18" rx="3" fill="#38bdf8" opacity="0.65"/>
+  <text x="946" y="168" font-family="ui-monospace,monospace" font-size="10" fill="#38bdf8">0.21</text>
+
+  <!-- vol_20 -->
+  <text x="516" y="198" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">vol_20</text>
+  <rect x="640" y="184" width="258" height="18" rx="3" fill="#38bdf8" opacity="0.55"/>
+  <text x="946" y="198" font-family="ui-monospace,monospace" font-size="10" fill="#38bdf8">0.18</text>
+
+  <!-- dist_sma20 -->
+  <text x="516" y="228" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">dist_sma20</text>
+  <rect x="640" y="214" width="216" height="18" rx="3" fill="#38bdf8" opacity="0.5"/>
+  <text x="946" y="228" font-family="ui-monospace,monospace" font-size="10" fill="#38bdf8">0.15</text>
+
+  <!-- vix_level -->
+  <text x="516" y="258" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">vix_level</text>
+  <rect x="640" y="244" width="188" height="18" rx="3" fill="#f59e0b" opacity="0.55"/>
+  <text x="946" y="258" font-family="ui-monospace,monospace" font-size="10" fill="#f59e0b">0.13</text>
+
+  <!-- ret_5d -->
+  <text x="516" y="288" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">ret_5d</text>
+  <rect x="640" y="274" width="158" height="18" rx="3" fill="#38bdf8" opacity="0.4"/>
+  <text x="946" y="288" font-family="ui-monospace,monospace" font-size="10" fill="#38bdf8">0.11</text>
+
+  <!-- reddit_sentiment -->
+  <text x="516" y="318" font-family="ui-monospace,monospace" font-size="11" fill="#475569">reddit_sentiment</text>
+  <rect x="640" y="304" width="101" height="18" rx="3" fill="#475569" opacity="0.4"/>
+  <text x="946" y="318" font-family="ui-monospace,monospace" font-size="10" fill="#475569">0.07</text>
+
+  <!-- google_trends -->
+  <text x="516" y="348" font-family="ui-monospace,monospace" font-size="11" fill="#475569">google_trends</text>
+  <rect x="640" y="334" width="87" height="18" rx="3" fill="#475569" opacity="0.35"/>
+  <text x="946" y="348" font-family="ui-monospace,monospace" font-size="10" fill="#475569">0.06</text>
+
+  <!-- wiki_views -->
+  <text x="516" y="378" font-family="ui-monospace,monospace" font-size="11" fill="#334155">wiki_views</text>
+  <rect x="640" y="364" width="72" height="18" rx="3" fill="#334155" opacity="0.5"/>
+  <text x="946" y="378" font-family="ui-monospace,monospace" font-size="10" fill="#334155">0.05</text>
+
+  <text x="516" y="406" font-family="ui-monospace,monospace" font-size="10" fill="#f59e0b">↑ price features dominate  ·  sentiment adds modest signal</text>
+
+  <!-- Pipeline summary bar -->
+  <rect x="40" y="408" width="940" height="58" rx="10" fill="#0a0a14" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+  <text x="66" y="428" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">SVM(kernel="rbf", C=1.0, class_weight="balanced")</text>
+  <text x="490" y="428" font-family="ui-monospace,monospace" font-size="11" fill="#475569">temporal train/test split  ·  StandardScaler  ·  TimeSeriesSplit CV</text>
+  <text x="66" y="452" font-family="ui-monospace,monospace" font-size="11" fill="#475569">train: 2020–2021  ·  test: 2022+  ·  10 tickers  ·  30-min bars</text>
+  <text x="510" y="452" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">no random shuffle — temporal order preserved</text>
+</svg>

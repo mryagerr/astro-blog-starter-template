@@ -2,7 +2,7 @@
 title: 'Visualizing Data with Python'
 description: 'Turn raw numbers into charts that reveal patterns — using matplotlib, seaborn, and plotly for static and interactive visualizations.'
 pubDate: 'Mar 25 2025'
-heroImage: '/blog-pandas.svg'
+heroImage: '/blog-visualization.svg'
 difficulty: 'low'
 ---
 
