@@ -83,7 +83,7 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 			<hr />
 
 			<p>
-				Browse the <a href="/blog">Articles</a> for practical guides on applying these principles,
+				Browse the <a href="/article">Articles</a> for practical guides on applying these principles,
 				or read more <a href="/about">about this project</a>.
 			</p>
 
@@ -94,7 +94,7 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 				{
 					recentPosts.map((post) => (
 						<li>
-							<a href={`/blog/${post.id}/`}>
+							<a href={`/article/${post.id}/`}>
 								{post.data.heroImage && (
 									<img src={post.data.heroImage} alt="" width={720} height={360} />
 								)}
@@ -108,7 +108,7 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 					))
 				}
 			</ul>
-			<p class="view-all"><a href="/blog">View all articles →</a></p>
+			<p class="view-all"><a href="/article">View all articles →</a></p>
 		</main>
 		<Footer />
 	</body>
