@@ -317,5 +317,5 @@ Beyond color: use different line styles (`linestyle="--"`, `":"`) or markers alo
 
 ## Next Steps
 
-- **[Python Pandas Data Wrangling](/blog/python-pandas-data-wrangling)** — Preparing the DataFrame before you plot it.
-- **[Low-Hanging Data Sources for Stock Market Prediction](/blog/low-hanging-data-sources-for-stock-prediction)** — Finding more signals worth visualizing.
+- **[Python Pandas Data Wrangling](/article/python-pandas-data-wrangling)** — Preparing the DataFrame before you plot it.
+- **[Low-Hanging Data Sources for Stock Market Prediction](/article/low-hanging-data-sources-for-stock-prediction)** — Finding more signals worth visualizing.

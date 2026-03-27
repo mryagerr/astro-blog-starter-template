@@ -232,5 +232,5 @@ df = pd.read_json("data.jsonl", lines=True)
 
 ## Next Steps
 
-- **[Pulling Data from REST APIs](/blog/pulling-data-from-apis)** — Fetch live JSON data from HTTP endpoints.
-- **[Organizing Data with SQL](/blog/organizing-data-with-sql)** — Load your CSV/JSON into a database for proper querying.
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — Fetch live JSON data from HTTP endpoints.
+- **[Organizing Data with SQL](/article/organizing-data-with-sql)** — Load your CSV/JSON into a database for proper querying.

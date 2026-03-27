@@ -13,7 +13,7 @@ const posts = sortByPubDateDesc(await getCollection('posts'));
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Blog — ${SITE_TITLE}`} description="Opinions, observations, and project write-ups from the Low Hanging Data blog." />
+		<BaseHead title={`Posts — ${SITE_TITLE}`} description="Opinions, observations, and project write-ups from Low Hanging Data." />
 		<style>
 			main {
 				width: 720px;
@@ -58,13 +58,13 @@ const posts = sortByPubDateDesc(await getCollection('posts'));
 	<body>
 		<Header />
 		<main>
-			<h1>Blog</h1>
+			<h1>Posts</h1>
 			<p>Opinions, observations, and project write-ups. For technical how-to guides, see <a href="/article">Articles</a>.</p>
 			<ul class="post-list">
 				{
 					posts.map((post) => (
 						<li>
-							<a href={`/blog/${post.id}/`}>
+							<a href={`/posts/${post.id}/`}>
 								<h2 class="title">{post.data.title}</h2>
 								<p class="desc">{post.data.description}</p>
 								<p class="date">

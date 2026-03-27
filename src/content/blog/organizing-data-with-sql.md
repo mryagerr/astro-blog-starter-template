@@ -326,9 +326,9 @@ SELECT COUNT(*) FROM events WHERE user_id = 'u_12345';
 -- → SEARCH events USING INDEX idx_events_user (user_id=?)
 ```
 
-DuckDB — used in the [Working with Parquet and DuckDB](/blog/working-with-parquet-and-duckdb) article — uses `EXPLAIN` (not `EXPLAIN QUERY PLAN`) and automatically exploits Parquet column statistics as a built-in optimization, so explicit indexes are less often needed there.
+DuckDB — used in the [Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb) article — uses `EXPLAIN` (not `EXPLAIN QUERY PLAN`) and automatically exploits Parquet column statistics as a built-in optimization, so explicit indexes are less often needed there.
 
 ## Next Steps
 
-- **[Python & Pandas for Data Wrangling](/blog/python-pandas-data-wrangling)** — Clean and reshape data before loading it into SQL.
-- **[Building Your First Data Pipeline](/blog/building-your-first-data-pipeline)** — Automate the full collect → organize → query cycle.
+- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling)** — Clean and reshape data before loading it into SQL.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Automate the full collect → organize → query cycle.

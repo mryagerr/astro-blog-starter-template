@@ -91,5 +91,5 @@ This pattern — fetch, validate, write — is the basis of every article in thi
 
 ## Next Steps
 
-- **[Working with CSV and JSON](/blog/working-with-csv-and-json)** — The two most common data formats in detail.
-- **[Pulling Data from REST APIs](/blog/pulling-data-from-apis)** — Authentication, pagination, and error handling.
+- **[Working with CSV and JSON](/article/working-with-csv-and-json)** — The two most common data formats in detail.
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — Authentication, pagination, and error handling.
