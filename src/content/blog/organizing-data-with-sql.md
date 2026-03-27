@@ -261,6 +261,73 @@ print(result)
 
 DuckDB is especially useful for ad-hoc queries on large files where you don't want to maintain a database.
 
+## Indexes and Query Performance
+
+As your tables grow, queries without indexes scan every row — which works fine at a few thousand rows but becomes noticeably slow at hundreds of thousands. An index lets the database jump directly to matching rows.
+
+### Creating Indexes
+
+```sql
+-- Speed up lookups by a single column
+CREATE INDEX idx_users_email ON users (email);
+
+-- Composite index for queries that filter on both columns
+CREATE INDEX idx_events_user_date ON events (user_id, created_at);
+
+-- Unique index (also enforces a constraint)
+CREATE UNIQUE INDEX idx_users_email_unique ON users (email);
+```
+
+Index the columns that appear in `WHERE`, `JOIN ON`, and `ORDER BY` clauses. Don't index every column — indexes take space and slow down inserts.
+
+### Reading the Query Plan
+
+Before adding an index, check whether the database is already using one. SQLite's `EXPLAIN QUERY PLAN` shows exactly how a query will execute:
+
+```python
+import sqlite3
+
+conn = sqlite3.connect("data/journal.db")
+
+plan = conn.execute("""
+    EXPLAIN QUERY PLAN
+    SELECT name, email
+    FROM users
+    WHERE email LIKE '%@gmail.com'
+    ORDER BY created_at DESC
+""").fetchall()
+
+for row in plan:
+    print(row)
+```
+
+Look for these keywords in the output:
+
+| Output | Meaning |
+|--------|---------|
+| `SCAN users` | Full table scan — reads every row |
+| `SEARCH users USING INDEX` | Uses an index — fast |
+| `SEARCH users USING COVERING INDEX` | Index contains all needed columns — fastest |
+
+A full scan on a small table is fine. A full scan on a million-row table that runs every 30 minutes is a problem.
+
+### A Practical Example
+
+```sql
+-- Without an index, this scans every row in events
+SELECT COUNT(*) FROM events WHERE user_id = 'u_12345';
+
+-- Create an index on user_id
+CREATE INDEX idx_events_user ON events (user_id);
+
+-- Now the same query uses the index
+EXPLAIN QUERY PLAN
+SELECT COUNT(*) FROM events WHERE user_id = 'u_12345';
+-- → SEARCH events USING INDEX idx_events_user (user_id=?)
+```
+
+DuckDB — used in the [Working with Parquet and DuckDB](/blog/working-with-parquet-and-duckdb) article — uses `EXPLAIN` (not `EXPLAIN QUERY PLAN`) and automatically exploits Parquet column statistics as a built-in optimization, so explicit indexes are less often needed there.
+
 ## Next Steps
 
 - **[Python & Pandas for Data Wrangling](/blog/python-pandas-data-wrangling)** — Clean and reshape data before loading it into SQL.

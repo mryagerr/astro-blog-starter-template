@@ -44,6 +44,61 @@ duckdb.sql(f"""
 
 `filename_part` injects the source filename (without extension) as a column — a clean way to derive ticker from filename without pre-processing the CSVs.
 
+## OHLCV Data Quality Checks
+
+Raw price data from free sources contains errors that are easy to miss and expensive to ignore. Run these checks immediately after ingestion, before any calculations.
+
+```python
+import duckdb
+
+issues = duckdb.sql("""
+    SELECT
+        ticker,
+        date,
+        open, high, low, close, volume,
+
+        -- High must be >= all other prices
+        CASE WHEN high < low                 THEN 'high < low'
+             WHEN high < open                THEN 'high < open'
+             WHEN high < close               THEN 'high < close'
+             ELSE NULL END AS price_error,
+
+        -- Zero or negative values are always wrong
+        CASE WHEN close <= 0                 THEN 'non-positive close'
+             WHEN volume < 0                 THEN 'negative volume'
+             ELSE NULL END AS range_error,
+
+        -- Price gaps larger than 50% in a single day suggest a split or bad data
+        CASE WHEN ABS(
+            close / NULLIF(LAG(close, 1) OVER (PARTITION BY ticker ORDER BY date), 0) - 1
+        ) > 0.50 THEN 'large gap — possible split or bad tick'
+             ELSE NULL END AS gap_warning
+
+    FROM 'data/parquet/prices.parquet'
+    WHERE price_error IS NOT NULL
+       OR range_error IS NOT NULL
+       OR gap_warning IS NOT NULL
+    ORDER BY ticker, date
+""").df()
+
+if not issues.empty:
+    print(f"Found {len(issues)} data quality issues:")
+    print(issues.to_string())
+```
+
+Large single-day gaps are the most common surprise. They can mean:
+- A stock split (adjust prices or use an adjusted-close data source)
+- A missing trading day creating a phantom gap across a weekend or holiday
+- A genuinely bad tick from the data provider
+
+The right response depends on the cause — but you need to know the gap exists before you can decide.
+
+### A Note on Survivorship Bias
+
+The tickers in your dataset are the ones that *still exist*. Companies that went bankrupt, were acquired, or were delisted during your study window are absent — but they were live trading candidates at the time. Training a model only on survivors inflates apparent returns because the worst outcomes are excluded by construction.
+
+There is no simple fix from free data sources. Being aware of the bias is the first step: when your backtest shows strong performance, ask whether the result would hold for the full population of tradeable stocks at the time, not just the ones that survived to today.
+
 ## Computing Returns
 
 Daily and rolling returns are the foundation of almost every financial calculation.

@@ -250,6 +250,21 @@ def save_fig(fig, name: str, formats=("png", "html")):
         print(f"Saved {path}")
 ```
 
+## Static vs. Interactive: Choosing a Format
+
+The right output format depends on where the chart will be seen and what the reader needs to do with it.
+
+| Situation | Use |
+|-----------|-----|
+| Report, paper, or slide deck | Static PNG/SVG (matplotlib or seaborn) |
+| Jupyter notebook for personal exploration | Either — plotly renders inline |
+| Web page or dashboard | Interactive HTML (plotly) |
+| High row count (100K+ points) | Static — interactive charts slow down at scale |
+| Reader needs to filter, zoom, or hover | Interactive (plotly) |
+| You need precise pixel-level control | matplotlib |
+
+A practical default: use seaborn for exploration and static export, switch to plotly when you're sharing something that benefits from tooltips or filtering.
+
 ## Chart Choice Guide
 
 | Question to answer | Recommended chart |
@@ -263,6 +278,42 @@ def save_fig(fig, name: str, formats=("png", "html")):
 | What is the price range over time? | Candlestick |
 
 Avoid pie charts for more than four categories — bar charts communicate proportions more accurately.
+
+## Colorblind-Friendly Palettes
+
+Roughly 8% of men and 0.5% of women have some form of color vision deficiency. The default matplotlib and seaborn color cycles are not designed with this in mind. Use a colorblind-safe palette whenever a chart will be shared.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# seaborn's colorblind palette — safe for the most common deficiencies
+sns.set_palette("colorblind")
+
+# Or set it per plot
+palette = sns.color_palette("colorblind")
+sns.lineplot(data=df, x="date", y="close", hue="ticker", palette=palette)
+```
+
+For matplotlib directly:
+
+```python
+# Okabe-Ito palette — widely recommended for accessibility
+OKABE_ITO = [
+    "#E69F00", "#56B4E9", "#009E73",
+    "#F0E442", "#0072B2", "#D55E00", "#CC79A7",
+]
+
+fig, ax = plt.subplots()
+for i, ticker in enumerate(tickers):
+    subset = df[df["ticker"] == ticker]
+    ax.plot(subset["date"], subset["close"],
+            color=OKABE_ITO[i % len(OKABE_ITO)],
+            label=ticker)
+ax.legend()
+```
+
+Beyond color: use different line styles (`linestyle="--"`, `":"`) or markers alongside color when printing in black and white is a possibility.
 
 ## Next Steps
 

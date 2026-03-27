@@ -287,6 +287,121 @@ timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 raw_path = f"data/raw/users_{timestamp}.json"
 ```
 
+## Incremental Loads
+
+Full reloads — replacing the entire table on every run — work fine for small datasets. Once your source grows or the API enforces rate limits, you need incremental loading: only fetch and load records that are new or updated since the last run.
+
+### Tracking the Watermark
+
+A watermark is a timestamp (or ID) that marks where the last run left off. Store it in a small state file or a database table.
+
+```python
+# pipeline/state.py
+import json
+from pathlib import Path
+from datetime import datetime, timezone
+
+STATE_FILE = Path("data/pipeline_state.json")
+
+def load_watermark(key: str) -> str | None:
+    """Return the last-processed value for a given key, or None if first run."""
+    if not STATE_FILE.exists():
+        return None
+    state = json.loads(STATE_FILE.read_text())
+    return state.get(key)
+
+def save_watermark(key: str, value: str):
+    """Persist the watermark after a successful run."""
+    state = json.loads(STATE_FILE.read_text()) if STATE_FILE.exists() else {}
+    state[key] = value
+    STATE_FILE.write_text(json.dumps(state, indent=2))
+```
+
+### Fetching Only New Records
+
+Pass the watermark as a filter parameter when calling the API:
+
+```python
+# pipeline/extract.py
+from pipeline.state import load_watermark, save_watermark
+from datetime import datetime, timezone
+
+def fetch_events_incremental(output_path="data/raw/events.json"):
+    since = load_watermark("events_since") or "2020-01-01T00:00:00Z"
+    records = []
+    page = 1
+    latest_ts = since
+
+    while True:
+        resp = requests.get(
+            f"{API_BASE}/events",
+            headers=HEADERS,
+            params={"since": since, "page": page, "per_page": 500},
+        )
+        resp.raise_for_status()
+        batch = resp.json().get("results", [])
+        records.extend(batch)
+
+        # Track the most recent timestamp seen in this batch
+        for r in batch:
+            if r["created_at"] > latest_ts:
+                latest_ts = r["created_at"]
+
+        if len(batch) < 500:
+            break
+        page += 1
+        time.sleep(0.1)
+
+    # Only save watermark after a fully successful fetch
+    if records:
+        save_watermark("events_since", latest_ts)
+
+    with open(output_path, "w") as f:
+        json.dump(records, f, indent=2)
+
+    print(f"Fetched {len(records)} new events since {since}")
+    return output_path
+```
+
+### Upsert Instead of Replace
+
+When loading incremental data, use upsert (insert or update) rather than truncate-and-reload:
+
+```python
+# pipeline/load.py — incremental upsert for SQLite
+import sqlite3
+import pandas as pd
+
+def upsert_events(clean_path: str, db_path="data/journal.db"):
+    df = pd.read_csv(clean_path, parse_dates=["created_at"])
+    conn = sqlite3.connect(db_path)
+
+    # Ensure the table exists
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS events (
+            id         TEXT PRIMARY KEY,
+            user_id    TEXT,
+            event_type TEXT,
+            created_at TEXT,
+            amount     REAL
+        )
+    """)
+
+    # INSERT OR REPLACE uses the PRIMARY KEY to update existing rows
+    conn.executemany(
+        "INSERT OR REPLACE INTO events (id, user_id, event_type, created_at, amount) "
+        "VALUES (?, ?, ?, ?, ?)",
+        df[["id", "user_id", "event_type", "created_at", "amount"]].itertuples(index=False)
+    )
+    conn.commit()
+
+    count = conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
+    conn.close()
+    print(f"Upserted {len(df)} rows — {count} total in events table")
+```
+
+`INSERT OR REPLACE` in SQLite (and `INSERT ... ON CONFLICT DO UPDATE` in PostgreSQL) ensures duplicate runs don't create duplicate rows. Combined with the watermark, the pipeline becomes safe to re-run at any time — a re-run simply re-fetches and re-upserts the same records.
+
 ## What to Build Next
 
 Once your basic pipeline is running:

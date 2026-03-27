@@ -201,6 +201,67 @@ This pattern — load, clean, validate, save — makes cleaning reproducible and
 - **Cleaning in place** — Modifying the source file means you can never re-run the pipeline from scratch.
 - **Silent type coercion** — `errors="coerce"` turns bad values into NaN. Always re-check null counts after coercing.
 
+## Schema Contracts with pandera
+
+`assert` statements catch problems at runtime, but they don't document the expected schema, and they don't give useful error messages when the violation involves thousands of rows. `pandera` adds schema contracts: a declarative definition of what each column must look like, checked in one call.
+
+```bash
+pip install pandera
+```
+
+Define a schema once and reuse it across every script that handles the same data:
+
+```python
+import pandera as pa
+from pandera import Column, DataFrameSchema, Check
+
+orders_schema = DataFrameSchema(
+    {
+        "order_id": Column(str, nullable=False, unique=True),
+        "user_id":  Column(str, nullable=False),
+        "amount":   Column(float, checks=[
+            Check.ge(0, error="amount must be non-negative"),
+            Check.le(100_000, error="amount suspiciously large"),
+        ]),
+        "status":   Column(str, checks=Check.isin(
+            ["pending", "processing", "completed", "cancelled"]
+        )),
+        "created_at": Column("datetime64[ns]", nullable=False),
+    },
+    coerce=True,     # attempt type coercion before checking
+    strict=False,    # allow extra columns not in the schema
+)
+```
+
+Validate a DataFrame by calling `.validate()`. It returns the DataFrame if it passes, or raises a `SchemaError` with a detailed report if it fails:
+
+```python
+def clean_and_validate(raw_path: str, clean_path: str):
+    df = pd.read_csv(raw_path)
+
+    # ... cleaning steps ...
+    df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
+    df["created_at"] = pd.to_datetime(df["created_at"], errors="coerce")
+    df = df.dropna(subset=["order_id", "user_id", "amount", "created_at"])
+
+    # Validate against schema — raises SchemaError with row-level detail on failure
+    validated = orders_schema.validate(df, lazy=True)
+
+    validated.to_csv(clean_path, index=False)
+    print(f"Validated {len(validated)} rows → {clean_path}")
+```
+
+`lazy=True` collects all violations before raising, so you see every problem at once instead of stopping on the first one.
+
+### Choosing Between assert and pandera
+
+| Approach | Use when |
+|----------|---------|
+| `assert` statements | Quick pipeline validation, simple scalar checks |
+| `pandera` schema | Shared across multiple scripts, complex column-level rules, need good error reporting |
+
+You do not need both. For a one-file cleaning script, `assert` is sufficient. For schemas shared between a pipeline, a notebook, and a dashboard, `pandera` pays for itself quickly.
+
 ## Next Steps
 
 - **[Python Pandas Data Wrangling](/blog/python-pandas-data-wrangling)** — Reshaping, grouping, and aggregating clean data.
