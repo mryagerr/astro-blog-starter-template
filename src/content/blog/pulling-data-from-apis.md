@@ -258,5 +258,5 @@ Before writing code, explore the API manually:
 
 ## Next Steps
 
-- **[Organizing Data with SQL](/blog/organizing-data-with-sql)** — Load your collected data into a database.
-- **[Python & Pandas for Data Wrangling](/blog/python-pandas-data-wrangling)** — Clean and reshape the data you've pulled.
+- **[Organizing Data with SQL](/article/organizing-data-with-sql)** — Load your collected data into a database.
+- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling)** — Clean and reshape the data you've pulled.

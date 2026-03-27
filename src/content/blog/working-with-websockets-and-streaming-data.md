@@ -272,5 +272,5 @@ WebSockets add operational complexity — reconnection logic, heartbeat handling
 
 ## Next Steps
 
-- **[Scheduling and Automating Pipelines](/blog/scheduling-and-automating-pipelines)** — Running your streaming collector as a persistent service.
-- **[Pulling Data from REST APIs](/blog/pulling-data-from-apis)** — The polling alternative for lower-frequency data.
+- **[Scheduling and Automating Pipelines](/article/scheduling-and-automating-pipelines)** — Running your streaming collector as a persistent service.
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — The polling alternative for lower-frequency data.

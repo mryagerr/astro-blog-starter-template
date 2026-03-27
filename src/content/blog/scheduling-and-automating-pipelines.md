@@ -321,5 +321,5 @@ Start simple. Cron handles 80% of cases. Add complexity only when you hit a conc
 
 ## Next Steps
 
-- **[Building Your First Data Pipeline](/blog/building-your-first-data-pipeline)** — End-to-end pipeline structure before adding scheduling.
-- **[Data Cleaning and Validation](/blog/data-cleaning-and-validation)** — Ensuring your scheduled pulls produce clean output.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — End-to-end pipeline structure before adding scheduling.
+- **[Data Cleaning and Validation](/article/data-cleaning-and-validation)** — Ensuring your scheduled pulls produce clean output.

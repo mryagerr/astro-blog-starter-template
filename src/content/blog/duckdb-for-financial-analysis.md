@@ -6,7 +6,7 @@ heroImage: '/blog-sql.svg'
 difficulty: 'high'
 ---
 
-The [Parquet and DuckDB article](/blog/working-with-parquet-and-duckdb) covers the basics: installing DuckDB, writing Parquet files, running queries. This article goes further — it uses stock market data as the working example and covers the patterns that come up repeatedly in financial analysis: rolling windows, returns, rank filtering, multi-file queries, and exporting results for downstream use.
+The [Parquet and DuckDB article](/article/working-with-parquet-and-duckdb) covers the basics: installing DuckDB, writing Parquet files, running queries. This article goes further — it uses stock market data as the working example and covers the patterns that come up repeatedly in financial analysis: rolling windows, returns, rank filtering, multi-file queries, and exporting results for downstream use.
 
 ## Setting Up a Local Stock Data Store
 
@@ -378,6 +378,6 @@ This pattern — build the full feature matrix in SQL, hand off a clean DataFram
 
 ## Next Steps
 
-- **[Working with Parquet and DuckDB](/blog/working-with-parquet-and-duckdb)** — Setup, file writes, and basic queries.
-- **[Low-Hanging Data Sources for Stock Prediction](/blog/low-hanging-data-sources-for-stock-prediction)** — What signals to add to the feature matrix built above.
-- **[Building Your First Data Pipeline](/blog/building-your-first-data-pipeline)** — Wrapping these queries in a reproducible pipeline.
+- **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb)** — Setup, file writes, and basic queries.
+- **[Low-Hanging Data Sources for Stock Prediction](/article/low-hanging-data-sources-for-stock-prediction)** — What signals to add to the feature matrix built above.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Wrapping these queries in a reproducible pipeline.

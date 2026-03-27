@@ -93,5 +93,5 @@ The golden age was real. It was also anomalous. Building as if it's coming back 
 
 ---
 
-- **[Building Your First Data Pipeline](/blog/building-your-first-data-pipeline)** — Structuring pipelines to handle source instability.
-- **[Working with CSV and JSON](/blog/working-with-csv-and-json)** — Working with data once you've collected it.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Structuring pipelines to handle source instability.
+- **[Working with CSV and JSON](/article/working-with-csv-and-json)** — Working with data once you've collected it.
