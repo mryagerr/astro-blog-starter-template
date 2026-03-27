@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Line chart area -->
+  <polyline points="80,380 160,320 240,290 320,240 400,200 480,230 560,180 640,150 720,170 800,140" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Area fill under line -->
+  <polygon points="80,380 160,320 240,290 320,240 400,200 480,230 560,180 640,150 720,170 800,140 800,420 80,420" fill="#38bdf8" opacity="0.07"/>
+
+  <!-- Data points -->
+  <circle cx="80" cy="380" r="5" fill="#38bdf8"/>
+  <circle cx="160" cy="320" r="5" fill="#38bdf8"/>
+  <circle cx="240" cy="290" r="5" fill="#38bdf8"/>
+  <circle cx="320" cy="240" r="5" fill="#38bdf8"/>
+  <circle cx="400" cy="200" r="5" fill="#38bdf8"/>
+  <circle cx="480" cy="230" r="5" fill="#38bdf8"/>
+  <circle cx="560" cy="180" r="5" fill="#38bdf8"/>
+  <circle cx="640" cy="150" r="5" fill="#0891b2"/>
+  <circle cx="720" cy="170" r="5" fill="#38bdf8"/>
+  <circle cx="800" cy="140" r="6" fill="#f59e0b"/>
+
+  <!-- Axes -->
+  <line x1="65" y1="130" x2="65" y2="425" stroke="#334155" stroke-width="2"/>
+  <line x1="65" y1="425" x2="820" y2="425" stroke="#334155" stroke-width="2"/>
+
+  <!-- Y-axis ticks -->
+  <line x1="60" y1="200" x2="65" y2="200" stroke="#334155" stroke-width="1"/>
+  <line x1="60" y1="280" x2="65" y2="280" stroke="#334155" stroke-width="1"/>
+  <line x1="60" y1="360" x2="65" y2="360" stroke="#334155" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="920" y="220" text-anchor="middle" font-family="ui-monospace,monospace" font-size="20" font-weight="bold" fill="#e2e8f0">Visualizing</text>
+  <text x="920" y="252" text-anchor="middle" font-family="ui-monospace,monospace" font-size="20" font-weight="bold" fill="#e2e8f0">Data</text>
+  <text x="920" y="284" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#38bdf8">with Python</text>
+  <line x1="850" y1="308" x2="990" y2="308" stroke="#38bdf8" stroke-width="1" opacity="0.3"/>
+  <text x="920" y="334" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#475569">Low Hanging Data</text>
+</svg>

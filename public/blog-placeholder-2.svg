@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- SQL terminal window -->
+  <rect x="80" y="130" width="560" height="280" rx="10" fill="#0d1117" stroke="#1e293b" stroke-width="1.5"/>
+  <!-- Terminal title bar -->
+  <rect x="80" y="130" width="560" height="36" rx="10" fill="#161b22"/>
+  <rect x="80" y="148" width="560" height="18" fill="#161b22"/>
+  <circle cx="106" cy="148" r="7" fill="#f43f5e" opacity="0.8"/>
+  <circle cx="130" cy="148" r="7" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="154" cy="148" r="7" fill="#22c55e" opacity="0.8"/>
+
+  <!-- SQL code lines -->
+  <text x="105" y="198" font-family="ui-monospace,monospace" font-size="14" fill="#38bdf8">SELECT</text>
+  <text x="185" y="198" font-family="ui-monospace,monospace" font-size="14" fill="#e2e8f0">category, COUNT(*) AS total</text>
+  <text x="105" y="222" font-family="ui-monospace,monospace" font-size="14" fill="#38bdf8">FROM</text>
+  <text x="175" y="222" font-family="ui-monospace,monospace" font-size="14" fill="#22c55e">transactions</text>
+  <text x="105" y="246" font-family="ui-monospace,monospace" font-size="14" fill="#38bdf8">WHERE</text>
+  <text x="185" y="246" font-family="ui-monospace,monospace" font-size="14" fill="#e2e8f0">date &gt;= '2025-01-01'</text>
+  <text x="105" y="270" font-family="ui-monospace,monospace" font-size="14" fill="#38bdf8">GROUP BY</text>
+  <text x="213" y="270" font-family="ui-monospace,monospace" font-size="14" fill="#e2e8f0">category</text>
+  <text x="105" y="294" font-family="ui-monospace,monospace" font-size="14" fill="#38bdf8">ORDER BY</text>
+  <text x="213" y="294" font-family="ui-monospace,monospace" font-size="14" fill="#e2e8f0">total DESC;</text>
+
+  <!-- Result row divider -->
+  <line x1="105" y1="313" x2="615" y2="313" stroke="#1e293b" stroke-width="1"/>
+  <text x="105" y="335" font-family="ui-monospace,monospace" font-size="13" fill="#475569">-- 12 rows returned in 0.003s</text>
+  <text x="105" y="357" font-family="ui-monospace,monospace" font-size="13" fill="#22c55e">▊</text>
+
+  <!-- Title -->
+  <text x="820" y="230" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#e2e8f0">Organizing</text>
+  <text x="820" y="262" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#e2e8f0">Data</text>
+  <text x="820" y="296" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" fill="#38bdf8">with SQL</text>
+  <line x1="730" y1="320" x2="910" y2="320" stroke="#38bdf8" stroke-width="1" opacity="0.3"/>
+  <text x="820" y="348" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#475569">Low Hanging Data</text>
+</svg>

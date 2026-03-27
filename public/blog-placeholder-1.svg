@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Background grid lines -->
+  <line x1="0" y1="170" x2="1020" y2="170" stroke="#1e293b" stroke-width="1"/>
+  <line x1="0" y1="340" x2="1020" y2="340" stroke="#1e293b" stroke-width="1"/>
+  <line x1="255" y1="0" x2="255" y2="510" stroke="#1e293b" stroke-width="1"/>
+  <line x1="510" y1="0" x2="510" y2="510" stroke="#1e293b" stroke-width="1"/>
+  <line x1="765" y1="0" x2="765" y2="510" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Bar chart: data collection theme -->
+  <rect x="140" y="310" width="50" height="80" rx="4" fill="#38bdf8" opacity="0.7"/>
+  <rect x="210" y="260" width="50" height="130" rx="4" fill="#38bdf8" opacity="0.7"/>
+  <rect x="280" y="200" width="50" height="190" rx="4" fill="#38bdf8" opacity="0.7"/>
+  <rect x="350" y="160" width="50" height="230" rx="4" fill="#0891b2" opacity="0.8"/>
+  <rect x="420" y="130" width="50" height="260" rx="4" fill="#38bdf8" opacity="0.7"/>
+  <rect x="490" y="170" width="50" height="220" rx="4" fill="#38bdf8" opacity="0.7"/>
+  <rect x="560" y="220" width="50" height="170" rx="4" fill="#38bdf8" opacity="0.7"/>
+
+  <!-- Baseline -->
+  <line x1="120" y1="395" x2="640" y2="395" stroke="#334155" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="790" y="200" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#e2e8f0">Getting</text>
+  <text x="790" y="232" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#e2e8f0">Started</text>
+  <text x="790" y="275" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" fill="#38bdf8">with Data</text>
+
+  <!-- Accent line -->
+  <line x1="690" y1="300" x2="890" y2="300" stroke="#38bdf8" stroke-width="1" opacity="0.3"/>
+
+  <text x="790" y="330" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#475569">Low Hanging Data</text>
+</svg>

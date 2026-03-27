@@ -78,5 +78,5 @@ That's the bar. Not whether the model is statistically significant. Whether the 
 ---
 
 **Further reading:**
-- [Low-Hanging Data Sources for Stock Prediction](/blog/low-hanging-data-sources-for-stock-prediction) — more work from the same author, applying a similar data-driven approach to financial markets.
+- [Low-Hanging Data Sources for Stock Prediction](/article/low-hanging-data-sources-for-stock-prediction) — more work from the same author, applying a similar data-driven approach to financial markets.
 - Original article: *Reducing Device Downtime Using Actionable Intelligence on AWS* — Petrillo, Dattoli & McCallion, AWS Industries Blog, May 2022.

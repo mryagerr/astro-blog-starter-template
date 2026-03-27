@@ -120,5 +120,5 @@ That's a proposal that gets funded. Vague appeals to "real-time data" don't.
 
 ---
 
-- **[Building Your First Data Pipeline](/blog/building-your-first-data-pipeline)** — Foundational pipeline concepts before adding streaming complexity.
-- **[Scheduling and Automating Pipelines](/blog/scheduling-and-automating-pipelines)** — Often the right answer before reaching for CDC.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Foundational pipeline concepts before adding streaming complexity.
+- **[Scheduling and Automating Pipelines](/article/scheduling-and-automating-pipelines)** — Often the right answer before reaching for CDC.
