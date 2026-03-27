@@ -236,6 +236,78 @@ conn.executemany(
 
 An idempotent pipeline is safe to re-run from any point. This makes debugging and recovery vastly simpler.
 
+## Secrets Management
+
+Scheduled pipelines almost always need credentials — API keys, database passwords, email app passwords. How you store and access those secrets matters.
+
+### What Not to Do
+
+Never put secrets directly in source code or commit them to a repository:
+
+```python
+# BAD — visible to anyone with repo access
+API_KEY = "sk-live-abc123..."
+```
+
+### Local Development: .env Files
+
+Store secrets in a `.env` file in the project root and load them with `python-dotenv`. The `.env` file is listed in `.gitignore` so it is never committed.
+
+```bash
+pip install python-dotenv
+```
+
+```ini
+# .env  (never commit this file)
+EXAMPLE_API_KEY=sk-live-abc123...
+SMTP_PASSWORD=app-password-here
+DB_PASSWORD=secret
+```
+
+```python
+# At the top of run.py or any script that needs credentials
+from dotenv import load_dotenv
+import os
+
+load_dotenv()   # reads .env into environment variables
+
+API_KEY = os.environ["EXAMPLE_API_KEY"]
+```
+
+### GitHub Actions: Repository Secrets
+
+For pipelines that run in GitHub Actions, store secrets in the repository settings under **Settings → Secrets and variables → Actions**, then reference them in the workflow:
+
+```yaml
+# .github/workflows/pipeline.yml
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python run.py
+        env:
+          EXAMPLE_API_KEY: ${{ secrets.EXAMPLE_API_KEY }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+```
+
+Secrets set this way are never exposed in logs — GitHub redacts them automatically.
+
+### Production Servers: Environment Variables
+
+On a VPS or cloud VM, set environment variables at the system or service level rather than using a `.env` file. For `systemd` services:
+
+```ini
+# /etc/systemd/system/pipeline.service
+[Service]
+Environment="EXAMPLE_API_KEY=sk-live-abc123..."
+ExecStart=/usr/bin/python3 /opt/pipeline/run.py
+```
+
+Or export them in the shell profile (`.bashrc` / `.profile`) if running from cron.
+
+The principle in all cases is the same: secrets live in the environment, not in the code. The script reads them with `os.environ["KEY"]` — if the variable is missing, the pipeline fails immediately with a clear `KeyError` rather than silently using a wrong value.
+
 ## Choosing the Right Tool
 
 | Situation | Recommended Tool |

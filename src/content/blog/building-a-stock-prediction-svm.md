@@ -190,6 +190,73 @@ For context: 54% accuracy on every 30-minute trade, if trades were sized correct
 
 ---
 
+## Tuning the Decision Threshold
+
+By default, scikit-learn classifiers predict the class with the highest probability — which means they use a 0.5 decision threshold. For a trading signal, the costs of false positives and false negatives are not equal, and the optimal threshold is rarely 0.5.
+
+**A false positive** (predicting Up when the price goes Down) costs you on a losing trade.
+**A false negative** (predicting Down when the price goes Up) costs you a missed opportunity.
+
+Depending on your transaction costs and position sizing, you may prefer higher precision (fewer wrong calls) over higher recall (fewer missed moves).
+
+### The Precision-Recall Tradeoff
+
+```python
+from sklearn.metrics import precision_recall_curve
+import matplotlib.pyplot as plt
+import numpy as np
+
+# SVC with probability=True gives calibrated probabilities
+svm_prob = SVC(
+    kernel="rbf",
+    C=1.0,
+    gamma="scale",
+    class_weight="balanced",
+    probability=True,   # enables predict_proba()
+    random_state=42,
+)
+svm_prob.fit(X_train_scaled, y_train)
+
+# Get probability of the "Up" class (label +1)
+y_proba = svm_prob.predict_proba(X_test_scaled)[:, 1]
+
+precision, recall, thresholds = precision_recall_curve(
+    (y_test == 1).astype(int),   # binary: 1 = Up, 0 = Down
+    y_proba
+)
+
+plt.figure(figsize=(8, 5))
+plt.plot(thresholds, precision[:-1], label="Precision")
+plt.plot(thresholds, recall[:-1], label="Recall")
+plt.xlabel("Decision threshold")
+plt.ylabel("Score")
+plt.title("Precision vs. Recall at Different Thresholds")
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.savefig("charts/threshold_curve.png", dpi=150)
+```
+
+### Selecting a Threshold
+
+If you want to only trade on high-confidence Up signals (accepting that you'll miss some), raise the threshold:
+
+```python
+# Only predict "Up" when the model is at least 60% confident
+threshold = 0.60
+y_pred_tuned = (y_proba >= threshold).astype(int)
+y_pred_tuned = np.where(y_pred_tuned == 1, 1, -1)  # convert back to +1 / -1
+
+from sklearn.metrics import classification_report
+print(classification_report(
+    y_test, y_pred_tuned, target_names=["Down", "Up"]
+))
+```
+
+A threshold of 0.60 will typically improve precision on Up predictions (fewer false positives) at the cost of lower recall (more missed Up moves). The right threshold depends on how expensive a wrong trade is relative to a missed trade — there is no universally correct answer.
+
+The key insight: **accuracy is not the only metric**. For a signal that drives actual trades, precision on the actionable class is often more important than overall accuracy.
+
 ## Diagnosing the Model
 
 ### Is the signal doing anything?

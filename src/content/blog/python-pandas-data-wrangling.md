@@ -277,6 +277,52 @@ def clean_users(raw_path, clean_path):
 clean_users("data/raw/users.csv", "data/clean/users.csv")
 ```
 
+## Memory Usage and When to Switch Tools
+
+Pandas holds the entire DataFrame in memory. For typical data work — files under a few hundred megabytes — this is fine. At larger sizes, it becomes the bottleneck.
+
+### Checking Memory Usage
+
+```python
+# Total memory used by the DataFrame
+print(df.memory_usage(deep=True).sum() / 1_024**2, "MB")
+
+# Per-column breakdown
+print(df.memory_usage(deep=True).sort_values(ascending=False))
+```
+
+`deep=True` counts the actual size of string data, not just pointers. Without it, object columns appear much smaller than they are.
+
+### Reducing Memory with Downcasting
+
+Many DataFrames use more memory than necessary because pandas defaults to 64-bit types:
+
+```python
+# Downcast integers (int64 → smallest int that fits the values)
+df["age"]    = pd.to_numeric(df["age"],    downcast="integer")
+df["count"]  = pd.to_numeric(df["count"],  downcast="integer")
+
+# Downcast floats (float64 → float32 where precision is not critical)
+df["price"]  = pd.to_numeric(df["price"],  downcast="float")
+
+# Convert low-cardinality string columns to categoricals
+# Useful when a column has few unique values (status, city, category)
+df["status"] = df["status"].astype("category")
+```
+
+Categorical encoding is especially effective on columns like `ticker` (10 unique values across 1 million rows): it stores an integer lookup table instead of repeating the string on every row.
+
+### When Pandas Is the Wrong Tool
+
+| Situation | Better tool |
+|-----------|------------|
+| File is too large to fit in RAM | DuckDB (query in chunks) or Polars (lazy evaluation) |
+| Need fast column operations on 10M+ rows | Polars (`pip install polars`) |
+| Need distributed processing across machines | Dask or Spark |
+| All you need is SQL aggregations on a file | `duckdb.sql("SELECT ... FROM 'file.parquet'")` — skip pandas entirely |
+
+A rough rule: if `df.memory_usage(deep=True).sum()` exceeds half your available RAM, or if your transformations take more than a minute on a modern laptop, evaluate DuckDB or Polars first. Both support a pandas-compatible API and are significantly faster on large datasets.
+
 ## Next Steps
 
 - **[Building Your First Data Pipeline](/blog/building-your-first-data-pipeline)** — Combine collection, cleaning, and storage into an automated workflow.
