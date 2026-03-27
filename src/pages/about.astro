@@ -15,38 +15,30 @@ import Layout from '../layouts/BlogPost.astro';
 	</p>
 
 	<h2>The Three Principles</h2>
-	<p>
-		Every article and analysis published here is held to three standards:
-	</p>
 	<ul>
 		<li>
-			<strong>Concise</strong> — Analysis should be as short as it needs to be and no shorter.
-			If a finding requires three paragraphs to explain, it either isn't clear yet or wasn't
-			worth finding. Good analysis fits in a headline with supporting evidence.
+			<strong>Concise</strong> — Good analysis fits in a headline with supporting evidence. If a finding
+			requires three paragraphs to explain, it either isn't clear yet or wasn't worth finding.
+			See: <a href="/article/visualizing-data-with-python/">Visualizing Data with Python</a>,
+			<a href="/article/organizing-data-with-sql/">Organizing Data with SQL</a>.
 		</li>
 		<li>
 			<strong>Transparent</strong> — Sources, assumptions, and limitations are stated plainly.
 			Reproducibility is not optional. If someone else can't verify the work, the work isn't finished.
+			See: <a href="/article/data-cleaning-and-validation/">Data Cleaning and Validation</a>,
+			<a href="/article/building-your-first-data-pipeline/">Building Your First Data Pipeline</a>.
 		</li>
 		<li>
-			<strong>Low Hanging Fruit First</strong> — Always start with the most direct question.
-			Counts, sums, averages, and distributions come before clustering, forecasting, or causal
-			inference. Complexity is only added when it changes a conclusion.
+			<strong>Low Hanging Fruit First</strong> — Counts, sums, averages, and distributions come before
+			clustering, forecasting, or causal inference. Complexity is only added when it changes a conclusion.
+			See: <a href="/article/getting-started-with-data/">Getting Started with Data Collection</a>,
+			<a href="/article/duckdb-for-financial-analysis/">DuckDB for Financial Analysis</a>.
 		</li>
 	</ul>
 
-	<h2>What This Is Not</h2>
-	<p>
-		This is not a machine learning tutorial. It is not a data engineering course. It does not
-		cover advanced statistics for its own sake. There are excellent resources for all of those
-		things. This project is specifically about the discipline of restraint — of doing less and
-		communicating more clearly.
-	</p>
-
 	<h2>Who This Is For</h2>
 	<p>
-		Low Hanging Data is written for anyone who works with data and wants to produce analysis
-		that decision-makers actually trust and use:
+		Anyone who works with data and wants to produce analysis that decision-makers actually trust and use:
 	</p>
 	<ul>
 		<li><strong>Analysts</strong> who want their work to have more impact with less overhead.</li>
@@ -57,8 +49,32 @@ import Layout from '../layouts/BlogPost.astro';
 
 	<h2>Articles</h2>
 	<p>
-		The <a href="/article">Articles</a> section contains practical guides that apply these principles
-		to real tasks — pulling data, cleaning it, querying it, and presenting results. Each article
-		leads with the simplest viable approach and explains when (and whether) to go further.
+		Practical guides that apply these principles to real tasks, each leading with the simplest viable approach:
 	</p>
+	<ul>
+		<li><a href="/article/getting-started-with-data/">Getting Started with Data Collection</a> — data sources, formats, and the basic workflow</li>
+		<li><a href="/article/pulling-data-from-apis/">Pulling Data from REST APIs</a> — authentication, pagination, rate limiting</li>
+		<li><a href="/article/working-with-websockets-and-streaming-data/">WebSockets &amp; Streaming Data</a> — real-time feeds for market data, news, and social platforms</li>
+		<li><a href="/article/working-with-csv-and-json/">Working with CSV and JSON</a> — the two most common formats and their edge cases</li>
+		<li><a href="/article/data-cleaning-and-validation/">Data Cleaning and Validation</a> — missing values, duplicates, type mismatches, outliers</li>
+		<li><a href="/article/python-pandas-data-wrangling/">Python &amp; Pandas for Data Wrangling</a> — clean, reshape, and prepare messy data</li>
+		<li><a href="/article/organizing-data-with-sql/">Organizing Data with SQL</a> — the queries you'll actually use day to day</li>
+		<li><a href="/article/working-with-parquet-and-duckdb/">Parquet and DuckDB</a> — query millions of rows faster than pandas, no server required</li>
+		<li><a href="/article/duckdb-for-financial-analysis/">DuckDB for Financial Analysis</a> — rolling indicators and a local analytics layer over stock price data</li>
+		<li><a href="/article/visualizing-data-with-python/">Visualizing Data with Python</a> — matplotlib, seaborn, and plotly for static and interactive charts</li>
+		<li><a href="/article/building-your-first-data-pipeline/">Building Your First Data Pipeline</a> — combine collection, cleaning, and storage into a repeatable workflow</li>
+		<li><a href="/article/scheduling-and-automating-pipelines/">Scheduling and Automating Pipelines</a> — cron, Python schedulers, and lightweight orchestration</li>
+		<li><a href="/article/low-hanging-data-sources-for-stock-prediction/">Low-Hanging Data Sources for Stock Prediction</a> — freely accessible datasets and supporting research</li>
+		<li><a href="/article/building-a-stock-prediction-svm/">Building a Stock Prediction Classifier with scikit-learn</a> — SVM on Reddit sentiment, Google Trends, and price data</li>
+	</ul>
+
+	<h2>Blog &amp; Project Writeups</h2>
+	<p>
+		The <a href="/blog">Blog</a> covers shorter posts and project retrospectives — what was built,
+		what worked, and what didn't:
+	</p>
+	<ul>
+		<li><a href="/blog/stock-trader-project-writeup/">Building a Stock Prediction Pipeline</a> — combining Reddit sentiment, Google Trends, and NYSE price data with an SVM classifier</li>
+		<li><a href="/blog/bd-mpar-aws-device-downtime/">How BD Used AWS to Stop Guessing When Medical Devices Would Fail</a> — a real-world case study using AppFlow, Lambda, Athena, and QuickSight</li>
+	</ul>
 </Layout>

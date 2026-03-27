@@ -20,71 +20,62 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 		<main>
 			<h1>Low Hanging Data</h1>
 			<p class="lead">
-				Data analysis should be <strong>concise</strong>, <strong>transparent</strong>, and
-				laser-focused on the <strong>low hanging fruit first</strong>.
-				Before chasing complex models or elaborate dashboards, ask: what does the data already
-				tell us plainly?
+				Ask what the data already shows before reaching for complexity.
+				Every analysis here starts with the simplest approach — and only goes further when it changes a conclusion.
 			</p>
 
 			<hr />
 
-			<h2>The Philosophy</h2>
-			<p>
-				Most analyses fail not because the analyst lacks skill, but because they skip straight
-				to sophistication. The result is work that is hard to reproduce, hard to explain, and
-				answers questions nobody asked.
-			</p>
-			<p>
-				<strong>Low Hanging Data</strong> is built around three commitments:
-			</p>
+			<h2>The Principles</h2>
 			<ul class="principles">
 				<li>
-					<strong>Concise</strong> — Say what the data shows in as few words and charts as needed.
-					If you can't explain the finding in one sentence, the analysis isn't done yet.
+					<strong>Concise</strong> — If you can't state the finding in one sentence, the analysis isn't done yet.
 				</li>
 				<li>
-					<strong>Transparent</strong> — Show your sources, your assumptions, and your limitations.
-					An analysis nobody can verify is an opinion with extra steps.
+					<strong>Transparent</strong> — Sources, assumptions, and limitations stated plainly. If someone else can't verify the work, it isn't finished.
 				</li>
 				<li>
-					<strong>Low Hanging Fruit First</strong> — Start with counts, averages, and distributions
-					before reaching for machine learning. Simple questions answered clearly deliver more value
-					than complex models that nobody trusts.
+					<strong>Low Hanging Fruit First</strong> — Counts and averages before machine learning. Simple questions answered clearly beat complex models nobody trusts.
 				</li>
 			</ul>
 
 			<hr />
 
-			<h2>Why This Matters</h2>
-			<p>
-				The data field has a bias toward complexity. Practitioners are rewarded for using
-				sophisticated tools and impressive jargon. Meanwhile, the most useful insights often
-				come from a well-structured pivot table or a single well-chosen chart.
-			</p>
-			<p>
-				This site exists to push back against that bias. Every article here starts with the
-				simplest possible approach and only adds complexity when it's genuinely warranted.
-				The bar for "complex enough" is always: does this additional complexity change a decision?
-				If not, drop it.
-			</p>
-
-			<hr />
-
-			<h2>What Low Hanging Fruit Looks Like</h2>
-			<ul class="topic-grid">
-				<li><strong>Counts &amp; totals</strong> — How many? How much?</li>
-				<li><strong>Distributions</strong> — Where does most of the data cluster?</li>
-				<li><strong>Trends over time</strong> — Is it going up, down, or flat?</li>
-				<li><strong>Top &amp; bottom N</strong> — Who or what stands out?</li>
-				<li><strong>Missing data</strong> — What don't we know, and does it matter?</li>
-				<li><strong>Simple comparisons</strong> — Is A bigger than B?</li>
+			<h2>Start Here</h2>
+			<p>Articles grouped by where you are in the workflow:</p>
+			<ul class="topic-list">
+				<li>
+					<strong>Collect</strong> —
+					<a href="/article/getting-started-with-data/">Getting Started with Data Collection</a>,
+					<a href="/article/pulling-data-from-apis/">Pulling Data from REST APIs</a>,
+					<a href="/article/working-with-websockets-and-streaming-data/">WebSockets &amp; Streaming Data</a>
+				</li>
+				<li>
+					<strong>Clean</strong> —
+					<a href="/article/working-with-csv-and-json/">CSV and JSON</a>,
+					<a href="/article/data-cleaning-and-validation/">Data Cleaning and Validation</a>,
+					<a href="/article/python-pandas-data-wrangling/">Python &amp; Pandas for Data Wrangling</a>
+				</li>
+				<li>
+					<strong>Query</strong> —
+					<a href="/article/organizing-data-with-sql/">Organizing Data with SQL</a>,
+					<a href="/article/working-with-parquet-and-duckdb/">Parquet and DuckDB</a>,
+					<a href="/article/duckdb-for-financial-analysis/">DuckDB for Financial Analysis</a>
+				</li>
+				<li>
+					<strong>Visualize</strong> —
+					<a href="/article/visualizing-data-with-python/">Visualizing Data with Python</a>
+				</li>
+				<li>
+					<strong>Automate</strong> —
+					<a href="/article/building-your-first-data-pipeline/">Building Your First Data Pipeline</a>,
+					<a href="/article/scheduling-and-automating-pipelines/">Scheduling and Automating Pipelines</a>
+				</li>
 			</ul>
-
-			<hr />
-
 			<p>
-				Browse the <a href="/article">Articles</a> for practical guides on applying these principles,
-				or read more <a href="/about">about this project</a>.
+				See also: <a href="/blog">Blog</a> — shorter writeups and project retrospectives,
+				including <a href="/blog/stock-trader-project-writeup/">building a stock prediction pipeline</a>
+				and <a href="/blog/bd-mpar-aws-device-downtime/">how BD used AWS to predict device failures</a>.
 			</p>
 
 			<hr />
@@ -128,14 +119,9 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 		border-left: 4px solid var(--accent);
 		background: rgba(var(--gray-light), 0.5);
 	}
-	.topic-grid {
-		columns: 2;
-		column-gap: 2em;
-	}
-	@media (max-width: 720px) {
-		.topic-grid {
-			columns: 1;
-		}
+	.topic-list {
+		padding-left: 1.25em;
+		line-height: 2;
 	}
 	hr {
 		margin: 2em 0;
