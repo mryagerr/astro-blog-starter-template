@@ -2,6 +2,7 @@
 title: 'The Data Landscape Has Expanded — And So Has Its Audience'
 description: 'Smart, connected products have transformed data from an internal operational asset into a multi-stakeholder resource. The infrastructure that serves one team no longer serves the whole picture.'
 pubDate: 'Mar 28 2026'
+heroImage: '/blog-data-landscape.svg'
 difficulty: 'low'
 ---
 

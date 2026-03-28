@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="52" text-anchor="middle" font-family="ui-monospace,monospace" font-size="24" font-weight="bold" fill="#e2e8f0">AI Built on Unstructured Inference</text>
+  <text x="510" y="87" text-anchor="middle" font-family="ui-monospace,monospace" font-size="30" font-weight="bold" fill="#f43f5e">Is a Castle on Sand</text>
+
+  <!-- Divider between two paths -->
+  <line x1="40" y1="270" x2="980" y2="270" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- ===== TOP ROW: Structured Path ===== -->
+  <text x="50" y="115" font-family="ui-monospace,monospace" font-size="11" font-weight="bold" fill="#22c55e">STRUCTURED PATH</text>
+
+  <!-- Box 1: Structured Data -->
+  <rect x="55" y="128" width="170" height="56" rx="10" fill="#052e05" stroke="#22c55e" stroke-width="2"/>
+  <text x="140" y="151" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#64748b">typed · validated</text>
+  <text x="140" y="170" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#22c55e">Structured Data</text>
+
+  <!-- Arrow 1 -->
+  <line x1="228" y1="156" x2="278" y2="156" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="271,149 288,156 271,163" fill="#22c55e"/>
+
+  <!-- Box 2: AI Model -->
+  <rect x="291" y="128" width="160" height="56" rx="10" fill="#0d1a2e" stroke="#38bdf8" stroke-width="2"/>
+  <text x="371" y="151" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#64748b">1 inference hop</text>
+  <text x="371" y="170" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">AI Model</text>
+
+  <!-- Arrow 2 -->
+  <line x1="454" y1="156" x2="504" y2="156" stroke="#22c55e" stroke-width="2"/>
+  <polygon points="497,149 514,156 497,163" fill="#22c55e"/>
+
+  <!-- Box 3: Reliable Output -->
+  <rect x="517" y="118" width="220" height="76" rx="10" fill="#052e05" stroke="#22c55e" stroke-width="2.5"/>
+  <text x="627" y="142" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#64748b">output confidence</text>
+  <text x="627" y="162" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#22c55e">~95% reliable</text>
+  <text x="627" y="182" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">grounded in schema</text>
+
+  <!-- ===== BOTTOM ROW: Inference Chain ===== -->
+  <text x="50" y="306" font-family="ui-monospace,monospace" font-size="11" font-weight="bold" fill="#f43f5e">INFERENCE CHAIN</text>
+
+  <!-- Box 1: Unstructured -->
+  <rect x="55" y="318" width="140" height="56" rx="10" fill="#1a0505" stroke="#f43f5e" stroke-width="2"/>
+  <text x="125" y="341" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#64748b">raw · ambiguous</text>
+  <text x="125" y="360" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#f43f5e">Raw Input</text>
+
+  <!-- Arrow: error label -->
+  <line x1="198" y1="346" x2="238" y2="346" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="231,340 248,346 231,352" fill="#f43f5e"/>
+  <text x="218" y="338" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#64748b">±err</text>
+
+  <!-- Box 2: AI Infer 1 -->
+  <rect x="251" y="318" width="130" height="56" rx="10" fill="#1a0808" stroke="#f43f5e" stroke-width="1.8"/>
+  <text x="316" y="341" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">hop 1 · ~90%</text>
+  <text x="316" y="360" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#f43f5e">AI Infer</text>
+
+  <!-- Arrow -->
+  <line x1="384" y1="346" x2="424" y2="346" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="417,340 434,346 417,352" fill="#f59e0b"/>
+  <text x="404" y="338" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#64748b">±err</text>
+
+  <!-- Box 3: AI Infer 2 -->
+  <rect x="437" y="318" width="130" height="56" rx="10" fill="#1a1005" stroke="#f59e0b" stroke-width="1.8"/>
+  <text x="502" y="341" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">hop 2 · ~81%</text>
+  <text x="502" y="360" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#f59e0b">AI Infer</text>
+
+  <!-- Arrow -->
+  <line x1="570" y1="346" x2="610" y2="346" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="603,340 620,346 603,352" fill="#94a3b8"/>
+  <text x="590" y="338" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#64748b">±err</text>
+
+  <!-- Box 4: AI Infer 3 -->
+  <rect x="623" y="318" width="130" height="56" rx="10" fill="#0d0d0d" stroke="#475569" stroke-width="1.8"/>
+  <text x="688" y="341" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#334155">hop 3 · ~73%</text>
+  <text x="688" y="360" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#475569">AI Infer</text>
+
+  <!-- Arrow -->
+  <line x1="756" y1="346" x2="796" y2="346" stroke="#334155" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="789,340 806,346 789,352" fill="#334155"/>
+
+  <!-- Box 5: Unreliable Output -->
+  <rect x="809" y="308" width="170" height="76" rx="10" fill="#0d0d0d" stroke="#334155" stroke-width="1.5"/>
+  <text x="894" y="332" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">output confidence</text>
+  <text x="894" y="352" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#334155">~65% ???</text>
+  <text x="894" y="372" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">built on inference</text>
+
+  <!-- Confidence note below each path -->
+  <text x="370" y="425" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">0.95 confidence — grounded in verified structure</text>
+  <text x="620" y="425" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">0.9 × 0.9 × 0.9 = 0.73 — errors compound silently</text>
+
+  <!-- Tagline -->
+  <text x="510" y="465" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">every inference hop multiplies uncertainty — structure your data before you feed it to AI</text>
+</svg>

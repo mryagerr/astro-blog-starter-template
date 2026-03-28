@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="58" text-anchor="middle" font-family="ui-monospace,monospace" font-size="32" font-weight="bold" fill="#e2e8f0">Excel to SQL</text>
+  <text x="510" y="91" text-anchor="middle" font-family="ui-monospace,monospace" font-size="17" font-weight="bold" fill="#22c55e">Low Hanging Fruit for Making the Switch</text>
+
+  <!-- Left panel: Excel spreadsheet -->
+  <rect x="40" y="110" width="420" height="300" rx="10" fill="#0d1117" stroke="#22c55e" stroke-width="1.5"/>
+  <rect x="40" y="110" width="420" height="30" rx="10" fill="#0a2010"/>
+  <rect x="40" y="125" width="420" height="15" fill="#0a2010"/>
+  <text x="250" y="130" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e" opacity="0.8">spreadsheet.xlsx</text>
+  <!-- Column headers -->
+  <rect x="40" y="140" width="420" height="22" fill="#071a07"/>
+  <text x="95" y="156" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e" font-weight="bold">category</text>
+  <text x="215" y="156" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e" font-weight="bold">amount</text>
+  <text x="335" y="156" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e" font-weight="bold">date</text>
+  <!-- Column dividers -->
+  <line x1="185" y1="140" x2="185" y2="296" stroke="#1a3a1a" stroke-width="1"/>
+  <line x1="305" y1="140" x2="305" y2="296" stroke="#1a3a1a" stroke-width="1"/>
+  <!-- Row dividers -->
+  <line x1="40" y1="180" x2="460" y2="180" stroke="#1a3a1a" stroke-width="1"/>
+  <line x1="40" y1="202" x2="460" y2="202" stroke="#1a3a1a" stroke-width="1"/>
+  <line x1="40" y1="224" x2="460" y2="224" stroke="#1a3a1a" stroke-width="1"/>
+  <line x1="40" y1="246" x2="460" y2="246" stroke="#1a3a1a" stroke-width="1"/>
+  <line x1="40" y1="268" x2="460" y2="268" stroke="#1a3a1a" stroke-width="1"/>
+  <!-- Data rows -->
+  <text x="55" y="196" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">Electronics</text>
+  <text x="200" y="196" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">1420</text>
+  <text x="315" y="196" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">2025-01-01</text>
+  <text x="55" y="218" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">Clothing</text>
+  <text x="200" y="218" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">890</text>
+  <text x="315" y="218" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">2025-01-02</text>
+  <text x="55" y="240" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">Electronics</text>
+  <text x="200" y="240" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">2100</text>
+  <text x="315" y="240" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">2025-01-03</text>
+  <text x="55" y="262" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">Clothing</text>
+  <text x="200" y="262" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">450</text>
+  <text x="315" y="262" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">2025-01-04</text>
+  <!-- Formula bar -->
+  <rect x="40" y="296" width="420" height="114" fill="#040d04"/>
+  <line x1="40" y1="296" x2="460" y2="296" stroke="#22c55e" stroke-width="1" opacity="0.3"/>
+  <text x="55" y="316" font-family="ui-monospace,monospace" font-size="10" fill="#334155">formula bar</text>
+  <text x="55" y="337" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">=SUMIF(A:A,"Electronics",B:B)</text>
+  <text x="55" y="358" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">=VLOOKUP(A2,products,2,FALSE)</text>
+  <text x="55" y="379" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">=COUNTIF(A:A,"Clothing")</text>
+  <text x="55" y="400" font-family="ui-monospace,monospace" font-size="11" fill="#475569">-- manual, brittle, hard to share</text>
+
+  <!-- Arrow in the middle -->
+  <line x1="472" y1="265" x2="538" y2="265" stroke="#38bdf8" stroke-width="3"/>
+  <polygon points="530,258 548,265 530,272" fill="#38bdf8"/>
+
+  <!-- Right panel: SQL terminal -->
+  <rect x="560" y="110" width="420" height="300" rx="10" fill="#0d1117" stroke="#38bdf8" stroke-width="1.5"/>
+  <rect x="560" y="110" width="420" height="30" rx="10" fill="#161b22"/>
+  <rect x="560" y="125" width="420" height="15" fill="#161b22"/>
+  <circle cx="586" cy="125" r="6" fill="#f43f5e" opacity="0.8"/>
+  <circle cx="606" cy="125" r="6" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="626" cy="125" r="6" fill="#22c55e" opacity="0.8"/>
+  <!-- SQL code -->
+  <text x="580" y="170" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">SELECT</text>
+  <text x="658" y="170" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">category, SUM(amount)</text>
+  <text x="580" y="193" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">FROM</text>
+  <text x="640" y="193" font-family="ui-monospace,monospace" font-size="13" fill="#22c55e">sales</text>
+  <text x="580" y="216" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">GROUP BY</text>
+  <text x="682" y="216" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">category;</text>
+  <line x1="580" y1="230" x2="950" y2="230" stroke="#1e293b" stroke-width="1"/>
+  <text x="580" y="256" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">SELECT</text>
+  <text x="658" y="256" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">s.*, p.name</text>
+  <text x="580" y="279" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">FROM</text>
+  <text x="640" y="279" font-family="ui-monospace,monospace" font-size="13" fill="#22c55e">sales s</text>
+  <text x="580" y="302" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">JOIN</text>
+  <text x="628" y="302" font-family="ui-monospace,monospace" font-size="13" fill="#22c55e">products p</text>
+  <text x="730" y="302" font-family="ui-monospace,monospace" font-size="13" fill="#38bdf8">ON</text>
+  <text x="758" y="302" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">s.id = p.id;</text>
+  <line x1="580" y1="318" x2="950" y2="318" stroke="#1e293b" stroke-width="1"/>
+  <text x="580" y="344" font-family="ui-monospace,monospace" font-size="13" fill="#475569">-- reproducible, fast, shareable</text>
+  <text x="580" y="367" font-family="ui-monospace,monospace" font-size="13" fill="#22c55e">-- 4 rows in 0.001s</text>
+  <rect x="580" y="384" width="8" height="12" fill="#38bdf8" opacity="0.8"/>
+
+  <!-- Tagline -->
+  <text x="510" y="460" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">the concepts map almost directly — you're just swapping formulas for queries</text>
+</svg>
