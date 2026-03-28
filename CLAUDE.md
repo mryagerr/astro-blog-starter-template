@@ -301,6 +301,7 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 
 ## What Not to Do
 
+- Do not add, remove, or rename navigation tabs in `Header.astro` — the header must have exactly 3 tabs: **Home** (`/`), **Articles** (`/article`), and **About** (`/about`). No other tabs should be added.
 - Do not add Tailwind or other CSS frameworks without discussion — this project uses plain CSS intentionally.
 - Do not change the `astro.config.mjs` site URL without updating DNS/Cloudflare configuration.
 - Do not add environment variables to source files — use `.env` (gitignored) or Cloudflare secrets.
