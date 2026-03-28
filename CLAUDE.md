@@ -20,7 +20,7 @@ This is a personal blog and data-focused content site called **Low Hanging Data*
 npm run dev          # Start dev server at localhost:4321
 npm run build        # Production build (outputs to dist/)
 npm run preview      # Build + run with Wrangler dev (Cloudflare-like env)
-npm run check        # Full validation: astro build + tsc + wrangler deploy --dry-run
+npm run check        # Full validation: vitest run + astro build + tsc + wrangler deploy --dry-run
 npm run deploy       # Deploy to Cloudflare Workers (requires Wrangler auth)
 npm run cf-typegen   # Regenerate Cloudflare environment type definitions
 ```
@@ -29,11 +29,22 @@ npm run cf-typegen   # Regenerate Cloudflare environment type definitions
 
 ### Type Checking
 
-TypeScript is in strict mode. Always run `npm run check` before committing to validate the full build pipeline. There is no separate type-check script; type checking is bundled into the `check` command.
+TypeScript is in strict mode. Always run `npm run check` before committing to validate the full build pipeline. Type checking is bundled into the `check` command alongside tests and build.
 
 ### Testing
 
-There is no test runner configured (no Jest, Vitest, etc.). Validation is done via the `check` script which runs a full build and dry-run deploy.
+Unit tests use **Vitest**. Test files live alongside their source in `src/utils/*.test.ts`.
+
+```bash
+npm run test         # Run all tests once (vitest run)
+npm run test:watch   # Watch mode for development (vitest)
+```
+
+The `check` script runs tests first (`vitest run`) before building. Always ensure tests pass before deploying.
+
+**Vitest config** (`vitest.config.ts`):
+- Environment: `node`
+- Test file pattern: `src/**/*.test.ts`
 
 ---
 
@@ -43,11 +54,11 @@ There is no test runner configured (no Jest, Vitest, etc.). Validation is done v
 astro-blog-starter-template/
 ├── public/                  # Static assets (served as-is)
 │   ├── fonts/               # Atkinson web font files
-│   ├── blog-placeholder-*.jpg/svg  # Hero image placeholders
+│   ├── blog-*.svg           # Hero image placeholder SVGs
 │   ├── favicon.svg
 │   └── robots.txt
 ├── src/
-│   ├── components/          # Reusable .astro components
+│   ├── components/          # Reusable .astro components (5 files)
 │   ├── content/             # Markdown/MDX content files
 │   │   ├── blog/            # Technical articles (~14 files)
 │   │   └── posts/           # Short blog posts (~3 files)
@@ -56,15 +67,25 @@ astro-blog-starter-template/
 │   ├── pages/               # File-based routing
 │   │   ├── index.astro      # Homepage
 │   │   ├── about.astro      # About page
-│   │   ├── blog/            # Articles section (/blog/*)
+│   │   ├── article/         # Articles section (/article/*)
 │   │   ├── posts/           # Blog posts section (/posts/*)
 │   │   └── rss.xml.js       # RSS feed endpoint
 │   ├── styles/
 │   │   └── global.css       # Global CSS (Bear Blog-inspired)
+│   ├── utils/               # Shared utility functions + Vitest tests
+│   │   ├── activeLink.ts    # Active nav link detection
+│   │   ├── activeLink.test.ts
+│   │   ├── difficultyBadge.ts  # Difficulty badge labels/classes
+│   │   ├── difficultyBadge.test.ts
+│   │   ├── formatDate.ts    # Date formatting helpers
+│   │   ├── formatDate.test.ts
+│   │   ├── sort.ts          # Content sorting helpers
+│   │   └── sort.test.ts
 │   ├── consts.ts            # SITE_TITLE, SITE_DESCRIPTION
 │   ├── content.config.ts    # Content collection schemas
 │   └── env.d.ts             # TypeScript environment declarations
 ├── astro.config.mjs         # Astro configuration
+├── vitest.config.ts         # Vitest configuration
 ├── wrangler.json            # Cloudflare Workers config
 ├── worker-configuration.d.ts # Cloudflare env type definitions (auto-generated)
 ├── tsconfig.json            # TypeScript config (extends astro/tsconfigs/strict)
@@ -94,7 +115,7 @@ Defined in `src/content.config.ts`. Both collections share the same schema.
 
 | Collection | Directory | Route | Purpose |
 |---|---|---|---|
-| `blog` | `src/content/blog/` | `/blog/{id}` | Technical data articles |
+| `blog` | `src/content/blog/` | `/article/{id}` | Technical data articles |
 | `posts` | `src/content/posts/` | `/posts/{id}` | Short blog posts & writeups |
 
 ### Adding Content
@@ -107,12 +128,12 @@ title: 'Your Article Title'
 description: 'A concise summary of the content.'
 pubDate: 'Mar 26 2026'
 updatedDate: 'Mar 27 2026'   # optional
-heroImage: '/blog-placeholder-1.jpg'  # optional
+heroImage: '/blog-placeholder-1.svg'  # optional
 difficulty: 'low'             # optional: 'low' or 'high'
 ---
 ```
 
-The filename becomes the URL slug (e.g., `my-article.md` → `/blog/my-article`).
+The filename becomes the URL slug (e.g., `my-article.md` → `/article/my-article`).
 
 ---
 
@@ -123,7 +144,7 @@ Located in `src/components/`. All are `.astro` files.
 | Component | Purpose |
 |---|---|
 | `BaseHead.astro` | `<head>` tags: charset, viewport, SEO meta, OG tags, Twitter cards, font preloading |
-| `Header.astro` | Site header with navigation links (Home, Articles, Blog, About) and GitHub link |
+| `Header.astro` | Site header with navigation links (Home, Articles, About) and GitHub link |
 | `HeaderLink.astro` | Nav link that auto-applies active styles based on current route |
 | `Footer.astro` | Site footer with dynamic copyright year and site tagline |
 | `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03 2025") |
@@ -152,7 +173,7 @@ const { propName, optionalProp } = Astro.props;
 
 ### `BlogPost.astro`
 
-The only layout. Used by both `/blog/[...slug].astro` and `/posts/[...slug].astro`.
+The only layout. Used by both `/article/[...slug].astro` and `/posts/[...slug].astro`.
 
 **Props:** Same as the content collection schema (`title`, `description`, `pubDate`, `updatedDate`, `heroImage`, `difficulty`).
 
@@ -173,8 +194,8 @@ Astro uses file-based routing from `src/pages/`.
 |---|---|---|
 | `index.astro` | `/` | Homepage with featured articles and philosophy section |
 | `about.astro` | `/about` | Static about page (uses BlogPost layout) |
-| `blog/index.astro` | `/blog` | Grid listing of all technical articles |
-| `blog/[...slug].astro` | `/blog/{id}` | Dynamic article page |
+| `article/index.astro` | `/article` | Grid listing of all technical articles |
+| `article/[...slug].astro` | `/article/{id}` | Dynamic article page |
 | `posts/index.astro` | `/posts` | List of blog posts |
 | `posts/[...slug].astro` | `/posts/{id}` | Dynamic blog post page |
 | `rss.xml.js` | `/rss.xml` | RSS feed (blog collection only) |
@@ -193,6 +214,47 @@ export async function getStaticPaths() {
     props: post,
   }));
 }
+```
+
+---
+
+## Utility Functions
+
+Located in `src/utils/`. All utilities have corresponding Vitest test files.
+
+### `formatDate.ts`
+
+```typescript
+formatDate(date: Date): string        // Returns "Mar 15 2024"
+getCurrentYear(): number              // Returns current year (mockable in tests)
+```
+
+### `sort.ts`
+
+```typescript
+sortByPubDateDesc<T extends { data: { pubDate: Date } }>(entries: T[]): T[]
+// Sorts content entries newest-first. Does not mutate the input array.
+```
+
+Use this instead of inline `.sort()` calls when ordering content collections.
+
+### `activeLink.ts`
+
+```typescript
+isActiveLink(href: string | undefined, rawPathname: string, baseUrl: string): boolean
+// Returns true if href matches the current pathname exactly, or as a top-level section.
+// Strips baseUrl prefix before comparing. Root "/" only matches exactly.
+```
+
+### `difficultyBadge.ts`
+
+```typescript
+getDifficultyLabel(difficulty: 'low' | 'high'): string
+// 'low'  → '🍎 Low Hanging Fruit'
+// 'high' → '🌳 High Hanging Fruit'
+
+getDifficultyClass(difficulty: 'low' | 'high'): string
+// Returns CSS class: 'difficulty-badge difficulty-low' or 'difficulty-badge difficulty-high'
 ```
 
 ---
@@ -233,7 +295,7 @@ The site deploys to **Cloudflare Workers** using `wrangler`.
 
 ### Deploy Steps
 
-1. `npm run build` — compile site to `dist/`
+1. `npm run check` — run tests, build, and validate (must pass first)
 2. `npm run deploy` — push to Cloudflare Workers via Wrangler
 3. Or use `npm run preview` to test in a Cloudflare-like local environment
 
@@ -257,13 +319,15 @@ Sensitive config goes in `.env` files (gitignored). Cloudflare environment bindi
 - **Pages/routes:** lowercase with hyphens
 - **Content files:** lowercase with hyphens (filename = URL slug)
 - **Constants:** SCREAMING_SNAKE_CASE (`SITE_TITLE`, `SITE_DESCRIPTION`)
+- **Utility files:** camelCase (`formatDate.ts`, `activeLink.ts`)
 
 ### Content Sorting
 
-Articles are always sorted by `pubDate` descending:
+Always use `sortByPubDateDesc()` from `src/utils/sort.ts` to sort content collections:
 
 ```typescript
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+import { sortByPubDateDesc } from '../utils/sort';
+const sorted = sortByPubDateDesc(await getCollection('blog'));
 ```
 
 ### Site Constants
@@ -272,7 +336,7 @@ Global values live in `src/consts.ts`:
 
 ```typescript
 export const SITE_TITLE = 'Low Hanging Data';
-export const SITE_DESCRIPTION = '...';
+export const SITE_DESCRIPTION = 'Data analysis should be concise, transparent, and focused on the low hanging fruit first.';
 ```
 
 ### SEO
@@ -295,6 +359,7 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 | `@astrojs/sitemap` | Automatic sitemap at `/sitemap-index.xml` |
 | `@astrojs/cloudflare` | Cloudflare Workers SSR adapter |
 | `typescript` | Type checking |
+| `vitest` (dev) | Unit testing framework |
 | `wrangler` (dev) | Cloudflare CLI for deployment and local preview |
 
 ---
@@ -305,6 +370,7 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 - Do not add Tailwind or other CSS frameworks without discussion — this project uses plain CSS intentionally.
 - Do not change the `astro.config.mjs` site URL without updating DNS/Cloudflare configuration.
 - Do not add environment variables to source files — use `.env` (gitignored) or Cloudflare secrets.
-- Do not skip `npm run check` before deploying — it validates the full build pipeline.
+- Do not skip `npm run check` before deploying — it validates tests, the full build pipeline, and dry-run deploy.
 - Do not add content files outside of `src/content/blog/` or `src/content/posts/` — content collections are scoped to those directories.
-- Do not add a testing framework without also updating the `check` script to run tests.
+- Do not write inline sort logic for content collections — use `sortByPubDateDesc()` from `src/utils/sort.ts`.
+- Do not add utility functions without a corresponding `.test.ts` file in `src/utils/`.
