@@ -57,4 +57,12 @@ describe('sortByPubDateDesc', () => {
 		const result = sortByPubDateDesc([past, future]);
 		expect(result[0]).toBe(future);
 	});
+
+	it('preserves extra fields on entries', () => {
+		const entry = { data: { pubDate: new Date('2024-01-01'), title: 'Hello' }, id: 'abc' };
+		const result = sortByPubDateDesc([entry]);
+		expect(result[0]).toBe(entry);
+		expect((result[0] as typeof entry).id).toBe('abc');
+		expect((result[0] as typeof entry).data.title).toBe('Hello');
+	});
 });

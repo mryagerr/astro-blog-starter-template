@@ -10,6 +10,11 @@ describe('formatDate', () => {
 		expect(result).toMatch(/2024/);
 	});
 
+	it('produces the exact expected output for a known date', () => {
+		const date = new Date('2024-03-15T12:00:00Z');
+		expect(formatDate(date)).toBe('Mar 15, 2024');
+	});
+
 	it('formats January correctly', () => {
 		const date = new Date('2024-01-01T12:00:00Z');
 		expect(formatDate(date)).toMatch(/Jan/);

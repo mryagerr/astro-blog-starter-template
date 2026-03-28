@@ -63,4 +63,34 @@ describe('isActiveLink', () => {
 			expect(isActiveLink('/blog', '/blog', '')).toBe(true);
 		});
 	});
+
+	describe('empty string href', () => {
+		it('returns false for empty href on a normal path', () => {
+			expect(isActiveLink('', '/blog', '/')).toBe(false);
+		});
+	});
+
+	describe('trailing slash', () => {
+		// href with trailing slash does NOT match because neither the exact check
+		// ('/about/' !== 'about') nor the section check ('/about/' !== '/about') passes.
+		it('does not activate /about/ href when on /about pathname', () => {
+			expect(isActiveLink('/about/', '/about', '/')).toBe(false);
+		});
+
+		// pathname with trailing slash DOES match via the section-level rule:
+		// the first path segment of '/about/' is still 'about', so href '/about' matches.
+		it('activates /about href when on /about/ pathname (section-level match)', () => {
+			expect(isActiveLink('/about', '/about/', '/')).toBe(true);
+		});
+	});
+
+	describe('deeply nested routes', () => {
+		it('activates /article link when on a deeply nested article route', () => {
+			expect(isActiveLink('/article', '/article/category/my-post', '/')).toBe(true);
+		});
+
+		it('does not activate /posts link when on a deeply nested article route', () => {
+			expect(isActiveLink('/posts', '/article/category/my-post', '/')).toBe(false);
+		});
+	});
 });
