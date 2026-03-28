@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="55" text-anchor="middle" font-family="ui-monospace,monospace" font-size="26" font-weight="bold" fill="#e2e8f0">The Data Landscape Has Expanded</text>
+  <text x="510" y="91" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#38bdf8">And So Has Its Audience</text>
+
+  <!-- Spoke lines from Product Cloud center to each stakeholder -->
+  <line x1="510" y1="275" x2="510" y2="140" stroke="#334155" stroke-width="1.5"/>
+  <line x1="510" y1="275" x2="635" y2="208" stroke="#334155" stroke-width="1.5"/>
+  <line x1="510" y1="275" x2="635" y2="342" stroke="#334155" stroke-width="1.5"/>
+  <line x1="510" y1="275" x2="510" y2="415" stroke="#334155" stroke-width="1.5"/>
+  <line x1="510" y1="275" x2="385" y2="342" stroke="#334155" stroke-width="1.5"/>
+  <line x1="510" y1="275" x2="385" y2="208" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Center hub: Product Cloud -->
+  <rect x="410" y="249" width="200" height="52" rx="12" fill="#0d2035" stroke="#38bdf8" stroke-width="2.5"/>
+  <text x="510" y="270" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#475569">smart connected device</text>
+  <text x="510" y="290" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" font-weight="bold" fill="#38bdf8">Product Cloud</text>
+
+  <!-- Node: Customer (top) -->
+  <rect x="428" y="118" width="164" height="44" rx="10" fill="#071a2e" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="510" y="145" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">Customer</text>
+
+  <!-- Node: Regulator (top-right) -->
+  <rect x="553" y="186" width="164" height="44" rx="10" fill="#1a0810" stroke="#f43f5e" stroke-width="1.8"/>
+  <text x="635" y="213" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f43f5e">Regulator</text>
+
+  <!-- Node: Partner (bottom-right) -->
+  <rect x="553" y="320" width="164" height="44" rx="10" fill="#0f0a1a" stroke="#a78bfa" stroke-width="1.8"/>
+  <text x="635" y="347" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#a78bfa">Partner</text>
+
+  <!-- Node: Operations (bottom) -->
+  <rect x="428" y="393" width="164" height="44" rx="10" fill="#001a0a" stroke="#22c55e" stroke-width="1.8"/>
+  <text x="510" y="420" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#22c55e">Operations</text>
+
+  <!-- Node: Analytics (bottom-left) -->
+  <rect x="303" y="320" width="164" height="44" rx="10" fill="#1a1000" stroke="#f59e0b" stroke-width="1.8"/>
+  <text x="385" y="347" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f59e0b">Analytics</text>
+
+  <!-- Node: Manufacturer (top-left) -->
+  <rect x="303" y="186" width="164" height="44" rx="10" fill="#071a2e" stroke="#94a3b8" stroke-width="1.8"/>
+  <text x="385" y="213" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#94a3b8">Manufacturer</text>
+
+  <!-- Tagline -->
+  <text x="510" y="464" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">one product cloud, many stakeholders — the architecture must serve all of them</text>
+</svg>

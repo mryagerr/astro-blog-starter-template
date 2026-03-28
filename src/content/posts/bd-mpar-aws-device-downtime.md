@@ -2,6 +2,7 @@
 title: 'How BD Used AWS to Stop Guessing When Medical Devices Would Fail'
 description: "A look at Becton Dickinson's MPAR system — a real-world example of turning device telemetry into proactive maintenance intelligence using AppFlow, Lambda, Athena, and QuickSight."
 pubDate: 'Mar 25 2026'
+heroImage: '/blog-aws-pipeline.svg'
 ---
 
 Michael Petrillo — the same data scientist behind the Reddit-based stock prediction work covered [elsewhere on this site](/posts/stock-trader-project-writeup) — published an AWS case study in 2022 that deserves more attention than it got. It's a clean, real-world example of the low-hanging-fruit philosophy applied to a high-stakes domain: keeping medical devices online in hospitals.

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="62" text-anchor="middle" font-family="ui-monospace,monospace" font-size="28" font-weight="bold" fill="#e2e8f0">Predictive Maintenance</text>
+  <text x="510" y="100" text-anchor="middle" font-family="ui-monospace,monospace" font-size="36" font-weight="bold" fill="#38bdf8">on AWS</text>
+
+  <!-- Box 1: BD Device -->
+  <rect x="60" y="233" width="140" height="64" rx="10" fill="#0d1a2e" stroke="#94a3b8" stroke-width="2"/>
+  <text x="130" y="257" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">telemetry</text>
+  <text x="130" y="278" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#94a3b8">BD Device</text>
+
+  <!-- Arrow 1 -->
+  <line x1="202" y1="265" x2="248" y2="265" stroke="#334155" stroke-width="2" stroke-dasharray="6,4"/>
+  <polygon points="241,259 258,265 241,271" fill="#334155"/>
+
+  <!-- Box 2: AppFlow -->
+  <rect x="260" y="233" width="140" height="64" rx="10" fill="#0a1f2e" stroke="#38bdf8" stroke-width="2"/>
+  <text x="330" y="257" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">ingest</text>
+  <text x="330" y="278" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">AppFlow</text>
+
+  <!-- Arrow 2 -->
+  <line x1="402" y1="265" x2="448" y2="265" stroke="#334155" stroke-width="2" stroke-dasharray="6,4"/>
+  <polygon points="441,259 458,265 441,271" fill="#334155"/>
+
+  <!-- Box 3: Lambda -->
+  <rect x="460" y="233" width="140" height="64" rx="10" fill="#1a1200" stroke="#f59e0b" stroke-width="2"/>
+  <text x="530" y="257" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">transform</text>
+  <text x="530" y="278" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f59e0b">Lambda</text>
+
+  <!-- Arrow 3 -->
+  <line x1="602" y1="265" x2="648" y2="265" stroke="#334155" stroke-width="2" stroke-dasharray="6,4"/>
+  <polygon points="641,259 658,265 641,271" fill="#334155"/>
+
+  <!-- Box 4: Athena -->
+  <rect x="660" y="233" width="140" height="64" rx="10" fill="#100a1a" stroke="#a78bfa" stroke-width="2"/>
+  <text x="730" y="257" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">query</text>
+  <text x="730" y="278" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#a78bfa">Athena</text>
+
+  <!-- Arrow 4 -->
+  <line x1="802" y1="265" x2="848" y2="265" stroke="#334155" stroke-width="2" stroke-dasharray="6,4"/>
+  <polygon points="841,259 858,265 841,271" fill="#334155"/>
+
+  <!-- Box 5: QuickSight -->
+  <rect x="860" y="233" width="140" height="64" rx="10" fill="#001a0a" stroke="#22c55e" stroke-width="2"/>
+  <text x="930" y="257" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">visualize</text>
+  <text x="930" y="278" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#22c55e">QuickSight</text>
+
+  <!-- Labels below boxes -->
+  <text x="130" y="318" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#334155">device signals</text>
+  <text x="330" y="318" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#334155">data ingestion</text>
+  <text x="530" y="318" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#334155">ETL processing</text>
+  <text x="730" y="318" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#334155">SQL analysis</text>
+  <text x="930" y="318" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#334155">dashboards</text>
+
+  <!-- Result banner -->
+  <rect x="200" y="360" width="620" height="62" rx="12" fill="#051a05" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="510" y="386" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#22c55e">MPAR: Medication Pump Availability Rate</text>
+  <text x="510" y="408" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#475569">device downtime predicted before it disrupts patient care</text>
+
+  <!-- Tagline -->
+  <text x="510" y="462" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">Low Hanging Data</text>
+</svg>
