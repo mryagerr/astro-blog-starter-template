@@ -134,5 +134,24 @@ import { SITE_TITLE } from '../consts';
 	@media (max-width: 720px) {
 		.social-links { display: none; }
 		.wordmark { font-size: 1rem; }
+
+		/* Larger touch targets on mobile */
+		.internal-links :global(a) {
+			padding: 0.5em 0.6em;
+			min-height: 44px;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.wordmark { font-size: 0.9rem; }
+
+		.internal-links :global(a) {
+			font-size: 0.8rem;
+			padding: 0.5em 0.4em;
+		}
+
+		nav { gap: 0.5rem; }
 	}
 </style>
