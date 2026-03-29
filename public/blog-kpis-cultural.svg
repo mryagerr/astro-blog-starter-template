@@ -2,47 +2,54 @@
   <rect width="1020" height="510" fill="#0f172a"/>
 
   <!-- Title -->
-  <text x="510" y="52" text-anchor="middle" font-family="ui-monospace,monospace" font-size="26" font-weight="bold" fill="#e2e8f0">KPIs Are a Cultural Change,</text>
-  <text x="510" y="88" text-anchor="middle" font-family="ui-monospace,monospace" font-size="30" font-weight="bold" fill="#38bdf8">Not a Dashboard Project</text>
+  <text x="510" y="46" text-anchor="middle" font-family="ui-monospace,monospace" font-size="24" font-weight="bold" fill="#e2e8f0">KPIs Are a Cultural Change,</text>
+  <text x="510" y="80" text-anchor="middle" font-family="ui-monospace,monospace" font-size="28" font-weight="bold" fill="#38bdf8">Not a Dashboard Project</text>
 
-  <!-- People nodes in org chart -->
-  <!-- CEO at top -->
-  <rect x="420" y="120" width="180" height="44" rx="10" fill="#071a2e" stroke="#38bdf8" stroke-width="2"/>
-  <text x="510" y="147" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">Leadership</text>
+  <!-- LEFT COLUMN header -->
+  <rect x="55" y="100" width="405" height="30" rx="6" fill="#051a10" stroke="#22c55e" stroke-width="2"/>
+  <text x="257" y="120" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#22c55e">TECHNICAL TRACK  —  ships in week 4</text>
 
-  <!-- Lines down to departments -->
-  <line x1="510" y1="164" x2="510" y2="200" stroke="#1e293b" stroke-width="1.5"/>
-  <line x1="230" y1="200" x2="790" y2="200" stroke="#1e293b" stroke-width="1.5"/>
-  <line x1="230" y1="200" x2="230" y2="220" stroke="#1e293b" stroke-width="1.5"/>
-  <line x1="510" y1="200" x2="510" y2="220" stroke="#1e293b" stroke-width="1.5"/>
-  <line x1="790" y1="200" x2="790" y2="220" stroke="#1e293b" stroke-width="1.5"/>
+  <!-- Technical items (done) -->
+  <text x="75" y="153" font-family="ui-monospace,monospace" font-size="12" fill="#4ade80">✓  metrics defined in workshops</text>
+  <text x="75" y="179" font-family="ui-monospace,monospace" font-size="12" fill="#4ade80">✓  pipeline built and tested</text>
+  <text x="75" y="205" font-family="ui-monospace,monospace" font-size="12" fill="#4ade80">✓  dashboard deployed</text>
+  <text x="75" y="231" font-family="ui-monospace,monospace" font-size="12" fill="#4ade80">✓  users trained, docs written</text>
+  <text x="75" y="257" font-family="ui-monospace,monospace" font-size="12" fill="#4ade80">✓  weekly report scheduled</text>
 
-  <!-- Dept nodes -->
-  <rect x="130" y="220" width="200" height="44" rx="10" fill="#071a2e" stroke="#22c55e" stroke-width="2"/>
-  <text x="230" y="247" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#22c55e">Sales / Revenue</text>
+  <!-- Six months later -->
+  <rect x="55" y="278" width="405" height="24" rx="5" fill="#0d1117" stroke="#334155" stroke-width="1"/>
+  <text x="257" y="294" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#475569">— six months later —</text>
 
-  <rect x="410" y="220" width="200" height="44" rx="10" fill="#071a2e" stroke="#f59e0b" stroke-width="2"/>
-  <text x="510" y="247" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f59e0b">Operations</text>
+  <!-- Failure items -->
+  <text x="75" y="326" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">✗  17 charts nobody opens</text>
+  <text x="75" y="352" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">✗  KPIs revised when they looked bad</text>
+  <text x="75" y="378" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e">✗  decisions still made by gut</text>
 
-  <rect x="690" y="220" width="200" height="44" rx="10" fill="#071a2e" stroke="#a78bfa" stroke-width="2"/>
-  <text x="790" y="247" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#a78bfa">Product / Eng</text>
+  <!-- Center divider -->
+  <line x1="480" y1="100" x2="480" y2="415" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
 
-  <!-- KPI metric badges floating on connections -->
-  <rect x="155" y="290" width="148" height="26" rx="6" fill="#0a1f0e" stroke="#22c55e" stroke-width="1"/>
-  <text x="229" y="307" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">win_rate · deal_size</text>
+  <!-- RIGHT COLUMN header -->
+  <rect x="500" y="100" width="465" height="30" rx="6" fill="#1a1100" stroke="#f59e0b" stroke-width="2"/>
+  <text x="732" y="120" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#f59e0b">CULTURAL TRACK  —  never ships on its own</text>
 
-  <rect x="434" y="290" width="152" height="26" rx="6" fill="#1a1200" stroke="#f59e0b" stroke-width="1"/>
-  <text x="510" y="307" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">uptime · cycle_time</text>
+  <!-- Cultural items (unchecked) -->
+  <text x="520" y="153" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">□  a leader owns each number</text>
+  <text x="520" y="179" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">□  meetings reference the metrics</text>
+  <text x="520" y="205" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">□  bad numbers aren't explained away</text>
+  <text x="520" y="231" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">□  a decision changes because of a number</text>
+  <text x="520" y="257" font-family="ui-monospace,monospace" font-size="12" fill="#94a3b8">□  definitions hold even when inconvenient</text>
 
-  <rect x="714" y="290" width="152" height="26" rx="6" fill="#110d1f" stroke="#a78bfa" stroke-width="1"/>
-  <text x="790" y="307" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#a78bfa">deploy_freq · MTTR</text>
+  <!-- What's required -->
+  <rect x="500" y="278" width="465" height="24" rx="5" fill="#0d1117" stroke="#f59e0b" stroke-width="1"/>
+  <text x="732" y="294" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#f59e0b">requires: commitment · ownership · accountability</text>
 
-  <!-- Key insight divider -->
-  <line x1="100" y1="345" x2="920" y2="345" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
+  <!-- Success indicators -->
+  <text x="520" y="326" font-family="ui-monospace,monospace" font-size="12" fill="#38bdf8">→  the number matters to who owns it</text>
+  <text x="520" y="352" font-family="ui-monospace,monospace" font-size="12" fill="#38bdf8">→  strategy shifts when a KPI moves</text>
+  <text x="520" y="378" font-family="ui-monospace,monospace" font-size="12" fill="#38bdf8">→  data-driven is a behavior, not a tool</text>
 
-  <!-- Two-row callout -->
-  <rect x="100" y="360" width="820" height="96" rx="10" fill="#071828" stroke="#38bdf8" stroke-width="1"/>
-  <text x="510" y="385" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#e2e8f0">KPI adoption fails when it's treated as a technical rollout</text>
-  <text x="510" y="408" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#475569">people must agree on definitions · own the numbers · feel accountable to them</text>
-  <text x="510" y="430" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">a dashboard no one believes is just a waiting room</text>
+  <!-- Bottom callout -->
+  <line x1="55" y1="408" x2="965" y2="408" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
+  <text x="510" y="440" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#e2e8f0">the dashboard is not the deliverable — the behavioral change is</text>
+  <text x="510" y="466" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">KPI adoption fails when it's treated as a technical rollout</text>
 </svg>
