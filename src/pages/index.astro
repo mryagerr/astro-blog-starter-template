@@ -96,7 +96,7 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 								<a href={`/article/${post.id}/`}>
 									{post.data.heroImage && (
 										<div class="card-img-wrap">
-											<img src={post.data.heroImage} alt="" width={720} height={360} />
+											<img src={post.data.heroImage} alt="" width={720} height={360} loading="lazy" decoding="async" sizes="(max-width: 720px) calc(100vw - 3em), (max-width: 1100px) calc(50vw - 3em), 520px" />
 										</div>
 									)}
 									<div class="card-body">
