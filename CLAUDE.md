@@ -153,7 +153,7 @@ Located in `src/components/`. All are `.astro` files.
 | Component | Purpose |
 |---|---|
 | `BaseHead.astro` | `<head>` tags: charset, viewport, SEO meta, OG tags, Twitter cards, font preloading |
-| `Header.astro` | Site header with navigation links (Home, Articles, About) and GitHub link |
+| `Header.astro` | Site header with navigation links (Home, Articles, About) |
 | `HeaderLink.astro` | Nav link that auto-applies active styles based on current route |
 | `Footer.astro` | Site footer with dynamic copyright year and site tagline |
 | `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03 2025") |
@@ -385,6 +385,8 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 ## What Not to Do
 
 - Do not add, remove, or rename navigation tabs in `Header.astro` — the header must have exactly 3 tabs: **Home** (`/`), **Articles** (`/article`), and **About** (`/about`). No other tabs should be added.
+- Do not add a GitHub link anywhere on the main page (`index.astro`) or in `Header.astro` — external social/repo links are not part of the site navigation.
+- Do not display `posts` collection content on the main page (`index.astro`) — the homepage shows only `blog` collection (technical articles).
 - Do not add Tailwind or other CSS frameworks without discussion — this project uses plain CSS intentionally.
 - Do not change the `astro.config.mjs` site URL without updating DNS/Cloudflare configuration.
 - Do not add environment variables to source files — use `.env` (gitignored) or Cloudflare secrets.
