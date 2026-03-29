@@ -44,7 +44,7 @@ The `check` script runs tests first (`vitest run`) before building. Always ensur
 
 **Vitest config** (`vitest.config.ts`):
 - Environment: `node`
-- Test file pattern: `src/**/*.test.ts`
+- Test file pattern: `src/**/*.test.ts` (covers all test files under `src/`, including `src/consts.test.ts` and `src/utils/*.test.ts`)
 
 ---
 
@@ -60,7 +60,7 @@ astro-blog-starter-template/
 ├── src/
 │   ├── components/          # Reusable .astro components (5 files)
 │   ├── content/             # Markdown/MDX content files
-│   │   ├── blog/            # Technical articles (~14 files)
+│   │   ├── blog/            # Technical articles (~30 files)
 │   │   └── posts/           # Short blog posts (~3 files)
 │   ├── layouts/
 │   │   └── BlogPost.astro   # Shared layout for articles and posts
@@ -75,6 +75,8 @@ astro-blog-starter-template/
 │   ├── utils/               # Shared utility functions + Vitest tests
 │   │   ├── activeLink.ts    # Active nav link detection
 │   │   ├── activeLink.test.ts
+│   │   ├── contentSchema.ts    # Shared Zod schema (articleSchema + ArticleData type)
+│   │   ├── contentSchema.test.ts
 │   │   ├── difficultyBadge.ts  # Difficulty badge labels/classes
 │   │   ├── difficultyBadge.test.ts
 │   │   ├── formatDate.ts    # Date formatting helpers
@@ -82,33 +84,40 @@ astro-blog-starter-template/
 │   │   ├── sort.ts          # Content sorting helpers
 │   │   └── sort.test.ts
 │   ├── consts.ts            # SITE_TITLE, SITE_DESCRIPTION
-│   ├── content.config.ts    # Content collection schemas
+│   ├── consts.test.ts       # Tests for site constants
+│   ├── content.config.ts    # Content collection definitions (imports schema from utils)
 │   └── env.d.ts             # TypeScript environment declarations
 ├── astro.config.mjs         # Astro configuration
 ├── vitest.config.ts         # Vitest configuration
 ├── wrangler.json            # Cloudflare Workers config
 ├── worker-configuration.d.ts # Cloudflare env type definitions (auto-generated)
 ├── tsconfig.json            # TypeScript config (extends astro/tsconfigs/strict)
-└── package.json
+├── package.json
+└── *.pdf                    # Research papers (not part of build; referenced by content)
 ```
 
 ---
 
 ## Content Collections
 
-Defined in `src/content.config.ts`. Both collections share the same schema.
+Defined in `src/content.config.ts`. Both collections use the shared `articleSchema` imported from `src/utils/contentSchema.ts`.
 
 ### Schema
 
+The Zod schema is defined in `src/utils/contentSchema.ts` and exported as `articleSchema` (with inferred type `ArticleData`). Extracting it here allows independent unit testing without Astro's virtual modules.
+
 ```typescript
-{
-  title: string;           // Required
-  description: string;     // Required
-  pubDate: Date;           // Required (coerced from string)
-  updatedDate?: Date;      // Optional
-  heroImage?: string;      // Optional — path to image in public/
-  difficulty?: 'low' | 'high';  // Optional — shows a badge in layout
-}
+// src/utils/contentSchema.ts
+export const articleSchema = z.object({
+  title: z.string(),           // Required
+  description: z.string(),     // Required
+  pubDate: z.coerce.date(),    // Required (coerced from string)
+  updatedDate: z.coerce.date().optional(),
+  heroImage: z.string().optional(),
+  difficulty: z.enum(['low', 'high']).optional(),
+});
+
+export type ArticleData = z.infer<typeof articleSchema>;
 ```
 
 ### Collections
@@ -221,6 +230,15 @@ export async function getStaticPaths() {
 ## Utility Functions
 
 Located in `src/utils/`. All utilities have corresponding Vitest test files.
+
+### `contentSchema.ts`
+
+```typescript
+articleSchema   // Zod schema for content frontmatter (used by both collections)
+ArticleData     // Inferred TypeScript type from the schema
+```
+
+Imported by `src/content.config.ts` for both the `blog` and `posts` collections. Extracting the schema here avoids Astro virtual module dependencies so it can be unit-tested directly.
 
 ### `formatDate.ts`
 
@@ -374,3 +392,5 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 - Do not add content files outside of `src/content/blog/` or `src/content/posts/` — content collections are scoped to those directories.
 - Do not write inline sort logic for content collections — use `sortByPubDateDesc()` from `src/utils/sort.ts`.
 - Do not add utility functions without a corresponding `.test.ts` file in `src/utils/`.
+- Do not define the content collection schema inline in `content.config.ts` — it lives in `src/utils/contentSchema.ts` so it can be unit-tested independently.
+- Do not place test files outside of their source file's directory — `src/consts.test.ts` tests `src/consts.ts`; utility tests live alongside their source in `src/utils/`.
