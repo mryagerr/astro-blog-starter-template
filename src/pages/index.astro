@@ -45,6 +45,30 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			<hr />
 
+			<!-- ─── Explore ───────────────────────────────────────────── -->
+			<div class="explore">
+				<h2 class="explore-heading">Explore</h2>
+				<div class="explore-grid">
+					<a href="/article" class="explore-card">
+						<span class="explore-card-label">Articles</span>
+						<p class="explore-card-desc">Step-by-step guides on data collection, processing, and analysis.</p>
+						<span class="explore-card-cta">Browse articles →</span>
+					</a>
+					<a href="/about" class="explore-card">
+						<span class="explore-card-label">About</span>
+						<p class="explore-card-desc">Who writes here and why this site exists.</p>
+						<span class="explore-card-cta">Learn more →</span>
+					</a>
+					<a href="/contact" class="explore-card">
+						<span class="explore-card-label">Contact</span>
+						<p class="explore-card-desc">Questions, corrections, or just want to say hello.</p>
+						<span class="explore-card-cta">Get in touch →</span>
+					</a>
+				</div>
+			</div>
+
+			<hr />
+
 			<!-- ─── RSS ────────────────────────────────────────────────── -->
 			<div class="rss-feed">
 				<h2>RSS Feed</h2>
@@ -161,6 +185,84 @@ hr { margin: 3rem 0; }
 	color: var(--caption);
 }
 
+/* ─── Explore ────────────────────────────────────────────────────── */
+.explore-heading {
+	margin-bottom: 1.25rem;
+	font-size: 1.3rem;
+}
+
+.explore-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+}
+
+.explore-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	text-decoration: none;
+	border: 1px solid var(--rule);
+	border-radius: 8px;
+	padding: 1.1rem 1.25rem 1rem;
+	background: var(--paper);
+	position: relative;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.explore-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: var(--accent);
+	border-radius: 8px 8px 0 0;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.2s ease;
+}
+
+.explore-card:hover {
+	box-shadow: var(--box-shadow);
+	border-color: var(--accent-muted);
+	transform: translateY(-2px);
+	text-decoration: none;
+}
+
+.explore-card:hover::before {
+	transform: scaleX(1);
+}
+
+.explore-card-label {
+	font-family: var(--font-mono);
+	font-size: 0.7rem;
+	font-weight: 500;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+
+.explore-card-desc {
+	margin: 0;
+	font-size: 0.88rem;
+	color: var(--caption);
+	line-height: 1.5;
+	flex: 1;
+}
+
+.explore-card-cta {
+	font-size: 0.82rem;
+	font-weight: 600;
+	color: var(--ink);
+	margin-top: 0.25rem;
+}
+
+.explore-card:hover .explore-card-cta {
+	color: var(--accent);
+}
+
 /* ─── RSS ────────────────────────────────────────────────────────── */
 .rss-feed {
 	text-align: center;
@@ -206,6 +308,7 @@ hr { margin: 3rem 0; }
 @media (max-width: 720px) {
 	.hero-principles { flex-direction: column; align-items: flex-start; }
 	.principle-sep { display: none; }
+	.explore-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
