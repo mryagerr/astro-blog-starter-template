@@ -101,6 +101,16 @@ const { title, description, pubDate, updatedDate, heroImage, difficulty } = Astr
 	</head>
 
 	<body>
+		<div id="scroll-progress" aria-hidden="true" style="position:fixed;top:0;left:0;height:3px;width:0%;background:var(--accent);z-index:9999;pointer-events:none;"></div>
+		<script>
+			const bar = document.getElementById('scroll-progress') as HTMLElement;
+			function updateProgress() {
+				const scrolled = window.scrollY;
+				const max = document.documentElement.scrollHeight - window.innerHeight;
+				bar.style.width = max > 0 ? (scrolled / max * 100) + '%' : '0%';
+			}
+			window.addEventListener('scroll', updateProgress, { passive: true });
+		</script>
 		<Header />
 		<main>
 			<article>

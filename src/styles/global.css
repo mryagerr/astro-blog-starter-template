@@ -7,11 +7,14 @@
 	/* Editorial palette */
 	--ink:          #1a1a18;
 	--paper:        #f7f5f0;
-	--accent:       #c8522a;
-	--accent-dark:  #a8401e;
-	--accent-muted: #e8d5c4;
+	--accent:       #0891b2;
+	--accent-dark:  #0e7490;
+	--accent-muted: #bae6fd;
 	--rule:         #d4cfc6;
 	--caption:      #7a7568;
+
+	/* Header background (semi-transparent for backdrop blur) */
+	--header-bg: rgba(247, 245, 240, 0.95);
 
 	/* RGB triplets for rgba() usage */
 	--black:      26, 26, 24;
@@ -202,4 +205,32 @@ hr {
 	clip: rect(1px, 1px, 1px, 1px);
 	clip-path: inset(50%);
 	white-space: nowrap;
+}
+
+/* ─── Dark mode ──────────────────────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--ink:          #e8e6e3;
+		--paper:        #1a1a18;
+		--accent:       #22d3ee;
+		--accent-dark:  #0891b2;
+		--accent-muted: #083344;
+		--rule:         #2d2d2b;
+		--caption:      #8a8880;
+
+		--header-bg: rgba(26, 26, 24, 0.95);
+
+		/* RGB triplets for rgba() usage */
+		--black:      232, 230, 227;
+		--gray:       138, 136, 128;
+		--gray-light: 42, 42, 40;
+		--gray-dark:  200, 198, 192;
+
+		--gray-gradient: rgba(var(--gray-light), 40%), var(--paper);
+		--box-shadow:
+			0 2px 6px rgba(0, 0, 0, 40%),
+			0 8px 24px rgba(0, 0, 0, 32%),
+			0 16px 32px rgba(0, 0, 0, 24%);
+	}
 }
