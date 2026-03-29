@@ -388,7 +388,8 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 - Do not add, remove, or rename navigation tabs in `Header.astro` — the header must have exactly 4 tabs: **Home** (`/`), **Articles** (`/article`), **About** (`/about`), and **Contact** (`/contact`). No other tabs should be added.
 - Do not add a GitHub link anywhere on the main page (`index.astro`), in `Header.astro`, or in `Footer.astro` — external social/repo links are not part of the site navigation.
 - Do not display `posts` collection content on the main page (`index.astro`) — the homepage shows only `blog` collection (technical articles).
-- The only links permitted on the front page (`index.astro`) are: Home, About, Articles, Contact, and RSS Feed. Do not add article chip links, article card grids, or any other inline content links to the homepage.
+- The front page (`index.astro`) must include a "Latest Articles" section listing the 6 most recent `blog` collection entries, each linking to its article page. This is the only additional link type permitted beyond Home, About, Articles, Contact, and RSS Feed.
+- Do not add article chip links, article card grids with images, or any other inline content sections to the homepage beyond the "Latest Articles" list.
 - Do not add Tailwind or other CSS frameworks without discussion — this project uses plain CSS intentionally.
 - Do not change the `astro.config.mjs` site URL without updating DNS/Cloudflare configuration.
 - Do not add environment variables to source files — use `.env` (gitignored) or Cloudflare secrets.

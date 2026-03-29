@@ -2,7 +2,12 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import { sortByPubDateDesc } from '../utils/sort';
+
+const recentArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 ---
 
 <!doctype html>
@@ -34,6 +39,22 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		</section>
 
 		<main>
+			<!-- ─── Latest Articles ────────────────────────────────────── -->
+			<section class="latest-articles">
+				<h2 class="section-title">Latest Articles</h2>
+				<ul class="article-list">
+					{recentArticles.map((post) => (
+						<li class="article-row">
+							<span class="article-date"><FormattedDate date={post.data.pubDate} /></span>
+							<a href={`/article/${post.id}/`} class="article-link">{post.data.title}</a>
+						</li>
+					))}
+				</ul>
+				<p class="view-all"><a href="/article">View all articles →</a></p>
+			</section>
+
+			<hr />
+
 			<!-- ─── Author bio ─────────────────────────────────────────── -->
 			<div class="author-bio">
 				<p>
@@ -146,6 +167,54 @@ main {
 }
 
 hr { margin: 3rem 0; }
+
+/* ─── Latest Articles ───────────────────────────────────────────── */
+.section-title {
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	margin-bottom: 1.25rem;
+}
+
+.article-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 0.75rem;
+	border-top: 1px solid var(--rule);
+}
+
+.article-row {
+	display: flex;
+	align-items: baseline;
+	gap: 1.25rem;
+	padding: 0.75rem 0;
+	border-bottom: 1px solid var(--rule);
+}
+
+.article-date {
+	font-family: var(--font-mono);
+	font-size: 0.78rem;
+	color: var(--caption);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.article-link {
+	font-size: 0.97rem;
+	color: var(--ink);
+	text-decoration: none;
+	transition: color 0.15s ease;
+}
+
+.article-link:hover {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+.view-all {
+	text-align: right;
+	font-size: 0.92rem;
+	margin: 0.75rem 0 0;
+}
 
 /* ─── Author bio ─────────────────────────────────────────────────── */
 .author-bio {
