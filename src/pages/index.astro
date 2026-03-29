@@ -115,12 +115,10 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 
 			<hr />
 
-			<div class="email-signup">
-				<h2>Get New Articles by Email</h2>
-				<p>New articles go out when they're ready — no schedule, no noise. Just send a quick note to get on the list.</p>
-				<a class="email-cta" href="mailto:admin@lowhangingdata.com?subject=Subscribe&body=Please%20add%20me%20to%20the%20Low%20Hanging%20Data%20mailing%20list.">
-					Subscribe via Email →
-				</a>
+			<div class="rss-feed">
+				<h2>RSS Feed</h2>
+				<p>Subscribe to new articles via RSS.</p>
+				<a class="rss-cta" href="/rss.xml">Follow via RSS →</a>
 			</div>
 		</main>
 		<Footer />
@@ -148,20 +146,20 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 		font-size: 0.95em;
 		color: rgb(var(--gray-dark));
 	}
-	.email-signup {
+	.rss-feed {
 		text-align: center;
 		padding: 1.5em 1em;
 		background: rgba(var(--gray-light), 0.4);
 		border-radius: 8px;
 	}
-	.email-signup h2 {
+	.rss-feed h2 {
 		margin-top: 0;
 	}
-	.email-signup p {
+	.rss-feed p {
 		color: rgb(var(--gray-dark));
 		margin-bottom: 1.25em;
 	}
-	.email-cta {
+	.rss-cta {
 		display: inline-block;
 		background: var(--accent);
 		color: white;
@@ -172,7 +170,7 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 		font-size: 0.95em;
 		transition: background 0.2s ease;
 	}
-	.email-cta:hover {
+	.rss-cta:hover {
 		background: var(--accent-dark);
 	}
 	.principles {
