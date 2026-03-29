@@ -11,11 +11,6 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/article">Articles</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<div class="social-links">
-			<a href="https://github.com/mryagerr" target="_blank" rel="noopener noreferrer" class="github-link">
-				GitHub&nbsp;↗
-			</a>
-		</div>
 	</nav>
 </header>
 
@@ -105,34 +100,7 @@ import { SITE_TITLE } from '../consts';
 		font-weight: 600;
 	}
 
-	.github-link {
-		font-family: var(--font-mono);
-		font-size: 0.78rem;
-		letter-spacing: 0.02em;
-		color: var(--caption);
-		text-decoration: none;
-		padding: 0.3em 0.7em;
-		border: 1px solid var(--rule);
-		border-radius: 4px;
-		transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-		white-space: nowrap;
-	}
-
-	.github-link:hover {
-		color: var(--ink);
-		border-color: var(--accent);
-		background: var(--accent-muted);
-		text-decoration: none;
-	}
-
-	.social-links {
-		display: flex;
-		align-items: center;
-		flex-shrink: 0;
-	}
-
 	@media (max-width: 720px) {
-		.social-links { display: none; }
 		.wordmark { font-size: 1rem; }
 
 		/* Larger touch targets on mobile */

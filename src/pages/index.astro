@@ -82,11 +82,6 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 						</div>
 					</div>
 				</div>
-				<p class="start-here-note">
-					See also: <a href="/posts">Posts</a> — shorter project retrospectives and case studies.
-					Includes <a href="/posts/stock-trader-project-writeup/">building a stock prediction pipeline</a>
-					and <a href="/posts/bd-mpar-aws-device-downtime/">how BD used AWS to predict device failures</a>.
-				</p>
 			</section>
 
 			<hr />
@@ -307,12 +302,6 @@ hr { margin: 3rem 0; }
 	border-color: var(--accent);
 	color: #fff;
 	text-decoration: none;
-}
-
-.start-here-note {
-	margin: 1.5rem 0 0;
-	font-size: 0.88rem;
-	color: var(--caption);
 }
 
 /* ─── Article card grid ──────────────────────────────────────────── */
