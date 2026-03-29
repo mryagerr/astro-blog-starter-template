@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="44" text-anchor="middle" font-family="ui-monospace,monospace" font-size="23" font-weight="bold" fill="#e2e8f0">Not Everyone Is a Data Analyst</text>
+  <text x="510" y="72" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#475569">And Your Deliverables Should Reflect That</text>
+
+  <!-- LEFT: Complex dashboard "for the analyst" -->
+  <rect x="50" y="88" width="370" height="306" rx="10" fill="#071828" stroke="#334155" stroke-width="2"/>
+  <!-- Window chrome -->
+  <rect x="50" y="88" width="370" height="28" rx="10" fill="#0d1117"/>
+  <rect x="50" y="104" width="370" height="12" fill="#0d1117"/>
+  <circle cx="70" cy="102" r="5" fill="#f43f5e" opacity="0.7"/>
+  <circle cx="88" cy="102" r="5" fill="#f59e0b" opacity="0.7"/>
+  <circle cx="106" cy="102" r="5" fill="#22c55e" opacity="0.4"/>
+  <text x="235" y="107" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#334155">analytics_dashboard_v3_final.pbix</text>
+
+  <!-- Filter row -->
+  <rect x="64" y="124" width="78" height="16" rx="3" fill="#0d1f30" stroke="#334155" stroke-width="1"/>
+  <text x="103" y="136" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#475569">Date Range ▾</text>
+  <rect x="148" y="124" width="66" height="16" rx="3" fill="#0d1f30" stroke="#334155" stroke-width="1"/>
+  <text x="181" y="136" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#475569">Region ▾</text>
+  <rect x="220" y="124" width="76" height="16" rx="3" fill="#0d1f30" stroke="#334155" stroke-width="1"/>
+  <text x="258" y="136" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#475569">Segment ▾</text>
+  <rect x="302" y="124" width="76" height="16" rx="3" fill="#0d1f30" stroke="#334155" stroke-width="1"/>
+  <text x="340" y="136" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#475569">Channel ▾</text>
+
+  <!-- KPI tiles -->
+  <rect x="64" y="148" width="78" height="46" rx="4" fill="#0d1f30" stroke="#1e293b"/>
+  <text x="103" y="168" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#334155">$4.2M</text>
+  <text x="103" y="184" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#334155">revenue</text>
+
+  <rect x="148" y="148" width="66" height="46" rx="4" fill="#0d1f30" stroke="#1e293b"/>
+  <text x="181" y="168" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#334155">3.8%</text>
+  <text x="181" y="184" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#334155">churn</text>
+
+  <rect x="220" y="148" width="76" height="46" rx="4" fill="#0d1f30" stroke="#1e293b"/>
+  <text x="258" y="168" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#334155">12.4%</text>
+  <text x="258" y="184" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#334155">conv rate</text>
+
+  <rect x="302" y="148" width="76" height="46" rx="4" fill="#0d1f30" stroke="#1e293b"/>
+  <text x="340" y="168" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#334155">847</text>
+  <text x="340" y="184" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#334155">active users</text>
+
+  <!-- Two charts -->
+  <rect x="64" y="202" width="162" height="96" rx="4" fill="#071828" stroke="#1e293b"/>
+  <rect x="76" y="266" width="14" height="24" rx="1" fill="#334155"/>
+  <rect x="96" y="250" width="14" height="40" rx="1" fill="#334155"/>
+  <rect x="116" y="240" width="14" height="50" rx="1" fill="#334155"/>
+  <rect x="136" y="254" width="14" height="36" rx="1" fill="#334155"/>
+  <rect x="156" y="244" width="14" height="46" rx="1" fill="#334155"/>
+  <rect x="176" y="258" width="14" height="32" rx="1" fill="#334155"/>
+  <text x="145" y="308" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#334155">monthly trend (segmented)</text>
+
+  <rect x="234" y="202" width="150" height="96" rx="4" fill="#071828" stroke="#1e293b"/>
+  <polyline points="246,270 265,260 284,265 303,250 322,255 341,243 374,247" fill="none" stroke="#334155" stroke-width="1.5"/>
+  <text x="309" y="308" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#334155">cohort retention (%)</text>
+
+  <!-- Cross-tab -->
+  <rect x="64" y="308" width="320" height="52" rx="4" fill="#071828" stroke="#1e293b"/>
+  <text x="224" y="323" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#334155">Region breakdown</text>
+  <line x1="64" y1="328" x2="384" y2="328" stroke="#1e293b" stroke-width="1"/>
+  <text x="88" y="342" font-family="ui-monospace,monospace" font-size="8" fill="#334155">North</text>
+  <text x="130" y="342" font-family="ui-monospace,monospace" font-size="8" fill="#334155">South</text>
+  <text x="172" y="342" font-family="ui-monospace,monospace" font-size="8" fill="#334155">East</text>
+  <text x="210" y="342" font-family="ui-monospace,monospace" font-size="8" fill="#334155">West</text>
+  <text x="248" y="342" font-family="ui-monospace,monospace" font-size="8" fill="#334155">Intl</text>
+  <text x="74" y="354" font-family="ui-monospace,monospace" font-size="8" fill="#334155">↕ drill down by segment →</text>
+
+  <!-- Left label -->
+  <text x="235" y="412" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">Built for the analyst</text>
+  <text x="235" y="430" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#334155">1 person in the room</text>
+
+  <!-- CENTER: ratio and dividers -->
+  <line x1="436" y1="88" x2="436" y2="445" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="584" y1="88" x2="584" y2="445" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <text x="510" y="185" text-anchor="middle" font-family="ui-monospace,monospace" font-size="44" font-weight="bold" fill="#38bdf8">9</text>
+  <text x="510" y="212" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">of 10 people</text>
+  <text x="510" y="234" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#475569">in the room</text>
+  <text x="510" y="256" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#475569">just need</text>
+  <text x="510" y="278" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#475569">the answer</text>
+
+  <text x="510" y="318" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" fill="#334155">↔</text>
+
+  <!-- RIGHT: Simple decision card -->
+  <rect x="600" y="88" width="370" height="306" rx="10" fill="#071828" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Card header -->
+  <rect x="600" y="88" width="370" height="28" rx="10" fill="#071e2e"/>
+  <rect x="600" y="104" width="370" height="12" fill="#071e2e"/>
+  <text x="785" y="109" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#38bdf8">Q3 Revenue Brief · executive summary</text>
+
+  <!-- Situation -->
+  <text x="620" y="142" font-family="ui-monospace,monospace" font-size="11" font-weight="bold" fill="#e2e8f0">Situation</text>
+  <text x="620" y="160" font-family="ui-monospace,monospace" font-size="11" fill="#94a3b8">Revenue is down 12% vs last quarter.</text>
+  <text x="620" y="176" font-family="ui-monospace,monospace" font-size="11" fill="#94a3b8">Campaign B is the primary driver.</text>
+
+  <line x1="616" y1="188" x2="954" y2="188" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Actions -->
+  <text x="620" y="208" font-family="ui-monospace,monospace" font-size="11" font-weight="bold" fill="#e2e8f0">Recommended Actions</text>
+
+  <rect x="620" y="218" width="316" height="24" rx="4" fill="#0a2a10" stroke="#22c55e" stroke-width="1"/>
+  <text x="630" y="234" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">→  Scale Campaign A  (+$200K projected)</text>
+
+  <rect x="620" y="248" width="316" height="24" rx="4" fill="#2a0a0a" stroke="#f43f5e" stroke-width="1"/>
+  <text x="630" y="264" font-family="ui-monospace,monospace" font-size="11" fill="#f43f5e">→  Cut Campaign B  (losing $80K/mo)</text>
+
+  <rect x="620" y="278" width="316" height="24" rx="4" fill="#1a1200" stroke="#f59e0b" stroke-width="1"/>
+  <text x="630" y="294" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">→  Review Campaign D  (watch cohort 3)</text>
+
+  <line x1="616" y1="312" x2="954" y2="312" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="620" y="330" font-family="ui-monospace,monospace" font-size="10" fill="#475569">confidence: high  ·  data current as of yesterday</text>
+  <text x="620" y="348" font-family="ui-monospace,monospace" font-size="10" fill="#334155">full analysis available on request</text>
+
+  <!-- Right label -->
+  <text x="785" y="412" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#38bdf8">Built for the decision-maker</text>
+  <text x="785" y="430" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#38bdf8">9 people in the room</text>
+
+  <!-- Bottom tagline -->
+  <line x1="50" y1="448" x2="970" y2="448" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
+  <text x="510" y="478" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">design deliverables for the audience, not the analyst in the room</text>
+</svg>
