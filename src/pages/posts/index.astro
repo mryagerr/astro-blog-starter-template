@@ -34,24 +34,24 @@ const posts = sortByPubDateDesc(await getCollection('posts'));
 				text-decoration: none;
 			}
 			.post-list a:hover .title {
-				color: rgb(var(--accent));
+				color: var(--accent);
 			}
 			.title {
 				margin: 0 0 0.25rem;
 				font-size: 1.25rem;
-				color: rgb(var(--black));
+				color: var(--ink);
 				line-height: 1.3;
 			}
 			.desc {
 				margin: 0 0 0.4rem;
-				color: rgb(var(--gray-dark));
+				color: var(--caption);
 				font-size: 0.95rem;
 				line-height: 1.5;
 			}
 			.date {
 				margin: 0;
 				font-size: 0.85rem;
-				color: rgb(var(--gray));
+				color: var(--caption);
 			}
 			@media (max-width: 480px) {
 				.post-list li {
