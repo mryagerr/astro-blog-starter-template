@@ -278,6 +278,32 @@ getDifficultyClass(difficulty: 'low' | 'high'): string
 
 ---
 
+## UX & Navigation Standards
+
+These are required behaviors. Do not remove or regress them.
+
+### Hover States
+
+All navigation links in `Header.astro` and `HeaderLink.astro` must have visible `:hover` styles. Use `color: var(--accent)` or an underline transition — never leave nav links with no hover feedback.
+
+### Sticky Header
+
+`Header.astro` must use `position: sticky; top: 0` so the nav remains visible while scrolling. Apply a background color and `z-index` high enough to sit above page content. Do not use `position: fixed` (breaks document flow for SSR).
+
+### Reading-Width Constraint
+
+Body text on article and post pages must be constrained to a comfortable reading width. The max content width is **720px** (already the global default). Do not widen prose containers beyond this on article routes (`/article/*`, `/posts/*`). If a layout change would break this constraint, restore it.
+
+### Dark Mode
+
+The site supports dark mode via `@media (prefers-color-scheme: dark)` in `src/styles/global.css`. Dark mode must define equivalent values for all `:root` CSS custom properties (background, text, accent, gray scales). Do not remove the dark mode media query block. When adding new CSS custom properties to `:root`, always add a dark-mode equivalent in the dark media query.
+
+### Scroll Progress Indicator
+
+Article pages (`/article/[...slug].astro`) must include a scroll progress bar — a thin fixed element at the top of the viewport whose width tracks `scrollY` relative to document height. Implement it as a `<div>` with `position: fixed; top: 0; left: 0; height: 3px; background: var(--accent)` driven by an inline `<script>` that listens to the `scroll` event and updates `style.width`. Do not remove this from article pages.
+
+---
+
 ## Styling Conventions
 
 - **No Tailwind** — use plain CSS only.
@@ -398,3 +424,8 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 - Do not add utility functions without a corresponding `.test.ts` file in `src/utils/`.
 - Do not define the content collection schema inline in `content.config.ts` — it lives in `src/utils/contentSchema.ts` so it can be unit-tested independently.
 - Do not place test files outside of their source file's directory — `src/consts.test.ts` tests `src/consts.ts`; utility tests live alongside their source in `src/utils/`.
+- Do not remove `:hover` styles from navigation links — all nav links must have visible hover feedback.
+- Do not change `Header.astro` from `position: sticky` to `position: static` or `position: relative` — the header must remain sticky.
+- Do not widen prose containers on article or post pages beyond 720px — reading-width constraint must be preserved.
+- Do not remove the `@media (prefers-color-scheme: dark)` block from `global.css` — dark mode support is required.
+- Do not remove the scroll progress indicator from article pages (`/article/[...slug].astro`) — it is a required UX feature.
