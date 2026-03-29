@@ -2,6 +2,7 @@
 title: 'Write for the Executive. Survive the Analyst.'
 description: 'The best executive-facing analysis does two contradictory things at once: it collapses to a single clear recommendation fast enough to drive a decision, and it holds up under days of scrutiny from the team sent to stress-test it. Those two requirements are not in tension. One earns the other.'
 pubDate: 'Mar 29 2026'
+heroImage: '/blog-data-landscape.svg'
 difficulty: 'low'
 ---
 

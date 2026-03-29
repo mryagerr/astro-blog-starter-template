@@ -117,7 +117,7 @@ const posts = sortByPubDateDesc(await getCollection('blog'));
 						posts.map((post) => (
 							<li>
 								<a href={`/article/${post.id}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
+									<img width={720} height={360} src={post.data.heroImage ?? '/blog-placeholder-1.svg'} alt="" />
 									<h4 class="title">{post.data.title}</h4>
 									{post.data.difficulty && (
 										<span class={getDifficultyClass(post.data.difficulty)}>
