@@ -61,6 +61,16 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 					{latestArticles.map((post) => (
 						<li class="article-card">
 							<a href={`/article/${post.id}/`}>
+								<div class="card-img-wrap">
+									<img
+										width={720}
+										height={360}
+										src={post.data.heroImage ?? '/blog-placeholder-1.svg'}
+										alt=""
+										loading="lazy"
+										decoding="async"
+									/>
+								</div>
 								<div class="card-body">
 									<p class="card-date label">
 										<FormattedDate date={post.data.pubDate} />
@@ -272,6 +282,22 @@ hr { margin: 3rem 0; }
 
 .article-card a:hover::before {
 	transform: scaleY(1);
+}
+
+.article-card .card-img-wrap {
+	overflow: hidden;
+}
+
+.article-card img {
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.3s ease;
+}
+
+.article-card a:hover img {
+	transform: scale(1.03);
 }
 
 .article-card .card-body {
