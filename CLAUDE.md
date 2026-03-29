@@ -153,7 +153,7 @@ Located in `src/components/`. All are `.astro` files.
 | Component | Purpose |
 |---|---|
 | `BaseHead.astro` | `<head>` tags: charset, viewport, SEO meta, OG tags, Twitter cards, font preloading |
-| `Header.astro` | Site header with navigation links (Home, Articles, About) and GitHub link |
+| `Header.astro` | Site header with navigation links (Home, Articles, About, Contact) |
 | `HeaderLink.astro` | Nav link that auto-applies active styles based on current route |
 | `Footer.astro` | Site footer with dynamic copyright year and site tagline |
 | `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03 2025") |
@@ -203,6 +203,7 @@ Astro uses file-based routing from `src/pages/`.
 |---|---|---|
 | `index.astro` | `/` | Homepage with featured articles and philosophy section |
 | `about.astro` | `/about` | Static about page (uses BlogPost layout) |
+| `contact.astro` | `/contact` | Static contact page (uses BlogPost layout) |
 | `article/index.astro` | `/article` | Grid listing of all technical articles |
 | `article/[...slug].astro` | `/article/{id}` | Dynamic article page |
 | `posts/index.astro` | `/posts` | List of blog posts |
@@ -384,7 +385,10 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 
 ## What Not to Do
 
-- Do not add, remove, or rename navigation tabs in `Header.astro` — the header must have exactly 3 tabs: **Home** (`/`), **Articles** (`/article`), and **About** (`/about`). No other tabs should be added.
+- Do not add, remove, or rename navigation tabs in `Header.astro` — the header must have exactly 4 tabs: **Home** (`/`), **Articles** (`/article`), **About** (`/about`), and **Contact** (`/contact`). No other tabs should be added.
+- Do not add a GitHub link anywhere on the main page (`index.astro`), in `Header.astro`, or in `Footer.astro` — external social/repo links are not part of the site navigation.
+- Do not display `posts` collection content on the main page (`index.astro`) — the homepage shows only `blog` collection (technical articles).
+- The only links permitted on the front page (`index.astro`) are: Home, About, Articles, Contact, and RSS Feed. Do not add article chip links, article card grids, or any other inline content links to the homepage.
 - Do not add Tailwind or other CSS frameworks without discussion — this project uses plain CSS intentionally.
 - Do not change the `astro.config.mjs` site URL without updating DNS/Cloudflare configuration.
 - Do not add environment variables to source files — use `.env` (gitignored) or Cloudflare secrets.
