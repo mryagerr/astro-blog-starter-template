@@ -2,7 +2,7 @@
 title: 'Fear the Black Box: Why Data Must Be Understood End to End'
 description: 'A black box in your data stack is not a neutral abstraction — it is a debt with compounding interest. The moment your inferences outrun your understanding, you hit a wall.'
 pubDate: 'Mar 29 2026'
-heroImage: '/blog-analytics-debt.svg'
+heroImage: '/blog-fear-black-box.svg'
 difficulty: 'high'
 ---
 

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="52" text-anchor="middle" font-family="ui-monospace,monospace" font-size="26" font-weight="bold" fill="#e2e8f0">The Golden Age of API Access</text>
+  <text x="510" y="88" text-anchor="middle" font-family="ui-monospace,monospace" font-size="34" font-weight="bold" fill="#f43f5e">Is Over</text>
+
+  <!-- Timeline bar -->
+  <line x1="80" y1="280" x2="940" y2="280" stroke="#334155" stroke-width="3"/>
+  <!-- Arrow at end -->
+  <polygon points="932,272 945,280 932,288" fill="#334155"/>
+
+  <!-- Era 1: Golden Age (free) -->
+  <rect x="80" y="175" width="220" height="90" rx="8" fill="#071828" stroke="#22c55e" stroke-width="2"/>
+  <text x="190" y="200" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#22c55e">2010 – 2018</text>
+  <text x="190" y="220" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">Golden Age</text>
+  <text x="190" y="238" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">free · unlimited · open</text>
+  <text x="190" y="255" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">Twitter, Reddit, Meta</text>
+  <line x1="190" y1="265" x2="190" y2="280" stroke="#22c55e" stroke-width="2"/>
+  <circle cx="190" cy="280" r="6" fill="#22c55e"/>
+
+  <!-- Era 2: Freemium -->
+  <rect x="360" y="175" width="220" height="90" rx="8" fill="#071828" stroke="#f59e0b" stroke-width="2"/>
+  <text x="470" y="200" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f59e0b">2018 – 2022</text>
+  <text x="470" y="220" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">Freemium Shift</text>
+  <text x="470" y="238" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">rate limits · paid tiers</text>
+  <text x="470" y="255" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">approval required</text>
+  <line x1="470" y1="265" x2="470" y2="280" stroke="#f59e0b" stroke-width="2"/>
+  <circle cx="470" cy="280" r="6" fill="#f59e0b"/>
+
+  <!-- Era 3: Closed/Restricted -->
+  <rect x="640" y="175" width="220" height="90" rx="8" fill="#1a0509" stroke="#f43f5e" stroke-width="2"/>
+  <text x="750" y="200" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f43f5e">2022 – Now</text>
+  <text x="750" y="220" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f43f5e">Monetized / Closed</text>
+  <text x="750" y="238" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f43f5e">$$$· restricted · scraped</text>
+  <text x="750" y="255" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f43f5e">access revoked overnight</text>
+  <line x1="750" y1="265" x2="750" y2="280" stroke="#f43f5e" stroke-width="2"/>
+  <circle cx="750" cy="280" r="6" fill="#f43f5e"/>
+
+  <!-- Cost arrow going up -->
+  <text x="510" y="310" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">access cost / restriction →</text>
+
+  <!-- Callout box -->
+  <rect x="120" y="345" width="780" height="60" rx="10" fill="#071828" stroke="#f43f5e" stroke-width="1"/>
+  <text x="510" y="368" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#e2e8f0">build your own data collection strategy — don't depend on a single API</text>
+  <text x="510" y="389" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">open datasets · scraping · partnerships · owned pipelines · regulatory disclosures</text>
+
+  <!-- Low Hanging Data label -->
+  <text x="510" y="460" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">Low Hanging Data</text>
+</svg>
