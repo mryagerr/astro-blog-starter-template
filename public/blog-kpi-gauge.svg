@@ -5,38 +5,44 @@
   <text x="510" y="55" text-anchor="middle" font-family="ui-monospace,monospace" font-size="26" font-weight="bold" fill="#e2e8f0">The Gas Gauge Is the</text>
   <text x="510" y="93" text-anchor="middle" font-family="ui-monospace,monospace" font-size="36" font-weight="bold" fill="#38bdf8">Hardest Chart to Build</text>
 
-  <!-- Gauge background arc (E to F, 180°) -->
-  <!-- Outer ring -->
+  <!-- Gauge: center (360, 370), radius 200, semicircle from E (180°) to F (0°) -->
+
+  <!-- Outer ring background -->
   <path d="M 160 370 A 200 200 0 0 1 560 370" fill="none" stroke="#1e293b" stroke-width="36"/>
 
   <!-- Colored segments: E (red) → yellow → green (F) -->
-  <!-- Red zone: 0–60° -->
-  <path d="M 160 370 A 200 200 0 0 1 260 200" fill="none" stroke="#f43f5e" stroke-width="36" opacity="0.85"/>
-  <!-- Yellow zone: 60–120° -->
-  <path d="M 260 200 A 200 200 0 0 1 360 148" fill="none" stroke="#f59e0b" stroke-width="36" opacity="0.85"/>
-  <!-- Green zone: 120–180° -->
-  <path d="M 360 148 A 200 200 0 0 1 560 370" fill="none" stroke="#22c55e" stroke-width="36" opacity="0.85"/>
+  <!-- Red zone:    180° to 120° → (160,370) to (260,197) -->
+  <path d="M 160 370 A 200 200 0 0 1 260 197" fill="none" stroke="#f43f5e" stroke-width="36" opacity="0.85"/>
+  <!-- Yellow zone: 120° to  60° → (260,197) to (460,197) -->
+  <path d="M 260 197 A 200 200 0 0 1 460 197" fill="none" stroke="#f59e0b" stroke-width="36" opacity="0.85"/>
+  <!-- Green zone:   60° to   0° → (460,197) to (560,370) -->
+  <path d="M 460 197 A 200 200 0 0 1 560 370" fill="none" stroke="#22c55e" stroke-width="36" opacity="0.85"/>
 
   <!-- Inner arc overlay (dark) to create ring effect -->
   <path d="M 175 370 A 185 185 0 0 1 545 370" fill="none" stroke="#0f172a" stroke-width="6"/>
 
   <!-- Gauge labels -->
-  <text x="135" y="390" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#f43f5e">E</text>
-  <text x="547" y="390" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#22c55e">F</text>
-  <!-- Tick marks -->
-  <line x1="160" y1="370" x2="148" y2="349" stroke="#334155" stroke-width="2"/>
-  <line x1="211" y1="229" x2="201" y2="213" stroke="#334155" stroke-width="2"/>
-  <line x1="360" y1="145" x2="360" y2="127" stroke="#334155" stroke-width="2"/>
-  <line x1="510" y1="229" x2="520" y2="213" stroke="#334155" stroke-width="2"/>
-  <line x1="560" y1="370" x2="572" y2="349" stroke="#334155" stroke-width="2"/>
+  <text x="130" y="390" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#f43f5e">E</text>
+  <text x="549" y="390" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#22c55e">F</text>
 
-  <!-- Needle — pointing to ~75% (toward full) -->
-  <!-- Needle pivot -->
+  <!-- Tick marks (pointing inward along arc normals) -->
+  <!-- At 180° (E):  outer (160,370) → inner (175,370) -->
+  <line x1="160" y1="370" x2="175" y2="370" stroke="#334155" stroke-width="2"/>
+  <!-- At 120°:      outer (260,197) → inner (268,210) -->
+  <line x1="260" y1="197" x2="268" y2="210" stroke="#334155" stroke-width="2"/>
+  <!-- At 90° (top): outer (360,170) → inner (360,185) -->
+  <line x1="360" y1="170" x2="360" y2="185" stroke="#334155" stroke-width="2"/>
+  <!-- At 60°:       outer (460,197) → inner (452,210) -->
+  <line x1="460" y1="197" x2="452" y2="210" stroke="#334155" stroke-width="2"/>
+  <!-- At 0° (F):    outer (560,370) → inner (545,370) -->
+  <line x1="560" y1="370" x2="545" y2="370" stroke="#334155" stroke-width="2"/>
+
+  <!-- Needle — 74% full = 46.8° from positive x-axis -->
+  <!-- Tip at radius 170: (476, 246); tail at radius -30: (340, 392) -->
   <circle cx="360" cy="370" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
   <circle cx="360" cy="370" r="7" fill="#38bdf8"/>
-  <!-- Needle line: pointing to ~150° from center (3/4 full) -->
-  <line x1="360" y1="370" x2="480" y2="183" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
-  <line x1="360" y1="370" x2="340" y2="383" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+  <line x1="360" y1="370" x2="476" y2="246" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
+  <line x1="360" y1="370" x2="340" y2="392" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
 
   <!-- Value readout -->
   <rect x="298" y="390" width="124" height="38" rx="8" fill="#071828" stroke="#38bdf8" stroke-width="1"/>
@@ -52,7 +58,7 @@
   <text x="800" y="152" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">gauge.js</text>
   <!-- Code lines -->
   <text x="654" y="186" font-family="ui-monospace,monospace" font-size="12" fill="#38bdf8">const</text>
-  <text x="706" y="186" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0"> gauge = {"{"}  </text>
+  <text x="706" y="186" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0"> gauge = {"{"} </text>
   <text x="654" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#475569">  min:</text>
   <text x="696" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e"> 0,</text>
   <text x="654" y="228" font-family="ui-monospace,monospace" font-size="12" fill="#475569">  max:</text>
