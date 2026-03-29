@@ -12,7 +12,7 @@ That model stopped working around the time products grew a network connection.
 
 ## The Shift Porter and Heppelmann Identified
 
-In 2014, Michael Porter and James Heppelmann published a piece in the *Harvard Business Review* — ["How Smart, Connected Products Are Transforming Competition"](https://www.cs.tufts.edu/comp/50IOT/Handouts/Module1Intro/1.%20HBR_How-Smart-Connected-Products-Are-Transforming-Competition.pdf) — that is still the clearest framework for understanding what happened to the data landscape.
+In 2014, Michael Porter and James Heppelmann published a piece in the *Harvard Business Review* — ["How Smart, Connected Products Are Transforming Competition"](https://hbr.org/2014/11/how-smart-connected-products-are-transforming-competition) — that is still the clearest framework for understanding what happened to the data landscape.
 
 Their central claim was structural: a new category of product had emerged that combined physical components with smart components (sensors, processors, embedded software) and connectivity components (radios, ports, protocols). The result wasn't just a better version of the old product. It was a fundamentally different kind of thing — one that generates a continuous stream of operational data, communicates with external systems, and can be updated, monitored, and optimized remotely.
 

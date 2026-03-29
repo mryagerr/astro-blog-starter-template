@@ -65,7 +65,7 @@ Wikipedia page view counts for company articles and financial concepts were show
 ```python
 import requests
 
-url = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/Apple_Inc./hourly/2020010100/2020042300"
+url = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/all-agents/Apple_Inc./daily/2020010100/2020042300"
 response = requests.get(url)
 data = response.json()
 ```
