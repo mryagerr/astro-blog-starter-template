@@ -40,17 +40,6 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 		</section>
 
 		<main>
-			<!-- ─── Author bio ─────────────────────────────────────────── -->
-			<div class="author-bio">
-				<p>
-					<strong>About the author:</strong> I'm a data engineer and analyst focused on practical, reproducible analysis.
-					I write here to document techniques I use day-to-day — the kind that don't require a PhD or a distributed cluster to run.
-					Questions or feedback? <a href="/contact">Get in touch →</a>
-				</p>
-			</div>
-
-			<hr />
-
 			<!-- ─── Latest Articles ───────────────────────────────────── -->
 			<section class="latest-articles">
 				<div class="section-header">
@@ -96,6 +85,17 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 				<h2>RSS Feed</h2>
 				<p>Subscribe to new articles via RSS.</p>
 				<a class="rss-cta" href="/rss.xml">Follow via RSS →</a>
+			</div>
+
+			<hr />
+
+			<!-- ─── Author bio ─────────────────────────────────────────── -->
+			<div class="author-bio">
+				<p>
+					<strong>About the author:</strong> I'm a data engineer and analyst focused on practical, reproducible analysis.
+					I write here to document techniques I use day-to-day — the kind that don't require a PhD or a distributed cluster to run.
+					Questions or feedback? <a href="/contact">Get in touch →</a>
+				</p>
 			</div>
 		</main>
 
