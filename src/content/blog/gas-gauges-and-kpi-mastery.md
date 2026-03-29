@@ -2,7 +2,7 @@
 title: 'The Gas Gauge Is the Hardest Chart to Build'
 description: 'A gas gauge looks like the simplest visualization in the room. It is actually proof that you fully understand your metric — thresholds, context, and all. If you cannot build one, you do not know your KPI yet.'
 pubDate: 'Mar 28 2026'
-heroImage: '/blog-placeholder-2.svg'
+heroImage: '/blog-kpi-gauge.svg'
 difficulty: 'low'
 ---
 
