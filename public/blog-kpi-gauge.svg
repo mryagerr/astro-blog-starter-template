@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="55" text-anchor="middle" font-family="ui-monospace,monospace" font-size="26" font-weight="bold" fill="#e2e8f0">The Gas Gauge Is the</text>
+  <text x="510" y="93" text-anchor="middle" font-family="ui-monospace,monospace" font-size="36" font-weight="bold" fill="#38bdf8">Hardest Chart to Build</text>
+
+  <!-- Gauge background arc (E to F, 180°) -->
+  <!-- Outer ring -->
+  <path d="M 160 370 A 200 200 0 0 1 560 370" fill="none" stroke="#1e293b" stroke-width="36"/>
+
+  <!-- Colored segments: E (red) → yellow → green (F) -->
+  <!-- Red zone: 0–60° -->
+  <path d="M 160 370 A 200 200 0 0 1 260 200" fill="none" stroke="#f43f5e" stroke-width="36" opacity="0.85"/>
+  <!-- Yellow zone: 60–120° -->
+  <path d="M 260 200 A 200 200 0 0 1 360 148" fill="none" stroke="#f59e0b" stroke-width="36" opacity="0.85"/>
+  <!-- Green zone: 120–180° -->
+  <path d="M 360 148 A 200 200 0 0 1 560 370" fill="none" stroke="#22c55e" stroke-width="36" opacity="0.85"/>
+
+  <!-- Inner arc overlay (dark) to create ring effect -->
+  <path d="M 175 370 A 185 185 0 0 1 545 370" fill="none" stroke="#0f172a" stroke-width="6"/>
+
+  <!-- Gauge labels -->
+  <text x="135" y="390" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#f43f5e">E</text>
+  <text x="547" y="390" font-family="ui-monospace,monospace" font-size="15" font-weight="bold" fill="#22c55e">F</text>
+  <!-- Tick marks -->
+  <line x1="160" y1="370" x2="148" y2="349" stroke="#334155" stroke-width="2"/>
+  <line x1="211" y1="229" x2="201" y2="213" stroke="#334155" stroke-width="2"/>
+  <line x1="360" y1="145" x2="360" y2="127" stroke="#334155" stroke-width="2"/>
+  <line x1="510" y1="229" x2="520" y2="213" stroke="#334155" stroke-width="2"/>
+  <line x1="560" y1="370" x2="572" y2="349" stroke="#334155" stroke-width="2"/>
+
+  <!-- Needle — pointing to ~75% (toward full) -->
+  <!-- Needle pivot -->
+  <circle cx="360" cy="370" r="18" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <circle cx="360" cy="370" r="7" fill="#38bdf8"/>
+  <!-- Needle line: pointing to ~150° from center (3/4 full) -->
+  <line x1="360" y1="370" x2="480" y2="183" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
+  <line x1="360" y1="370" x2="340" y2="383" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Value readout -->
+  <rect x="298" y="390" width="124" height="38" rx="8" fill="#071828" stroke="#38bdf8" stroke-width="1"/>
+  <text x="360" y="415" text-anchor="middle" font-family="ui-monospace,monospace" font-size="18" font-weight="bold" fill="#38bdf8">74%</text>
+
+  <!-- Right side: code complexity context -->
+  <rect x="630" y="130" width="340" height="270" rx="12" fill="#071828" stroke="#1e293b" stroke-width="1.5"/>
+  <rect x="630" y="130" width="340" height="34" rx="12" fill="#0d1117"/>
+  <rect x="630" y="148" width="340" height="16" fill="#0d1117"/>
+  <circle cx="654" cy="147" r="6" fill="#f43f5e" opacity="0.8"/>
+  <circle cx="674" cy="147" r="6" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="694" cy="147" r="6" fill="#22c55e" opacity="0.8"/>
+  <text x="800" y="152" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">gauge.js</text>
+  <!-- Code lines -->
+  <text x="654" y="186" font-family="ui-monospace,monospace" font-size="12" fill="#38bdf8">const</text>
+  <text x="706" y="186" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0"> gauge = {"{"}  </text>
+  <text x="654" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#475569">  min:</text>
+  <text x="696" y="208" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e"> 0,</text>
+  <text x="654" y="228" font-family="ui-monospace,monospace" font-size="12" fill="#475569">  max:</text>
+  <text x="696" y="228" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e"> 100,</text>
+  <text x="654" y="248" font-family="ui-monospace,monospace" font-size="12" fill="#475569">  value:</text>
+  <text x="710" y="248" font-family="ui-monospace,monospace" font-size="12" fill="#f59e0b"> 74,</text>
+  <text x="654" y="268" font-family="ui-monospace,monospace" font-size="12" fill="#475569">  thresholds:</text>
+  <text x="654" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#475569">    low:</text>
+  <text x="696" y="290" font-family="ui-monospace,monospace" font-size="12" fill="#f43f5e"> 25,</text>
+  <text x="654" y="310" font-family="ui-monospace,monospace" font-size="12" fill="#475569">    high:</text>
+  <text x="702" y="310" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e"> 75</text>
+  <text x="654" y="332" font-family="ui-monospace,monospace" font-size="12" fill="#e2e8f0">{"}"};</text>
+  <text x="654" y="358" font-family="ui-monospace,monospace" font-size="12" fill="#334155">// deceptively complex</text>
+  <text x="940" y="358" font-family="ui-monospace,monospace" font-size="12" fill="#22c55e">▊</text>
+
+  <!-- Bottom label -->
+  <text x="360" y="475" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">simple to read · complex to implement</text>
+</svg>

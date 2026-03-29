@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="55" text-anchor="middle" font-family="ui-monospace,monospace" font-size="28" font-weight="bold" fill="#e2e8f0">Python</text>
+  <text x="510" y="95" text-anchor="middle" font-family="ui-monospace,monospace" font-size="38" font-weight="bold" fill="#38bdf8">Virtual Environments</text>
+
+  <!-- Global environment (dimmed, background) -->
+  <rect x="55" y="130" width="910" height="300" rx="14" fill="#0a0f1a" stroke="#334155" stroke-width="1.5" stroke-dasharray="8,5"/>
+  <text x="510" y="155" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#334155">system python</text>
+
+  <!-- venv A -->
+  <rect x="90" y="170" width="255" height="230" rx="12" fill="#071828" stroke="#38bdf8" stroke-width="2"/>
+  <rect x="90" y="170" width="255" height="34" rx="12" fill="#38bdf8" opacity="0.15"/>
+  <rect x="90" y="190" width="255" height="14" fill="#38bdf8" opacity="0.15"/>
+  <text x="218" y="192" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#38bdf8">venv: project-a</text>
+  <!-- Packages in venv A -->
+  <text x="110" y="224" font-family="ui-monospace,monospace" font-size="11" fill="#475569">python</text>
+  <text x="200" y="224" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">3.11.4</text>
+  <line x1="110" y1="232" x2="330" y2="232" stroke="#1e293b" stroke-width="1"/>
+  <text x="110" y="252" font-family="ui-monospace,monospace" font-size="11" fill="#475569">numpy</text>
+  <text x="200" y="252" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">1.24.0</text>
+  <text x="110" y="272" font-family="ui-monospace,monospace" font-size="11" fill="#475569">pandas</text>
+  <text x="200" y="272" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">2.0.1</text>
+  <text x="110" y="292" font-family="ui-monospace,monospace" font-size="11" fill="#475569">scikit-learn</text>
+  <text x="200" y="292" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">1.2.2</text>
+  <text x="110" y="312" font-family="ui-monospace,monospace" font-size="11" fill="#475569">matplotlib</text>
+  <text x="200" y="312" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">3.7.1</text>
+  <!-- Active indicator -->
+  <rect x="110" y="352" width="215" height="28" rx="6" fill="#0d1f0d" stroke="#22c55e" stroke-width="1"/>
+  <text x="218" y="371" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">● active</text>
+
+  <!-- venv B -->
+  <rect x="383" y="170" width="255" height="230" rx="12" fill="#071828" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="383" y="170" width="255" height="34" rx="12" fill="#f59e0b" opacity="0.12"/>
+  <rect x="383" y="190" width="255" height="14" fill="#f59e0b" opacity="0.12"/>
+  <text x="510" y="192" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#f59e0b">venv: project-b</text>
+  <!-- Packages in venv B -->
+  <text x="403" y="224" font-family="ui-monospace,monospace" font-size="11" fill="#475569">python</text>
+  <text x="493" y="224" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">3.9.7</text>
+  <line x1="403" y1="232" x2="623" y2="232" stroke="#1e293b" stroke-width="1"/>
+  <text x="403" y="252" font-family="ui-monospace,monospace" font-size="11" fill="#475569">django</text>
+  <text x="493" y="252" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">4.2.0</text>
+  <text x="403" y="272" font-family="ui-monospace,monospace" font-size="11" fill="#475569">psycopg2</text>
+  <text x="493" y="272" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">2.9.6</text>
+  <text x="403" y="292" font-family="ui-monospace,monospace" font-size="11" fill="#475569">celery</text>
+  <text x="493" y="292" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">5.3.1</text>
+  <text x="403" y="312" font-family="ui-monospace,monospace" font-size="11" fill="#475569">redis</text>
+  <text x="493" y="312" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">4.6.0</text>
+  <!-- Inactive -->
+  <rect x="403" y="352" width="215" height="28" rx="6" fill="#1a1200" stroke="#475569" stroke-width="1"/>
+  <text x="510" y="371" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">○ inactive</text>
+
+  <!-- venv C -->
+  <rect x="676" y="170" width="255" height="230" rx="12" fill="#071828" stroke="#a78bfa" stroke-width="2"/>
+  <rect x="676" y="170" width="255" height="34" rx="12" fill="#a78bfa" opacity="0.10"/>
+  <rect x="676" y="190" width="255" height="14" fill="#a78bfa" opacity="0.10"/>
+  <text x="803" y="192" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#a78bfa">venv: project-c</text>
+  <!-- Packages in venv C -->
+  <text x="696" y="224" font-family="ui-monospace,monospace" font-size="11" fill="#475569">python</text>
+  <text x="786" y="224" font-family="ui-monospace,monospace" font-size="11" fill="#e2e8f0">3.12.0</text>
+  <line x1="696" y1="232" x2="916" y2="232" stroke="#1e293b" stroke-width="1"/>
+  <text x="696" y="252" font-family="ui-monospace,monospace" font-size="11" fill="#475569">fastapi</text>
+  <text x="786" y="252" font-family="ui-monospace,monospace" font-size="11" fill="#a78bfa">0.104.0</text>
+  <text x="696" y="272" font-family="ui-monospace,monospace" font-size="11" fill="#475569">pydantic</text>
+  <text x="786" y="272" font-family="ui-monospace,monospace" font-size="11" fill="#a78bfa">2.4.0</text>
+  <text x="696" y="292" font-family="ui-monospace,monospace" font-size="11" fill="#475569">uvicorn</text>
+  <text x="786" y="292" font-family="ui-monospace,monospace" font-size="11" fill="#a78bfa">0.24.0</text>
+  <text x="696" y="312" font-family="ui-monospace,monospace" font-size="11" fill="#475569">httpx</text>
+  <text x="786" y="312" font-family="ui-monospace,monospace" font-size="11" fill="#a78bfa">0.25.0</text>
+  <!-- Inactive -->
+  <rect x="696" y="352" width="215" height="28" rx="6" fill="#130e2a" stroke="#475569" stroke-width="1"/>
+  <text x="803" y="371" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">○ inactive</text>
+
+  <!-- Bottom tagline -->
+  <text x="510" y="468" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">isolated · reproducible · conflict-free</text>
+</svg>
