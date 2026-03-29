@@ -19,6 +19,7 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 		<Header />
 		<main>
 			<h1>Low Hanging Data</h1>
+			<p class="audience-hook">For analysts, developers, and researchers who want their data work to land.</p>
 			<p class="lead">
 				Ask what the data already shows before reaching for complexity.
 				Every analysis here starts with the simplest approach — and only goes further when it changes a conclusion.
@@ -73,10 +74,21 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 				</li>
 			</ul>
 			<p>
-				See also: <a href="/posts">Posts</a> — shorter writeups and project retrospectives,
-				including <a href="/posts/stock-trader-project-writeup/">building a stock prediction pipeline</a>
+				See also: <a href="/posts">Posts</a> — shorter project retrospectives and case studies
+				(distinct from Articles, which are how-to guides).
+				Includes <a href="/posts/stock-trader-project-writeup/">building a stock prediction pipeline</a>
 				and <a href="/posts/bd-mpar-aws-device-downtime/">how BD used AWS to predict device failures</a>.
 			</p>
+
+			<hr />
+
+			<div class="author-bio">
+				<p>
+					<strong>About the author:</strong> I'm a data engineer and analyst focused on practical, reproducible analysis.
+					I write here to document techniques I use day-to-day — the kind that don't require a PhD or a distributed cluster to run.
+					Questions or feedback? <a href="mailto:admin@lowhangingdata.com">admin@lowhangingdata.com</a>
+				</p>
+			</div>
 
 			<hr />
 
@@ -100,14 +112,68 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 				}
 			</ul>
 			<p class="view-all"><a href="/article">View all articles →</a></p>
+
+			<hr />
+
+			<div class="email-signup">
+				<h2>Get New Articles by Email</h2>
+				<p>New articles go out when they're ready — no schedule, no noise. Just send a quick note to get on the list.</p>
+				<a class="email-cta" href="mailto:admin@lowhangingdata.com?subject=Subscribe&body=Please%20add%20me%20to%20the%20Low%20Hanging%20Data%20mailing%20list.">
+					Subscribe via Email →
+				</a>
+			</div>
 		</main>
 		<Footer />
 	</body>
 </html>
 <style>
+	.audience-hook {
+		font-size: 0.95em;
+		font-weight: 600;
+		color: var(--accent);
+		margin: -0.5em 0 1em;
+		letter-spacing: 0.01em;
+	}
 	.lead {
 		font-size: 1.1em;
 		color: rgb(var(--gray-dark));
+	}
+	.author-bio {
+		background: rgba(var(--gray-light), 0.5);
+		border-left: 4px solid var(--accent);
+		padding: 0.75em 1em;
+	}
+	.author-bio p {
+		margin: 0;
+		font-size: 0.95em;
+		color: rgb(var(--gray-dark));
+	}
+	.email-signup {
+		text-align: center;
+		padding: 1.5em 1em;
+		background: rgba(var(--gray-light), 0.4);
+		border-radius: 8px;
+	}
+	.email-signup h2 {
+		margin-top: 0;
+	}
+	.email-signup p {
+		color: rgb(var(--gray-dark));
+		margin-bottom: 1.25em;
+	}
+	.email-cta {
+		display: inline-block;
+		background: var(--accent);
+		color: white;
+		padding: 0.6em 1.4em;
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 0.95em;
+		transition: background 0.2s ease;
+	}
+	.email-cta:hover {
+		background: var(--accent-dark);
 	}
 	.principles {
 		list-style: none;
