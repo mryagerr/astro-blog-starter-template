@@ -3,18 +3,134 @@ import { getCurrentYear } from '../utils/formatDate';
 ---
 
 <footer>
-	&copy; {getCurrentYear()} Low Hanging Data. All rights reserved.
-	<div class="tagline">Concise. Transparent. Low hanging fruit first.</div>
+	<div class="footer-inner">
+		<div class="footer-brand">
+			<a href="/" class="footer-wordmark">Low Hanging Data</a>
+			<p class="footer-tagline">Data analysis should be concise, transparent, and focused on the low hanging fruit first.</p>
+		</div>
+		<nav class="footer-nav" aria-label="Footer navigation">
+			<span class="footer-nav-label">Explore</span>
+			<a href="/">Home</a>
+			<a href="/article">Articles</a>
+			<a href="/about">About</a>
+			<a href="/posts">Posts</a>
+		</nav>
+		<div class="footer-external">
+			<span class="footer-nav-label">Links</span>
+			<a href="https://github.com/mryagerr" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+			<a href="/rss.xml">RSS Feed ↗</a>
+			<a href="mailto:admin@lowhangingdata.com">Contact</a>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<span>&copy; {getCurrentYear()} Low Hanging Data</span>
+		<span class="footer-sep">·</span>
+		<span>Concise. Transparent. Low Hanging Fruit First.</span>
+	</div>
 </footer>
+
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
+		border-top: 1px solid var(--rule);
+		background: var(--paper);
+		padding: 0 clamp(1.5rem, 5vw, 4rem);
 	}
-	.tagline {
-		margin-top: 0.5em;
-		font-size: 0.85em;
+
+	.footer-inner {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		gap: 2.5rem;
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 3rem 0 2rem;
+	}
+
+	.footer-wordmark {
+		display: block;
+		font-family: var(--font-display);
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--ink);
+		text-decoration: none;
+		margin-bottom: 0.6rem;
+		letter-spacing: -0.01em;
+	}
+
+	.footer-wordmark:hover {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.footer-tagline {
+		font-size: 0.84rem;
+		color: var(--caption);
+		line-height: 1.55;
+		margin: 0;
+		max-width: 280px;
+	}
+
+	.footer-nav,
+	.footer-external {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.footer-nav-label {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--caption);
+		margin-bottom: 0.25rem;
+	}
+
+	.footer-nav a,
+	.footer-external a {
+		font-size: 0.88rem;
+		color: var(--caption);
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+
+	.footer-nav a:hover,
+	.footer-external a:hover {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.footer-bottom {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		flex-wrap: wrap;
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 1.25rem 0 2.5rem;
+		border-top: 1px solid var(--rule);
+		font-size: 0.8rem;
+		color: var(--caption);
+		font-family: var(--font-mono);
+	}
+
+	.footer-sep {
+		color: var(--rule);
+	}
+
+	@media (max-width: 720px) {
+		.footer-inner {
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+		}
+		.footer-brand {
+			grid-column: 1 / -1;
+		}
+		.footer-bottom {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.25rem;
+		}
+		.footer-sep { display: none; }
 	}
 </style>

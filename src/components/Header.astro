@@ -5,69 +5,134 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<h2><a href="/"><img src="/favicon.svg" alt="" class="site-logo" />{SITE_TITLE}</a></h2>
+		<a href="/" class="wordmark" aria-label="Low Hanging Data — home">{SITE_TITLE}</a>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/article">Articles</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">
-			<a href="https://github.com/mryagerr" target="_blank">
-				<span class="sr-only">GitHub</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-					></path></svg
-				>
+			<a href="https://github.com/mryagerr" target="_blank" rel="noopener noreferrer" class="github-link">
+				GitHub&nbsp;↗
 			</a>
 		</div>
 	</nav>
 </header>
+
 <style>
 	header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
 		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-	.site-logo {
-		width: 32px;
-		height: 32px;
-		vertical-align: middle;
-		margin-right: 0.4em;
+		padding: 0 clamp(1rem, 5vw, 3rem);
+		background: rgba(247, 245, 240, 0.95);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		border-bottom: 1px solid var(--rule);
 	}
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		max-width: 1100px;
+		margin: 0 auto;
+		height: 60px;
+		gap: 1.5rem;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: var(--ink);
+		text-decoration: none;
+		letter-spacing: -0.01em;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.wordmark:hover {
+		color: var(--accent);
 		text-decoration: none;
 	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
+
+	.internal-links {
 		display: flex;
+		align-items: center;
+		gap: 0.25rem;
 	}
+
+	/* Override HeaderLink anchor styles */
+	.internal-links :global(a) {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		font-variant: small-caps;
+		letter-spacing: 0.04em;
+		color: var(--caption);
+		text-decoration: none;
+		padding: 0.35em 0.65em;
+		position: relative;
+		transition: color 0.18s ease;
+	}
+
+	.internal-links :global(a::after) {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0.65em;
+		right: 0.65em;
+		height: 2px;
+		background: var(--accent);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.18s ease;
+	}
+
+	.internal-links :global(a:hover) {
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.internal-links :global(a:hover::after),
+	.internal-links :global(a.active::after) {
+		transform: scaleX(1);
+	}
+
+	.internal-links :global(a.active) {
+		color: var(--ink);
+		font-weight: 600;
+	}
+
+	.github-link {
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		letter-spacing: 0.02em;
+		color: var(--caption);
+		text-decoration: none;
+		padding: 0.3em 0.7em;
+		border: 1px solid var(--rule);
+		border-radius: 4px;
+		transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+		white-space: nowrap;
+	}
+
+	.github-link:hover {
+		color: var(--ink);
+		border-color: var(--accent);
+		background: var(--accent-muted);
+		text-decoration: none;
+	}
+
+	.social-links {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+	}
+
 	@media (max-width: 720px) {
-		.social-links {
-			display: none;
-		}
+		.social-links { display: none; }
+		.wordmark { font-size: 1rem; }
 	}
 </style>

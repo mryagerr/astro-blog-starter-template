@@ -17,71 +17,111 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 	</head>
 	<body>
 		<Header />
+
+		<!-- ─── Hero ──────────────────────────────────────────────────── -->
+		<section class="hero">
+			<div class="hero-grain" aria-hidden="true"></div>
+			<div class="hero-inner">
+				<p class="hero-label animate-1">Data Analysis · Practical Methods</p>
+				<h1 class="hero-title animate-2">Low Hanging Data</h1>
+				<p class="hero-tagline animate-3">
+					Ask what the data already shows before reaching for complexity.<br />
+					Every analysis starts with the simplest approach — and only goes further when it changes a conclusion.
+				</p>
+				<div class="hero-principles animate-4">
+					<span><strong>Concise</strong> — one sentence per finding.</span>
+					<span class="principle-sep">·</span>
+					<span><strong>Transparent</strong> — sources stated plainly.</span>
+					<span class="principle-sep">·</span>
+					<span><strong>Low Hanging Fruit First</strong> — counts before ML.</span>
+				</div>
+			</div>
+		</section>
+
 		<main>
-			<h1>Low Hanging Data</h1>
-			<p class="audience-hook">For analysts, developers, and researchers who want their data work to land.</p>
-			<p class="lead">
-				Ask what the data already shows before reaching for complexity.
-				Every analysis here starts with the simplest approach — and only goes further when it changes a conclusion.
-			</p>
+			<!-- ─── Start Here ─────────────────────────────────────────── -->
+			<section class="start-here">
+				<h2 class="section-title">Start Here</h2>
+				<p class="section-sub">Articles grouped by where you are in the workflow:</p>
+				<div class="workflow-grid">
+					<div class="workflow-track">
+						<span class="track-label">Collect</span>
+						<div class="track-links">
+							<a href="/article/getting-started-with-data/" class="chip">Getting Started</a>
+							<a href="/article/pulling-data-from-apis/" class="chip">REST APIs</a>
+							<a href="/article/working-with-websockets-and-streaming-data/" class="chip">WebSockets</a>
+						</div>
+					</div>
+					<div class="workflow-track">
+						<span class="track-label">Clean</span>
+						<div class="track-links">
+							<a href="/article/working-with-csv-and-json/" class="chip">CSV &amp; JSON</a>
+							<a href="/article/data-cleaning-and-validation/" class="chip">Cleaning &amp; Validation</a>
+							<a href="/article/python-pandas-data-wrangling/" class="chip">Pandas Wrangling</a>
+						</div>
+					</div>
+					<div class="workflow-track">
+						<span class="track-label">Query</span>
+						<div class="track-links">
+							<a href="/article/organizing-data-with-sql/" class="chip">SQL</a>
+							<a href="/article/working-with-parquet-and-duckdb/" class="chip">Parquet &amp; DuckDB</a>
+							<a href="/article/duckdb-for-financial-analysis/" class="chip">DuckDB Finance</a>
+						</div>
+					</div>
+					<div class="workflow-track">
+						<span class="track-label">Visualize</span>
+						<div class="track-links">
+							<a href="/article/visualizing-data-with-python/" class="chip">Python Viz</a>
+						</div>
+					</div>
+					<div class="workflow-track">
+						<span class="track-label">Automate</span>
+						<div class="track-links">
+							<a href="/article/building-your-first-data-pipeline/" class="chip">First Pipeline</a>
+							<a href="/article/scheduling-and-automating-pipelines/" class="chip">Scheduling</a>
+						</div>
+					</div>
+				</div>
+				<p class="start-here-note">
+					See also: <a href="/posts">Posts</a> — shorter project retrospectives and case studies.
+					Includes <a href="/posts/stock-trader-project-writeup/">building a stock prediction pipeline</a>
+					and <a href="/posts/bd-mpar-aws-device-downtime/">how BD used AWS to predict device failures</a>.
+				</p>
+			</section>
 
 			<hr />
 
-			<h2>The Principles</h2>
-			<ul class="principles">
-				<li>
-					<strong>Concise</strong> — If you can't state the finding in one sentence, the analysis isn't done yet.
-				</li>
-				<li>
-					<strong>Transparent</strong> — Sources, assumptions, and limitations stated plainly. If someone else can't verify the work, it isn't finished.
-				</li>
-				<li>
-					<strong>Low Hanging Fruit First</strong> — Counts and averages before machine learning. Simple questions answered clearly beat complex models nobody trusts.
-				</li>
-			</ul>
+			<!-- ─── Latest Articles ────────────────────────────────────── -->
+			<section class="latest-articles">
+				<h2 class="section-title">Latest Articles</h2>
+				<ul class="post-grid">
+					{
+						recentPosts.map((post) => (
+							<li class="post-card">
+								<a href={`/article/${post.id}/`}>
+									{post.data.heroImage && (
+										<div class="card-img-wrap">
+											<img src={post.data.heroImage} alt="" width={720} height={360} />
+										</div>
+									)}
+									<div class="card-body">
+										<p class="card-date label">
+											<FormattedDate date={post.data.pubDate} />
+										</p>
+										<h4 class="card-title">{post.data.title}</h4>
+										<p class="card-desc">{post.data.description}</p>
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+				<p class="view-all"><a href="/article">View all articles →</a></p>
+			</section>
 
 			<hr />
 
-			<h2>Start Here</h2>
-			<p>Articles grouped by where you are in the workflow:</p>
-			<ul class="topic-list">
-				<li>
-					<strong>Collect</strong> —
-					<a href="/article/getting-started-with-data/">Getting Started with Data Collection</a>,
-					<a href="/article/pulling-data-from-apis/">Pulling Data from REST APIs</a>,
-					<a href="/article/working-with-websockets-and-streaming-data/">WebSockets &amp; Streaming Data</a>
-				</li>
-				<li>
-					<strong>Clean</strong> —
-					<a href="/article/working-with-csv-and-json/">CSV and JSON</a>,
-					<a href="/article/data-cleaning-and-validation/">Data Cleaning and Validation</a>,
-					<a href="/article/python-pandas-data-wrangling/">Python &amp; Pandas for Data Wrangling</a>
-				</li>
-				<li>
-					<strong>Query</strong> —
-					<a href="/article/organizing-data-with-sql/">Organizing Data with SQL</a>,
-					<a href="/article/working-with-parquet-and-duckdb/">Parquet and DuckDB</a>,
-					<a href="/article/duckdb-for-financial-analysis/">DuckDB for Financial Analysis</a>
-				</li>
-				<li>
-					<strong>Visualize</strong> —
-					<a href="/article/visualizing-data-with-python/">Visualizing Data with Python</a>
-				</li>
-				<li>
-					<strong>Automate</strong> —
-					<a href="/article/building-your-first-data-pipeline/">Building Your First Data Pipeline</a>,
-					<a href="/article/scheduling-and-automating-pipelines/">Scheduling and Automating Pipelines</a>
-				</li>
-			</ul>
-			<p>
-				See also: <a href="/posts">Posts</a> — shorter project retrospectives and case studies
-				(distinct from Articles, which are how-to guides).
-				Includes <a href="/posts/stock-trader-project-writeup/">building a stock prediction pipeline</a>
-				and <a href="/posts/bd-mpar-aws-device-downtime/">how BD used AWS to predict device failures</a>.
-			</p>
-
-			<hr />
-
+			<!-- ─── Author bio ─────────────────────────────────────────── -->
 			<div class="author-bio">
 				<p>
 					<strong>About the author:</strong> I'm a data engineer and analyst focused on practical, reproducible analysis.
@@ -92,159 +132,354 @@ const recentPosts = sortByPubDateDesc(await getCollection('blog')).slice(0, 6);
 
 			<hr />
 
-			<h2>Latest Articles</h2>
-			<ul class="post-grid">
-				{
-					recentPosts.map((post) => (
-						<li>
-							<a href={`/article/${post.id}/`}>
-								{post.data.heroImage && (
-									<img src={post.data.heroImage} alt="" width={720} height={360} />
-								)}
-								<h4 class="post-title">{post.data.title}</h4>
-								<p class="post-desc">{post.data.description}</p>
-								<p class="post-date">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-							</a>
-						</li>
-					))
-				}
-			</ul>
-			<p class="view-all"><a href="/article">View all articles →</a></p>
-
-			<hr />
-
+			<!-- ─── RSS ────────────────────────────────────────────────── -->
 			<div class="rss-feed">
 				<h2>RSS Feed</h2>
 				<p>Subscribe to new articles via RSS.</p>
 				<a class="rss-cta" href="/rss.xml">Follow via RSS →</a>
 			</div>
 		</main>
+
 		<Footer />
 	</body>
 </html>
+
 <style>
-	.audience-hook {
-		font-size: 0.95em;
-		font-weight: 600;
-		color: var(--accent);
-		margin: -0.5em 0 1em;
-		letter-spacing: 0.01em;
-	}
-	.lead {
-		font-size: 1.1em;
-		color: rgb(var(--gray-dark));
-	}
-	.author-bio {
-		background: rgba(var(--gray-light), 0.5);
-		border-left: 4px solid var(--accent);
-		padding: 0.75em 1em;
-	}
-	.author-bio p {
-		margin: 0;
-		font-size: 0.95em;
-		color: rgb(var(--gray-dark));
-	}
-	.rss-feed {
-		text-align: center;
-		padding: 1.5em 1em;
-		background: rgba(var(--gray-light), 0.4);
-		border-radius: 8px;
-	}
-	.rss-feed h2 {
-		margin-top: 0;
-	}
-	.rss-feed p {
-		color: rgb(var(--gray-dark));
-		margin-bottom: 1.25em;
-	}
-	.rss-cta {
-		display: inline-block;
-		background: var(--accent);
-		color: white;
-		padding: 0.6em 1.4em;
-		border-radius: 6px;
-		text-decoration: none;
-		font-weight: 600;
-		font-size: 0.95em;
-		transition: background 0.2s ease;
-	}
-	.rss-cta:hover {
-		background: var(--accent-dark);
-	}
-	.principles {
-		list-style: none;
-		padding: 0;
-	}
-	.principles li {
-		padding: 0.75em 1em;
-		margin-bottom: 0.75em;
-		border-left: 4px solid var(--accent);
-		background: rgba(var(--gray-light), 0.5);
-	}
-	.topic-list {
-		padding-left: 1.25em;
-		line-height: 2;
-	}
-	hr {
-		margin: 2em 0;
-	}
-	.post-grid {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1.5rem;
-		list-style: none;
-		padding: 0;
-		margin: 1.5rem 0;
-	}
-	.post-grid li {
-		width: calc(50% - 0.75rem);
-	}
-	.post-grid li a {
-		display: block;
-		text-decoration: none;
-		border: 1px solid rgba(var(--gray-light), 1);
-		border-radius: 8px;
-		overflow: hidden;
-		transition: box-shadow 0.2s ease;
-	}
-	.post-grid li a:hover {
-		box-shadow: var(--box-shadow);
-	}
-	.post-grid img {
-		width: 100%;
-		height: 160px;
-		object-fit: cover;
-		display: block;
-	}
-	.post-title {
-		margin: 0.75rem 1rem 0.25rem;
-		color: rgb(var(--black));
-		font-size: 1rem;
-		line-height: 1.3;
-	}
-	.post-desc {
-		margin: 0 1rem 0.5rem;
-		font-size: 0.85rem;
-		color: rgb(var(--gray));
-		line-height: 1.4;
-	}
-	.post-date {
-		margin: 0 1rem 0.75rem;
-		font-size: 0.8rem;
-		color: rgb(var(--gray));
-	}
-	.post-grid li a:hover .post-title {
-		color: rgb(var(--accent));
-	}
-	.view-all {
-		text-align: right;
-		font-size: 0.95rem;
-	}
-	@media (max-width: 720px) {
-		.post-grid li {
-			width: 100%;
-		}
-	}
+/* ─── Page-load animations ───────────────────────────────────────── */
+@keyframes fadeUp {
+	from { opacity: 0; transform: translateY(10px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+.animate-1 { opacity: 0; animation: fadeUp 600ms ease forwards; animation-delay: 80ms; }
+.animate-2 { opacity: 0; animation: fadeUp 600ms ease forwards; animation-delay: 180ms; }
+.animate-3 { opacity: 0; animation: fadeUp 600ms ease forwards; animation-delay: 280ms; }
+.animate-4 { opacity: 0; animation: fadeUp 600ms ease forwards; animation-delay: 380ms; }
+
+/* ─── Hero ───────────────────────────────────────────────────────── */
+.hero {
+	position: relative;
+	background: var(--paper);
+	border-bottom: 1px solid var(--rule);
+	overflow: hidden;
+}
+
+/* Grain texture overlay */
+.hero-grain {
+	position: absolute;
+	inset: 0;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+	opacity: 0.038;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.hero-inner {
+	position: relative;
+	z-index: 1;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 5rem clamp(1.5rem, 5vw, 4rem) 4.5rem;
+}
+
+.hero-label {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 500;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin: 0 0 1rem;
+}
+
+.hero-title {
+	font-family: var(--font-display);
+	font-size: clamp(3rem, 8vw, 5.5rem);
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	line-height: 1;
+	color: var(--ink);
+	margin: 0 0 1.25rem;
+}
+
+.hero-tagline {
+	font-size: clamp(1rem, 2vw, 1.2rem);
+	line-height: 1.65;
+	color: var(--caption);
+	max-width: 580px;
+	margin: 0 0 2rem;
+}
+
+.hero-principles {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem 0.75rem;
+	font-size: 0.88rem;
+	color: var(--caption);
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--rule);
+}
+
+.principle-sep {
+	color: var(--rule);
+	font-size: 1.2rem;
+}
+
+/* ─── Main layout ────────────────────────────────────────────────── */
+main {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 3.5rem clamp(1.5rem, 5vw, 4rem);
+}
+
+hr { margin: 3rem 0; }
+
+.section-title {
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	margin-bottom: 0.35rem;
+}
+
+.section-sub {
+	color: var(--caption);
+	font-size: 0.92rem;
+	margin-bottom: 1.5rem;
+}
+
+/* ─── Start Here ─────────────────────────────────────────────────── */
+.start-here {
+	background: linear-gradient(135deg, var(--accent-muted) 0%, rgba(247,245,240,0) 100%);
+	border: 1px solid var(--rule);
+	border-radius: 10px;
+	padding: 2rem 2.25rem;
+}
+
+.workflow-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+}
+
+.workflow-track {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.track-label {
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	font-weight: 500;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--accent);
+	padding-top: 0.35rem;
+	min-width: 72px;
+	flex-shrink: 0;
+}
+
+.track-label::before {
+	content: '· ';
+	color: var(--accent);
+}
+
+.track-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+}
+
+.chip {
+	display: inline-block;
+	font-size: 0.82rem;
+	padding: 0.25em 0.7em;
+	background: var(--paper);
+	border: 1px solid var(--rule);
+	border-radius: 999px;
+	color: var(--ink);
+	text-decoration: none;
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: #fff;
+	text-decoration: none;
+}
+
+.start-here-note {
+	margin: 1.5rem 0 0;
+	font-size: 0.88rem;
+	color: var(--caption);
+}
+
+/* ─── Article card grid ──────────────────────────────────────────── */
+.post-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5rem;
+	list-style: none;
+	padding: 0;
+	margin: 1.5rem 0;
+}
+
+.post-card a {
+	display: block;
+	text-decoration: none;
+	border: 1px solid var(--rule);
+	border-radius: 8px;
+	overflow: hidden;
+	background: var(--paper);
+	transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+	position: relative;
+}
+
+.post-card a::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 3px;
+	background: var(--accent);
+	transform: scaleY(0);
+	transform-origin: top;
+	transition: transform 0.2s ease;
+	z-index: 1;
+}
+
+.post-card a:hover {
+	box-shadow: var(--box-shadow);
+	border-color: var(--accent-muted);
+	transform: translateY(-2px);
+}
+
+.post-card a:hover::before {
+	transform: scaleY(1);
+}
+
+.card-img-wrap {
+	overflow: hidden;
+}
+
+.post-card img {
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+	display: block;
+	border-radius: 0;
+	transition: transform 0.3s ease;
+}
+
+.post-card a:hover img {
+	transform: scale(1.03);
+}
+
+.card-body {
+	padding: 1rem 1.1rem 1rem;
+}
+
+.card-date {
+	margin: 0 0 0.35rem;
+	color: var(--caption);
+}
+
+.card-title {
+	margin: 0 0 0.4rem;
+	font-family: var(--font-display);
+	font-size: 1.05rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	line-height: 1.3;
+	color: var(--ink);
+	transition: color 0.15s ease;
+}
+
+.post-card a:hover .card-title {
+	color: var(--accent);
+}
+
+.card-desc {
+	margin: 0;
+	font-size: 0.84rem;
+	color: var(--caption);
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.view-all {
+	text-align: right;
+	font-size: 0.92rem;
+	margin: 0.5rem 0 0;
+}
+
+/* ─── Author bio ─────────────────────────────────────────────────── */
+.author-bio {
+	background: rgba(var(--gray-light), 0.35);
+	border-left: 3px solid var(--accent);
+	border-radius: 0 6px 6px 0;
+	padding: 0.85em 1.1em;
+}
+
+.author-bio p {
+	margin: 0;
+	font-size: 0.92em;
+	color: var(--caption);
+}
+
+/* ─── RSS ────────────────────────────────────────────────────────── */
+.rss-feed {
+	text-align: center;
+	padding: 2em 1em;
+	background: rgba(var(--gray-light), 0.3);
+	border: 1px solid var(--rule);
+	border-radius: 8px;
+}
+
+.rss-feed h2 {
+	margin-top: 0;
+	font-size: 1.3rem;
+}
+
+.rss-feed p {
+	color: var(--caption);
+	margin-bottom: 1.25em;
+	font-size: 0.95rem;
+}
+
+.rss-cta {
+	display: inline-block;
+	background: var(--accent);
+	color: white;
+	padding: 0.6em 1.5em;
+	border-radius: 6px;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 0.92em;
+	font-family: var(--font-mono);
+	letter-spacing: 0.03em;
+	transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.rss-cta:hover {
+	background: var(--accent-dark);
+	color: white;
+	text-decoration: none;
+	transform: translateY(-1px);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+	.post-grid { grid-template-columns: 1fr; }
+	.workflow-track { flex-direction: column; gap: 0.5rem; }
+	.track-label { min-width: unset; }
+	.hero-principles { flex-direction: column; align-items: flex-start; }
+	.principle-sep { display: none; }
+	.start-here { padding: 1.25rem 1.25rem; }
+}
 </style>
