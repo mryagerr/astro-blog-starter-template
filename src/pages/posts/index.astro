@@ -16,7 +16,7 @@ const posts = sortByPubDateDesc(await getCollection('posts'));
 		<BaseHead title={`Posts — ${SITE_TITLE}`} description="Opinions, observations, and project write-ups from Low Hanging Data." />
 		<style>
 			main {
-				width: 720px;
+				max-width: 720px;
 			}
 			.post-list {
 				list-style: none;
@@ -52,6 +52,14 @@ const posts = sortByPubDateDesc(await getCollection('posts'));
 				margin: 0;
 				font-size: 0.85rem;
 				color: rgb(var(--gray));
+			}
+			@media (max-width: 480px) {
+				.post-list li {
+					padding: 1rem 0;
+				}
+				.title {
+					font-size: 1.1rem;
+				}
 			}
 		</style>
 	</head>

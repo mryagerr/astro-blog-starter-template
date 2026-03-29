@@ -133,4 +133,14 @@ import { getCurrentYear } from '../utils/formatDate';
 		}
 		.footer-sep { display: none; }
 	}
+
+	@media (max-width: 480px) {
+		.footer-inner {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			padding: 2rem 0 1.5rem;
+		}
+		.footer-brand { grid-column: unset; }
+		footer { padding: 0 1rem; }
+	}
 </style>

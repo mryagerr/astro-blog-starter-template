@@ -196,4 +196,11 @@ const posts = sortByPubDateDesc(await getCollection('blog'));
 		.post-card--featured .card-img-wrap img { height: 200px; }
 		.post-card--featured .card-title { font-size: 1.2rem; }
 	}
+
+	@media (max-width: 480px) {
+		.post-grid { gap: 0.75rem; }
+		.post-card--featured .card-img-wrap img { height: 160px; }
+		.post-card img { height: 140px; }
+		.card-body { padding: 0.75rem 0.9rem; }
+	}
 </style>
