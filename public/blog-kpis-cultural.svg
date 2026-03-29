@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="52" text-anchor="middle" font-family="ui-monospace,monospace" font-size="26" font-weight="bold" fill="#e2e8f0">KPIs Are a Cultural Change,</text>
+  <text x="510" y="88" text-anchor="middle" font-family="ui-monospace,monospace" font-size="30" font-weight="bold" fill="#38bdf8">Not a Dashboard Project</text>
+
+  <!-- People nodes in org chart -->
+  <!-- CEO at top -->
+  <rect x="420" y="120" width="180" height="44" rx="10" fill="#071a2e" stroke="#38bdf8" stroke-width="2"/>
+  <text x="510" y="147" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#38bdf8">Leadership</text>
+
+  <!-- Lines down to departments -->
+  <line x1="510" y1="164" x2="510" y2="200" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="230" y1="200" x2="790" y2="200" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="230" y1="200" x2="230" y2="220" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="510" y1="200" x2="510" y2="220" stroke="#1e293b" stroke-width="1.5"/>
+  <line x1="790" y1="200" x2="790" y2="220" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Dept nodes -->
+  <rect x="130" y="220" width="200" height="44" rx="10" fill="#071a2e" stroke="#22c55e" stroke-width="2"/>
+  <text x="230" y="247" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#22c55e">Sales / Revenue</text>
+
+  <rect x="410" y="220" width="200" height="44" rx="10" fill="#071a2e" stroke="#f59e0b" stroke-width="2"/>
+  <text x="510" y="247" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#f59e0b">Operations</text>
+
+  <rect x="690" y="220" width="200" height="44" rx="10" fill="#071a2e" stroke="#a78bfa" stroke-width="2"/>
+  <text x="790" y="247" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#a78bfa">Product / Eng</text>
+
+  <!-- KPI metric badges floating on connections -->
+  <rect x="155" y="290" width="148" height="26" rx="6" fill="#0a1f0e" stroke="#22c55e" stroke-width="1"/>
+  <text x="229" y="307" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#22c55e">win_rate · deal_size</text>
+
+  <rect x="434" y="290" width="152" height="26" rx="6" fill="#1a1200" stroke="#f59e0b" stroke-width="1"/>
+  <text x="510" y="307" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">uptime · cycle_time</text>
+
+  <rect x="714" y="290" width="152" height="26" rx="6" fill="#110d1f" stroke="#a78bfa" stroke-width="1"/>
+  <text x="790" y="307" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#a78bfa">deploy_freq · MTTR</text>
+
+  <!-- Key insight divider -->
+  <line x1="100" y1="345" x2="920" y2="345" stroke="#1e293b" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Two-row callout -->
+  <rect x="100" y="360" width="820" height="96" rx="10" fill="#071828" stroke="#38bdf8" stroke-width="1"/>
+  <text x="510" y="385" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="bold" fill="#e2e8f0">KPI adoption fails when it's treated as a technical rollout</text>
+  <text x="510" y="408" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#475569">people must agree on definitions · own the numbers · feel accountable to them</text>
+  <text x="510" y="430" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">a dashboard no one believes is just a waiting room</text>
+</svg>

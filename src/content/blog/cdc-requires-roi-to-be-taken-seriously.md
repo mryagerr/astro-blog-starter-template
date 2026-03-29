@@ -2,7 +2,7 @@
 title: 'Change Data Capture Requires an ROI to Be Taken Seriously'
 description: 'CDC is powerful infrastructure, but it carries real costs in complexity, maintenance, and operational overhead. If you cannot articulate the return, you will not get buy-in — and you probably should not build it.'
 pubDate: 'Mar 27 2026'
-heroImage: '/blog-pipeline.svg'
+heroImage: '/blog-cdc.svg'
 difficulty: 'high'
 ---
 
