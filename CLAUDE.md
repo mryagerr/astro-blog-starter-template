@@ -12,6 +12,21 @@ This is a personal blog and data-focused content site called **Low Hanging Data*
 
 ---
 
+## Brand Identity
+
+### Philosophy
+- **Tagline:** "Ask what the data already shows before reaching for complexity"
+- **Three Principles:** Concise. Transparent. Low Hanging Fruit First.
+- These principles should be reflected in both content AND design — clean, honest, no unnecessary decoration.
+
+### Aesthetic Direction: Editorial Minimalism with Technical Character
+Think: *The Economist* meets *Stripe Docs*. Ink-on-paper feel. Designed by someone who *reads* data, not by a marketer. Confident negative space. Sharp typographic hierarchy. One bold accent color used sparingly.
+
+### Audience
+Data practitioners — analysts, engineers, developers who value clarity over flash. The above-the-fold hook should make this immediately clear: "For [audience] who want [outcome]."
+
+---
+
 ## Development Workflows
 
 ### Local Development
@@ -153,7 +168,7 @@ Located in `src/components/`. All are `.astro` files.
 | Component | Purpose |
 |---|---|
 | `BaseHead.astro` | `<head>` tags: charset, viewport, SEO meta, OG tags, Twitter cards, font preloading |
-| `Header.astro` | Site header with navigation links (Home, Articles, About, Contact) |
+| `Header.astro` | Site header with navigation links (Home, Articles, About, Contact) + GitHub ↗ external link |
 | `HeaderLink.astro` | Nav link that auto-applies active styles based on current route |
 | `Footer.astro` | Site footer with dynamic copyright year and site tagline |
 | `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03 2025") |
@@ -284,39 +299,153 @@ These are required behaviors. Do not remove or regress them.
 
 ### Hover States
 
-All navigation links in `Header.astro` and `HeaderLink.astro` must have visible `:hover` styles. Use `color: var(--accent)` or an underline transition — never leave nav links with no hover feedback.
+All navigation links in `Header.astro` and `HeaderLink.astro` must have visible `:hover` styles. Use `color: var(--accent)` with a 2px solid underline CSS transition slide-in — never leave nav links with no hover feedback.
 
 ### Sticky Header
 
-`Header.astro` must use `position: sticky; top: 0` so the nav remains visible while scrolling. Apply a background color and `z-index` high enough to sit above page content. Do not use `position: fixed` (breaks document flow for SSR).
+`Header.astro` must use `position: sticky; top: 0` so the nav remains visible while scrolling. Background on scroll: `rgba(247,245,240,0.95)` with `backdrop-filter: blur(8px)`. Apply a `z-index` high enough to sit above page content. Do not use `position: fixed` (breaks document flow for SSR).
 
 ### Reading-Width Constraint
 
-Body text on article and post pages must be constrained to a comfortable reading width. The max content width is **720px** (already the global default). Do not widen prose containers beyond this on article routes (`/article/*`, `/posts/*`). If a layout change would break this constraint, restore it.
+Body text on article and post pages must be constrained to a comfortable reading width of **680px** max. Do not widen prose containers beyond this on article routes (`/article/*`, `/posts/*`). If a layout change would break this constraint, restore it.
 
 ### Dark Mode
 
-The site supports dark mode via `@media (prefers-color-scheme: dark)` in `src/styles/global.css`. Dark mode must define equivalent values for all `:root` CSS custom properties (background, text, accent, gray scales). Do not remove the dark mode media query block. When adding new CSS custom properties to `:root`, always add a dark-mode equivalent in the dark media query.
+Dark mode is a future enhancement. Structure CSS custom properties in `:root` to make adding a dark mode easy later (use variables for all colors), but do not add `@media (prefers-color-scheme: dark)` overrides unless explicitly asked. Do not remove existing dark mode blocks if present.
 
 ### Scroll Progress Indicator
 
 Article pages (`/article/[...slug].astro`) must include a scroll progress bar — a thin fixed element at the top of the viewport whose width tracks `scrollY` relative to document height. Implement it as a `<div>` with `position: fixed; top: 0; left: 0; height: 3px; background: var(--accent)` driven by an inline `<script>` that listens to the `scroll` event and updates `style.width`. Do not remove this from article pages.
 
+### Micro-Interactions & Polish
+
+- `scroll-behavior: smooth` on `<html>`
+- Page load: staggered fade-in on hero (opacity 0→1, translateY 8px→0, 600ms ease, 100ms delay per element)
+- Card hover: lift with `box-shadow` + 3px `--accent` left border slides in via transition
+- One or two well-placed transitions beat many janky ones — do not over-animate
+- All interactive elements must have visible `:focus` states for keyboard accessibility
+
+### Accessibility
+
+- Proper heading hierarchy (`h1` → `h2` → `h3`, no skipping)
+- Alt text on all images
+- Focus states on all interactive elements
+- Minimum 4.5:1 color contrast ratio for body text
+- Semantic HTML elements: `<nav>`, `<main>`, `<article>`, `<aside>`, `<footer>`
+
 ---
+
+## Design System
+
+### Typography
+
+```
+Display / Headings:  "Playfair Display" or "Libre Baskerville" — editorial, serious
+Body copy:           "Source Serif 4" or "Lora" — readable, warm, not techy
+Monospace accents:   "JetBrains Mono" — for labels, categories, tags, code
+```
+
+**Sizing rules:**
+- H1: 56–64px, `letter-spacing: -0.02em`, `--ink` color
+- H2: 32–40px
+- Body: 18–20px, `line-height: 1.7`, `max-width: 680px` for article reading
+- Labels/tags/categories: 11px uppercase monospace, `letter-spacing: +0.12em`
+- All page content constrained to `max-width: 1100px`, centered
+
+### Color Palette
+
+```css
+:root {
+  --ink:          #1a1a18;   /* near-black, warm undertone — primary text */
+  --paper:        #f7f5f0;   /* off-white, warm parchment — page background */
+  --accent:       #c8522a;   /* burnt orange — the "fruit" color, used sparingly */
+  --accent-muted: #e8d5c4;   /* hover states, highlights */
+  --rule:         #d4cfc6;   /* horizontal rules, borders */
+  --caption:      #7a7568;   /* muted text: dates, metadata, excerpts */
+}
+```
+
+Use `--accent` sparingly for maximum impact. Do not add new brand colors without discussion.
+
+### Spacing & Layout
+
+- Page padding: `clamp(1.5rem, 5vw, 4rem)`
+- Section gaps: `3rem` between major sections
+- Horizontal rules: `1px solid var(--rule)`, `margin: 3rem 0`
+- Article reading width: `max-width: 680px`
+- Card grid: 2-column on desktop (min 500px per col), 1-column on mobile
+- Responsive breakpoint: `720px`
+
+### Component Specifications
+
+#### Navigation
+
+```
+[Low Hanging Data wordmark]     Home  Articles  About  Contact     [GitHub ↗]
+```
+
+- Wordmark: Playfair Display, 20px, `--ink` color, left-aligned
+- Nav links: small-caps Source Serif, `--accent` 2px underline slide-in on hover
+- GitHub: text link with `↗` arrow (NOT icon-only), right-aligned; must point to actual repo/profile
+- Bottom border: `1px var(--rule)`
+- Sticky: `rgba(247,245,240,0.95)` background with `backdrop-filter: blur(8px)`
+
+#### Hero Section
+
+- Full-width, `--paper` background
+- Subtle grain texture overlay (SVG noise filter or CSS)
+- Large display heading: site name (Playfair Display)
+- Tagline below in smaller italic weight
+- Thin horizontal rule, then the three principles as a single inline sentence
+- Optional: very faint fruit/tree silhouette watermark (SVG, ~4% opacity)
+- **Above-the-fold hook required:** one sentence for the target audience
+
+#### Article Cards
+
+- 2-column grid on desktop, 1-column on mobile
+- Display existing SVG thumbnails at 16:9 or 4:3 aspect ratio with `object-fit: cover`
+- Date: monospace, small, `--caption` color
+- Title: Playfair Display, 22px, `--ink`
+- Excerpt: body serif, 15px, `--caption`, clamped to 3 lines (`-webkit-line-clamp: 3`)
+- Hover: subtle lift with `box-shadow` + `--accent` 3px left border slides in via transition
+
+#### Workflow Category Navigation
+
+Covers the data workflow: **Collect → Clean → Query → Visualize → Automate**
+
+- Styled as pill tabs or horizontal chips
+- Each label: monospace uppercase with `--accent` dot prefix
+- Light `--accent-muted` background section to visually separate from article grid
+- Links as inline chips with hover state
+
+#### Footer
+
+Three-column layout:
+
+```
+[Wordmark + tagline]    [Nav links]    [External: GitHub ↗, RSS]
+──────────────────────────────────────────────────────────────
+© 2026 Low Hanging Data · Concise. Transparent. Low Hanging Fruit First.
+```
+
+#### Individual Article Pages
+
+- Reading width: `max-width: 680px`
+- Sticky table-of-contents sidebar on desktop
+- Author byline at top
+- Scroll progress bar (see UX Standards)
 
 ## Styling Conventions
 
 - **No Tailwind** — use plain CSS only.
 - **Scoped styles** in `.astro` components via `<style>` tags (Astro automatically scopes these).
 - **Global styles** in `src/styles/global.css`, imported in `BaseHead.astro`.
-- **CSS custom properties** defined in `:root` in `global.css`:
-  - `--accent: #0891b2` (cyan)
-  - `--accent-dark: #0e7490`
-  - `--black`, `--gray`, `--gray-light`, `--gray-dark`
-  - `--box-shadow`
-- **Responsive breakpoint:** `720px` (max-width media queries)
-- **Font:** Atkinson (loaded from `/public/fonts/`, preloaded in `BaseHead.astro`)
-- **Max content width:** 720px
+- **CSS custom properties** defined in `:root` in `global.css` — see Color Palette above.
+- **Font:** Playfair Display (headings), Source Serif 4 or Lora (body), JetBrains Mono (labels/code). Preload critical fonts in `BaseHead.astro`. System font fallbacks for performance.
+- **Max page content width:** 1100px (centered)
+- **Article reading width:** 680px
+- **Responsive breakpoint:** 720px (max-width media queries)
+- **Performance:** Lazy-load images, minimize CLS, minimal JS
 
 ---
 
@@ -409,13 +538,36 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 
 ---
 
+## Page-Specific Notes
+
+| Page | Instructions |
+|---|---|
+| **Homepage** (`index.astro`) | Hero section + workflow category nav + latest articles grid + newsletter/email CTA. Author bio (even one line + avatar) builds trust. Show only `blog` collection articles. |
+| **Articles listing** (`/article`) | Same card grid as homepage. Add filter bar for workflow categories (Collect / Clean / Query / Visualize / Automate). |
+| **Individual articles** (`/article/[...slug].astro`) | Reading width 680px max; sticky ToC sidebar on desktop; author byline at top; scroll progress bar required. |
+| **About** | Personal voice — who writes this, a photo/avatar, brief backstory, link to GitHub for credibility. |
+| **Contact** | Static page using BlogPost layout. |
+
+---
+
 ## What Not to Do
 
-- Do not add, remove, or rename navigation tabs in `Header.astro` — the header must have exactly 4 tabs: **Home** (`/`), **Articles** (`/article`), **About** (`/about`), and **Contact** (`/contact`). No other tabs should be added.
-- Do not add a GitHub link anywhere on the main page (`index.astro`), in `Header.astro`, or in `Footer.astro` — external social/repo links are not part of the site navigation.
+### Navigation & Structure
+- Do not add, remove, or rename navigation tabs in `Header.astro` — the header must have exactly these tabs: **Home** (`/`), **Articles** (`/article`), **About** (`/about`), **Contact** (`/contact`), and a **GitHub ↗** external link (right-aligned, text with arrow). The GitHub link must point to the actual repo or profile, NOT `github.com` root.
 - Do not display `posts` collection content on the main page (`index.astro`) — the homepage shows only `blog` collection (technical articles).
-- The only links permitted on the front page (`index.astro`) are: Home, About, Articles, Contact, and RSS Feed. Do not add article chip links, article card grids, or any other inline content links to the homepage.
+- Do not add floating social share buttons, modal dialogs, pop-ups, or ads anywhere on the site.
+
+### Design & Styling
 - Do not add Tailwind or other CSS frameworks without discussion — this project uses plain CSS intentionally.
+- Do not use generic AI aesthetics: no purple gradients, no Inter font as the primary typeface, no cookie-cutter card designs.
+- Do not add new brand colors without discussion — work within the defined palette (`--ink`, `--paper`, `--accent`, `--accent-muted`, `--rule`, `--caption`).
+- Do not over-animate — one or two well-placed transitions beat twenty janky ones.
+- Do not widen prose containers on article or post pages beyond 680px — reading-width constraint must be preserved.
+- Do not remove `:hover` styles from navigation links — all nav links must have visible hover feedback.
+- Do not change `Header.astro` from `position: sticky` to `position: static` or `position: relative` — the header must remain sticky.
+- Do not sacrifice readability for style — the site's strength is clarity.
+
+### Code & Infrastructure
 - Do not change the `astro.config.mjs` site URL without updating DNS/Cloudflare configuration.
 - Do not add environment variables to source files — use `.env` (gitignored) or Cloudflare secrets.
 - Do not skip `npm run check` before deploying — it validates tests, the full build pipeline, and dry-run deploy.
@@ -424,8 +576,4 @@ The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you 
 - Do not add utility functions without a corresponding `.test.ts` file in `src/utils/`.
 - Do not define the content collection schema inline in `content.config.ts` — it lives in `src/utils/contentSchema.ts` so it can be unit-tested independently.
 - Do not place test files outside of their source file's directory — `src/consts.test.ts` tests `src/consts.ts`; utility tests live alongside their source in `src/utils/`.
-- Do not remove `:hover` styles from navigation links — all nav links must have visible hover feedback.
-- Do not change `Header.astro` from `position: sticky` to `position: static` or `position: relative` — the header must remain sticky.
-- Do not widen prose containers on article or post pages beyond 720px — reading-width constraint must be preserved.
-- Do not remove the `@media (prefers-color-scheme: dark)` block from `global.css` — dark mode support is required.
 - Do not remove the scroll progress indicator from article pages (`/article/[...slug].astro`) — it is a required UX feature.
