@@ -327,3 +327,4 @@ A rough rule: if `df.memory_usage(deep=True).sum()` exceeds half your available 
 
 - **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Combine collection, cleaning, and storage into an automated workflow.
 - **[Organizing Data with SQL](/article/organizing-data-with-sql)** — Query your clean data with SQL.
+- **[Data Cleaning and Validation](/article/data-cleaning-and-validation)** — Systematic techniques for handling missing values, duplicates, and type mismatches.

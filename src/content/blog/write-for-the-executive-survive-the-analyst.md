@@ -134,7 +134,7 @@ The weak version is not wrong. Every number in it might be accurate. But the exe
 
 Building analysis that is simple for the executive and bulletproof for the reviewer is more work than building either alone. It requires the analyst to do the full technical work *and* the additional work of collapsing it without losing the load-bearing structure.
 
-This is exactly the same discipline required to build a gas gauge on a dashboard. The output is simple. The simplicity is earned by the work behind it. The needle means something because the threshold is defensible. Remove the work, and you have a needle pointed at an arbitrary number.
+This is exactly the same discipline required to [build a gas gauge on a dashboard](/article/gas-gauges-and-kpi-mastery). The output is simple. The simplicity is earned by the work behind it. The needle means something because the threshold is defensible. Remove the work, and you have a needle pointed at an arbitrary number.
 
 The analysts who produce executive-ready work have learned a specific discipline: they finish the analysis, then they try to break it before the reviewer does.
 
@@ -156,3 +156,9 @@ Then hand the appendix to your most skeptical colleague and ask them to try to b
 Executives make fast decisions. Their teams take their time. The work that drives lasting action is the work that respects both.
 
 Simple enough to decide from. Rigorous enough to hold.
+
+## Related Articles
+
+- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst)** — The audience side of the same principle: designing deliverables for decision-makers, not analysts.
+- **[The Gas Gauge Is the Hardest Chart to Build](/article/gas-gauges-and-kpi-mastery)** — How the discipline of defining thresholds produces the same kind of earned simplicity this article describes.
+- **[From Cheerleader to Quarterback: Why Data Professionals Must Be Half Subject Matter Expert](/article/from-cheerleader-to-quarterback)** — The domain fluency required to produce executive-ready analysis that holds up under review.

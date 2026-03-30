@@ -332,3 +332,4 @@ DuckDB — used in the [Working with Parquet and DuckDB](/article/working-with-p
 
 - **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling)** — Clean and reshape data before loading it into SQL.
 - **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Automate the full collect → organize → query cycle.
+- **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb)** — Moving from row-based SQL storage to columnar formats for analytical queries.

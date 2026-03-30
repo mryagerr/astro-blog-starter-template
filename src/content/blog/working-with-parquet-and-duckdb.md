@@ -222,3 +222,4 @@ DuckDB is not a replacement for transactional databases. It is an analytical que
 
 - **[Organizing Data with SQL](/article/organizing-data-with-sql)** — Structuring data for queryability before moving to columnar formats.
 - **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Where Parquet fits in a full pipeline.
+- **[DuckDB for Financial Data Analysis](/article/duckdb-for-financial-analysis)** — A worked example of DuckDB applied to real financial market data.

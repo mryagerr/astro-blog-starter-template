@@ -234,3 +234,4 @@ df = pd.read_json("data.jsonl", lines=True)
 
 - **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — Fetch live JSON data from HTTP endpoints.
 - **[Organizing Data with SQL](/article/organizing-data-with-sql)** — Load your CSV/JSON into a database for proper querying.
+- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling)** — Reshaping and cleaning the CSV and JSON data you have loaded.

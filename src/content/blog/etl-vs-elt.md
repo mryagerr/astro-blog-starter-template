@@ -97,3 +97,9 @@ ELT wins on ease of setup, and that matters. Getting real data in front of stake
 When the bills arrive, look at what you are actually storing. If half your raw tables are noise, add a pre-load filter. That is ETL creeping back in — and that is fine. The goal is useful data at a defensible cost, not ideological purity about which three-letter acronym you follow.
 
 Pick the pattern that fits where you are today. You can always evolve it.
+
+## Next Steps
+
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — An end-to-end pipeline implementation that puts the ETL structure into practice.
+- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines)** — Once you have chosen your pattern, running it reliably on a schedule.
+- **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb)** — A practical look at ELT-style in-warehouse transformations using DuckDB as the compute layer.

@@ -109,3 +109,9 @@ If you love building reliable systems and find dashboards boring, Engineering is
 The final form isn't Venusaur. There's no final form. The goal is to find the combination of skills and problems that makes you effective and keeps you engaged.
 
 That's the low-hanging fruit of career development: figure out what you're actually optimizing for before following someone else's evolution chain.
+
+## Related Articles
+
+- **[From Cheerleader to Quarterback: Why Data Professionals Must Be Half Subject Matter Expert](/article/from-cheerleader-to-quarterback)** — How domain expertise shapes career trajectory far more than role titles do.
+- **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise)** — The strategy for building domain knowledge and credibility across any data role.
+- **[Organizing Data with SQL](/article/organizing-data-with-sql)** — The universal skill that spans every data role — the one place the career chain actually converges.
