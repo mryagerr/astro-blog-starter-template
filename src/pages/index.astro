@@ -80,15 +80,6 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 
 			<hr />
 
-			<!-- ─── RSS ────────────────────────────────────────────────── -->
-			<div class="rss-feed">
-				<h2>RSS Feed</h2>
-				<p>Subscribe to new articles via RSS.</p>
-				<a class="rss-cta" href="/rss.xml">Follow via RSS →</a>
-			</div>
-
-			<hr />
-
 			<!-- ─── Author bio ─────────────────────────────────────────── -->
 			<div class="author-bio">
 				<p>
@@ -348,47 +339,6 @@ hr { margin: 3rem 0; }
 .difficulty-low  { background: #dcfce7; color: #166534; }
 .difficulty-high { background: #fef9c3; color: #854d0e; }
 
-/* ─── RSS ────────────────────────────────────────────────────────── */
-.rss-feed {
-	text-align: center;
-	padding: 2em 1em;
-	background: rgba(var(--gray-light), 0.3);
-	border: 1px solid var(--rule);
-	border-radius: 8px;
-}
-
-.rss-feed h2 {
-	margin-top: 0;
-	font-size: 1.3rem;
-}
-
-.rss-feed p {
-	color: var(--caption);
-	margin-bottom: 1.25em;
-	font-size: 0.95rem;
-}
-
-.rss-cta {
-	display: inline-block;
-	background: var(--accent);
-	color: white;
-	padding: 0.6em 1.5em;
-	border-radius: 6px;
-	text-decoration: none;
-	font-weight: 600;
-	font-size: 0.92em;
-	font-family: var(--font-mono);
-	letter-spacing: 0.03em;
-	transition: background 0.2s ease, transform 0.15s ease;
-}
-
-.rss-cta:hover {
-	background: var(--accent-dark);
-	color: white;
-	text-decoration: none;
-	transform: translateY(-1px);
-}
-
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 720px) {
 	.hero-principles { flex-direction: column; align-items: flex-start; }
@@ -399,7 +349,6 @@ hr { margin: 3rem 0; }
 @media (max-width: 480px) {
 	.hero-inner { padding: 3rem 1rem 2.5rem; }
 	main { padding: 2rem 0.75rem; }
-	.rss-feed { padding: 1.5em 0.75em; }
 	hr { margin: 2rem 0; }
 	.article-card .card-body { padding: 0.75rem 0.9rem; }
 }
