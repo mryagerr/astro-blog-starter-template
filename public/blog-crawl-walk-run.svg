@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <rect width="1020" height="510" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="510" y="46" text-anchor="middle" font-family="ui-monospace,monospace" font-size="22" font-weight="bold" fill="#e2e8f0">Crawl. Walk. Run.</text>
+  <text x="510" y="78" text-anchor="middle" font-family="ui-monospace,monospace" font-size="20" font-weight="bold" fill="#38bdf8">Many Attempts Beat One Perfect Try</text>
+
+  <!-- LEFT SIDE: One perfect attempt -->
+  <!-- Label -->
+  <text x="195" y="116" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">one perfect attempt</text>
+
+  <!-- Single large circle with "perfection" ring -->
+  <circle cx="195" cy="270" r="95" fill="#071a2e" stroke="#f43f5e" stroke-width="2" stroke-dasharray="6,4"/>
+  <circle cx="195" cy="270" r="72" fill="#0f1e38" stroke="#f43f5e" stroke-width="1.5"/>
+  <text x="195" y="263" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#f43f5e">PERFECTING</text>
+  <text x="195" y="281" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#f43f5e">FOREVER</text>
+
+  <!-- Impact arrow pointing down (small) -->
+  <line x1="195" y1="375" x2="195" y2="420" stroke="#475569" stroke-width="2"/>
+  <polygon points="195,430 189,418 201,418" fill="#475569"/>
+  <text x="195" y="450" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#475569">impact: 0</text>
+  <text x="195" y="465" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#475569">(never shipped)</text>
+
+  <!-- VS divider -->
+  <line x1="390" y1="105" x2="390" y2="480" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="390" y="295" text-anchor="middle" font-family="ui-monospace,monospace" font-size="18" font-weight="bold" fill="#334155">vs</text>
+
+  <!-- RIGHT SIDE: Many small attempts -->
+  <!-- Label -->
+  <text x="710" y="116" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">many imperfect attempts</text>
+
+  <!-- CRAWL group -->
+  <text x="460" y="148" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">crawl</text>
+  <!-- 3 small circles -->
+  <circle cx="462" cy="175" r="18" fill="#071a2e" stroke="#22c55e" stroke-width="1.5" opacity="0.7"/>
+  <text x="462" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#22c55e">v0.1</text>
+  <circle cx="508" cy="175" r="18" fill="#071a2e" stroke="#22c55e" stroke-width="1.5" opacity="0.8"/>
+  <text x="508" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#22c55e">v0.2</text>
+  <circle cx="554" cy="175" r="18" fill="#071a2e" stroke="#22c55e" stroke-width="1.5" opacity="0.9"/>
+  <text x="554" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#22c55e">v0.3</text>
+
+  <!-- Connecting arrow crawl → walk -->
+  <line x1="580" y1="175" x2="608" y2="175" stroke="#334155" stroke-width="1.5"/>
+  <polygon points="614,175 606,171 606,179" fill="#334155"/>
+
+  <!-- WALK group -->
+  <text x="624" y="148" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">walk</text>
+  <circle cx="630" cy="175" r="24" fill="#071a2e" stroke="#38bdf8" stroke-width="1.5" opacity="0.8"/>
+  <text x="630" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#38bdf8">v1.0</text>
+  <circle cx="684" cy="175" r="24" fill="#071a2e" stroke="#38bdf8" stroke-width="1.5" opacity="0.9"/>
+  <text x="684" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#38bdf8">v1.1</text>
+
+  <!-- Connecting arrow walk → run -->
+  <line x1="716" y1="175" x2="744" y2="175" stroke="#334155" stroke-width="1.5"/>
+  <polygon points="750,175 742,171 742,179" fill="#334155"/>
+
+  <!-- RUN group -->
+  <text x="757" y="148" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">run</text>
+  <circle cx="775" cy="175" r="32" fill="#071a2e" stroke="#f59e0b" stroke-width="2"/>
+  <text x="775" y="172" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#f59e0b">v2.0</text>
+  <text x="775" y="184" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#f59e0b">refined</text>
+  <circle cx="840" cy="175" r="38" fill="#071a2e" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="840" y="172" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#f59e0b">v3.0</text>
+  <text x="840" y="184" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#f59e0b">optimized</text>
+
+  <!-- Cumulative impact visualization (bar chart) -->
+  <text x="630" y="240" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#64748b">cumulative impact</text>
+
+  <!-- Bar for each attempt, stacking up -->
+  <!-- crawl bars -->
+  <rect x="450" y="360" width="20" height="20" rx="2" fill="#22c55e" opacity="0.5"/>
+  <rect x="476" y="340" width="20" height="40" rx="2" fill="#22c55e" opacity="0.6"/>
+  <rect x="502" y="318" width="20" height="62" rx="2" fill="#22c55e" opacity="0.7"/>
+  <!-- walk bars -->
+  <rect x="534" y="290" width="24" height="90" rx="2" fill="#38bdf8" opacity="0.7"/>
+  <rect x="564" y="262" width="24" height="118" rx="2" fill="#38bdf8" opacity="0.8"/>
+  <!-- run bars -->
+  <rect x="600" y="228" width="28" height="152" rx="2" fill="#f59e0b" opacity="0.75"/>
+  <rect x="636" y="188" width="28" height="192" rx="2" fill="#f59e0b" opacity="0.85"/>
+  <rect x="672" y="154" width="28" height="226" rx="2" fill="#f59e0b" opacity="0.9"/>
+
+  <!-- baseline -->
+  <line x1="430" y1="380" x2="880" y2="380" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Total impact arrow (large, pointing up) -->
+  <line x1="760" y1="370" x2="760" y2="290" stroke="#f59e0b" stroke-width="2.5"/>
+  <polygon points="760,280 754,292 766,292" fill="#f59e0b"/>
+
+  <!-- Impact label -->
+  <rect x="770" y="300" width="100" height="40" rx="4" fill="#071a2e" stroke="#f59e0b" stroke-width="1"/>
+  <text x="820" y="317" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">8 attempts</text>
+  <text x="820" y="333" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#f59e0b">= real impact</text>
+
+  <!-- Feedback loop annotations -->
+  <text x="508" y="410" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">learn</text>
+  <text x="554" y="410" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">adapt</text>
+  <text x="624" y="410" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#64748b">grow</text>
+  <text x="686" y="410" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#f59e0b">compound</text>
+
+  <!-- Bottom tagline -->
+  <text x="510" y="478" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#334155">done and iterated beats perfect and waiting — engagement compounds with every attempt</text>
+</svg>
