@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 510">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1b2a"/>
+      <stop offset="65%" stop-color="#1a3a4a"/>
+      <stop offset="100%" stop-color="#0d3320"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4ade80" stop-opacity="0.5"/>
+      <stop offset="60%" stop-color="#22c55e" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#374151"/>
+      <stop offset="100%" stop-color="#1f2937"/>
+    </linearGradient>
+    <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1020" height="510" fill="url(#skyGrad)"/>
+
+  <!-- Stars -->
+  <circle cx="80" cy="40" r="1.2" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="200" cy="70" r="1" fill="#e2e8f0" opacity="0.6"/>
+  <circle cx="340" cy="25" r="1.5" fill="#e2e8f0" opacity="0.8"/>
+  <circle cx="450" cy="55" r="1" fill="#e2e8f0" opacity="0.5"/>
+  <circle cx="620" cy="30" r="1.2" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="750" cy="60" r="1" fill="#e2e8f0" opacity="0.6"/>
+  <circle cx="870" cy="20" r="1.5" fill="#e2e8f0" opacity="0.8"/>
+  <circle cx="970" cy="80" r="1" fill="#e2e8f0" opacity="0.5"/>
+  <circle cx="130" cy="110" r="1" fill="#e2e8f0" opacity="0.4"/>
+  <circle cx="290" cy="95" r="1.2" fill="#e2e8f0" opacity="0.6"/>
+  <circle cx="680" cy="100" r="1" fill="#e2e8f0" opacity="0.5"/>
+  <circle cx="920" cy="130" r="1.2" fill="#e2e8f0" opacity="0.4"/>
+  <circle cx="55" cy="160" r="1" fill="#e2e8f0" opacity="0.3"/>
+  <circle cx="400" cy="140" r="1" fill="#e2e8f0" opacity="0.4"/>
+  <circle cx="810" cy="150" r="1" fill="#e2e8f0" opacity="0.3"/>
+
+  <!-- Excel sun glow -->
+  <ellipse cx="510" cy="295" rx="160" ry="100" fill="url(#sunGlow)"/>
+
+  <!-- Horizon line glow -->
+  <rect x="0" y="294" width="1020" height="4" fill="#22c55e" opacity="0.15"/>
+
+  <!-- Ground / fields -->
+  <rect x="0" y="298" width="1020" height="212" fill="url(#grassGrad)"/>
+
+  <!-- Side roads coming from left and right (convergence metaphor) -->
+  <!-- Left side road -->
+  <polygon points="0,430 510,298 200,298" fill="#2d3748" opacity="0.6"/>
+  <line x1="0" y1="430" x2="510" y2="298" stroke="#4b5563" stroke-width="1.5" opacity="0.5"/>
+  <!-- Right side road -->
+  <polygon points="1020,430 510,298 820,298" fill="#2d3748" opacity="0.6"/>
+  <line x1="1020" y1="430" x2="510" y2="298" stroke="#4b5563" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Main road (center, perspective) -->
+  <polygon points="460,298 550,298 820,510 200,510" fill="url(#roadGrad)"/>
+
+  <!-- Road shoulder lines -->
+  <line x1="460" y1="298" x2="200" y2="510" stroke="#4b5563" stroke-width="2"/>
+  <line x1="550" y1="298" x2="820" y2="510" stroke="#4b5563" stroke-width="2"/>
+
+  <!-- Dashed center line -->
+  <line x1="510" y1="305" x2="510" y2="340" stroke="#fbbf24" stroke-width="3" stroke-dasharray="18,14" opacity="0.7"/>
+  <line x1="510" y1="355" x2="510" y2="395" stroke="#fbbf24" stroke-width="3" stroke-dasharray="18,14" opacity="0.7"/>
+  <line x1="510" y1="410" x2="510" y2="460" stroke="#fbbf24" stroke-width="3" stroke-dasharray="18,14" opacity="0.7"/>
+  <line x1="510" y1="470" x2="510" y2="510" stroke="#fbbf24" stroke-width="3" stroke-dasharray="18,14" opacity="0.7"/>
+
+  <!-- Road sign left: Python -->
+  <rect x="58" y="330" width="5" height="80" fill="#6b7280"/>
+  <rect x="30" y="300" width="100" height="55" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <text x="80" y="320" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#38bdf8">Python</text>
+  <text x="80" y="338" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#94a3b8">pandas</text>
+  <text x="80" y="349" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#22c55e">→ .xlsx</text>
+
+  <!-- Road sign left: SQL -->
+  <rect x="133" y="360" width="5" height="65" fill="#6b7280"/>
+  <rect x="105" y="330" width="95" height="52" rx="5" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+  <text x="152" y="350" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#a78bfa">SQL</text>
+  <text x="152" y="367" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#22c55e">→ Export</text>
+
+  <!-- Road sign right: Power BI -->
+  <rect x="868" y="330" width="5" height="80" fill="#6b7280"/>
+  <rect x="840" y="300" width="110" height="55" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="895" y="320" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#f59e0b">Power BI</text>
+  <text x="895" y="338" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#94a3b8">dashboard</text>
+  <text x="895" y="349" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#22c55e">→ .xlsx</text>
+
+  <!-- Road sign right: Tableau -->
+  <rect x="893" y="360" width="5" height="65" fill="#6b7280"/>
+  <rect x="865" y="330" width="100" height="52" rx="5" fill="#1e293b" stroke="#f43f5e" stroke-width="2"/>
+  <text x="915" y="350" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" font-weight="bold" fill="#f43f5e">Tableau</text>
+  <text x="915" y="367" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" fill="#22c55e">→ Export</text>
+
+  <!-- Excel sun: outer ring -->
+  <circle cx="510" cy="270" r="68" fill="#052e16" stroke="#22c55e" stroke-width="3" filter="url(#glow)"/>
+
+  <!-- Excel sun: green background -->
+  <circle cx="510" cy="270" r="62" fill="#16a34a"/>
+
+  <!-- Excel X icon inside sun -->
+  <text x="510" y="250" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#bbf7d0" opacity="0.9">Microsoft</text>
+  <text x="510" y="295" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="900" fill="white">X</text>
+
+  <!-- Excel label below sun -->
+  <text x="510" y="348" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#86efac" opacity="0.9">Excel</text>
+
+  <!-- Title top -->
+  <text x="510" y="48" text-anchor="middle" font-family="ui-monospace,monospace" font-size="32" font-weight="bold" fill="#e2e8f0">All Roads Lead to Excel</text>
+  <text x="510" y="82" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#86efac">Stakeholder delivery in the real world</text>
+
+  <!-- Subtle bottom road label -->
+  <text x="510" y="498" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#374151">no matter where you start, they want a spreadsheet</text>
+</svg>
