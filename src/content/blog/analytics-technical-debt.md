@@ -217,3 +217,9 @@ The output of analysis is trust. Stakeholders trust the numbers, make decisions 
 Technical debt in analytics isn't a code quality problem. It's a trust problem. And trust, once lost over a "weird number," is hard to get back.
 
 Build on solid ground. Document what you know. Test what matters. The castle will still look the same from the outside — but this time, it won't fall when the data shifts.
+
+## Related Articles
+
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Learn how to structure a pipeline so there is less surface area for analytical debt to accumulate.
+- **[Data Cleaning and Validation](/article/data-cleaning-and-validation)** — Testing transformations and validating assumptions before data reaches downstream analysis.
+- **[Fear the Black Box: Why Data Must Be Understood End to End](/article/fear-the-black-box)** — The other side of analytical debt: accepting components you do not understand as ground truth.

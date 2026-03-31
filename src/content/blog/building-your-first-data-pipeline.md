@@ -412,3 +412,9 @@ Once your basic pipeline is running:
 - **Handle incremental updates** — Track the last-fetched timestamp and only pull new or modified records on subsequent runs.
 
 A pipeline that runs daily and validates its output will catch data quality issues before they reach your analysis — which is the whole point.
+
+## Related Articles
+
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — Deep dive into the extract step, including pagination, rate limiting, and authentication.
+- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines)** — Moving from manual `python run.py` to pipelines that run on a schedule automatically.
+- **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt)** — Understanding the architectural trade-off between transforming before or after loading.

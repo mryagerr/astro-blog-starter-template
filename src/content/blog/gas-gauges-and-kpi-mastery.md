@@ -140,3 +140,9 @@ If no: stop building charts for that metric until you can. A line chart of a num
 The gas gauge is dumb in the way that a one-sentence summary of a complex report is dumb — it collapses a lot of work into a simple output. That simplicity is a feature. It means the analysis is done. It means the insight is portable. It means anyone who looks at the dashboard knows, in two seconds, whether to be concerned.
 
 You either understand what is good or bad, or you cannot make a gas gauge. That is not a limitation of the chart type. It is the whole point.
+
+## Related Articles
+
+- **[KPIs Are a Cultural Change, Not a Dashboard Project](/article/kpis-are-a-cultural-change)** — Why defining thresholds is only half the work — the other half is organizational commitment to act on them.
+- **[Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame](/article/dashboards-are-waiting-rooms)** — What comes after you build the gauge: automating the response when the needle moves.
+- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst)** — The gas gauge is the right deliverable for a non-analyst audience — here is the broader principle behind that.

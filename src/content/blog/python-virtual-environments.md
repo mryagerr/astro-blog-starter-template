@@ -151,3 +151,9 @@ where python    # Windows
 A path containing `.venv` means you're inside the environment. A system path like `/usr/bin/python3` means you're not.
 
 Virtual environments are a small habit with a large payoff. Set one up at the start of every project and you'll never deal with dependency conflicts again.
+
+## Next Steps
+
+- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling)** — The first thing to install in your new virtual environment: pandas for data manipulation.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Applying the project structure and dependency isolation from this article in a real end-to-end pipeline.
+- **[Getting Started with Data Collection](/article/getting-started-with-data)** — Where to begin once your Python environment is set up and you are ready to pull real data.

@@ -266,3 +266,4 @@ You do not need both. For a one-file cleaning script, `assert` is sufficient. Fo
 
 - **[Python Pandas Data Wrangling](/article/python-pandas-data-wrangling)** — Reshaping, grouping, and aggregating clean data.
 - **[Organizing Data with SQL](/article/organizing-data-with-sql)** — Moving cleaned data into a queryable database.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Incorporating cleaning and validation into a repeatable automated workflow.

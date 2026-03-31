@@ -93,3 +93,4 @@ This pattern — fetch, validate, write — is the basis of every article in thi
 
 - **[Working with CSV and JSON](/article/working-with-csv-and-json)** — The two most common data formats in detail.
 - **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — Authentication, pagination, and error handling.
+- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling)** — Transforming and reshaping data once you have collected it.

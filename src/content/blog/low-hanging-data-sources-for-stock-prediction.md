@@ -149,3 +149,11 @@ Rather than using VIX as a raw price level, computing the **VIX delta** (day-ove
 - Preis, T., Moat, H. S., & Stanley, H. E. (2013). Quantifying trading behavior in financial markets using Google Trends. *Scientific Reports*, 3, 1684.
 - Tetlock, P. C. (2007). Giving content to investor sentiment: The role of media in the stock market. *Journal of Finance*, 62(3), 1139–1168.
 - Whaley, R. E. (2009). Understanding the VIX. *Journal of Portfolio Management*, 35(3), 98–105.
+
+---
+
+## Related Articles
+
+- **[DuckDB for Financial Data Analysis](/article/duckdb-for-financial-analysis)** — Storing and querying the market data these sources generate, without spinning up a full database server.
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — The underlying patterns for fetching paginated data, handling rate limits, and saving raw responses.
+- **[Building a Stock Prediction Classifier with scikit-learn](/article/building-a-stock-prediction-svm)** — Putting these data sources to work in an actual prediction model.
