@@ -1,7 +1,6 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
-import { render } from 'astro:content';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
@@ -13,9 +12,18 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'posts'>;
 
 const post = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+
+// Reading time: ~200 wpm
+const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
-<BlogPost {...post.data}>
+<BlogPost
+	{...post.data}
+	readingTime={readingTime}
+	headings={headings}
+	breadcrumb={{ href: '/posts', label: 'Posts' }}
+>
 	<Content />
 </BlogPost>
