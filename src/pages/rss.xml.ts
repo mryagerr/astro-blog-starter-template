@@ -10,6 +10,7 @@ export async function GET(context: APIContext) {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     site: context.site!.toString(),
+    stylesheet: '/rss-styles.xsl',
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
