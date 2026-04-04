@@ -60,7 +60,7 @@ astro-blog-starter-template/
 ├── src/
 │   ├── components/          # Reusable .astro components (5 files)
 │   ├── content/             # Markdown/MDX content files
-│   │   ├── blog/            # Technical articles (~31 files)
+│   │   ├── blog/            # Technical articles (~32 files)
 │   │   └── posts/           # Short blog posts (~3 files)
 │   ├── layouts/
 │   │   └── BlogPost.astro   # Shared layout for articles (with ToC, related posts, share bar)
@@ -73,8 +73,7 @@ astro-blog-starter-template/
 │   │   ├── search.astro     # Site search page (SSR, prerender = false)
 │   │   ├── sitemap.xml.ts   # Redirects /sitemap.xml → /sitemap-index.xml
 │   │   ├── article/         # Articles section (/article/*)
-│   │   ├── posts/           # Blog posts section (/posts/*)
-│   │   └── rss.xml.js       # RSS feed endpoint
+│   │   └── posts/           # Blog posts section (/posts/*)
 │   ├── styles/
 │   │   └── global.css       # Global CSS (editorial minimalist palette)
 │   ├── utils/               # Shared utility functions + Vitest tests
@@ -161,7 +160,7 @@ Located in `src/components/`. All are `.astro` files.
 | `Header.astro` | Site header with 3 nav tabs (Home, Articles, About), integrated search form, and hamburger mobile menu |
 | `HeaderLink.astro` | Nav link that auto-applies active styles based on current route |
 | `Footer.astro` | Site footer with brand section, nav links (Home, Articles, About, Contact), and copyright |
-| `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03 2025") |
+| `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03, 2025") |
 
 ### Component Pattern
 
@@ -232,7 +231,6 @@ Astro uses file-based routing from `src/pages/`.
 | `article/[...slug].astro` | `/article/{id}` | Dynamic article page |
 | `posts/index.astro` | `/posts` | List of blog posts |
 | `posts/[...slug].astro` | `/posts/{id}` | Dynamic blog post page |
-| `rss.xml.js` | `/rss.xml` | RSS feed (blog collection only) |
 
 ### Dynamic Routes
 
@@ -288,7 +286,7 @@ Imported by `src/content.config.ts` for both the `blog` and `posts` collections.
 ### `formatDate.ts`
 
 ```typescript
-formatDate(date: Date): string        // Returns "Mar 15 2024"
+formatDate(date: Date): string        // Returns "Mar 15, 2024"
 getCurrentYear(): number              // Returns current year (mockable in tests)
 ```
 
@@ -471,7 +469,7 @@ export const SITE_DESCRIPTION = 'Data analysis should be concise, transparent, a
 
 ### RSS
 
-The RSS feed at `/rss.xml` is generated from the `blog` collection only. If you add a new collection and want it in the feed, update `src/pages/rss.xml.js`.
+The `@astrojs/rss` package is installed as a dependency, but the RSS feed endpoint (`src/pages/rss.xml.js`) has not yet been created. To add RSS support, create this file using `@astrojs/rss` and the `blog` collection.
 
 ### Sitemap
 
