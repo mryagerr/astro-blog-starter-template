@@ -4,6 +4,7 @@ description: 'Data Analyst → Data Engineer → Data Scientist sounds like a cl
 pubDate: 'Mar 28 2026'
 heroImage: '/blog-data-careers.svg'
 difficulty: 'low'
+tags: ['career']
 ---
 
 There is a persistent mental model floating around LinkedIn and career-advice threads that goes something like this:

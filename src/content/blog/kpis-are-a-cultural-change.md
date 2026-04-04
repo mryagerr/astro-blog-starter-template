@@ -4,6 +4,7 @@ description: 'Adopting key performance indicators only works if decision makers 
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-kpis-cultural.svg'
 difficulty: 'low'
+tags: ['culture']
 ---
 
 Every year, organizations launch KPI initiatives with genuine enthusiasm. A consultant comes in, or a new VP of Operations arrives, or someone reads a book about OKRs. Workshops happen. Metrics are defined. A dashboard gets built. Everyone agrees that the organization is now "data-driven."

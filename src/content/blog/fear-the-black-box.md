@@ -4,6 +4,7 @@ description: 'A black box in your data stack is not a neutral abstraction — it
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-fear-black-box.svg'
 difficulty: 'high'
+tags: ['culture']
 ---
 
 There is a common move in data work that feels sophisticated but is actually dangerous: deciding that you do not need to understand how something works as long as the outputs look right.

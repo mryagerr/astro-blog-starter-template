@@ -4,6 +4,7 @@ description: 'Most of your audience does not want to explore data. They want to 
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-not-everyone-analyst.svg'
 difficulty: 'low'
+tags: ['culture']
 ---
 
 There is a common mistake data teams make when they finally get good at their craft. They get excited about the data. They surface interesting patterns. They build flexible dashboards full of filters and drill-downs and cross-tabs. They hand it to a stakeholder with the implicit message: "Look at all of this. Isn't it fascinating?"

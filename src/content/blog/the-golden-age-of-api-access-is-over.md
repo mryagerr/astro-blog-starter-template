@@ -4,6 +4,7 @@ description: 'Free, open, and generous API access was a brief anomaly. Understan
 pubDate: 'Mar 27 2026'
 heroImage: '/blog-golden-age-api.svg'
 difficulty: 'low'
+tags: ['collection']
 ---
 
 For about a decade, getting data from the internet was almost embarrassingly easy. Twitter gave you a firehose. Reddit handed out API keys to anyone who asked. Google offered generous free tiers on Maps, Search, and Knowledge Graph. Financial data providers competed on openness. The assumption baked into every data project was that if a platform had data, you could probably pull it.

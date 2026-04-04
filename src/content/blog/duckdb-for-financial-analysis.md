@@ -4,6 +4,7 @@ description: 'Use DuckDB to run fast analytical SQL over stock price data, compu
 pubDate: 'Mar 25 2026'
 heroImage: '/blog-duckdb-finance.svg'
 difficulty: 'high'
+tags: ['analysis']
 ---
 
 The [Parquet and DuckDB article](/article/working-with-parquet-and-duckdb) covers the basics: installing DuckDB, writing Parquet files, running queries. This article goes further — it uses stock market data as the working example and covers the patterns that come up repeatedly in financial analysis: rolling windows, returns, rank filtering, multi-file queries, and exporting results for downstream use.

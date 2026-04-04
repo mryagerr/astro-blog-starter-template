@@ -4,6 +4,7 @@ description: 'Practical techniques for finding and fixing dirty data — missing
 pubDate: 'Mar 25 2025'
 heroImage: '/blog-data-cleaning.svg'
 difficulty: 'low'
+tags: ['preparation']
 ---
 
 Raw data is almost never clean. Missing values, duplicates, inconsistent formatting, and impossible values are the rule, not the exception. Cleaning is not glamorous work, but skipping it silently poisons every downstream analysis. This article covers the most common problems and how to fix them systematically.

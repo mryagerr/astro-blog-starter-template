@@ -4,6 +4,7 @@ description: 'Isolate project dependencies with virtual environments so your pro
 pubDate: 'Mar 28 2026'
 heroImage: '/blog-python-venv.svg'
 difficulty: 'low'
+tags: ['preparation']
 ---
 
 Every Python project eventually pulls in third-party packages. The problem is that packages have versions, and different projects often need different versions of the same package. Virtual environments solve this by giving each project its own isolated Python installation — its own `site-packages`, its own `pip`, its own executable.

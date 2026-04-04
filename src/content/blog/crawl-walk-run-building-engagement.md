@@ -4,6 +4,7 @@ description: 'Perfection is the enemy of good — and the enemy of engagement. T
 pubDate: 'Mar 30 2026'
 heroImage: '/blog-crawl-walk-run.svg'
 difficulty: 'low'
+tags: ['culture']
 ---
 
 There is a version of ambition that produces nothing. It looks like high standards but it functions like paralysis. The project that never ships because it is not quite ready. The analysis that sits in draft because one more data source would make it more complete. The report that could go out today but is held back because the visualization needs to be perfect first.

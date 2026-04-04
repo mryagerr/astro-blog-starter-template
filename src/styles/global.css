@@ -11,7 +11,7 @@
 	--accent-dark:  #0e7490;
 	--accent-muted: #bae6fd;
 	--rule:         #d4cfc6;
-	--caption:      #7a7568;
+	--caption:      #625d52;
 
 	/* Header background (semi-transparent for backdrop blur) */
 	--header-bg: rgba(247, 245, 240, 0.95);
@@ -217,7 +217,7 @@ hr {
 		--accent-dark:  #0891b2;
 		--accent-muted: #083344;
 		--rule:         #2d2d2b;
-		--caption:      #8a8880;
+		--caption:      #9a968e;
 
 		--header-bg: rgba(26, 26, 24, 0.95);
 

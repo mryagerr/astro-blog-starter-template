@@ -4,6 +4,7 @@ description: 'A gas gauge looks like the simplest visualization in the room. It 
 pubDate: 'Mar 28 2026'
 heroImage: '/blog-kpi-gauge.svg'
 difficulty: 'low'
+tags: ['analysis']
 ---
 
 The gas gauge gets no respect in data circles. It shows up in dashboards built by people who "just want something simple." It gets replaced in redesigns by line charts and scatter plots that signal sophistication. Analysts fresh out of bootcamp learn to avoid it.

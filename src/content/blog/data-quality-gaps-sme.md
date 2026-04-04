@@ -4,6 +4,7 @@ description: 'Clean schemas and passing validation checks give analysts a false 
 pubDate: 'Apr 04 2026'
 heroImage: '/blog-data-quality-gaps.svg'
 difficulty: 'low'
+tags: ['culture']
 ---
 
 Your data looks fine. The joins don't produce duplicates. There are no nulls in the required columns. Row counts match expectations. The validation script is green.

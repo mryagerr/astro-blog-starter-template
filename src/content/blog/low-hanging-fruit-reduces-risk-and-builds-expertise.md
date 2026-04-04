@@ -4,6 +4,7 @@ description: 'Chasing high-impact, high-complexity analytics projects before you
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-low-hanging-fruit.svg'
 difficulty: 'low'
+tags: ['culture']
 ---
 
 There is a particular kind of ambition in data analytics that feels virtuous but consistently underdelivers: the drive to skip straight to the hard, sophisticated, high-impact work. The multi-year predictive model. The enterprise-wide attribution framework. The real-time anomaly detection system. The initiative that will, finally, make data a strategic asset.

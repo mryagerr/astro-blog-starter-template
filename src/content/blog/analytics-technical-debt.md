@@ -4,6 +4,7 @@ description: 'Technical debt is just as real in analytics as it is in software. 
 pubDate: 'Mar 28 2026'
 heroImage: '/blog-analytics-debt.svg'
 difficulty: 'high'
+tags: ['analysis', 'culture']
 ---
 
 Software engineers talk about technical debt constantly. Analytics teams almost never do. That asymmetry is a problem, because analytical debt compounds the same way — it just fails more quietly, and the damage often shows up in a board meeting rather than a stack trace.

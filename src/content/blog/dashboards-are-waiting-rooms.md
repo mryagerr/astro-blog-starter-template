@@ -4,6 +4,7 @@ description: 'Every dashboard is a hand-off to a human being. That hand-off cost
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-dashboards.svg'
 difficulty: 'high'
+tags: ['analysis', 'culture']
 ---
 
 There is a moment every data team eventually reaches. The pipeline is clean. The metrics are well-defined. The dashboards are beautiful. The stakeholders have been trained. The reporting cadence is locked in. And then someone in leadership says: "Great — now what does this actually do for us?"

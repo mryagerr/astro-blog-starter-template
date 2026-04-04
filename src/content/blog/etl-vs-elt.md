@@ -4,6 +4,7 @@ description: 'ETL and ELT both move data from source to destination, but they ma
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-etl-vs-elt.svg'
 difficulty: 'low'
+tags: ['pipelines']
 ---
 
 Every data pipeline answers the same question: how do you get raw data from a source into a place where you can actually use it? The two dominant patterns — **ETL** and **ELT** — answer that question in opposite order, and the difference matters more than it first appears.

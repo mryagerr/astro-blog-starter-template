@@ -4,6 +4,7 @@ description: 'A practical roadmap for Excel power users ready to adopt SQL. Thes
 pubDate: 'Mar 28 2026'
 heroImage: '/blog-excel-sql.svg'
 difficulty: 'low'
+tags: ['preparation']
 ---
 
 If you already know Excel well, SQL is easier to learn than most people expect. The concepts map almost directly — you're just swapping formulas and pivot tables for queries. This article lays out the highest-value topics to tackle first: the ones that immediately replace the most painful parts of Excel work with something faster and more reliable.

@@ -165,6 +165,60 @@ describe('articleSchema', () => {
 		});
 	});
 
+	describe('tags', () => {
+		it('accepts valid tags array', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: '2024-03-15',
+				tags: ['collection', 'analysis'],
+			});
+			expect(result.success).toBe(true);
+		});
+
+		it('accepts empty tags array', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: '2024-03-15',
+				tags: [],
+			});
+			expect(result.success).toBe(true);
+		});
+
+		it('accepts frontmatter without tags', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: '2024-03-15',
+			});
+			expect(result.success).toBe(true);
+			if (result.success) {
+				expect(result.data.tags).toBeUndefined();
+			}
+		});
+
+		it('rejects invalid tag values', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: '2024-03-15',
+				tags: ['invalid-tag'],
+			});
+			expect(result.success).toBe(false);
+		});
+
+		it('accepts all valid tag values', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: '2024-03-15',
+				tags: ['collection', 'preparation', 'pipelines', 'analysis', 'culture', 'career'],
+			});
+			expect(result.success).toBe(true);
+		});
+	});
+
 	describe('full frontmatter', () => {
 		it('accepts all fields populated', () => {
 			const result = articleSchema.safeParse({
@@ -174,6 +228,7 @@ describe('articleSchema', () => {
 				updatedDate: '2024-03-20',
 				heroImage: '/blog-placeholder-1.svg',
 				difficulty: 'low',
+				tags: ['collection', 'preparation'],
 			});
 			expect(result.success).toBe(true);
 		});

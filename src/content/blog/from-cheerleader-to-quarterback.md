@@ -4,6 +4,7 @@ description: 'Data professionals who only understand the tools but not the domai
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-cheerleader-quarterback.svg'
 difficulty: 'high'
+tags: ['career', 'culture']
 ---
 
 There is a version of the data professional that every business has hired at some point: technically competent, can write clean SQL, builds solid pipelines, puts together a dashboard that looks great in a presentation. And then nothing happens. The dashboards sit. The recommendations get filed away. The analyst wonders why their work is not being used.
