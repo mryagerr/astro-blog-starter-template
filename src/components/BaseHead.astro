@@ -32,7 +32,9 @@ const { title, description, image = '/blog-og-default.svg', type = 'website', pu
 <!-- Google Fonts: Playfair Display (headings), Source Serif 4 (body), JetBrains Mono (labels) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -59,5 +61,34 @@ const { title, description, image = '/blog-og-default.svg', type = 'website', pu
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8694735074564604" crossorigin="anonymous"></script>
+<!-- JSON-LD Structured Data -->
+{type === 'article' && pubDate && (
+	<script type="application/ld+json" set:html={JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Article',
+		headline: title,
+		description: description,
+		image: image ? new URL(image, Astro.site).toString() : undefined,
+		datePublished: pubDate.toISOString(),
+		dateModified: updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
+		author: {
+			'@type': 'Person',
+			name: 'Low Hanging Data',
+			url: Astro.site?.toString(),
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'Low Hanging Data',
+			url: Astro.site?.toString(),
+		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': canonicalURL.toString(),
+		},
+	})} />
+)}
+
+<!-- Google AdSense (article pages only) -->
+{type === 'article' && (
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8694735074564604" crossorigin="anonymous"></script>
+)}

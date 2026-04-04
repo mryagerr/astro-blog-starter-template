@@ -4,6 +4,7 @@ description: 'The two most common data formats explained — how to read, write,
 pubDate: 'Mar 06 2025'
 heroImage: '/blog-csv-json.svg'
 difficulty: 'low'
+tags: ['collection', 'preparation']
 ---
 
 CSV and JSON account for the majority of data files you will encounter in the wild. Each has a simple concept and a surprising number of edge cases. This article covers both formats from the ground up, with practical code for reading, writing, and converting between them.

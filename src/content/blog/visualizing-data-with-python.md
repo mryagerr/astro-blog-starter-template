@@ -4,6 +4,7 @@ description: 'Turn raw numbers into charts that reveal patterns — using matplo
 pubDate: 'Mar 25 2025'
 heroImage: '/blog-visualize-python.svg'
 difficulty: 'low'
+tags: ['analysis']
 ---
 
 Numbers in a spreadsheet hide their patterns. A well-chosen chart reveals them instantly. Visualization is not decoration — it is the fastest way to find outliers, understand distributions, and communicate findings. This article covers the three Python libraries that cover most visualization needs, and when to use each.

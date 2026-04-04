@@ -4,6 +4,7 @@ description: 'Smart, connected products have transformed data from an internal o
 pubDate: 'Mar 28 2026'
 heroImage: '/blog-data-landscape.svg'
 difficulty: 'low'
+tags: ['culture']
 ---
 
 For most of computing history, data was a byproduct. Transactions happened, records were written, reports were generated. The people who cared about that data were inside the organization: finance, operations, sales. The architecture reflected that — data flowed into a warehouse, analysts queried it, dashboards were built. The stakeholder model was simple because the data model was simple.

@@ -19,18 +19,29 @@ const { Content, headings } = await render(post);
 const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-// Related posts: 3 most recent articles excluding current
+// Related posts: prefer articles sharing tags, then fall back to most recent
 const allPosts = sortByPubDateDesc(await getCollection('blog'));
-const relatedPosts = allPosts
-	.filter((p) => p.id !== post.id)
+const otherPosts = allPosts.filter((p) => p.id !== post.id);
+const currentTags = post.data.tags ?? [];
+
+// Score each post by number of shared tags
+const scored = otherPosts.map((p) => {
+	const sharedTags = (p.data.tags ?? []).filter((t) => currentTags.includes(t)).length;
+	return { post: p, sharedTags };
+});
+
+// Sort by shared tags desc, then by pubDate desc (already sorted)
+scored.sort((a, b) => b.sharedTags - a.sharedTags || b.post.data.pubDate.getTime() - a.post.data.pubDate.getTime());
+
+const relatedPosts = scored
 	.slice(0, 3)
-	.map((p) => ({
-		id: p.id,
-		title: p.data.title,
-		description: p.data.description,
-		pubDate: p.data.pubDate,
-		heroImage: p.data.heroImage,
-		href: `/article/${p.id}/`,
+	.map((s) => ({
+		id: s.post.id,
+		title: s.post.data.title,
+		description: s.post.data.description,
+		pubDate: s.post.data.pubDate,
+		heroImage: s.post.data.heroImage,
+		href: `/article/${s.post.id}/`,
 	}));
 ---
 

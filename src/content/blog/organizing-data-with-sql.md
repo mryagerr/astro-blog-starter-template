@@ -4,6 +4,7 @@ description: 'Use SQL to filter, sort, join, and aggregate your data. A practica
 pubDate: 'Mar 14 2025'
 heroImage: '/blog-sql.svg'
 difficulty: 'low'
+tags: ['preparation']
 ---
 
 SQL is the most widely understood language for working with structured data. Once your data is in a database — or even a CSV loaded into SQLite or DuckDB — you can answer almost any question about it with a query. This article focuses on the practical patterns you'll use constantly.

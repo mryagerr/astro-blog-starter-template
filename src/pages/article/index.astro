@@ -7,8 +7,17 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { sortByPubDateDesc } from '../../utils/sort';
 import { getDifficultyLabel, getDifficultyClass } from '../../utils/difficultyBadge';
+import { VALID_TAGS, TAG_LABELS, type Tag } from '../../utils/contentSchema';
 
 const posts = sortByPubDateDesc(await getCollection('blog'));
+
+// Count articles per tag
+const tagCounts = new Map<Tag, number>();
+for (const post of posts) {
+	for (const tag of post.data.tags ?? []) {
+		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	}
+}
 ---
 
 <!doctype html>
@@ -18,23 +27,30 @@ const posts = sortByPubDateDesc(await getCollection('blog'));
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main id="main-content">
 			<div class="page-header">
 				<h1>Articles</h1>
 				<p class="page-sub">All guides, organized by publish date. Start with the <a href="/#start-here">Start Here</a> sequence if you're new.</p>
 			</div>
 
+			<div class="tag-filters" aria-label="Filter by topic">
+				<button class="tag-btn active" data-tag="all">All ({posts.length})</button>
+				{VALID_TAGS.filter(t => tagCounts.has(t)).map((tag) => (
+					<button class="tag-btn" data-tag={tag}>{TAG_LABELS[tag]} ({tagCounts.get(tag)})</button>
+				))}
+			</div>
+
 			<ul class="post-grid">
 				{
 					posts.map((post, i) => (
-						<li class={`post-card${i === 0 ? ' post-card--featured' : ''}`}>
+						<li class={`post-card${i === 0 ? ' post-card--featured' : ''}`} data-tags={(post.data.tags ?? []).join(',')}>
 							<a href={`/article/${post.id}/`}>
 								<div class="card-img-wrap">
 									<img
 										width={720}
 										height={360}
 										src={post.data.heroImage ?? '/blog-placeholder-1.svg'}
-										alt=""
+										alt={`Hero image for ${post.data.title}`}
 										loading="lazy"
 										decoding="async"
 										sizes={i === 0
@@ -196,6 +212,40 @@ const posts = sortByPubDateDesc(await getCollection('blog'));
 	.difficulty-low  { background: #dcfce7; color: #166534; }
 	.difficulty-high { background: #fef9c3; color: #854d0e; }
 
+	.tag-filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.tag-btn {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		padding: 0.35em 0.85em;
+		border-radius: 999px;
+		border: 1.5px solid var(--rule);
+		background: transparent;
+		color: var(--caption);
+		cursor: pointer;
+		transition: all 0.18s ease;
+	}
+
+	.tag-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	.tag-btn.active {
+		background: var(--accent);
+		color: #fff;
+		border-color: var(--accent);
+	}
+
+	.post-card[hidden] { display: none; }
+
 	@media (max-width: 720px) {
 		.post-grid { grid-template-columns: 1fr; gap: 1rem; }
 		.post-card--featured { grid-column: unset; }
@@ -210,3 +260,24 @@ const posts = sortByPubDateDesc(await getCollection('blog'));
 		.card-body { padding: 0.75rem 0.9rem; }
 	}
 </style>
+
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+	const cards = document.querySelectorAll<HTMLElement>('.post-card');
+
+	buttons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const tag = btn.dataset.tag;
+			buttons.forEach((b) => b.classList.remove('active'));
+			btn.classList.add('active');
+			cards.forEach((card) => {
+				if (tag === 'all') {
+					card.hidden = false;
+				} else {
+					const tags = (card.dataset.tags ?? '').split(',');
+					card.hidden = !tags.includes(tag!);
+				}
+			});
+		});
+	});
+</script>

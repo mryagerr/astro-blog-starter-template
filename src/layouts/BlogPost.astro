@@ -423,6 +423,11 @@ const showToc = tocHeadings.length >= 3;
 			.newsletter-form button:hover {
 				background: var(--accent-dark);
 			}
+			.newsletter-confirm {
+				font-size: 0.88rem;
+				color: var(--accent-dark);
+				margin: 0.75rem 0 0;
+			}
 
 			/* ─── Responsive ──────────────────────────────────────── */
 			@media (max-width: 900px) {
@@ -467,7 +472,7 @@ const showToc = tocHeadings.length >= 3;
 			window.addEventListener('scroll', updateProgress, { passive: true });
 		</script>
 		<Header />
-		<main>
+		<main id="main-content">
 			<article>
 				<!-- Breadcrumb -->
 				{breadcrumb && (
@@ -482,7 +487,7 @@ const showToc = tocHeadings.length >= 3;
 
 				<!-- Hero image -->
 				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" loading="eager" decoding="async" sizes="(max-width: 820px) calc(100vw - 2em), 820px" />}
+					{heroImage && <img width={1020} height={510} src={heroImage} alt={`Hero image for ${title}`} loading="eager" decoding="async" sizes="(max-width: 820px) calc(100vw - 2em), 820px" />}
 				</div>
 
 				<!-- Content layout -->
@@ -595,7 +600,7 @@ const showToc = tocHeadings.length >= 3;
 										<a href={rp.href}>
 											<img
 												src={rp.heroImage ?? '/blog-placeholder-1.svg'}
-												alt=""
+												alt={`Hero image for ${rp.title}`}
 												loading="lazy"
 												decoding="async"
 											/>
@@ -614,11 +619,29 @@ const showToc = tocHeadings.length >= 3;
 					<div class="newsletter-cta">
 						<p class="newsletter-heading">Get new articles by email</p>
 						<p class="newsletter-sub">Practical guides on data workflows, delivered when published. No spam.</p>
-						<form class="newsletter-form" action="/about#contact" method="get">
+						<form class="newsletter-form" id="newsletter-form">
 							<input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
 							<button type="submit">Subscribe →</button>
 						</form>
+						<p class="newsletter-confirm" id="newsletter-confirm" hidden>
+							Thanks! Opening your email client so you can confirm your subscription.
+						</p>
 					</div>
+					<script>
+						const form = document.getElementById('newsletter-form') as HTMLFormElement;
+						const confirm = document.getElementById('newsletter-confirm') as HTMLElement;
+						form?.addEventListener('submit', (e) => {
+							e.preventDefault();
+							const email = new FormData(form).get('email') as string;
+							if (email) {
+								const subject = encodeURIComponent('Subscribe to Low Hanging Data');
+								const body = encodeURIComponent(`Hi,\n\nPlease add ${email} to the Low Hanging Data mailing list.\n\nThanks!`);
+								window.location.href = `mailto:admin@lowhangingdata.com?subject=${subject}&body=${body}`;
+								form.hidden = true;
+								confirm.hidden = false;
+							}
+						});
+					</script>
 
 					</div><!-- end .prose -->
 

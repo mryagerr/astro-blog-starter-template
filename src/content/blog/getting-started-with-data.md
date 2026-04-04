@@ -4,6 +4,7 @@ description: 'Understand data sources, formats, and the basic workflow for colle
 pubDate: 'Mar 03 2025'
 heroImage: '/blog-data-collection.svg'
 difficulty: 'low'
+tags: ['collection']
 ---
 
 Before you write a single query or script, it pays to spend a few minutes mapping out what you actually need. Most data collection problems break down the same way: find the source, understand the format, pull the data, and organize it. This article covers each step at a conceptual level — the later articles in this series go deep on the code.

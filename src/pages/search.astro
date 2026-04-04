@@ -16,6 +16,27 @@ interface Result {
 	url: string;
 	pubDate: Date;
 	type: 'Article' | 'Post';
+	score: number;
+}
+
+/**
+ * Fuzzy match: returns true if all query terms appear in the text,
+ * or if any term is a substring (handles "pipe" matching "pipeline").
+ * Returns a relevance score (higher = better match).
+ */
+function fuzzyScore(text: string, terms: string[]): number {
+	const lower = text.toLowerCase();
+	let score = 0;
+	for (const term of terms) {
+		if (lower.includes(term)) {
+			score += term.length / lower.length * 10;
+			// Bonus for word-boundary match
+			if (lower.includes(' ' + term) || lower.startsWith(term)) {
+				score += 2;
+			}
+		}
+	}
+	return score;
 }
 
 let results: Result[] = [];
@@ -24,9 +45,11 @@ let searched = false;
 if (queryLower) {
 	searched = true;
 	const articles = await getCollection('blog');
-	const posts = await getCollection('posts');
+	const blogPosts = await getCollection('posts');
 
-	const allContent: Result[] = [
+	const terms = queryLower.split(/\s+/).filter(Boolean);
+
+	const allContent = [
 		...articles.map((a) => ({
 			title: a.data.title,
 			description: a.data.description,
@@ -34,7 +57,7 @@ if (queryLower) {
 			pubDate: a.data.pubDate,
 			type: 'Article' as const,
 		})),
-		...posts.map((p) => ({
+		...blogPosts.map((p) => ({
 			title: p.data.title,
 			description: p.data.description,
 			url: `/posts/${p.id}/`,
@@ -44,12 +67,27 @@ if (queryLower) {
 	];
 
 	results = allContent
-		.filter(
-			(entry) =>
-				entry.title.toLowerCase().includes(queryLower) ||
-				entry.description.toLowerCase().includes(queryLower)
-		)
-		.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+		.map((entry) => {
+			const titleScore = fuzzyScore(entry.title, terms);
+			const descScore = fuzzyScore(entry.description, terms);
+			// Title matches are worth more
+			const score = titleScore * 2 + descScore;
+			return { ...entry, score };
+		})
+		.filter((entry) => entry.score > 0)
+		.sort((a, b) => b.score - a.score || b.pubDate.getTime() - a.pubDate.getTime());
+}
+
+/**
+ * Highlight matching query terms in text.
+ */
+function highlightMatch(text: string, queryStr: string): string {
+	if (!queryStr) return text;
+	const terms = queryStr.toLowerCase().split(/\s+/).filter(Boolean);
+	// Build regex matching any term
+	const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+	const regex = new RegExp(`(${escaped.join('|')})`, 'gi');
+	return text.replace(regex, '<mark>$1</mark>');
 }
 ---
 
@@ -63,7 +101,7 @@ if (queryLower) {
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main id="main-content">
 			<h1>Search</h1>
 
 			<form class="search-form" action="/search" method="get" role="search">
@@ -99,8 +137,8 @@ if (queryLower) {
 												<span class="result-type">{r.type}</span>
 												<span class="result-date"><FormattedDate date={r.pubDate} /></span>
 											</div>
-											<h2 class="result-title">{r.title}</h2>
-											<p class="result-desc">{r.description}</p>
+											<h2 class="result-title" set:html={highlightMatch(r.title, query)} />
+											<p class="result-desc" set:html={highlightMatch(r.description, query)} />
 										</a>
 									</li>
 								))}
@@ -255,5 +293,12 @@ if (queryLower) {
 		font-size: 0.88rem;
 		color: var(--caption);
 		line-height: 1.5;
+	}
+
+	:global(mark) {
+		background: rgba(8, 145, 178, 0.15);
+		color: inherit;
+		border-radius: 2px;
+		padding: 0 1px;
 	}
 </style>

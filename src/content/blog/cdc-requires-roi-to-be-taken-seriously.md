@@ -4,6 +4,7 @@ description: 'CDC is powerful infrastructure, but it carries real costs in compl
 pubDate: 'Mar 27 2026'
 heroImage: '/blog-cdc.svg'
 difficulty: 'high'
+tags: ['pipelines', 'culture']
 ---
 
 Change Data Capture is one of those technologies that data engineers love talking about more than organizations love funding. The pitch is compelling: instead of batch-loading entire tables on a schedule, you stream every row-level change — inserts, updates, deletes — in near real-time, directly from the database transaction log. It's elegant. It solves real problems. And it is genuinely difficult to justify to anyone who controls a budget.

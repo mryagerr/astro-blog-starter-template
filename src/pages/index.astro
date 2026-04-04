@@ -39,7 +39,7 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 			</div>
 		</section>
 
-		<main>
+		<main id="main-content">
 			<!-- ─── Latest Articles ───────────────────────────────────── -->
 			<section class="latest-articles">
 				<div class="section-header">
@@ -55,7 +55,7 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 										width={720}
 										height={360}
 										src={post.data.heroImage ?? '/blog-placeholder-1.svg'}
-										alt=""
+										alt={`Hero image for ${post.data.title}`}
 										loading="lazy"
 										decoding="async"
 									/>

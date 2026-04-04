@@ -4,6 +4,7 @@ description: 'How to train an SVM classifier on Reddit sentiment, Google Trends,
 pubDate: 'Mar 26 2026'
 heroImage: '/blog-scikit-learn.svg'
 difficulty: 'high'
+tags: ['analysis']
 ---
 
 This article covers the machine learning layer of the stock prediction pipeline — taking the feature matrix produced by DuckDB and training an SVM classifier to predict 30-minute price direction. The [DuckDB for Financial Analysis](/article/duckdb-for-financial-analysis) article covers building the feature matrix; this one picks up from there.

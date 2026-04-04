@@ -4,6 +4,7 @@ description: 'The best executive-facing analysis does two contradictory things a
 pubDate: 'Mar 29 2026'
 heroImage: '/blog-write-executive.svg'
 difficulty: 'low'
+tags: ['culture']
 ---
 
 There is a version of executive analysis that gets read, acted on, and then quietly dismantled by the team assigned to review it. The decision reverses. The analyst loses credibility. The project dies in a working group.

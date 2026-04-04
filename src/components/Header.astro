@@ -3,6 +3,7 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
+<a class="skip-link" href="#main-content">Skip to content</a>
 <header>
 	<nav>
 		<a href="/" class="wordmark" aria-label="Low Hanging Data — home">{SITE_TITLE}</a>
@@ -70,9 +71,55 @@ import { SITE_TITLE } from '../consts';
 			hamburger?.setAttribute('aria-expanded', 'false');
 		});
 	});
+
+	// Close on Escape key
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && header?.classList.contains('nav-open')) {
+			header.classList.remove('nav-open');
+			hamburger?.setAttribute('aria-expanded', 'false');
+			hamburger?.focus();
+		}
+	});
+
+	// Trap focus within nav panel when open
+	const navPanel = document.getElementById('nav-panel');
+	navPanel?.addEventListener('keydown', (e) => {
+		if (e.key !== 'Tab' || !header?.classList.contains('nav-open')) return;
+		const focusable = navPanel.querySelectorAll<HTMLElement>('a, button, input');
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
+		if (e.shiftKey && document.activeElement === first) {
+			e.preventDefault();
+			last?.focus();
+		} else if (!e.shiftKey && document.activeElement === last) {
+			e.preventDefault();
+			first?.focus();
+		}
+	});
 </script>
 
 <style>
+	.skip-link {
+		position: absolute;
+		top: -100%;
+		left: 1rem;
+		z-index: 200;
+		padding: 0.5em 1em;
+		background: var(--accent);
+		color: #fff;
+		border-radius: 0 0 6px 6px;
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition: top 0.15s;
+	}
+	.skip-link:focus {
+		top: 0;
+		color: #fff;
+		text-decoration: none;
+	}
+
 	header {
 		position: sticky;
 		top: 0;
