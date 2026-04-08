@@ -39,6 +39,9 @@ const { title, description, image = '/blog-og-default.svg', type = 'website', pu
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!-- RSS Feed Auto-discovery -->
+<link rel="alternate" type="application/rss+xml" title={`${title} RSS Feed`} href="/rss.xml" />
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
