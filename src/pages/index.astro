@@ -44,7 +44,7 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 			<section class="latest-articles">
 				<div class="section-header">
 					<h2 class="section-title">Latest Articles</h2>
-					<a href="/article" class="view-all">View all →</a>
+					<a href="/article/" class="view-all">View all →</a>
 				</div>
 				<ul class="article-grid">
 					{latestArticles.map((post) => (

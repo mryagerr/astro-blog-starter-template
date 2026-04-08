@@ -71,16 +71,21 @@ describe('isActiveLink', () => {
 	});
 
 	describe('trailing slash', () => {
-		// href with trailing slash does NOT match because neither the exact check
-		// ('/about/' !== 'about') nor the section check ('/about/' !== '/about') passes.
-		it('does not activate /about/ href when on /about pathname', () => {
-			expect(isActiveLink('/about/', '/about', '/')).toBe(false);
+		// Trailing slashes are normalized before comparison, so /about/ and /about are equivalent.
+		it('activates /about/ href when on /about pathname (normalized)', () => {
+			expect(isActiveLink('/about/', '/about', '/')).toBe(true);
 		});
 
-		// pathname with trailing slash DOES match via the section-level rule:
-		// the first path segment of '/about/' is still 'about', so href '/about' matches.
-		it('activates /about href when on /about/ pathname (section-level match)', () => {
+		it('activates /about href when on /about/ pathname (normalized)', () => {
 			expect(isActiveLink('/about', '/about/', '/')).toBe(true);
+		});
+
+		it('activates /about/ href when on /about/ pathname', () => {
+			expect(isActiveLink('/about/', '/about/', '/')).toBe(true);
+		});
+
+		it('activates /article/ href when on a nested article route with trailing slash', () => {
+			expect(isActiveLink('/article/', '/article/my-post/', '/')).toBe(true);
 		});
 	});
 

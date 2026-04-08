@@ -25,6 +25,7 @@ function rehypeResponsiveImages() {
 // https://astro.build/config
 export default defineConfig({
 	site: "https://lowhangingdata.com",
+	trailingSlash: "always",
 	integrations: [mdx(), sitemap()],
 	markdown: {
 		rehypePlugins: [rehypeResponsiveImages],

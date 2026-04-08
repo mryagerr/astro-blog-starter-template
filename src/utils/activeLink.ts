@@ -13,6 +13,10 @@ export function isActiveLink(
 ): boolean {
 	if (href === undefined) return false;
 	const pathname = rawPathname.replace(baseUrl, '');
-	const subpath = pathname.match(/[^\/]+/g);
-	return href === pathname || href === '/' + (subpath?.[0] ?? '');
+	// Normalize trailing slashes so /article and /article/ are treated the same
+	const normalize = (p: string) => (p.length > 1 ? p.replace(/\/$/, '') : p);
+	const normalizedHref = normalize(href);
+	const normalizedPathname = normalize(pathname);
+	const subpath = normalizedPathname.match(/[^\/]+/g);
+	return normalizedHref === normalizedPathname || normalizedHref === '/' + (subpath?.[0] ?? '');
 }
