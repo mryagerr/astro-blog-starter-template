@@ -4,23 +4,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
 import cloudflare from "@astrojs/cloudflare";
-
-/** @type {() => import('unified').Plugin} */
-function rehypeResponsiveImages() {
-	return function (tree) {
-		/** @param {any} node */
-		function visit(node) {
-			if (node.type === "element" && node.tagName === "img") {
-				node.properties.loading ??= "lazy";
-				node.properties.decoding ??= "async";
-			}
-			if (node.children) {
-				node.children.forEach(visit);
-			}
-		}
-		visit(tree);
-	};
-}
+import { rehypeResponsiveImages } from "./src/utils/rehypeResponsiveImages.ts";
 
 // https://astro.build/config
 export default defineConfig({

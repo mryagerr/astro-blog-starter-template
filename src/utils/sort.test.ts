@@ -65,4 +65,38 @@ describe('sortByPubDateDesc', () => {
 		expect((result[0] as typeof entry).id).toBe('abc');
 		expect((result[0] as typeof entry).data.title).toBe('Hello');
 	});
+
+	it('maintains stable order for entries with identical dates', () => {
+		// Create entries with the same date but different identifiers
+		const a = { data: { pubDate: new Date('2024-06-01') }, id: 'a' };
+		const b = { data: { pubDate: new Date('2024-06-01') }, id: 'b' };
+		const c = { data: { pubDate: new Date('2024-06-01') }, id: 'c' };
+		const result = sortByPubDateDesc([a, b, c]);
+		// Array.sort is stable in V8, so original order should be preserved
+		expect((result[0] as typeof a).id).toBe('a');
+		expect((result[1] as typeof b).id).toBe('b');
+		expect((result[2] as typeof c).id).toBe('c');
+	});
+
+	it('handles dates spanning centuries', () => {
+		const old = makeEntry(new Date('1900-01-01'));
+		const mid = makeEntry(new Date('2000-06-15'));
+		const future = makeEntry(new Date('2100-12-31'));
+		const result = sortByPubDateDesc([old, future, mid]);
+		expect(result[0]).toBe(future);
+		expect(result[1]).toBe(mid);
+		expect(result[2]).toBe(old);
+	});
+
+	it('handles a large array correctly', () => {
+		const entries = Array.from({ length: 100 }, (_, i) => {
+			const date = new Date(`2024-01-01`);
+			date.setDate(date.getDate() + i);
+			return makeEntry(date);
+		});
+		const result = sortByPubDateDesc(entries);
+		expect(result).toHaveLength(100);
+		// First should be the newest (day 99)
+		expect(result[0].data.pubDate.getTime()).toBeGreaterThan(result[99].data.pubDate.getTime());
+	});
 });

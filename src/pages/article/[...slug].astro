@@ -2,6 +2,8 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import { sortByPubDateDesc } from '../../utils/sort';
+import { calculateReadingTime } from '../../utils/readingTime';
+import { findRelatedPosts } from '../../utils/relatedPosts';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -15,34 +17,15 @@ type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const { Content, headings } = await render(post);
 
-// Reading time: ~200 wpm
-const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
-const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+const readingTime = calculateReadingTime(post.body);
 
-// Related posts: prefer articles sharing tags, then fall back to most recent
 const allPosts = sortByPubDateDesc(await getCollection('blog'));
-const otherPosts = allPosts.filter((p) => p.id !== post.id);
-const currentTags = post.data.tags ?? [];
-
-// Score each post by number of shared tags
-const scored = otherPosts.map((p) => {
-	const sharedTags = (p.data.tags ?? []).filter((t) => currentTags.includes(t)).length;
-	return { post: p, sharedTags };
-});
-
-// Sort by shared tags desc, then by pubDate desc (already sorted)
-scored.sort((a, b) => b.sharedTags - a.sharedTags || b.post.data.pubDate.getTime() - a.post.data.pubDate.getTime());
-
-const relatedPosts = scored
-	.slice(0, 3)
-	.map((s) => ({
-		id: s.post.id,
-		title: s.post.data.title,
-		description: s.post.data.description,
-		pubDate: s.post.data.pubDate,
-		heroImage: s.post.data.heroImage,
-		href: `/article/${s.post.id}/`,
-	}));
+const relatedPosts = findRelatedPosts(
+	post.id,
+	post.data.tags ?? [],
+	allPosts,
+	'/article/',
+);
 ---
 
 <BlogPost

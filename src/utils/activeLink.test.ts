@@ -98,4 +98,32 @@ describe('isActiveLink', () => {
 			expect(isActiveLink('/posts', '/article/category/my-post', '/')).toBe(false);
 		});
 	});
+
+	describe('paths with query params and fragments', () => {
+		it('does not match when pathname has query-like suffix', () => {
+			// rawPathname in Astro is just the path, but ensure no false positives
+			expect(isActiveLink('/blog', '/blog-archive', '/')).toBe(false);
+		});
+
+		it('does not activate when href is a prefix but not a section match', () => {
+			// /art should not activate on /article
+			expect(isActiveLink('/art', '/article/my-post', '/')).toBe(false);
+		});
+	});
+
+	describe('paths with hyphens and numbers', () => {
+		it('activates /blog-2024 when on that exact path', () => {
+			expect(isActiveLink('/blog-2024', '/blog-2024', '/')).toBe(true);
+		});
+
+		it('activates section for hyphenated path', () => {
+			expect(isActiveLink('/blog-2024', '/blog-2024/my-post', '/')).toBe(true);
+		});
+	});
+
+	describe('BASE_URL with trailing slash', () => {
+		it('handles BASE_URL with trailing slash', () => {
+			expect(isActiveLink('/blog', '/app/blog', '/app')).toBe(true);
+		});
+	});
 });

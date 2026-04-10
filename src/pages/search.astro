@@ -6,6 +6,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { getCollection } from 'astro:content';
+import { fuzzyScore, highlightMatch } from '../utils/search';
 
 const query = (Astro.url.searchParams.get('q') || '').trim();
 const queryLower = query.toLowerCase();
@@ -17,26 +18,6 @@ interface Result {
 	pubDate: Date;
 	type: 'Article' | 'Post';
 	score: number;
-}
-
-/**
- * Fuzzy match: returns true if all query terms appear in the text,
- * or if any term is a substring (handles "pipe" matching "pipeline").
- * Returns a relevance score (higher = better match).
- */
-function fuzzyScore(text: string, terms: string[]): number {
-	const lower = text.toLowerCase();
-	let score = 0;
-	for (const term of terms) {
-		if (lower.includes(term)) {
-			score += term.length / lower.length * 10;
-			// Bonus for word-boundary match
-			if (lower.includes(' ' + term) || lower.startsWith(term)) {
-				score += 2;
-			}
-		}
-	}
-	return score;
 }
 
 let results: Result[] = [];
@@ -78,17 +59,6 @@ if (queryLower) {
 		.sort((a, b) => b.score - a.score || b.pubDate.getTime() - a.pubDate.getTime());
 }
 
-/**
- * Highlight matching query terms in text.
- */
-function highlightMatch(text: string, queryStr: string): string {
-	if (!queryStr) return text;
-	const terms = queryStr.toLowerCase().split(/\s+/).filter(Boolean);
-	// Build regex matching any term
-	const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-	const regex = new RegExp(`(${escaped.join('|')})`, 'gi');
-	return text.replace(regex, '<mark>$1</mark>');
-}
 ---
 
 <!doctype html>

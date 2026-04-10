@@ -39,6 +39,30 @@ describe('formatDate', () => {
 	it('returns a string', () => {
 		expect(typeof formatDate(new Date())).toBe('string');
 	});
+
+	it('handles leap year date (Feb 29)', () => {
+		const date = new Date('2024-02-29T12:00:00Z');
+		expect(formatDate(date)).toBe('Feb 29, 2024');
+	});
+
+	it('handles New Year boundary (Jan 1)', () => {
+		const date = new Date('2025-01-01T12:00:00Z');
+		expect(formatDate(date)).toBe('Jan 1, 2025');
+	});
+
+	it('handles single-digit day', () => {
+		const date = new Date('2024-06-02T12:00:00Z');
+		const result = formatDate(date);
+		expect(result).toMatch(/Jun/);
+		expect(result).toMatch(/2/);
+	});
+
+	it('handles a date far in the past', () => {
+		const date = new Date('1900-05-15T12:00:00Z');
+		const result = formatDate(date);
+		expect(result).toMatch(/May/);
+		expect(result).toMatch(/1900/);
+	});
 });
 
 describe('getCurrentYear', () => {

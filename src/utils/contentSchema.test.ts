@@ -233,4 +233,76 @@ describe('articleSchema', () => {
 			expect(result.success).toBe(true);
 		});
 	});
+
+	describe('edge cases', () => {
+		it('accepts a Date object for pubDate (not just strings)', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: new Date('2024-03-15'),
+			});
+			expect(result.success).toBe(true);
+			if (result.success) {
+				expect(result.data.pubDate).toBeInstanceOf(Date);
+			}
+		});
+
+		it('accepts a leap year date', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: '2024-02-29',
+			});
+			expect(result.success).toBe(true);
+		});
+
+		it('accepts a very long title', () => {
+			const result = articleSchema.safeParse({
+				title: 'A'.repeat(1000),
+				description: 'Test',
+				pubDate: '2024-03-15',
+			});
+			expect(result.success).toBe(true);
+		});
+
+		it('accepts unicode characters in title and description', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test with emojis 🚀🎉 and Unicode àáâ',
+				description: 'Description with 日本語 characters',
+				pubDate: '2024-03-15',
+			});
+			expect(result.success).toBe(true);
+		});
+
+		it('rejects non-string title', () => {
+			const result = articleSchema.safeParse({
+				title: 123,
+				description: 'Test',
+				pubDate: '2024-03-15',
+			});
+			expect(result.success).toBe(false);
+		});
+
+		it('rejects non-string description', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 42,
+				pubDate: '2024-03-15',
+			});
+			expect(result.success).toBe(false);
+		});
+
+		it('strips unknown fields (strict by default)', () => {
+			const result = articleSchema.safeParse({
+				title: 'Test',
+				description: 'Test',
+				pubDate: '2024-03-15',
+				unknownField: 'should be stripped',
+			});
+			expect(result.success).toBe(true);
+			if (result.success) {
+				expect((result.data as Record<string, unknown>)['unknownField']).toBeUndefined();
+			}
+		});
+	});
 });
