@@ -1,7 +1,7 @@
 ---
 title: 'ETL vs ELT: Choosing the Right Pipeline Pattern'
 description: 'ETL and ELT both move data from source to destination, but they make very different trade-offs between cost, flexibility, and setup complexity.'
-pubDate: 'Mar 29 2026'
+pubDate: 'Apr 06 2026'
 heroImage: '/blog-etl-vs-elt.svg'
 difficulty: 'low'
 tags: ['pipelines']

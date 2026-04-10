@@ -1,7 +1,7 @@
 ---
 title: 'Welcome to Posts'
 description: 'What the Posts section is, how it differs from Articles, and what to expect here.'
-pubDate: 'Mar 25 2026'
+pubDate: 'Mar 20 2026'
 heroImage: '/blog-welcome.svg'
 ---
 

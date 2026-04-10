@@ -1,7 +1,7 @@
 ---
 title: 'Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher'
 description: 'Chasing high-impact, high-complexity analytics projects before you have the domain knowledge or relationships to land them is the fastest way to produce work that nobody acts on. Low hanging fruit is not the consolation prize — it is the foundation.'
-pubDate: 'Mar 29 2026'
+pubDate: 'Apr 09 2026'
 heroImage: '/blog-low-hanging-fruit.svg'
 difficulty: 'low'
 tags: ['culture']

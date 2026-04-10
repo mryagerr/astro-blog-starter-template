@@ -1,7 +1,7 @@
 ---
 title: 'Python Virtual Environments'
 description: 'Isolate project dependencies with virtual environments so your projects stay reproducible and your system Python stays clean.'
-pubDate: 'Mar 28 2026'
+pubDate: 'Mar 23 2026'
 heroImage: '/blog-python-venv.svg'
 difficulty: 'low'
 tags: ['preparation']
