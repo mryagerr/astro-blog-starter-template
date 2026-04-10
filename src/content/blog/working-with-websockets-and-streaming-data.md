@@ -1,7 +1,7 @@
 ---
 title: 'Working with WebSockets and Streaming Data'
 description: 'Move beyond request-response APIs and collect real-time data streams using WebSockets — with practical examples for market data, news feeds, and social platforms.'
-pubDate: 'Mar 25 2025'
+pubDate: 'Mar 29 2025'
 heroImage: '/blog-websockets.svg'
 difficulty: 'high'
 tags: ['collection']

@@ -1,7 +1,7 @@
 ---
 title: 'Visualizing Data with Python'
 description: 'Turn raw numbers into charts that reveal patterns — using matplotlib, seaborn, and plotly for static and interactive visualizations.'
-pubDate: 'Mar 25 2025'
+pubDate: 'Mar 27 2025'
 heroImage: '/blog-visualize-python.svg'
 difficulty: 'low'
 tags: ['analysis']

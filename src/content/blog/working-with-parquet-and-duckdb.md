@@ -1,7 +1,7 @@
 ---
 title: 'Working with Parquet and DuckDB'
 description: 'Use columnar storage and an in-process SQL engine to query millions of rows faster than pandas — without a database server.'
-pubDate: 'Mar 25 2025'
+pubDate: 'Mar 28 2025'
 heroImage: '/blog-parquet-duckdb.svg'
 difficulty: 'high'
 tags: ['preparation']

@@ -1,7 +1,7 @@
 ---
 title: 'Data Careers Are Not Pokemon Evolutions'
 description: 'Data Analyst → Data Engineer → Data Scientist sounds like a clean progression, but the reality is messier, richer, and far more interesting than a linear evolution chain.'
-pubDate: 'Mar 28 2026'
+pubDate: 'Apr 01 2026'
 heroImage: '/blog-data-careers.svg'
 difficulty: 'low'
 tags: ['career']

@@ -1,7 +1,7 @@
 ---
 title: 'KPIs Are a Cultural Change, Not a Dashboard Project'
 description: 'Adopting key performance indicators only works if decision makers actually use them to make decisions. Without that commitment, KPIs become data for the sake of data — or worse, a yardstick that moves every time the number is inconvenient.'
-pubDate: 'Mar 29 2026'
+pubDate: 'Apr 03 2026'
 heroImage: '/blog-kpis-cultural.svg'
 difficulty: 'low'
 tags: ['culture']

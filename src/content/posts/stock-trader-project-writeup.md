@@ -1,7 +1,7 @@
 ---
 title: 'Building a Stock Prediction Pipeline: What We Did and What We Learned'
 description: 'A project retrospective on combining Reddit sentiment, Google Trends, and NYSE price data to predict short-term stock moves with an SVM classifier.'
-pubDate: 'Mar 25 2026'
+pubDate: 'Mar 21 2026'
 heroImage: '/blog-stock-prediction.svg'
 ---
 
