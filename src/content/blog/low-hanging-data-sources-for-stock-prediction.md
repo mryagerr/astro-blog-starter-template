@@ -155,6 +155,6 @@ Rather than using VIX as a raw price level, computing the **VIX delta** (day-ove
 
 ## Related Articles
 
-- **[DuckDB for Financial Data Analysis](/article/duckdb-for-financial-analysis)** — Storing and querying the market data these sources generate, without spinning up a full database server.
-- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — The underlying patterns for fetching paginated data, handling rate limits, and saving raw responses.
-- **[Building a Stock Prediction Classifier with scikit-learn](/article/building-a-stock-prediction-svm)** — Putting these data sources to work in an actual prediction model.
+- **[DuckDB for Financial Data Analysis](/article/duckdb-for-financial-analysis/)** — Storing and querying the market data these sources generate, without spinning up a full database server.
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis/)** — The underlying patterns for fetching paginated data, handling rate limits, and saving raw responses.
+- **[Building a Stock Prediction Classifier with scikit-learn](/article/building-a-stock-prediction-svm/)** — Putting these data sources to work in an actual prediction model.

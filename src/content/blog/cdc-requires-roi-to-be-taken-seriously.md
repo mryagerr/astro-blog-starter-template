@@ -121,6 +121,6 @@ That's a proposal that gets funded. Vague appeals to "real-time data" don't.
 
 ---
 
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Foundational pipeline concepts before adding streaming complexity.
-- **[Scheduling and Automating Pipelines](/article/scheduling-and-automating-pipelines)** — Often the right answer before reaching for CDC.
-- **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt)** — Understanding the batch pipeline trade-offs before evaluating real-time alternatives.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Foundational pipeline concepts before adding streaming complexity.
+- **[Scheduling and Automating Pipelines](/article/scheduling-and-automating-pipelines/)** — Often the right answer before reaching for CDC.
+- **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt/)** — Understanding the batch pipeline trade-offs before evaluating real-time alternatives.

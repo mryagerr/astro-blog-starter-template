@@ -113,6 +113,6 @@ Start where the fruit is. Climb from there.
 
 ## Related Articles
 
-- **[Crawl, Walk, Run: Why Many Attempts Beat One Perfect Try](/article/crawl-walk-run-building-engagement)** — The engagement side of the same principle: why shipping imperfect work early beats waiting for perfect work.
-- **[From Cheerleader to Quarterback: Why Data Professionals Must Be Half Subject Matter Expert](/article/from-cheerleader-to-quarterback)** — How domain expertise accumulates through exactly the kind of small, consistent delivery this article describes.
-- **[Don't Build Analytical Castles on Sand](/article/analytics-technical-debt)** — What happens when high-hanging analytical work gets built on a foundation nobody fully understood.
+- **[Crawl, Walk, Run: Why Many Attempts Beat One Perfect Try](/article/crawl-walk-run-building-engagement/)** — The engagement side of the same principle: why shipping imperfect work early beats waiting for perfect work.
+- **[From Cheerleader to Quarterback: Why Data Professionals Must Be Half Subject Matter Expert](/article/from-cheerleader-to-quarterback/)** — How domain expertise accumulates through exactly the kind of small, consistent delivery this article describes.
+- **[Don't Build Analytical Castles on Sand](/article/analytics-technical-debt/)** — What happens when high-hanging analytical work gets built on a foundation nobody fully understood.

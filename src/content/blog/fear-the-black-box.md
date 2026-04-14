@@ -217,6 +217,6 @@ The black box feels safe because you cannot see what is inside it. That is preci
 
 ## Related Articles
 
-- **[Don't Build Analytical Castles on Sand](/article/analytics-technical-debt)** — The other face of the same problem: how undocumented assumptions and untested transforms become compounding liabilities.
-- **[Data Cleaning and Validation](/article/data-cleaning-and-validation)** — Practical techniques for building validation into pipelines so failures surface visibly rather than silently.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Understanding the pipeline you depend on starts with knowing how to build one end to end.
+- **[Don't Build Analytical Castles on Sand](/article/analytics-technical-debt/)** — The other face of the same problem: how undocumented assumptions and untested transforms become compounding liabilities.
+- **[Data Cleaning and Validation](/article/data-cleaning-and-validation/)** — Practical techniques for building validation into pipelines so failures surface visibly rather than silently.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Understanding the pipeline you depend on starts with knowing how to build one end to end.

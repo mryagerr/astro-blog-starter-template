@@ -133,6 +133,6 @@ Each step unlocks a specific category of work that was painful in Excel. You don
 
 ## Next Steps
 
-- **[Organizing Data with SQL](/article/organizing-data-with-sql)** — A practical reference for the queries you'll use most.
-- **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb)** — Go further with DuckDB for large-file analysis.
-- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling)** — When SQL isn't quite enough and you need programmatic control.
+- **[Organizing Data with SQL](/article/organizing-data-with-sql/)** — A practical reference for the queries you'll use most.
+- **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb/)** — Go further with DuckDB for large-file analysis.
+- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling/)** — When SQL isn't quite enough and you need programmatic control.

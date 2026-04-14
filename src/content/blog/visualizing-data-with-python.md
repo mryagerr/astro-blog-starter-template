@@ -318,6 +318,6 @@ Beyond color: use different line styles (`linestyle="--"`, `":"`) or markers alo
 
 ## Next Steps
 
-- **[Python Pandas Data Wrangling](/article/python-pandas-data-wrangling)** — Preparing the DataFrame before you plot it.
-- **[Low-Hanging Data Sources for Stock Market Prediction](/article/low-hanging-data-sources-for-stock-prediction)** — Finding more signals worth visualizing.
-- **[DuckDB for Financial Data Analysis](/article/duckdb-for-financial-analysis)** — Querying larger datasets efficiently before visualizing them.
+- **[Python Pandas Data Wrangling](/article/python-pandas-data-wrangling/)** — Preparing the DataFrame before you plot it.
+- **[Low-Hanging Data Sources for Stock Market Prediction](/article/low-hanging-data-sources-for-stock-prediction/)** — Finding more signals worth visualizing.
+- **[DuckDB for Financial Data Analysis](/article/duckdb-for-financial-analysis/)** — Querying larger datasets efficiently before visualizing them.

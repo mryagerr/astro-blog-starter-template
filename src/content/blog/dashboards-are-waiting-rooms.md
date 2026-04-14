@@ -176,6 +176,6 @@ Build the connections. The dashboard was never the destination.
 
 ## Related Articles
 
-- **[KPIs Are a Cultural Change, Not a Dashboard Project](/article/kpis-are-a-cultural-change)** — Why the behavioral commitment behind metrics matters more than the dashboards that display them.
-- **[The Gas Gauge Is the Hardest Chart to Build](/article/gas-gauges-and-kpi-mastery)** — How to move from tracking numbers to actually understanding what they mean and what to do about them.
-- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines)** — The technical foundation for replacing manual dashboard reviews with automated triggers.
+- **[KPIs Are a Cultural Change, Not a Dashboard Project](/article/kpis-are-a-cultural-change/)** — Why the behavioral commitment behind metrics matters more than the dashboards that display them.
+- **[The Gas Gauge Is the Hardest Chart to Build](/article/gas-gauges-and-kpi-mastery/)** — How to move from tracking numbers to actually understanding what they mean and what to do about them.
+- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines/)** — The technical foundation for replacing manual dashboard reviews with automated triggers.

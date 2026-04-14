@@ -5,7 +5,7 @@ pubDate: 'Mar 21 2026'
 heroImage: '/blog-stock-prediction.svg'
 ---
 
-This is a write-up of the stock prediction project — what we built, what worked, what didn't, and what we'd do differently. The technical how-to lives in the [Articles](/blog) section. This is the version that explains the decisions.
+This is a write-up of the stock prediction project — what we built, what worked, what didn't, and what we'd do differently. The technical how-to lives in the [Articles](/article/) section. This is the version that explains the decisions.
 
 ---
 

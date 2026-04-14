@@ -16,4 +16,4 @@ This **Posts** section is something different. It's for shorter, more opinionate
 - **Process notes** — How I think about scoping analysis, communicating results, and avoiding the traps that make data work slow and hard to trust.
 - **Short observations** — Things that don't fit in an article but are worth writing down.
 
-If you're looking for "how do I do X in pandas", start with [Articles](/article). If you want to know whether X is even worth doing, you're in the right place.
+If you're looking for "how do I do X in pandas", start with [Articles](/article/). If you want to know whether X is even worth doing, you're in the right place.
