@@ -3,7 +3,8 @@ import { formatDate, getCurrentYear } from './formatDate';
 
 describe('formatDate', () => {
 	it('formats a date in "Mon DD, YYYY" form', () => {
-		// Use noon UTC to avoid any midnight timezone boundary issues
+		// formatDate uses timeZone: 'UTC', so the date component always reflects
+		// the UTC calendar date regardless of the server's local timezone.
 		const date = new Date('2024-03-15T12:00:00Z');
 		const result = formatDate(date);
 		expect(result).toMatch(/Mar/);
@@ -62,6 +63,14 @@ describe('formatDate', () => {
 		const result = formatDate(date);
 		expect(result).toMatch(/May/);
 		expect(result).toMatch(/1900/);
+	});
+
+	it('displays the UTC calendar date for midnight-UTC timestamps', () => {
+		// Dates stored as ISO date-only strings (e.g. 2026-04-10) become midnight
+		// UTC. Without timeZone:'UTC', negative-offset servers shift them to the
+		// previous calendar day.  This test guards against that regression.
+		const date = new Date('2026-04-10T00:00:00Z'); // midnight UTC
+		expect(formatDate(date)).toBe('Apr 10, 2026');
 	});
 });
 
