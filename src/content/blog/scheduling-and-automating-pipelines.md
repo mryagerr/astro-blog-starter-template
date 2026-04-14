@@ -322,6 +322,6 @@ Start simple. Cron handles 80% of cases. Add complexity only when you hit a conc
 
 ## Next Steps
 
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — End-to-end pipeline structure before adding scheduling.
-- **[Data Cleaning and Validation](/article/data-cleaning-and-validation)** — Ensuring your scheduled pulls produce clean output.
-- **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt)** — Understanding the pipeline architecture before deciding where and when transformations run.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — End-to-end pipeline structure before adding scheduling.
+- **[Data Cleaning and Validation](/article/data-cleaning-and-validation/)** — Ensuring your scheduled pulls produce clean output.
+- **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt/)** — Understanding the pipeline architecture before deciding where and when transformations run.

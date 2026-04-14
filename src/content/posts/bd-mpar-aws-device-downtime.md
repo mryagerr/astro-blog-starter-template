@@ -5,7 +5,7 @@ pubDate: 'Mar 22 2026'
 heroImage: '/blog-aws-iot.svg'
 ---
 
-Michael Petrillo — the same data scientist behind the Reddit-based stock prediction work covered [elsewhere on this site](/posts/stock-trader-project-writeup) — published an AWS case study in 2022 that deserves more attention than it got. It's a clean, real-world example of the low-hanging-fruit philosophy applied to a high-stakes domain: keeping medical devices online in hospitals.
+Michael Petrillo — the same data scientist behind the Reddit-based stock prediction work covered [elsewhere on this site](/posts/stock-trader-project-writeup/) — published an AWS case study in 2022 that deserves more attention than it got. It's a clean, real-world example of the low-hanging-fruit philosophy applied to a high-stakes domain: keeping medical devices online in hospitals.
 
 The article: [Reducing Device Downtime Using Actionable Intelligence on AWS](https://aws.amazon.com/blogs/industries/reducing-device-downtime-using-actionable-intelligence-on-aws/), co-authored with Stephanie Dattoli of AWS.
 
@@ -79,5 +79,5 @@ That's the bar. Not whether the model is statistically significant. Whether the 
 ---
 
 **Further reading:**
-- [Low-Hanging Data Sources for Stock Prediction](/article/low-hanging-data-sources-for-stock-prediction) — more work from the same author, applying a similar data-driven approach to financial markets.
+- [Low-Hanging Data Sources for Stock Prediction](/article/low-hanging-data-sources-for-stock-prediction/) — more work from the same author, applying a similar data-driven approach to financial markets.
 - Original article: *Reducing Device Downtime Using Actionable Intelligence on AWS* — Petrillo, Dattoli & McCallion, AWS Industries Blog, May 2022.

@@ -101,6 +101,6 @@ Pick the pattern that fits where you are today. You can always evolve it.
 
 ## Next Steps
 
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — An end-to-end pipeline implementation that puts the ETL structure into practice.
-- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines)** — Once you have chosen your pattern, running it reliably on a schedule.
-- **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb)** — A practical look at ELT-style in-warehouse transformations using DuckDB as the compute layer.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — An end-to-end pipeline implementation that puts the ETL structure into practice.
+- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines/)** — Once you have chosen your pattern, running it reliably on a schedule.
+- **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb/)** — A practical look at ELT-style in-warehouse transformations using DuckDB as the compute layer.

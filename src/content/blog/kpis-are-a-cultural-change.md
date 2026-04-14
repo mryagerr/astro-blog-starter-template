@@ -128,6 +128,6 @@ KPIs are not a reporting project. They are a commitment to a way of making decis
 
 ## Related Articles
 
-- **[The Gas Gauge Is the Hardest Chart to Build](/article/gas-gauges-and-kpi-mastery)** — The technical and organizational discipline of defining what "good" looks like for a metric.
-- **[Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame](/article/dashboards-are-waiting-rooms)** — The next maturity stage after KPI adoption: automating the actions that dashboards currently trigger.
-- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst)** — Designing KPI deliverables for the decision-makers who need to act on them, not the analysts who built them.
+- **[The Gas Gauge Is the Hardest Chart to Build](/article/gas-gauges-and-kpi-mastery/)** — The technical and organizational discipline of defining what "good" looks like for a metric.
+- **[Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame](/article/dashboards-are-waiting-rooms/)** — The next maturity stage after KPI adoption: automating the actions that dashboards currently trigger.
+- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst/)** — Designing KPI deliverables for the decision-makers who need to act on them, not the analysts who built them.

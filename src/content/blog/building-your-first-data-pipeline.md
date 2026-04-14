@@ -416,6 +416,6 @@ A pipeline that runs daily and validates its output will catch data quality issu
 
 ## Related Articles
 
-- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — Deep dive into the extract step, including pagination, rate limiting, and authentication.
-- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines)** — Moving from manual `python run.py` to pipelines that run on a schedule automatically.
-- **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt)** — Understanding the architectural trade-off between transforming before or after loading.
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis/)** — Deep dive into the extract step, including pagination, rate limiting, and authentication.
+- **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines/)** — Moving from manual `python run.py` to pipelines that run on a schedule automatically.
+- **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt/)** — Understanding the architectural trade-off between transforming before or after loading.

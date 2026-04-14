@@ -113,6 +113,6 @@ That's the low-hanging fruit of career development: figure out what you're actua
 
 ## Related Articles
 
-- **[From Cheerleader to Quarterback: Why Data Professionals Must Be Half Subject Matter Expert](/article/from-cheerleader-to-quarterback)** — How domain expertise shapes career trajectory far more than role titles do.
-- **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise)** — The strategy for building domain knowledge and credibility across any data role.
-- **[Organizing Data with SQL](/article/organizing-data-with-sql)** — The universal skill that spans every data role — the one place the career chain actually converges.
+- **[From Cheerleader to Quarterback: Why Data Professionals Must Be Half Subject Matter Expert](/article/from-cheerleader-to-quarterback/)** — How domain expertise shapes career trajectory far more than role titles do.
+- **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise/)** — The strategy for building domain knowledge and credibility across any data role.
+- **[Organizing Data with SQL](/article/organizing-data-with-sql/)** — The universal skill that spans every data role — the one place the career chain actually converges.

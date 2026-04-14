@@ -94,6 +94,6 @@ The golden age was real. It was also anomalous. Building as if it's coming back 
 
 ---
 
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Structuring pipelines to handle source instability.
-- **[Working with CSV and JSON](/article/working-with-csv-and-json)** — Working with data once you've collected it.
-- **[Pulling Data from REST APIs](/article/pulling-data-from-apis)** — Practical patterns for handling the rate limits and instability that make this problem real.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Structuring pipelines to handle source instability.
+- **[Working with CSV and JSON](/article/working-with-csv-and-json/)** — Working with data once you've collected it.
+- **[Pulling Data from REST APIs](/article/pulling-data-from-apis/)** — Practical patterns for handling the rate limits and instability that make this problem real.

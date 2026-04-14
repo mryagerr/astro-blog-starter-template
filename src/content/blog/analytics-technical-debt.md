@@ -221,6 +221,6 @@ Build on solid ground. Document what you know. Test what matters. The castle wil
 
 ## Related Articles
 
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Learn how to structure a pipeline so there is less surface area for analytical debt to accumulate.
-- **[Data Cleaning and Validation](/article/data-cleaning-and-validation)** — Testing transformations and validating assumptions before data reaches downstream analysis.
-- **[Fear the Black Box: Why Data Must Be Understood End to End](/article/fear-the-black-box)** — The other side of analytical debt: accepting components you do not understand as ground truth.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Learn how to structure a pipeline so there is less surface area for analytical debt to accumulate.
+- **[Data Cleaning and Validation](/article/data-cleaning-and-validation/)** — Testing transformations and validating assumptions before data reaches downstream analysis.
+- **[Fear the Black Box: Why Data Must Be Understood End to End](/article/fear-the-black-box/)** — The other side of analytical debt: accepting components you do not understand as ground truth.

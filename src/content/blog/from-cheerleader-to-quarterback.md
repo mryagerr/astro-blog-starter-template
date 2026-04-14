@@ -158,6 +158,6 @@ Get on the field. Learn the game. Start calling plays.
 
 ## Related Articles
 
-- **[Data Careers Are Not Pokemon Evolutions](/article/data-careers-are-not-pokemon-evolutions)** — Why role titles are a poor proxy for career trajectory, and what actually drives growth.
-- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst)** — The deliverable side of the same insight: designing for the audience's decision, not the analyst's curiosity.
-- **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise)** — The strategy for building domain fluency through consistent, small-scale delivery.
+- **[Data Careers Are Not Pokemon Evolutions](/article/data-careers-are-not-pokemon-evolutions/)** — Why role titles are a poor proxy for career trajectory, and what actually drives growth.
+- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst/)** — The deliverable side of the same insight: designing for the audience's decision, not the analyst's curiosity.
+- **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise/)** — The strategy for building domain fluency through consistent, small-scale delivery.

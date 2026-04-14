@@ -79,6 +79,6 @@ That's not a reason to rebuild everything immediately. It's a reason to stop tre
 
 ---
 
-- **[The Golden Age of API Access Is Over](/article/the-golden-age-of-api-access-is-over)** — The context for why external data access is now more structured and contested.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline)** — Foundation before adding multi-stakeholder complexity.
-- **[Change Data Capture Requires an ROI to Be Taken Seriously](/article/cdc-requires-roi-to-be-taken-seriously)** — When real-time event data is worth the operational cost.
+- **[The Golden Age of API Access Is Over](/article/the-golden-age-of-api-access-is-over/)** — The context for why external data access is now more structured and contested.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Foundation before adding multi-stakeholder complexity.
+- **[Change Data Capture Requires an ROI to Be Taken Seriously](/article/cdc-requires-roi-to-be-taken-seriously/)** — When real-time event data is worth the operational cost.

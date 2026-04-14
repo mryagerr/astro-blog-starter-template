@@ -138,6 +138,6 @@ The distance between those two things is exactly the distance between a data tea
 
 ## Related Articles
 
-- **[Write for the Executive. Survive the Analyst.](/article/write-for-the-executive-survive-the-analyst)** — The structural discipline of building analysis that works for both fast executive decisions and deep analyst review.
-- **[The Gas Gauge Is the Hardest Chart to Build](/article/gas-gauges-and-kpi-mastery)** — A concrete example of what "actionable intelligence" looks like in visualization form.
-- **[Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame](/article/dashboards-are-waiting-rooms)** — Where dashboard design leads when the goal shifts from informing humans to replacing manual handoffs.
+- **[Write for the Executive. Survive the Analyst.](/article/write-for-the-executive-survive-the-analyst/)** — The structural discipline of building analysis that works for both fast executive decisions and deep analyst review.
+- **[The Gas Gauge Is the Hardest Chart to Build](/article/gas-gauges-and-kpi-mastery/)** — A concrete example of what "actionable intelligence" looks like in visualization form.
+- **[Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame](/article/dashboards-are-waiting-rooms/)** — Where dashboard design leads when the goal shifts from informing humans to replacing manual handoffs.
