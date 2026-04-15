@@ -2,7 +2,7 @@
 title: 'Python & Pandas for Data Wrangling'
 description: 'Load messy data into a DataFrame and use pandas to clean, reshape, and prepare it for analysis or storage.'
 pubDate: 'Mar 18 2025'
-heroImage: '/blog-pandas.svg'
+heroImage: '/blog-pandas.png'
 difficulty: 'low'
 tags: ['preparation']
 ---

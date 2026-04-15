@@ -2,7 +2,7 @@
 title: 'Not Everyone Is a Data Analyst (And Your Deliverables Should Reflect That)'
 description: 'Most of your audience does not want to explore data. They want to know what to do next. Designing deliverables for the analyst in the room — when only one person in ten is an analyst — is a failure mode that looks like thoroughness.'
 pubDate: 'Mar 18 2026'
-heroImage: '/blog-not-everyone-analyst.svg'
+heroImage: '/blog-not-everyone-analyst.png'
 difficulty: 'low'
 tags: ['culture']
 ---

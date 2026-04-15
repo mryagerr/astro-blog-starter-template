@@ -2,7 +2,7 @@
 title: 'Low-Hanging Data Sources for Stock Market Prediction'
 description: 'A curated list of freely accessible data sources and their supporting research literature for augmenting stock prediction models — starting with the easiest wins.'
 pubDate: 'Mar 24 2025'
-heroImage: '/blog-stock-data-sources.svg'
+heroImage: '/blog-stock-data-sources.png'
 difficulty: 'high'
 tags: ['collection', 'analysis']
 ---

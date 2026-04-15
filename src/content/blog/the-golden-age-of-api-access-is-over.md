@@ -2,7 +2,7 @@
 title: 'The Golden Age of API Access Is Over'
 description: 'Free, open, and generous API access was a brief anomaly. Understand what changed, why it happened, and how to adapt your data collection strategies.'
 pubDate: 'Mar 28 2026'
-heroImage: '/blog-golden-age-api.svg'
+heroImage: '/blog-golden-age-api.png'
 difficulty: 'low'
 tags: ['collection']
 ---
