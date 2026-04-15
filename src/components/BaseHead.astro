@@ -14,7 +14,12 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/blog-og-default.svg', type = 'website', pubDate, updatedDate } = Astro.props;
+const { title, description, image: rawImage, type = 'website', pubDate, updatedDate } = Astro.props;
+
+// SVGs are not supported by social-media scrapers (Reddit/Embedly, Twitter, etc.).
+// Fall back to the PNG default whenever the image is an SVG or not provided.
+const OG_DEFAULT_PNG = '/blog-og-default.png';
+const image = (!rawImage || rawImage.endsWith('.svg')) ? OG_DEFAULT_PNG : rawImage;
 ---
 
 <!-- Global Metadata -->
