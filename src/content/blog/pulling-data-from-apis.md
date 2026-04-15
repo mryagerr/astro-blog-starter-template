@@ -2,7 +2,7 @@
 title: 'Pulling Data from REST APIs'
 description: 'Use HTTP requests to fetch structured data from any REST API — including authentication, pagination, rate limiting, and error handling.'
 pubDate: 'Mar 10 2025'
-heroImage: '/blog-rest-apis.svg'
+heroImage: '/blog-rest-apis.png'
 difficulty: 'low'
 tags: ['collection']
 ---
