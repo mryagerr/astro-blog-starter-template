@@ -54,7 +54,7 @@ const latestArticles = sortByPubDateDesc(await getCollection('blog')).slice(0, 1
 									<img
 										width={720}
 										height={360}
-										src={post.data.heroImage ?? '/blog-placeholder-1.svg'}
+										src={post.data.heroImage ?? '/blog-placeholder-1.png'}
 										alt={`Hero image for ${post.data.title}`}
 										loading="lazy"
 										decoding="async"

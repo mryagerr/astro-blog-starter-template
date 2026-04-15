@@ -226,7 +226,7 @@ describe('articleSchema', () => {
 				description: 'A complete test article.',
 				pubDate: '2024-03-15',
 				updatedDate: '2024-03-20',
-				heroImage: '/blog-placeholder-1.svg',
+				heroImage: '/blog-placeholder-1.png',
 				difficulty: 'low',
 				tags: ['collection', 'preparation'],
 			});

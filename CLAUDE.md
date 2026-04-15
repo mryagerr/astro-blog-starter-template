@@ -54,7 +54,7 @@ The `check` script runs tests first (`vitest run`) before building. Always ensur
 astro-blog-starter-template/
 ├── public/                  # Static assets (served as-is)
 │   ├── fonts/               # Atkinson web font files
-│   ├── blog-*.svg           # Hero image placeholder SVGs
+│   ├── blog-*.png           # Hero images (1200×630 PNG)
 │   ├── favicon.svg
 │   └── robots.txt
 ├── src/
@@ -167,7 +167,7 @@ title: 'Your Article Title'
 description: 'A concise summary of the content.'
 pubDate: 'Mar 26 2026'
 updatedDate: 'Mar 27 2026'   # optional
-heroImage: '/blog-placeholder-1.svg'  # optional
+heroImage: '/blog-placeholder-1.png'  # optional (must be 1200×630 PNG)
 difficulty: 'low'             # optional: 'low' or 'high'
 tags: ['collection', 'pipelines']  # optional: from VALID_TAGS
 ---
@@ -598,3 +598,4 @@ The RSS feed is served at `/rss.xml` via `src/pages/rss.xml.ts`. It uses `@astro
 - Do not remove the scroll progress indicator from `BlogPost.astro` — it is a required UX feature on all article pages.
 - Do not remove the Table of Contents logic from `BlogPost.astro` — it activates automatically for articles with ≥3 headings.
 - Do not remove the `rehypeResponsiveImages` plugin from `astro.config.mjs` — it ensures all Markdown images are lazy-loaded.
+- Do not use SVG format for hero images — all hero images in `public/` must be **1200×630 PNG** files. SVG is not supported by social-media scrapers (Reddit, Twitter, etc.) and PNG is the required format for OG/hero images.

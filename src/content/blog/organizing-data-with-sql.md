@@ -2,7 +2,7 @@
 title: 'Organizing Data with SQL'
 description: 'Use SQL to filter, sort, join, and aggregate your data. A practical reference covering the queries you will actually use day to day.'
 pubDate: 'Mar 14 2025'
-heroImage: '/blog-sql.svg'
+heroImage: '/blog-sql.png'
 difficulty: 'low'
 tags: ['preparation']
 ---

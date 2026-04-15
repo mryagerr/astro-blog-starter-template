@@ -2,7 +2,7 @@
 title: 'Working with CSV and JSON'
 description: 'The two most common data formats explained — how to read, write, convert, and handle the edge cases that always come up.'
 pubDate: 'Mar 06 2025'
-heroImage: '/blog-csv-json.svg'
+heroImage: '/blog-csv-json.png'
 difficulty: 'low'
 tags: ['collection', 'preparation']
 ---

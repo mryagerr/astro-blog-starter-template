@@ -2,7 +2,7 @@
 title: 'Building Your First Data Pipeline'
 description: 'Combine data collection, cleaning, and storage into a repeatable automated workflow that keeps your data fresh and organized.'
 pubDate: 'Mar 22 2025'
-heroImage: '/blog-pipeline.svg'
+heroImage: '/blog-pipeline.png'
 difficulty: 'high'
 tags: ['pipelines']
 ---

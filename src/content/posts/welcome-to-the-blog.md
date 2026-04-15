@@ -2,7 +2,7 @@
 title: 'Welcome to Posts'
 description: 'What the Posts section is, how it differs from Articles, and what to expect here.'
 pubDate: 'Mar 20 2026'
-heroImage: '/blog-welcome.svg'
+heroImage: '/blog-welcome.png'
 ---
 
 The **Articles** section of this site is for technical deep-dives — step-by-step guides on data pipelines, SQL, Python, and the mechanics of working with data. Every article there is meant to be reusable reference material.

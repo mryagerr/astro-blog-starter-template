@@ -2,7 +2,7 @@
 title: 'Scheduling and Automating Data Pipelines'
 description: 'Move from manually running scripts to pipelines that run on a schedule — using cron, Python schedulers, and lightweight orchestration tools.'
 pubDate: 'Mar 26 2025'
-heroImage: '/blog-scheduling.svg'
+heroImage: '/blog-scheduling.png'
 difficulty: 'high'
 tags: ['pipelines']
 ---
