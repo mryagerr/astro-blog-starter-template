@@ -1,6 +1,6 @@
 ---
 title: 'Trust and Time Are the Real Currencies of Data ROI'
-description: 'Data analytics cannot return on investment if the underlying data is wrong. Incorrect data wastes time, erodes trust, and kills the credibility needed to justify the work. Trust and time are finite resources — protecting them is where ROI starts.'
+description: 'Analytics can't return on investment if the underlying data is wrong. Incorrect data wastes time and erodes trust — the two finite resources ROI requires.'
 pubDate: 'Apr 10 2026'
 heroImage: '/blog-data-trust-roi.png'
 difficulty: 'low'
