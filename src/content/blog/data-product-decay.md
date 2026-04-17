@@ -2,7 +2,7 @@
 title: 'The Silent Death of Orphan Data Pipelines'
 description: 'A data product — a dashboard, a model, an ETL pipeline — only survives if it is embedded in a recurring human process. The moment it stops being something a specific person has to look at on a specific cadence, it begins decaying. Visibility is the feature. Everything else is the cost of maintaining it.'
 pubDate: 'Apr 17 2026'
-heroImage: '/blog-placeholder-4.png'
+heroImage: '/blog-data-product-decay.png'
 difficulty: 'high'
 tags: ['pipelines', 'analysis', 'culture']
 ---
