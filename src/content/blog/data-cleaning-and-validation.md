@@ -2,7 +2,7 @@
 title: 'Data Cleaning and Validation'
 description: 'Practical techniques for finding and fixing dirty data — missing values, duplicates, type mismatches, and outliers — before it breaks your pipeline.'
 pubDate: 'Mar 25 2025'
-heroImage: '/blog-data-cleaning.svg'
+heroImage: '/blog-data-cleaning.png'
 difficulty: 'low'
 tags: ['preparation']
 ---

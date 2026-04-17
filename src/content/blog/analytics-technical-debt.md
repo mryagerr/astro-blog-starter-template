@@ -2,7 +2,7 @@
 title: "Don't Build Analytical Castles on Sand"
 description: 'Technical debt is just as real in analytics as it is in software. Brittle queries, undocumented assumptions, and untested transformations compound silently until something breaks.'
 pubDate: 'Mar 31 2026'
-heroImage: '/blog-analytics-debt.svg'
+heroImage: '/blog-analytics-debt.png'
 difficulty: 'high'
 tags: ['analysis', 'culture']
 ---

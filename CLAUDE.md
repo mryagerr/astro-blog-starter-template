@@ -54,7 +54,7 @@ The `check` script runs tests first (`vitest run`) before building. Always ensur
 astro-blog-starter-template/
 ├── public/                  # Static assets (served as-is)
 │   ├── fonts/               # Atkinson web font files
-│   ├── blog-*.svg           # Hero image placeholder SVGs
+│   ├── blog-*.png           # Hero/OG images (1200×630 PNGs)
 │   ├── favicon.svg
 │   └── robots.txt
 ├── src/
@@ -167,7 +167,7 @@ title: 'Your Article Title'
 description: 'A concise summary of the content.'
 pubDate: 'Mar 26 2026'
 updatedDate: 'Mar 27 2026'   # optional
-heroImage: '/blog-placeholder-1.svg'  # optional
+heroImage: '/blog-placeholder-1.png'  # optional
 difficulty: 'low'             # optional: 'low' or 'high'
 tags: ['collection', 'pipelines']  # optional: from VALID_TAGS
 ---

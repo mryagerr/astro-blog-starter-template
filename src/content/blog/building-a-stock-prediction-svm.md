@@ -2,7 +2,7 @@
 title: 'Building a Stock Prediction Classifier with scikit-learn'
 description: 'How to train an SVM classifier on Reddit sentiment, Google Trends, and price data to predict short-term NYSE stock moves — plus what the model reveals about signal quality.'
 pubDate: 'Mar 26 2026'
-heroImage: '/blog-scikit-learn.svg'
+heroImage: '/blog-scikit-learn.png'
 difficulty: 'high'
 tags: ['analysis']
 ---

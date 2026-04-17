@@ -2,7 +2,7 @@
 title: 'Getting Started with Data Collection'
 description: 'Understand data sources, formats, and the basic workflow for collecting and organizing data before you write a single line of code.'
 pubDate: 'Mar 03 2025'
-heroImage: '/blog-data-collection.svg'
+heroImage: '/blog-data-collection.png'
 difficulty: 'low'
 tags: ['collection']
 ---
