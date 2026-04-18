@@ -10,7 +10,9 @@ import { rehypeResponsiveImages } from "./src/utils/rehypeResponsiveImages.ts";
 export default defineConfig({
 	site: "https://lowhangingdata.com",
 	trailingSlash: "always",
-	integrations: [mdx(), sitemap()],
+	integrations: [mdx(), sitemap({
+		customPages: ['https://lowhangingdata.com/ads.txt'],
+	})],
 	markdown: {
 		rehypePlugins: [rehypeResponsiveImages],
 	},
