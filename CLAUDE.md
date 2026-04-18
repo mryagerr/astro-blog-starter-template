@@ -55,12 +55,15 @@ astro-blog-starter-template/
 ├── public/                  # Static assets (served as-is)
 │   ├── fonts/               # Atkinson web font files
 │   ├── blog-*.png           # Hero images (1200×630 PNG)
+│   ├── blog-og-default.png  # Default OG/social sharing image
 │   ├── favicon.svg
+│   ├── apple-touch-icon.svg
+│   ├── ads.txt
 │   └── robots.txt
 ├── src/
 │   ├── components/          # Reusable .astro components (5 files)
 │   ├── content/             # Markdown/MDX content files
-│   │   ├── blog/            # Technical articles (~33 files)
+│   │   ├── blog/            # Technical articles (~34 files)
 │   │   └── posts/           # Short blog posts (~3 files)
 │   ├── layouts/
 │   │   └── BlogPost.astro   # Shared layout for articles (with ToC, related posts, share bar)
@@ -152,6 +155,27 @@ export type ArticleData = z.infer<typeof articleSchema>;
 ```
 
 ### Collections
+
+Both collections are defined using Astro 5's content layer API with the `glob` loader:
+
+```typescript
+// src/content.config.ts
+import { glob } from "astro/loaders";
+import { defineCollection } from "astro:content";
+import { articleSchema } from "./utils/contentSchema";
+
+const blog = defineCollection({
+  loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
+  schema: articleSchema,
+});
+
+const posts = defineCollection({
+  loader: glob({ base: "./src/content/posts", pattern: "**/*.{md,mdx}" }),
+  schema: articleSchema,
+});
+
+export const collections = { blog, posts };
+```
 
 | Collection | Directory | Route | Purpose |
 |---|---|---|---|
@@ -264,10 +288,10 @@ Astro uses file-based routing from `src/pages/`.
 
 ### Dynamic Routes
 
-Dynamic pages use `getStaticPaths()` with `getCollection()`:
+Dynamic pages use `getStaticPaths()` with `getCollection()`. In Astro 5's content layer API, `render()` is a standalone function imported from `astro:content` (not a method on the entry):
 
 ```typescript
-import { getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -276,6 +300,10 @@ export async function getStaticPaths() {
     props: post,
   }));
 }
+
+type Props = CollectionEntry<'blog'>;
+const post = Astro.props;
+const { Content, headings } = await render(post);
 ```
 
 ### Article Page Enhancements
@@ -491,7 +519,10 @@ import { rehypeResponsiveImages } from './src/utils/rehypeResponsiveImages.ts';
 export default defineConfig({
   site: 'https://lowhangingdata.com',
   trailingSlash: 'always',
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({ customPages: ['https://lowhangingdata.com/ads.txt'] }),
+  ],
   markdown: { rehypePlugins: [rehypeResponsiveImages] },
   adapter: cloudflare({ platformProxy: { enabled: true } }),
 });
