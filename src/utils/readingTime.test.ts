@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateReadingTime } from './readingTime';
+import { calculateReadingTime, calculateWordCount } from './readingTime';
 
 describe('calculateReadingTime', () => {
 	it('returns 1 minute for a very short article', () => {
@@ -58,5 +58,23 @@ describe('calculateReadingTime', () => {
 	it('handles mixed whitespace (spaces, tabs, newlines)', () => {
 		const words = Array(600).fill('word').join('\n');
 		expect(calculateReadingTime(words)).toBe(3);
+	});
+});
+
+describe('calculateWordCount', () => {
+	it('counts words in a simple string', () => {
+		expect(calculateWordCount('hello world foo')).toBe(3);
+	});
+
+	it('returns 0 for empty string', () => {
+		expect(calculateWordCount('')).toBe(0);
+	});
+
+	it('returns 0 for null', () => {
+		expect(calculateWordCount(null)).toBe(0);
+	});
+
+	it('handles multiple spaces', () => {
+		expect(calculateWordCount('a  b   c')).toBe(3);
 	});
 });
