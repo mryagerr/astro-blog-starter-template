@@ -7,9 +7,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 import { sortByPubDateDesc } from '../utils/sort';
 import { getDifficultyLabel, getDifficultyClass } from '../utils/difficultyBadge';
+import { VALID_TAGS, TAG_LABELS, TAG_SLUGS, TAG_DESCRIPTIONS, type Tag } from '../utils/contentSchema';
 
 const allArticles = await getCollection('blog');
 const latestArticles = sortByPubDateDesc(allArticles).slice(0, 10);
+
+const tagCounts = new Map<Tag, number>();
+for (const post of allArticles) {
+	for (const tag of post.data.tags ?? []) {
+		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	}
+}
 
 const START_HERE_IDS = [
 	'getting-started-with-data',
@@ -72,6 +80,22 @@ const startHereArticles = START_HERE_IDS
 
 			<hr />
 
+			<!-- ─── Browse by Topic ──────────────────────────────────── -->
+			<section class="browse-topics">
+				<h2 class="section-title">Browse by Topic</h2>
+				<div class="topic-grid">
+					{VALID_TAGS.filter(t => tagCounts.has(t)).map((tag) => (
+						<a href={`/category/${TAG_SLUGS[tag]}/`} class="topic-card">
+							<strong class="topic-name">{TAG_LABELS[tag]}</strong>
+							<span class="topic-count">{tagCounts.get(tag)} article{tagCounts.get(tag) === 1 ? '' : 's'}</span>
+							<p class="topic-desc">{TAG_DESCRIPTIONS[tag]}</p>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<hr />
+
 			<!-- ─── Latest Articles ───────────────────────────────────── -->
 			<section class="latest-articles">
 				<div class="section-header">
@@ -81,7 +105,7 @@ const startHereArticles = START_HERE_IDS
 				<ul class="article-grid">
 					{latestArticles.map((post) => (
 						<li class="article-card">
-							<a href={`/article/${post.id}/`}>
+							<a href={`/article/${post.id}/`} aria-label={post.data.title}>
 								<div class="card-img-wrap">
 									<img
 										width={720}
@@ -456,11 +480,69 @@ hr { margin: 3rem 0; }
 	line-height: 1.5;
 }
 
+/* ─── Browse by Topic ────────────────────────────────────────────── */
+.browse-topics {
+	margin-top: 0;
+}
+
+.topic-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	margin-top: 1.25rem;
+}
+
+.topic-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	padding: 1rem 1.1rem;
+	border: 1px solid var(--rule);
+	border-radius: 8px;
+	background: var(--paper);
+	text-decoration: none;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.topic-card:hover {
+	box-shadow: var(--box-shadow);
+	border-color: var(--accent-muted);
+	transform: translateY(-2px);
+}
+
+.topic-name {
+	font-family: var(--font-display);
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--ink);
+	transition: color 0.15s;
+}
+
+.topic-card:hover .topic-name {
+	color: var(--accent);
+}
+
+.topic-count {
+	font-family: var(--font-mono);
+	font-size: 0.7rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--caption);
+}
+
+.topic-desc {
+	margin: 0.35rem 0 0;
+	font-size: 0.82rem;
+	color: var(--caption);
+	line-height: 1.5;
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 720px) {
 	.hero-principles { flex-direction: column; align-items: flex-start; }
 	.principle-sep { display: none; }
 	.article-grid { grid-template-columns: 1fr; }
+	.topic-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
@@ -468,5 +550,6 @@ hr { margin: 3rem 0; }
 	main { padding: 2rem 0.75rem; }
 	hr { margin: 2rem 0; }
 	.article-card .card-body { padding: 0.75rem 0.9rem; }
+	.topic-grid { grid-template-columns: 1fr; }
 }
 </style>
