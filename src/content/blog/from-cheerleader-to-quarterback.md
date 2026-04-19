@@ -1,7 +1,7 @@
 ---
 title: 'From Cheerleader to Quarterback: Why Data Professionals Must Be Half Subject Matter Expert'
 description: 'Data professionals who only understand the tools but not the domain are stuck cheering from the sidelines. The ones who drive real impact learn to call the plays.'
-pubDate: 'Apr 08 2026'
+pubDate: 'Feb 13 2026'
 heroImage: '/blog-cheerleader-quarterback.png'
 difficulty: 'high'
 tags: ['career', 'culture']

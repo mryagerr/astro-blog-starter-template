@@ -1,7 +1,7 @@
 ---
 title: 'Leave the Ivory Castle: How SMEs Expose the Gaps Your Data Hides'
 description: 'Clean schemas and passing validation checks give analysts a false sense of security. The real data quality gaps live in the heads of subject matter experts — and paranoia is the skill that surfaces them.'
-pubDate: 'Apr 04 2026'
+pubDate: 'Dec 06 2025'
 heroImage: '/blog-data-quality-gaps.png'
 difficulty: 'low'
 tags: ['culture']

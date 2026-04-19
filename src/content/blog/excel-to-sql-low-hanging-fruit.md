@@ -1,7 +1,7 @@
 ---
 title: 'Excel to SQL: Low Hanging Fruit for Making the Switch'
 description: 'A practical roadmap for Excel power users ready to adopt SQL. These are the highest-value, lowest-effort topics to learn first.'
-pubDate: 'Mar 24 2026'
+pubDate: 'Jun 01 2025'
 heroImage: '/blog-excel-sql.png'
 difficulty: 'low'
 tags: ['preparation']

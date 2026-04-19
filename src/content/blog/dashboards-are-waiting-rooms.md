@@ -1,7 +1,7 @@
 ---
 title: 'Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame'
 description: 'Every dashboard is a hand-off to a human being. That hand-off costs time, introduces delay, and scales poorly. The mature data organization does not build more dashboards — it builds fewer, and automates everything the dashboard used to trigger.'
-pubDate: 'Apr 05 2026'
+pubDate: 'Dec 23 2025'
 heroImage: '/blog-dashboards.png'
 difficulty: 'high'
 tags: ['analysis', 'culture']
