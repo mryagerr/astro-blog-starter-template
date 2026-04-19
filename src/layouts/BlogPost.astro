@@ -18,12 +18,13 @@ type RelatedPost = {
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	readingTime?: number;
+	wordCount?: number;
 	headings?: MarkdownHeading[];
 	relatedPosts?: RelatedPost[];
 	breadcrumb?: { href: string; label: string };
 };
 
-const { title, description, pubDate, updatedDate, heroImage, difficulty, readingTime, headings, relatedPosts, breadcrumb } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, difficulty, readingTime, wordCount, headings, relatedPosts, breadcrumb } = Astro.props;
 
 const tocHeadings = (headings ?? []).filter((h) => h.depth <= 3);
 const showToc = tocHeadings.length >= 3;
@@ -31,7 +32,7 @@ const showToc = tocHeadings.length >= 3;
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} type="article" pubDate={pubDate} updatedDate={updatedDate} />
+		<BaseHead title={title} description={description} image={heroImage} type="article" pubDate={pubDate} updatedDate={updatedDate} wordCount={wordCount} breadcrumb={breadcrumb} />
 		<style>
 			main {
 				width: calc(100% - 2em);
@@ -597,7 +598,7 @@ const showToc = tocHeadings.length >= 3;
 							<ul class="related-grid">
 								{relatedPosts.map((rp) => (
 									<li class="related-card">
-										<a href={rp.href}>
+										<a href={rp.href} aria-label={rp.title}>
 											<img
 												src={rp.heroImage ?? '/blog-placeholder-1.png'}
 												alt={rp.title}

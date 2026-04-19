@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
 
 import cloudflare from "@astrojs/cloudflare";
 import { rehypeResponsiveImages } from "./src/utils/rehypeResponsiveImages.ts";
@@ -10,9 +9,7 @@ import { rehypeResponsiveImages } from "./src/utils/rehypeResponsiveImages.ts";
 export default defineConfig({
 	site: "https://lowhangingdata.com",
 	trailingSlash: "always",
-	integrations: [mdx(), sitemap({
-		customPages: ['https://lowhangingdata.com/ads.txt'],
-	})],
+	integrations: [mdx()],
 	markdown: {
 		rehypePlugins: [rehypeResponsiveImages],
 	},

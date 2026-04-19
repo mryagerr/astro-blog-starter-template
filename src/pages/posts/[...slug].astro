@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import { sortByPubDateDesc } from '../../utils/sort';
+import { calculateReadingTime, calculateWordCount } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
@@ -15,9 +16,8 @@ type Props = CollectionEntry<'posts'>;
 const post = Astro.props;
 const { Content, headings } = await render(post);
 
-// Reading time: ~200 wpm
-const wordCount = (post.body ?? '').split(/\s+/).filter(Boolean).length;
-const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+const wordCount = calculateWordCount(post.body);
+const readingTime = calculateReadingTime(post.body);
 
 // Related posts: 3 most recent posts excluding current
 const allPosts = sortByPubDateDesc(await getCollection('posts'));
@@ -37,6 +37,7 @@ const relatedPosts = allPosts
 <BlogPost
 	{...post.data}
 	readingTime={readingTime}
+	wordCount={wordCount}
 	headings={headings}
 	relatedPosts={relatedPosts}
 	breadcrumb={{ href: '/posts/', label: 'Posts' }}

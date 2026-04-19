@@ -1,7 +1,7 @@
 ---
 title: 'Crawl, Walk, Run: Why Many Attempts Beat One Perfect Try'
 description: 'Perfection is the enemy of good — and the enemy of engagement. The crawl-walk-run framework works because iterating in public compounds trust, learning, and impact faster than waiting until something is ready.'
-pubDate: 'Mar 30 2026'
+pubDate: 'Sep 11 2025'
 heroImage: '/blog-crawl-walk-run.png'
 difficulty: 'low'
 tags: ['culture']

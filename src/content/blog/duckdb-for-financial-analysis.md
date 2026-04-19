@@ -1,7 +1,7 @@
 ---
 title: 'DuckDB for Financial Data Analysis'
 description: 'Use DuckDB to run fast analytical SQL over stock price data, compute rolling indicators, and build a local analytics layer — no server required.'
-pubDate: 'Mar 25 2026'
+pubDate: 'Jun 18 2025'
 heroImage: '/blog-duckdb-finance.png'
 difficulty: 'high'
 tags: ['analysis']

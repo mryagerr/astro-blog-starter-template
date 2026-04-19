@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { articleSchema } from './contentSchema';
+import { articleSchema, VALID_TAGS, TAG_SLUGS, TAG_DESCRIPTIONS, SLUG_TO_TAG } from './contentSchema';
 
 describe('articleSchema', () => {
 	describe('required fields', () => {
@@ -304,5 +304,40 @@ describe('articleSchema', () => {
 				expect((result.data as Record<string, unknown>)['unknownField']).toBeUndefined();
 			}
 		});
+	});
+});
+
+describe('TAG_SLUGS', () => {
+	it('has a slug for every valid tag', () => {
+		for (const tag of VALID_TAGS) {
+			expect(TAG_SLUGS[tag]).toBeTruthy();
+		}
+	});
+
+	it('maps culture to culture-and-communication', () => {
+		expect(TAG_SLUGS['culture']).toBe('culture-and-communication');
+	});
+
+	it('all other tags map to their own name', () => {
+		const identity: Array<typeof VALID_TAGS[number]> = ['collection', 'preparation', 'pipelines', 'analysis', 'career'];
+		for (const tag of identity) {
+			expect(TAG_SLUGS[tag]).toBe(tag);
+		}
+	});
+});
+
+describe('SLUG_TO_TAG', () => {
+	it('reverses TAG_SLUGS correctly', () => {
+		for (const tag of VALID_TAGS) {
+			expect(SLUG_TO_TAG[TAG_SLUGS[tag]]).toBe(tag);
+		}
+	});
+});
+
+describe('TAG_DESCRIPTIONS', () => {
+	it('has a description for every valid tag', () => {
+		for (const tag of VALID_TAGS) {
+			expect(TAG_DESCRIPTIONS[tag]).toBeTruthy();
+		}
 	});
 });

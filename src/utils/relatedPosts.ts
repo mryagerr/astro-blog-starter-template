@@ -1,8 +1,19 @@
 /**
- * Finds related posts by scoring them based on shared tags,
- * then falling back to most recent (by pubDate descending).
- * Returns up to `limit` related posts (default 3).
+ * Category adjacency map for cross-category related article fallback.
+ * When a category has fewer than `limit` other articles, slots are filled
+ * from the adjacent category before falling back to fully unrelated content.
+ *
+ * Map: Collection ↔ Preparation, Pipelines ↔ Analysis, Culture ↔ Career
  */
+export const CATEGORY_ADJACENCY: Record<string, string[]> = {
+	collection: ['preparation'],
+	preparation: ['collection'],
+	pipelines: ['analysis'],
+	analysis: ['pipelines'],
+	culture: ['career'],
+	career: ['culture'],
+};
+
 export interface RelatedPostInput {
 	id: string;
 	data: {
@@ -32,15 +43,30 @@ export function findRelatedPosts(
 ): RelatedPostOutput[] {
 	const otherPosts = allPosts.filter((p) => p.id !== currentId);
 
-	// Score each post by number of shared tags
+	// Build adjacent tag set for cross-category fallback
+	const adjacentTags = new Set<string>();
+	for (const tag of currentTags) {
+		for (const adj of CATEGORY_ADJACENCY[tag] ?? []) {
+			adjacentTags.add(adj);
+		}
+	}
+
+	// Score: 2 per shared direct tag, 1 per shared adjacent tag
 	const scored = otherPosts.map((p) => {
-		const sharedTags = (p.data.tags ?? []).filter((t) => currentTags.includes(t)).length;
-		return { post: p, sharedTags };
+		const postTags = p.data.tags ?? [];
+		const directScore = postTags.filter((t) => currentTags.includes(t)).length * 2;
+		const adjacentScore = adjacentTags.size > 0
+			? postTags.filter((t) => adjacentTags.has(t)).length
+			: 0;
+		return { post: p, score: directScore + adjacentScore };
 	});
 
-	// Sort by shared tags desc, then by pubDate desc
+	// Sort: score desc, then pubDate desc, then id alphabetical for determinism
 	scored.sort(
-		(a, b) => b.sharedTags - a.sharedTags || b.post.data.pubDate.getTime() - a.post.data.pubDate.getTime(),
+		(a, b) =>
+			b.score - a.score ||
+			b.post.data.pubDate.getTime() - a.post.data.pubDate.getTime() ||
+			a.post.id.localeCompare(b.post.id),
 	);
 
 	return scored.slice(0, limit).map((s) => ({

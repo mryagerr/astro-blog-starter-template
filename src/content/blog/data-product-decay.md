@@ -1,7 +1,7 @@
 ---
 title: 'The Silent Death of Orphan Data Pipelines'
 description: 'A data product loses value the moment active engagement stops — not because the pipeline breaks, but because data drifts, definitions shift, and timeliness erodes with no one in the loop to notice. The pipeline is the easy part. Keeping the output aligned with business reality is the ongoing obligation most organizations never plan for.'
-pubDate: 'Apr 17 2026'
+pubDate: 'Apr 10 2026'
 heroImage: '/blog-data-product-decay.png'
 difficulty: 'high'
 tags: ['pipelines', 'analysis', 'culture']
