@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { findRelatedPosts, type RelatedPostInput } from './relatedPosts';
+import { findRelatedPosts, CATEGORY_ADJACENCY, type RelatedPostInput } from './relatedPosts';
 
 function makePost(id: string, pubDate: string, tags: string[] = []): RelatedPostInput {
 	return {
@@ -159,5 +159,39 @@ describe('findRelatedPosts', () => {
 		// No tags to match, so all get 0 shared tags — sort by date
 		expect(results[0].id).toBe('b'); // newer
 		expect(results[1].id).toBe('a');
+	});
+
+	it('prefers adjacent-category articles over completely unrelated ones', () => {
+		const posts = [
+			makePost('current', '2024-01-01', ['collection']),
+			makePost('same', '2024-02-01', ['collection']),        // direct match
+			makePost('adj', '2024-01-15', ['preparation']),         // adjacent (collection ↔ preparation)
+			makePost('unrelated', '2024-06-01', ['career']),        // no relation, newer
+		];
+		const results = findRelatedPosts('current', ['collection'], posts, '/article/');
+		expect(results[0].id).toBe('same');      // 2 pts (direct)
+		expect(results[1].id).toBe('adj');       // 1 pt (adjacent), newer than same
+		expect(results[2].id).toBe('unrelated'); // 0 pts
+	});
+
+	it('breaks ties by pubDate desc then id alphabetical', () => {
+		const posts = [
+			makePost('current', '2024-01-01', ['analysis']),
+			makePost('b-post', '2024-06-01', ['analysis']),
+			makePost('a-post', '2024-06-01', ['analysis']),
+		];
+		const results = findRelatedPosts('current', ['analysis'], posts, '/article/');
+		// Same score, same date → alphabetical by id
+		expect(results[0].id).toBe('a-post');
+		expect(results[1].id).toBe('b-post');
+	});
+
+	it('has the expected adjacency pairs in CATEGORY_ADJACENCY', () => {
+		expect(CATEGORY_ADJACENCY['collection']).toContain('preparation');
+		expect(CATEGORY_ADJACENCY['preparation']).toContain('collection');
+		expect(CATEGORY_ADJACENCY['pipelines']).toContain('analysis');
+		expect(CATEGORY_ADJACENCY['analysis']).toContain('pipelines');
+		expect(CATEGORY_ADJACENCY['culture']).toContain('career');
+		expect(CATEGORY_ADJACENCY['career']).toContain('culture');
 	});
 });
