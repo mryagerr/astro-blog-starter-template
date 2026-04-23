@@ -7,43 +7,39 @@ difficulty: 'low'
 tags: ['culture']
 ---
 
-There is a common mistake data teams make when they finally get good at their craft. They get excited about the data. They surface interesting patterns. They build flexible dashboards full of filters and drill-downs and cross-tabs. They hand it to a stakeholder with the implicit message: "Look at all of this. Isn't it fascinating?"
+A common failure pattern emerges in mature data teams: the team surfaces interesting patterns, builds flexible dashboards with filters and drill-downs, and delivers outputs optimized for analytical exploration. Stakeholders receive the output, acknowledge it, and ask the only question that matters to them: "What should we do?"
 
-The stakeholder looks at it, nods politely, and asks: "So what should we do?"
+This is a reasonable response from an audience that was not hired to perform data analysis.
 
-This is not ingratitude. It is a completely reasonable response from someone who was never hired to be a data analyst.
+## The Audience Composition Is Not Analytical
 
-## The Audience Is Not a Room Full of Analysts
+Review the actual composition of the people who receive data deliverables in most organizations.
 
-Walk through the actual composition of the people who receive data deliverables in most organizations.
+The executive allocating resources this week. The operations manager determining whether a process is working or broken. The marketing lead deciding which campaign to scale and which to cut. The product manager assessing whether a recently-shipped feature has produced measurable effect.
 
-There is the executive who needs to make a decision this week about where to allocate resources. There is the operations manager who needs to know if the process is working or broken. There is the marketing lead who needs to know which campaign to scale and which to cut. There is the product manager who needs to know whether the feature shipped two months ago is having an effect.
+Only one of those stakeholders — at most — is a data analyst. The rest are domain experts who require information to make decisions. Their careers are built around operating the business, not exploring datasets.
 
-One of those people, maybe, is the data analyst. The others are domain experts who happen to need information. They did not build careers around data exploration. They built careers around running businesses.
-
-The default data deliverable — an interactive dashboard, a spreadsheet with pivot tables, a report with twenty pages of findings — is optimized for the analyst. It says: "Here are the raw materials. You figure out what matters."
-
-For the analyst in the room, this is exciting. For everyone else, it is homework.
+The default data deliverable — an interactive dashboard, a pivot-table spreadsheet, a twenty-page findings report — is optimized for an analyst. It communicates: "Here are the raw materials. Determine what matters." For non-analyst stakeholders, this shifts the analytical burden to the wrong audience.
 
 ```
-What analysts hear when given exploratory data:
-  → "Here is a rich dataset. Let's dig in."
+Analyst response to exploratory data:
+  → "Here is a rich dataset. Investigate the patterns."
 
-What most stakeholders hear when given exploratory data:
-  → "Here is a problem. Please solve it before the next meeting."
+Non-analyst response to exploratory data:
+  → "Here is unresolved work. Produce a recommendation before the next meeting."
 ```
 
-The data is the same. The experience of receiving it is completely different.
+The underlying data is identical. The implied workload for the recipient is not.
 
 ## The Difference Between Data and Intelligence
 
 Data is what happened. Intelligence is what it means and what to do about it.
 
-A spreadsheet showing monthly sales by region by product by channel by rep is data. "The Northeast is underperforming on enterprise deals, and the gap opened up in Q3 after the pricing change — consider a targeted discount authority for that segment" is intelligence.
+A spreadsheet showing monthly sales by region by product by channel by rep is data. "The Northeast is underperforming on enterprise deals, and the gap opened up in Q3 after the pricing change — recommend targeted discount authority for that segment" is intelligence.
 
-The analyst's job is to travel the distance between those two things. The problem is that most data teams stop at data delivery and call it done. They hand over the spreadsheet and wait to be asked follow-up questions. They treat the exploration as the deliverable rather than the input to the actual deliverable.
+The analyst's function is to close the distance between those two outputs. Most data teams stop at data delivery and treat the output as complete — handing over the spreadsheet and waiting for follow-up questions. The exploration becomes the deliverable rather than the input to the deliverable.
 
-This feels rigorous. It is actually incomplete.
+The practice feels rigorous. The output is incomplete.
 
 | What Was Delivered | What Was Needed | What Happens Next |
 |---|---|---|
@@ -54,27 +50,25 @@ This feels rigorous. It is actually incomplete.
 
 The common thread: the more exploration you hand to a non-analyst, the less likely they are to use it correctly — and the more likely they are to either ignore it or form the wrong conclusion from it.
 
-## Why Data Teams Default to Exploration Anyway
+## Why Data Teams Default to Exploration
 
-It is not laziness. It is usually one of three things.
+The pattern is not driven by effort. It is typically one of three causes.
 
-**Uncertainty about the right answer.** If the analyst is not sure what the data means, handing over an exploratory deliverable is a way to defer the judgment call. "I showed you everything. What you do with it is up to you." This protects the analyst from being wrong. It also transfers the analytical burden to someone who is worse-equipped to carry it.
+**Uncertainty about the correct answer.** When the analyst is not confident in what the data means, an exploratory deliverable defers the judgment. "I showed you everything. What you do with it is your call." This protects the analyst from being wrong and transfers analytical work to a recipient less equipped to complete it.
 
-**A desire to show the work.** Analysts know how much effort went into the analysis. Showing the full dataset, the breakdowns, the cross-tabs — this communicates effort. A single recommendation feels thin in comparison, even if it represents more thinking. The impulse to display comprehensiveness is understandable. It produces deliverables that obscure the recommendation rather than surface it.
+**Pressure to demonstrate effort.** Analysts know how much work the analysis required. Showing the full dataset, breakdowns, and cross-tabs communicates that effort. A single recommendation appears thin in comparison, despite representing more judgment. The impulse is understandable; the result is deliverables that obscure the recommendation rather than surface it.
 
-**Genuine interest in the data.** Sometimes the analyst finds the data interesting and assumes everyone else will too. They do not. The operations manager is not going to fall in love with a cohort retention waterfall chart. They want to know if retention is good or bad, and what to do if it is bad.
+**Intrinsic interest in the data.** Analysts often find the data itself interesting and assume other stakeholders will. They will not. An operations manager does not want to study a cohort retention waterfall. They want to know whether retention is acceptable and, if not, what to do about it.
 
-All three tendencies produce the same outcome: a deliverable designed for an audience that does not exist.
+All three patterns produce the same outcome: a deliverable designed for an audience that is not in the room.
 
-## What Actionable Intelligence Actually Looks Like
+## What Actionable Intelligence Looks Like
 
-The test for an actionable deliverable is simple: can the recipient take action on this without asking a follow-up question?
+The test for an actionable deliverable is simple: can the recipient take action without requiring a follow-up question to determine what to do?
 
-Not zero follow-up questions. Some clarification is normal and healthy. But the core question — **what should I do?** — should be answered by the deliverable itself.
+Some clarification questions are normal. The core question — **what should I do?** — must be answered by the deliverable itself.
 
-This requires the analyst to make a judgment call and put it in writing. That is uncomfortable. It means being wrong sometimes. It means owning a recommendation rather than presenting findings and stepping back.
-
-It is also the actual job.
+This requires the analyst to make a judgment call and document it explicitly. Doing so exposes the analyst to being wrong. It also transfers ownership of the recommendation from the stakeholder back to the analyst, where it belongs. That accountability is the core function of the role.
 
 ```
 Exploratory deliverable:
@@ -90,51 +84,43 @@ Actionable deliverable:
    is fixed — the problem appears to be activation, not fit."
 ```
 
-The second deliverable takes a position. It draws a conclusion. It recommends an action. The recipient knows what to do without scheduling a meeting.
+The second deliverable takes a position, draws a conclusion, and recommends an action. The recipient can proceed without scheduling a meeting. The first deliverable generates meetings.
 
-The first deliverable generates a meeting. Or three.
+## The Supporting Analysis Remains
 
-## The Analyst Is Still in the Room
+The underlying data does not disappear. The exploration happened. The rigor is real. The cross-tabs exist. They belong in an appendix, not in the headline.
 
-None of this means the supporting data disappears. The exploration happened. The rigor is real. The cross-tabs exist. They just belong in an appendix, not in the headline.
+Producing analysis that business stakeholders act on requires collapsing the work into a usable form without losing the structural integrity underneath it. This is not a communication skill bolted onto an analytical skill. It is a core component of applied analysis.
 
-The analyst who wants to be taken seriously in a business context needs to learn to collapse their work into a usable form without losing the structural integrity underneath it. That is not a communication skill bolted onto an analytical skill. It is a core part of what analysis means in an applied setting.
+The medical profession provides a useful parallel. A physician runs tests, reviews results, synthesizes a diagnosis, and delivers a recommendation. They do not hand the patient a lab printout and defer interpretation. The judgment call is their output. That accountability is what makes the recommendation trustworthy.
 
-Think about what a doctor does. They run tests. They review the results. They synthesize a diagnosis. They give you a recommendation.
-
-They do not hand you the lab printout and say: "Interesting data. What do you think?"
-
-They made a judgment call. They are accountable for it. That accountability is what makes the recommendation trustworthy.
-
-Data analysts working in organizations are in the same position. The people receiving the deliverable are not equipped to synthesize it. That is why the analyst exists. The synthesis is the product.
+Data analysts in organizational contexts are in the same position. Recipients are not equipped to synthesize the underlying data. The synthesis is the analyst's product.
 
 ## Designing Deliverables for the Actual Audience
 
-Practically, this means asking a different set of questions before producing any deliverable.
+In practice, this requires a different set of framing questions before producing any deliverable.
 
 Before asking "What does the data show?" — ask **"What decision needs to be made, and by whom?"**
 
-Before building a dashboard — ask **"What would make this dashboard unnecessary? Can I just answer the question directly?"**
+Before building a dashboard — ask **"What would make this dashboard unnecessary? Can the question be answered directly?"**
 
-Before writing a findings section — ask **"What is the one thing the reader needs to walk away knowing? Have I said it in the first paragraph?"**
+Before writing a findings section — ask **"What is the single thing the reader needs to walk away knowing? Is it stated in the first paragraph?"**
 
-Before adding another chart — ask **"Does this chart change what someone should do, or does it just show more?"**
+Before adding another chart — ask **"Does this chart change what the stakeholder should do, or does it only display more information?"**
 
-Most analytical work can be collapsed to a simpler form than it is delivered in. The reason it is not is that the analyst either has not finished the thinking, or has not been trained to think of the deliverable as something that needs to drive action rather than inform understanding.
-
-Both are fixable.
+Most analytical work can be collapsed into a simpler form than it is typically delivered in. The reason it is not comes down to one of two causes: the analyst has not finished the synthesis, or the analyst has not been trained to treat the deliverable as something that must drive a decision rather than inform general understanding. Both are addressable.
 
 ## The Low Hanging Fruit
 
-The next time you finish an analysis, before you build the dashboard or write the report, write one sentence: **"Based on this analysis, [stakeholder] should [do this specific thing] because [key finding]."**
+Before building the dashboard or writing the report for any completed analysis, produce one sentence in the following form: **"Based on this analysis, [stakeholder] should [specific action] because [key finding]."**
 
-If you cannot write that sentence, you are not done with the analysis yet.
+If the sentence cannot be written, the analysis is not yet complete.
 
-If you can write it, that sentence is the deliverable. Everything else is the appendix.
+If the sentence can be written, that sentence is the deliverable. Everything else is the appendix.
 
-Your audience is not a room full of people who want to explore data. It is a room full of people who need to make decisions. Give them intelligence, not exploration. The exploration is your process. The intelligence is their product.
+The audience for most data work is not a room of practitioners who want to explore data. It is a room of stakeholders who need to make decisions. The analyst's product is intelligence, not exploration. Exploration is the process.
 
-The distance between those two things is exactly the distance between a data team that gets ignored and one that gets listened to.
+The distance between those two outputs is the distance between a data team that is ignored and one whose recommendations get acted on.
 
 ## Related Articles
 
