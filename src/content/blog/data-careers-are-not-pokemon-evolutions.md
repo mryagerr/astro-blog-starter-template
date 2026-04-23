@@ -7,25 +7,23 @@ difficulty: 'low'
 tags: ['career']
 ---
 
-There is a persistent mental model floating around LinkedIn and career-advice threads that goes something like this:
+A persistent mental model in data career advice runs as follows:
 
-> Start as a **Data Analyst**. Level up to **Data Engineer**. Evolve into a **Data Scientist**.
+> Start as a **Data Analyst**. Advance to **Data Engineer**. Progress into **Data Scientist**.
 
-It is tidy. It implies growth. It even has a nice narrative arc — from reading data, to building it, to predicting with it. The Pokemon analogy writes itself: Bulbasaur becomes Ivysaur becomes Venusaur. You grind enough XP and eventually you become the powerful final form.
+The framing is tidy. It implies growth. It has a narrative arc — from reading data, to building it, to predicting with it — that resembles the level-up progression familiar from video games and RPG character trees.
 
-The problem is that it is almost entirely wrong.
+The framing does not match how the roles actually operate.
 
-## Where the Analogy Breaks Down
+## Where the Linear Model Breaks Down
 
-In Pokemon, evolution is linear and irreversible. You can't un-evolve. Ivysaur is strictly more powerful than Bulbasaur in every stat. The end-stage is always the goal.
+A linear progression assumes that each role is strictly more advanced than the one before it, that the skills required stack cleanly, and that the end-stage represents the highest expression of the craft. None of this holds up in practice.
 
-Data roles don't work that way. Consider:
+- A **Data Scientist** at a startup typically spends 60% of their time writing SQL and building ETL jobs — work often categorized as Analyst or Engineer scope at a larger company.
+- A **Data Engineer** at a hedge fund may require deeper statistical knowledge than a Data Scientist at a consumer app company.
+- A **Data Analyst** who owns end-to-end data infrastructure, builds dashboards, and runs experiments often has more scope than Data Scientists at larger organizations.
 
-- A **Data Scientist** at a startup might spend 60% of their time writing SQL and building ETL jobs — work that a "lower level" Data Analyst does at a larger company.
-- A **Data Engineer** at a hedge fund might need deeper statistics knowledge than a Data Scientist at a consumer app company.
-- A **Data Analyst** who owns their company's entire data infrastructure, builds the dashboards, and runs A/B tests has more scope than many Data Scientists at larger orgs.
-
-The roles aren't a ranked ladder. They are better described as three overlapping circles, each with its own center of gravity but sharing huge amounts of common territory.
+The roles are not a ranked ladder. They are better described as three overlapping responsibility areas, each with a distinct center of gravity but substantial overlap in required skills.
 
 ## What Each Role Actually Owns
 
@@ -35,7 +33,7 @@ Rather than thinking about levels, think about what problem each role is primari
 
 The core job: **turn existing data into decisions**. This means writing SQL, building dashboards, understanding the business context, and communicating findings to stakeholders. The word "analyst" is load-bearing — the job is to analyze, not to build infrastructure or train models.
 
-Good Analysts are underrated. They develop sharp business intuition, know which questions are actually worth answering, and become fluent in the specific data model their company uses. That institutional knowledge is genuinely hard to replicate.
+Strong Analysts develop sharp business intuition, identify which questions are worth answering, and become fluent in the specific data model the organization uses. That institutional knowledge is difficult to replicate and undervalued in most organizations.
 
 Skills that are central: SQL, visualization (Tableau, Looker, or just Python/matplotlib), business communication, spreadsheets, basic statistics.
 
@@ -57,13 +55,13 @@ Skills that are central: Python, statistics, ML frameworks (scikit-learn, PyTorc
 
 ## The Overlapping Middle
 
-Here's what gets left out of the evolution metaphor: all three roles share a massive common skill base.
+The linear model obscures a substantial shared skill base across all three roles.
 
-**SQL is universal.** Every single data role requires SQL proficiency. The Engineer writes it to build pipelines. The Analyst writes it to answer questions. The Scientist writes it to create training datasets. Anyone who tells you SQL is "just analyst stuff" hasn't worked on a real data team.
+**SQL is universal.** Every data role requires SQL proficiency. Engineers write it to build pipelines. Analysts write it to answer questions. Scientists write it to construct training datasets. Positioning SQL as a junior-only skill misrepresents how production data teams operate.
 
-**Python spans all three.** Analysts use pandas for data manipulation. Engineers use Python to build pipelines. Scientists use Python for modeling. The language is not a signal of which "level" you're at — it's table stakes everywhere.
+**Python spans all three roles.** Analysts use pandas for manipulation. Engineers use Python to build pipelines. Scientists use it for modeling. The language does not signal seniority — it is a baseline expectation across the function.
 
-**Domain knowledge compounds.** The best data practitioners — regardless of title — understand the business deeply. Why does this metric spike on Tuesdays? What does a "conversion" actually mean in this company's funnel? This knowledge doesn't belong to any one role. It accumulates with time at the organization.
+**Domain knowledge compounds.** The most effective data practitioners, regardless of title, understand the business deeply. Why does a given metric spike on Tuesdays? What does "conversion" mean in this specific funnel? This knowledge is role-agnostic and accumulates with time in the organization.
 
 ## The Roles That Don't Fit the Chain at All
 
@@ -77,13 +75,13 @@ The linear model also ignores entire categories of data work:
 
 **Quantitative Analyst / Research Scientist** — Roles common in finance, pharma, and research institutions where the statistical and domain depth far exceeds what a typical "Data Scientist" job requires. These often demand PhD-level expertise in specific fields.
 
-None of these fit the Analyst → Engineer → Scientist chain. They've evolved from different lineages entirely.
+None of these roles fit the Analyst → Engineer → Scientist chain. They emerged from distinct requirements and skill bases.
 
-## Why the Myth Persists
+## Why the Linear Model Persists
 
-The evolution model is appealing because it gives people a roadmap. "I'm a Data Analyst, I want to grow, what should I do?" feels answered by "become a Data Engineer or Data Scientist." Career advice content is easier to write in stages and levels.
+The linear model is appealing because it provides a roadmap. "I'm a Data Analyst, I want to grow, what should I do?" is an easier question to answer when the response is "become an Engineer or Scientist." Career content is simpler to write in stages and levels.
 
-It also reflects how some individual careers actually did develop, especially in the early 2010s when data teams were tiny and people genuinely wore all the hats before specializing. One person might have started doing analysis, then built pipelines because no one else would, then started prototyping models. Calling that an "evolution" isn't wrong — it's just one path through the space, not the only one.
+The model also reflects how some careers did develop in the early 2010s, when data teams were small and practitioners performed every function before specialization was possible. One person might have started in analysis, built pipelines out of necessity, and eventually prototyped models. That progression is a valid path through the role space — it is not the only one, and it does not describe the function as it operates today.
 
 ## A More Useful Mental Model
 
@@ -99,17 +97,15 @@ The best career moves happen when you identify which direction you want to move 
 
 ## The Low-Hanging Fruit
 
-If you're a Data Analyst wondering whether to "evolve" into an engineer or scientist, the better questions are:
+For a Data Analyst considering whether to move into Engineering or Science, the relevant questions are not about progression but about fit:
 
-- What problems are you actually excited to solve?
-- Which skills do you use on your best days at work?
-- What gaps does your current team have that you could fill?
+- Which problems are you most effective at solving?
+- Which skills produce your highest-impact work?
+- Which gaps on the current team align with your capabilities?
 
-If you love building reliable systems and find dashboards boring, Engineering is the natural direction. If you're obsessed with prediction problems and want to go deeper on statistics, Science makes sense. If you want to stay close to the business and decisions, staying in Analysis — but going deeper on SQL, modeling in dbt, or picking up Python — is a completely valid and high-value path.
+Engineering is the appropriate direction for practitioners who find systems work more compelling than business-facing analysis. Science is appropriate for those focused on prediction problems and statistical depth. Staying in Analysis — while going deeper on SQL, dbt modeling, or Python — is an equally valid path and often the highest-leverage one in business-critical roles.
 
-The final form isn't Venusaur. There's no final form. The goal is to find the combination of skills and problems that makes you effective and keeps you engaged.
-
-That's the low-hanging fruit of career development: figure out what you're actually optimizing for before following someone else's evolution chain.
+There is no final role. The objective is to identify the combination of skills and problems where the practitioner is most effective, then develop that combination deliberately rather than defaulting to a linear progression narrative.
 
 ## Related Articles
 
