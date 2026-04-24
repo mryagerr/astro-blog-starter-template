@@ -362,6 +362,26 @@ const showToc = tocHeadings.length >= 3;
 				color: var(--accent);
 			}
 
+			/* ─── Disclaimer ────────────────────────────────────── */
+			.disclaimer {
+				margin-top: 2.5rem;
+				padding: 1rem 1.25rem;
+				background: rgba(100, 116, 139, 0.06);
+				border: 1px solid var(--rule);
+				border-left: 3px solid var(--caption);
+				border-radius: 6px;
+				font-family: var(--font-mono);
+				font-size: 0.72rem;
+				line-height: 1.6;
+				letter-spacing: 0.02em;
+				color: var(--caption);
+			}
+			.disclaimer strong {
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--ink);
+			}
+
 			/* ─── Newsletter CTA ─────────────────────────────────── */
 			.newsletter-cta {
 				margin-top: 2.5rem;
@@ -590,6 +610,11 @@ const showToc = tocHeadings.length >= 3;
 					</div>
 
 					<slot />
+
+					<!-- Liability disclaimer -->
+					<aside class="disclaimer" role="note" aria-label="Disclaimer">
+						<strong>Disclaimer:</strong> The content on this site is provided for informational and educational purposes only. It does not constitute financial, investment, legal, tax, or other professional advice. Nothing in this article should be relied upon as the sole basis for any financial or investment decision. Past performance is not indicative of future results. Always consult a qualified professional before making financial decisions. The author and Low Hanging Data assume no liability for any losses, damages, or decisions made based on information presented here.
+					</aside>
 
 					<!-- Related articles -->
 					{relatedPosts && relatedPosts.length > 0 && (
