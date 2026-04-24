@@ -29,6 +29,15 @@ const OG_DEFAULT_PNG = '/blog-og-default.png';
 const image = (!rawImage || rawImage.endsWith('.svg')) ? OG_DEFAULT_PNG : rawImage;
 ---
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JHF6ZRP3MZ"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JHF6ZRP3MZ');
+</script>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
