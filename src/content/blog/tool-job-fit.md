@@ -7,9 +7,9 @@ difficulty: 'high'
 tags: ['pipelines']
 ---
 
-A small analytics team I worked with spent three weeks building a revenue forecasting model. It lived in a single Jupyter notebook on a staff scientist's laptop. Input data came from a CSV a finance analyst emailed over every Friday. The cleaning was pandas, the model was a light statsforecast routine, and the output was a chart the CFO's office had been asking about for two quarters. It worked. It was legitimately good analysis.
+Consider a small analytics team that spends three weeks building a revenue forecasting model. It lives in a single Jupyter notebook on a staff scientist's laptop. Input data comes from a CSV a finance analyst emails over every Friday. The cleaning is pandas, the model is a light statsforecast routine, and the output is a chart the CFO's office has been asking about for two quarters. It works. It is legitimately good analysis.
 
-The celebration lasted about a week. Then came the follow-up questions, all variations of the same theme: can we run this every Monday? Can we break it out by region? Can we email it to the VPs? Can the sales team see it too? The scientist who built it did not have time to rebuild, so the notebook stayed. Someone bolted on a cron job that ran `jupyter nbconvert --execute` at 6 AM. When a region was missing data one week, the notebook ran anyway, produced silent garbage, and the regional VP called a meeting about "forecasting reliability." When pandas deprecated an argument, the Monday email stopped cold. Six months in, the company had a load-bearing business process depending on a notebook nobody wanted to own.
+The celebration lasts about a week. Then come the follow-up questions, all variations of the same theme: can we run this every Monday? Can we break it out by region? Can we email it to the VPs? Can the sales team see it too? The scientist who built it does not have time to rebuild, so the notebook stays. Someone bolts on a cron job that runs `jupyter nbconvert --execute` at 6 AM. When a region is missing data one week, the notebook runs anyway, produces silent garbage, and the regional VP calls a meeting about "forecasting reliability." When pandas deprecates an argument, the Monday email stops cold. Six months in, the company has a load-bearing business process depending on a notebook nobody wants to own.
 
 The notebook was the right tool to earn a *yes* from the CFO. It was the wrong tool to run the business. Nobody picked the wrong tool on purpose. The job changed and nobody noticed.
 
@@ -55,7 +55,7 @@ A cloud warehouse, whether Snowflake, BigQuery, or Redshift, is built for a diff
 
 The transition tells for needing a warehouse are specific, not rhetorical. Dozens of analysts are hitting the same tables concurrently. You have real compliance requirements: row-level security, audit logs, data-masking policies you cannot fake with filesystem permissions. Your datasets are in the multi-terabyte range after compression, not before. Without two or more of those conditions, you are likely paying warehouse prices for a laptop-sized workload.
 
-I have watched a company pay more than $30,000 a month to Snowflake to run queries over roughly forty gigabytes of data, because "that is what data teams use." The same workload runs in under two seconds on a single `m5.xlarge` with DuckDB reading Parquet out of S3. That is not an edge case. That is most analytical workloads at most mid-sized companies.
+It is common to see companies paying more than $30,000 a month to Snowflake to run queries over roughly forty gigabytes of data, because "that is what data teams use." The same workload runs in under two seconds on a single `m5.xlarge` with DuckDB reading Parquet out of S3. That is not an edge case. That is most analytical workloads at most mid-sized companies.
 
 Try DuckDB first. You can always migrate up when the concurrency or governance requirements actually arrive. Migrating down, after a warehouse has accreted dashboards, dbt models, and vendor contracts around it, is orders of magnitude harder.
 
@@ -85,7 +85,7 @@ There is no flowchart that will save you. There are a handful of diagnostic ques
 
 *What was this tool originally built for?* Read the first paragraph of its docs, not the marketing page. Excel's docs talk about spreadsheets. Jenkins's docs talk about builds. If the job you are using it for is not in that first paragraph, you are off-label.
 
-*Am I in Phase 1 or Phase 2?* Phase 1 is proving the thing works. Phase 2 is running the business. The answer changes which tool is correct.
+*Is this Phase 1 or Phase 2?* Phase 1 is proving the thing works. Phase 2 is running the business. The answer changes which tool is correct.
 
 *Has a stakeholder already asked the scale question, or are they about to?* Every successful prototype earns a "can we run this every day?" within weeks. If you are close to a demo, you are close to that question.
 
