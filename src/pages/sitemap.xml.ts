@@ -26,6 +26,7 @@ export async function GET() {
 		url('/contact/'),
 		url('/privacy/'),
 		url('/terms/'),
+		url('/ads.txt'),
 	];
 
 	const categoryPages = VALID_TAGS.map((tag) =>
