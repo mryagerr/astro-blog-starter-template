@@ -7,9 +7,4 @@ const blog = defineCollection({
 	schema: articleSchema,
 });
 
-const posts = defineCollection({
-	loader: glob({ base: "./src/content/posts", pattern: "**/*.{md,mdx}" }),
-	schema: articleSchema,
-});
-
-export const collections = { blog, posts };
+export const collections = { blog };
