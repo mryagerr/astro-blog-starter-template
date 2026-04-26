@@ -143,10 +143,34 @@ const startHereArticles = START_HERE_IDS
 					<a href="/projects/" class="view-all">View all →</a>
 				</div>
 				<div class="project-cards">
+					<a href="/projects/stackoverflow-monitoring/" class="project-card-home">
+						<div class="project-card-top">
+							<div>
+								<div class="project-card-meta">
+									<strong class="project-card-title">Stack Overflow Monitoring</strong>
+									<span class="project-card-tag">Trends</span>
+								</div>
+								<p class="project-card-tagline">Track technology adoption trends from public data — no vendor opinions required.</p>
+							</div>
+							<span class="project-card-arrow" aria-hidden="true">→</span>
+						</div>
+						<p class="project-card-desc">Joins the SO Developer Survey, public data dump, PyPI stats, and dbt Hub to produce a ranked Hype Gap table — the delta between what engineers want to learn and what they are actually paid to use.</p>
+						<div class="project-card-footer">
+							<div class="project-tech-stack">
+								<span class="tech-tag">Python</span>
+								<span class="tech-tag">click</span>
+								<span class="tech-tag">pandas</span>
+							</div>
+							<span class="project-card-stat">Rust: +21.4 hype gap</span>
+						</div>
+					</a>
 					<a href="https://github.com/mryagerr/Plex-data-mining" class="project-card-home" target="_blank" rel="noopener noreferrer">
 						<div class="project-card-top">
 							<div>
-								<strong class="project-card-title">Plex Data Mining</strong>
+								<div class="project-card-meta">
+									<strong class="project-card-title">Plex Data Mining</strong>
+									<span class="project-card-tag">Tooling</span>
+								</div>
 								<p class="project-card-tagline">Turn your Plex library into structured, queryable JSON in one command.</p>
 							</div>
 							<span class="project-card-arrow" aria-hidden="true">↗</span>
@@ -603,13 +627,29 @@ hr { margin: 3rem 0; }
 	gap: 0.75rem;
 }
 
+.project-card-meta {
+	display: flex;
+	align-items: baseline;
+	gap: 0.6rem;
+	margin-bottom: 0.25rem;
+}
+
+.project-card-tag {
+	font-family: var(--font-mono);
+	font-size: 0.65rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--caption);
+	flex-shrink: 0;
+}
+
 .project-card-title {
 	font-family: var(--font-display);
 	font-size: 1.05rem;
 	font-weight: 600;
 	color: var(--ink);
 	display: block;
-	margin-bottom: 0.25rem;
 	transition: color 0.15s ease;
 }
 
@@ -651,6 +691,19 @@ hr { margin: 3rem 0; }
 
 .project-card-footer {
 	margin-top: 0.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+}
+
+.project-card-stat {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 600;
+	color: var(--accent-dark);
+	letter-spacing: 0.03em;
 }
 
 .project-tech-stack {

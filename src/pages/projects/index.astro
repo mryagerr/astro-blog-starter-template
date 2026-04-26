@@ -5,6 +5,23 @@ import Footer from '../../components/Footer.astro';
 
 const projects = [
 	{
+		title: 'Stack Overflow Monitoring',
+		tagline: 'Track technology adoption trends from public data — no vendor opinions required.',
+		description: 'A data pipeline that joins Stack Overflow\'s public data dump, the annual Developer Survey, PyPI download stats, and the dbt Hub registry to produce reproducible signals on what engineers actually use, want, and regret.\n\nThe flagship output is the Hype Gap report: a ranked table sorted by the delta between "want to learn" and "used professionally" responses. Positive gaps surface tools engineers want that companies have not adopted. Negative gaps — the regret index — surface tools in wide production use that nobody would choose again.',
+		highlights: [
+			'No paid APIs — all four sources are public and free',
+			'Hype Gap: ranked delta between "want to learn" and "used professionally" per technology',
+			'Regret index surfaces tools that are common in production but low in demand',
+			'PyPI and dbt signals cross-check survey sentiment against actual download growth',
+			'CSV, Markdown, and JSON output — pipes cleanly into any downstream analysis',
+		],
+		tech: ['Python', 'click', 'rich', 'pandas'],
+		href: '/projects/stackoverflow-monitoring/',
+		github: 'https://github.com/mryagerr/stackoverflow-monitoring',
+		tag: 'Trends',
+		stat: 'Rust: +21.4 hype gap',
+	},
+	{
 		title: 'Plex Data Mining',
 		tagline: 'Turn your Plex library into structured, queryable JSON in one command.',
 		description: 'An open-source Python CLI that extracts your entire Plex Media Server library — movies and music — and exports it as clean, structured JSON. Whether you want to analyze your watch history, build a personal media dashboard, or just archive your collection metadata, this tool gives you the raw data to do it.\n\nPoint it at your Plex server, run one command, and get back fully structured records with titles, ratings, genres, cast, codecs, file paths, play counts, timestamps, and more — all ready for pandas, SQLite, a spreadsheet, or whatever you want to throw at it.',
@@ -16,7 +33,10 @@ const projects = [
 			'Also usable as a Python library (extract_movies(), extract_music()) for custom scripts',
 		],
 		tech: ['Python', 'plexapi', 'python-dotenv'],
+		href: null,
 		github: 'https://github.com/mryagerr/Plex-data-mining',
+		tag: 'Tooling',
+		stat: null,
 	},
 ];
 ---
@@ -44,7 +64,10 @@ const projects = [
 					<article class="project-card">
 						<div class="project-main">
 							<header class="project-header">
-								<h2 class="project-title">{project.title}</h2>
+								<div class="project-header-top">
+									<h2 class="project-title">{project.title}</h2>
+									<span class="project-tag">{project.tag}</span>
+								</div>
 								<p class="project-tagline">{project.tagline}</p>
 							</header>
 
@@ -66,14 +89,21 @@ const projects = [
 										<span class="tech-tag">{t}</span>
 									))}
 								</div>
-								<a
-									href={project.github}
-									class="github-link"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View on GitHub →
-								</a>
+								<div class="project-links">
+									{project.href && (
+										<a href={project.href} class="detail-link">
+											View project →
+										</a>
+									)}
+									<a
+										href={project.github}
+										class="github-link"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										GitHub ↗
+									</a>
+								</div>
 							</div>
 						</div>
 					</article>
@@ -153,13 +183,30 @@ main {
 	margin-bottom: 1.25rem;
 }
 
+.project-header-top {
+	display: flex;
+	align-items: baseline;
+	gap: 0.75rem;
+	margin-bottom: 0.5rem;
+}
+
+.project-tag {
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--caption);
+	flex-shrink: 0;
+}
+
 .project-title {
 	font-family: var(--font-display);
 	font-size: clamp(1.3rem, 3vw, 1.7rem);
 	font-weight: 700;
 	letter-spacing: -0.02em;
 	color: var(--ink);
-	margin: 0 0 0.5rem;
+	margin: 0;
 }
 
 .project-tagline {
@@ -239,6 +286,33 @@ main {
 	border-radius: 999px;
 	background: var(--accent-muted);
 	color: var(--accent-dark);
+}
+
+.project-links {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.detail-link {
+	font-family: var(--font-mono);
+	font-size: 0.82rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: var(--ink);
+	background: var(--accent);
+	padding: 0.3em 0.9em;
+	border-radius: 4px;
+	text-decoration: none;
+	transition: background 0.15s ease;
+	white-space: nowrap;
+	color: #fff;
+}
+
+.detail-link:hover {
+	background: var(--accent-dark);
+	text-decoration: none;
 }
 
 .github-link {
