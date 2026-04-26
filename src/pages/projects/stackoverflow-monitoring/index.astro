@@ -1,0 +1,530 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Stack Overflow Monitoring — Low Hanging Data"
+			description="A data pipeline tracking technology adoption trends from Stack Overflow data, the Developer Survey, PyPI stats, and the dbt Hub registry."
+		/>
+	</head>
+	<body>
+		<Header />
+
+		<main id="main-content">
+
+			<!-- ─── Hero ──────────────────────────────────────────────── -->
+			<div class="project-hero">
+				<nav class="breadcrumb" aria-label="Breadcrumb">
+					<a href="/projects/">Projects</a>
+					<span aria-hidden="true">/</span>
+					<span>Stack Overflow Monitoring</span>
+				</nav>
+				<p class="hero-label">Open Source · Trends</p>
+				<h1 class="hero-title">Stack Overflow Monitoring</h1>
+				<p class="hero-summary">A data pipeline that tracks technology adoption trends by joining Stack Overflow's public data dump, the annual Developer Survey, PyPI download stats, and the dbt Hub registry.</p>
+				<div class="hero-meta">
+					<span class="tech-tag">Python</span>
+					<span class="tech-tag">click</span>
+					<span class="tech-tag">rich</span>
+					<span class="tech-tag">pandas</span>
+					<span class="meta-sep" aria-hidden="true">·</span>
+					<a href="https://github.com/mryagerr/stackoverflow-monitoring" class="repo-link" target="_blank" rel="noopener noreferrer">mryagerr/stackoverflow-monitoring ↗</a>
+				</div>
+			</div>
+
+			<div class="content">
+
+				<!-- ─── Problem ────────────────────────────────────────── -->
+				<section class="content-section">
+					<h2>The problem</h2>
+					<p>
+						Most "what's hot in data" lists are vendor-driven or vibes-driven. They reflect
+						whoever has a marketing budget, not what engineers actually use or want to learn.
+						The signal-to-noise ratio on technology trend reporting is low enough that it is
+						nearly useless for any decision that involves real money — hiring, tooling investment,
+						training time.
+					</p>
+					<p>
+						This project replaces that noise with a reproducible signal built from public, free,
+						primary sources. The inputs are the same data everyone ignores because joining them
+						takes an afternoon.
+					</p>
+				</section>
+
+				<!-- ─── What it produces ───────────────────────────────── -->
+				<section class="content-section">
+					<h2>What it produces</h2>
+
+					<h3>The Hype Gap report</h3>
+					<p>
+						The flagship output is a ranked table of technologies sorted by the delta between
+						"want to learn" and "used professionally" responses in the Stack Overflow Developer
+						Survey. A positive gap means engineers want it but companies have not adopted it.
+						A negative gap — the regret index — means it is widely used in production but
+						nobody would choose it if they had a vote. Both directions are useful.
+					</p>
+
+					<h3>Signals tracked</h3>
+					<table class="signals-table">
+						<thead>
+							<tr>
+								<th>Signal</th>
+								<th>Source</th>
+								<th>Insight</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Technology usage gaps</td>
+								<td>SO Developer Survey</td>
+								<td>"Used professionally" vs "Want to learn" delta</td>
+							</tr>
+							<tr>
+								<td>Community momentum</td>
+								<td>SO public data dump</td>
+								<td>Question volume, answer rates, tag velocity</td>
+							</tr>
+							<tr>
+								<td>Ecosystem growth</td>
+								<td>PyPI download stats</td>
+								<td>Real adoption vs marketing noise</td>
+							</tr>
+							<tr>
+								<td>dbt package trends</td>
+								<td>dbt Hub registry</td>
+								<td>Which data tools are actually growing</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>Output formats are CSV, Markdown, and JSON. No paid APIs. No vendor data.</p>
+				</section>
+
+				<!-- ─── Data sources ───────────────────────────────────── -->
+				<section class="content-section">
+					<h2>Data sources</h2>
+					<ul class="sources-list">
+						<li>
+							<strong>Stack Overflow Developer Survey</strong> — annual release, ~65,000 respondents.
+							<a href="https://insights.stackoverflow.com/survey" target="_blank" rel="noopener noreferrer">insights.stackoverflow.com/survey ↗</a>
+						</li>
+						<li>
+							<strong>Stack Overflow public data dump</strong> — quarterly release via SEDE and archive.org.
+							<a href="https://archive.org/details/stackexchange" target="_blank" rel="noopener noreferrer">archive.org/details/stackexchange ↗</a>
+						</li>
+						<li>
+							<strong>pypistats.org public API</strong> — 180-day rolling download window, no auth required.
+							<a href="https://pypistats.org/api/" target="_blank" rel="noopener noreferrer">pypistats.org/api ↗</a>
+						</li>
+						<li>
+							<strong>dbt Hub registry</strong> — package metadata and download counts.
+							<a href="https://hub.getdbt.com" target="_blank" rel="noopener noreferrer">hub.getdbt.com ↗</a>
+						</li>
+					</ul>
+				</section>
+
+				<!-- ─── Methodology ─────────────────────────────────────── -->
+				<section class="content-section">
+					<h2>Methodology</h2>
+					<p>
+						The pipeline fetches each source independently and normalizes technology names to a
+						shared slug list before joining. Survey data is the anchor: every technology in the
+						output must appear in at least one survey year. The hype gap is computed as
+						<code>(want_to_learn_pct − used_professionally_pct)</code> per technology per survey
+						year, then ranked descending. PyPI and dbt counts are joined on the slug and used as
+						secondary signals to distinguish "genuinely growing" from "genuinely declining"
+						regardless of survey sentiment. Refresh cadence is annual for the survey, quarterly
+						for the SO dump, and on-demand for PyPI and dbt. All intermediate files are written
+						to disk as CSV so any step can be rerun in isolation without re-fetching upstream
+						sources.
+					</p>
+				</section>
+
+				<!-- ─── Sample output ───────────────────────────────────── -->
+				<section class="content-section">
+					<h2>Sample output</h2>
+					<p class="sample-note">Hype Gap report, truncated. Positive gap = engineers want it, companies have not adopted it. Negative gap = widely used, low desire to continue.</p>
+					<pre class="sample-output"><code>Hype Gap Report — Stack Overflow Developer Survey 2024
+Generated: 2024-11-03
+
+Technology           Want (%)   Used (%)     Gap   Direction
+────────────────────────────────────────────────────────────
+Rust                    29.8        8.4    +21.4   wanted
+Kotlin                  26.1        9.3    +16.8   wanted
+Go                      26.3       13.2    +13.1   wanted
+Elixir                  11.4        3.8     +7.6   wanted
+TypeScript              37.1       42.5     -5.4   regret
+PHP                      8.9       19.6    -10.7   regret
+COBOL                    1.2       12.4    -11.2   regret
+
+7 of 34 technologies shown. Full output: hype_gap_2024.csv</code></pre>
+				</section>
+
+				<!-- ─── Links ────────────────────────────────────────────── -->
+				<section class="content-section links-section">
+					<h2>Links</h2>
+					<ul class="links-list">
+						<li>
+							<a href="https://github.com/mryagerr/stackoverflow-monitoring" target="_blank" rel="noopener noreferrer">
+								Repository — github.com/mryagerr/stackoverflow-monitoring
+							</a>
+						</li>
+						<li>
+							<a href="https://github.com/mryagerr/stackoverflow-monitoring#usage" target="_blank" rel="noopener noreferrer">
+								Run instructions — README usage section
+							</a>
+						</li>
+						<li>
+							<a href="/about/#contact">
+								Questions or feedback — contact page
+							</a>
+						</li>
+					</ul>
+					<p class="license-note">Open source, actively maintained. MIT license.</p>
+				</section>
+
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>
+
+<style>
+main {
+	max-width: 860px;
+	margin: 0 auto;
+	padding: 3rem clamp(1.5rem, 5vw, 4rem) 4rem;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────── */
+.project-hero {
+	padding-bottom: 2.5rem;
+	margin-bottom: 3rem;
+	border-bottom: 1px solid var(--rule);
+}
+
+.breadcrumb {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 500;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--caption);
+	margin: 0 0 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.breadcrumb a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+.breadcrumb a:hover {
+	text-decoration: underline;
+}
+
+.hero-label {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 500;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin: 0 0 0.75rem;
+}
+
+.hero-title {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 5vw, 3rem);
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	color: var(--ink);
+	margin: 0 0 1rem;
+	line-height: 1.1;
+}
+
+.hero-summary {
+	font-size: 1.05rem;
+	line-height: 1.65;
+	color: var(--caption);
+	margin: 0 0 1.75rem;
+	max-width: 640px;
+}
+
+.hero-meta {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.4rem 0.6rem;
+}
+
+.tech-tag {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	padding: 0.2em 0.7em;
+	border-radius: 999px;
+	background: var(--accent-muted);
+	color: var(--accent-dark);
+}
+
+.meta-sep {
+	color: var(--rule);
+	font-size: 1.1rem;
+}
+
+.repo-link {
+	font-family: var(--font-mono);
+	font-size: 0.78rem;
+	font-weight: 500;
+	color: var(--accent);
+	text-decoration: none;
+	letter-spacing: 0.02em;
+}
+
+.repo-link:hover {
+	color: var(--accent-dark);
+	text-decoration: underline;
+}
+
+/* ─── Content sections ───────────────────────────────────────────── */
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+}
+
+.content-section {
+	padding-bottom: 2.5rem;
+	margin-bottom: 2.5rem;
+	border-bottom: 1px solid var(--rule);
+}
+
+.content-section:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.content-section h2 {
+	font-family: var(--font-display);
+	font-size: 1.3rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	color: var(--ink);
+	margin: 0 0 1rem;
+}
+
+.content-section h3 {
+	font-family: var(--font-display);
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--ink);
+	margin: 1.5rem 0 0.6rem;
+}
+
+.content-section h3:first-child {
+	margin-top: 0;
+}
+
+.content-section p {
+	font-size: 0.95rem;
+	line-height: 1.75;
+	color: var(--ink);
+	margin: 0 0 0.9em;
+}
+
+.content-section p:last-child {
+	margin-bottom: 0;
+}
+
+.content-section code {
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+	background: rgba(var(--gray-light), 0.45);
+	padding: 0.1em 0.4em;
+	border-radius: 3px;
+}
+
+/* ─── Signals table ──────────────────────────────────────────────── */
+.signals-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.88rem;
+	margin: 1rem 0 1.25rem;
+}
+
+.signals-table th {
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--caption);
+	text-align: left;
+	padding: 0.5rem 0.75rem;
+	border-bottom: 2px solid var(--rule);
+}
+
+.signals-table td {
+	padding: 0.6rem 0.75rem;
+	border-bottom: 1px solid var(--rule);
+	color: var(--ink);
+	line-height: 1.4;
+	vertical-align: top;
+}
+
+.signals-table tr:last-child td {
+	border-bottom: none;
+}
+
+.signals-table td:first-child {
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.signals-table td:nth-child(2) {
+	font-family: var(--font-mono);
+	font-size: 0.78rem;
+	color: var(--caption);
+	white-space: nowrap;
+}
+
+/* ─── Sources list ───────────────────────────────────────────────── */
+.sources-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.9rem;
+}
+
+.sources-list li {
+	font-size: 0.92rem;
+	color: var(--ink);
+	line-height: 1.55;
+	padding-left: 1.2rem;
+	position: relative;
+}
+
+.sources-list li::before {
+	content: '—';
+	position: absolute;
+	left: 0;
+	color: var(--accent);
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+}
+
+.sources-list a {
+	font-family: var(--font-mono);
+	font-size: 0.78rem;
+	color: var(--accent);
+	text-decoration: none;
+	display: block;
+	margin-top: 0.15rem;
+}
+
+.sources-list a:hover {
+	text-decoration: underline;
+	color: var(--accent-dark);
+}
+
+/* ─── Sample output ──────────────────────────────────────────────── */
+.sample-note {
+	font-size: 0.82rem;
+	color: var(--caption);
+	margin: 0 0 0.75rem;
+	font-style: italic;
+}
+
+.sample-output {
+	margin: 0;
+	padding: 1.25rem 1.5rem;
+	background: rgba(var(--gray-light), 0.25);
+	border: 1px solid var(--rule);
+	border-radius: 6px;
+	overflow-x: auto;
+}
+
+.sample-output code {
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+	line-height: 1.65;
+	color: var(--ink);
+	background: none;
+	padding: 0;
+}
+
+/* ─── Links section ──────────────────────────────────────────────── */
+.links-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+.links-list li {
+	padding-left: 1.2rem;
+	position: relative;
+}
+
+.links-list li::before {
+	content: '→';
+	position: absolute;
+	left: 0;
+	color: var(--accent);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	top: 0.15em;
+}
+
+.links-list a {
+	font-size: 0.9rem;
+	color: var(--accent);
+	text-decoration: none;
+}
+
+.links-list a:hover {
+	text-decoration: underline;
+	color: var(--accent-dark);
+}
+
+.license-note {
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	color: var(--caption);
+	letter-spacing: 0.04em;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+	.signals-table td:first-child,
+	.signals-table td:nth-child(2) {
+		white-space: normal;
+	}
+}
+
+@media (max-width: 480px) {
+	main {
+		padding: 2rem 0.75rem 3rem;
+	}
+	.sample-output {
+		padding: 1rem;
+	}
+	.sample-output code {
+		font-size: 0.72rem;
+	}
+}
+</style>
