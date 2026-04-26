@@ -16,7 +16,7 @@ interface Result {
 	description: string;
 	url: string;
 	pubDate: Date;
-	type: 'Article' | 'Post';
+	type: 'Article';
 	score: number;
 }
 
@@ -26,7 +26,6 @@ let searched = false;
 if (queryLower) {
 	searched = true;
 	const articles = await getCollection('blog');
-	const blogPosts = await getCollection('posts');
 
 	const terms = queryLower.split(/\s+/).filter(Boolean);
 
@@ -37,13 +36,6 @@ if (queryLower) {
 			url: `/article/${a.id}/`,
 			pubDate: a.data.pubDate,
 			type: 'Article' as const,
-		})),
-		...blogPosts.map((p) => ({
-			title: p.data.title,
-			description: p.data.description,
-			url: `/posts/${p.id}/`,
-			pubDate: p.data.pubDate,
-			type: 'Post' as const,
 		})),
 	];
 
@@ -66,7 +58,7 @@ if (queryLower) {
 	<head>
 		<BaseHead
 			title={query ? `Search: "${query}" — Low Hanging Data` : 'Search — Low Hanging Data'}
-			description="Search articles and posts on Low Hanging Data."
+			description="Search articles on Low Hanging Data."
 		/>
 		<meta name="robots" content="noindex,follow" />
 	</head>
@@ -81,7 +73,7 @@ if (queryLower) {
 						type="search"
 						name="q"
 						value={query}
-						placeholder="Search articles and posts…"
+						placeholder="Search articles…"
 						aria-label="Search site"
 						autofocus
 					/>
