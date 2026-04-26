@@ -136,6 +136,35 @@ const startHereArticles = START_HERE_IDS
 
 			<hr />
 
+			<!-- ─── Projects ─────────────────────────────────────────────── -->
+			<section class="projects-section">
+				<div class="section-header">
+					<h2 class="section-title">Projects</h2>
+					<a href="/projects/" class="view-all">View all →</a>
+				</div>
+				<div class="project-cards">
+					<a href="https://github.com/mryagerr/Plex-data-mining" class="project-card-home" target="_blank" rel="noopener noreferrer">
+						<div class="project-card-top">
+							<div>
+								<strong class="project-card-title">Plex Data Mining</strong>
+								<p class="project-card-tagline">Turn your Plex library into structured, queryable JSON in one command.</p>
+							</div>
+							<span class="project-card-arrow" aria-hidden="true">↗</span>
+						</div>
+						<p class="project-card-desc">Open-source Python CLI that extracts your entire Plex Media Server library — movies and music — and exports it as clean, structured JSON. Full metadata, codec details, play stats, and cast/crew included.</p>
+						<div class="project-card-footer">
+							<div class="project-tech-stack">
+								<span class="tech-tag">Python</span>
+								<span class="tech-tag">plexapi</span>
+								<span class="tech-tag">python-dotenv</span>
+							</div>
+						</div>
+					</a>
+				</div>
+			</section>
+
+			<hr />
+
 			<!-- ─── Author bio ─────────────────────────────────────────── -->
 			<div class="author-bio">
 				<p>
@@ -537,12 +566,117 @@ hr { margin: 3rem 0; }
 	line-height: 1.5;
 }
 
+/* ─── Projects ───────────────────────────────────────────────────── */
+.projects-section {
+	margin-top: 0;
+}
+
+.project-cards {
+	margin-top: 1.25rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+
+.project-card-home {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	padding: 1.25rem 1.4rem;
+	border: 1px solid var(--rule);
+	border-radius: 8px;
+	background: var(--paper);
+	text-decoration: none;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-card-home:hover {
+	box-shadow: var(--box-shadow);
+	border-color: var(--accent-muted);
+	transform: translateY(-2px);
+}
+
+.project-card-top {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 0.75rem;
+}
+
+.project-card-title {
+	font-family: var(--font-display);
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--ink);
+	display: block;
+	margin-bottom: 0.25rem;
+	transition: color 0.15s ease;
+}
+
+.project-card-home:hover .project-card-title {
+	color: var(--accent);
+}
+
+.project-card-tagline {
+	margin: 0;
+	font-size: 0.82rem;
+	color: var(--caption);
+	line-height: 1.45;
+	font-style: italic;
+}
+
+.project-card-arrow {
+	font-size: 1rem;
+	color: var(--accent);
+	flex-shrink: 0;
+	opacity: 0.6;
+	transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.project-card-home:hover .project-card-arrow {
+	opacity: 1;
+	transform: translate(1px, -1px);
+}
+
+.project-card-desc {
+	margin: 0;
+	font-size: 0.85rem;
+	color: var(--caption);
+	line-height: 1.55;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.project-card-footer {
+	margin-top: 0.25rem;
+}
+
+.project-tech-stack {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+}
+
+.tech-tag {
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	padding: 0.15em 0.6em;
+	border-radius: 999px;
+	background: var(--accent-muted);
+	color: var(--accent-dark);
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 720px) {
 	.hero-principles { flex-direction: column; align-items: flex-start; }
 	.principle-sep { display: none; }
 	.article-grid { grid-template-columns: 1fr; }
 	.topic-grid { grid-template-columns: repeat(2, 1fr); }
+	.project-cards { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {

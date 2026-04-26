@@ -1,0 +1,276 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const projects = [
+	{
+		title: 'Plex Data Mining',
+		tagline: 'Turn your Plex library into structured, queryable JSON in one command.',
+		description: 'An open-source Python CLI that extracts your entire Plex Media Server library — movies and music — and exports it as clean, structured JSON. Whether you want to analyze your watch history, build a personal media dashboard, or just archive your collection metadata, this tool gives you the raw data to do it.\n\nPoint it at your Plex server, run one command, and get back fully structured records with titles, ratings, genres, cast, codecs, file paths, play counts, timestamps, and more — all ready for pandas, SQLite, a spreadsheet, or whatever you want to throw at it.',
+		highlights: [
+			'No Plex Pass required — works with any local Plex server',
+			'Movies export with full cast, crew, ratings, file codec/resolution details, and play stats',
+			'Music exports as a clean hierarchy: artist → albums → tracks, with optional track-level detail',
+			'Output goes to stdout or a file — easy to pipe into any downstream tool',
+			'Also usable as a Python library (extract_movies(), extract_music()) for custom scripts',
+		],
+		tech: ['Python', 'plexapi', 'python-dotenv'],
+		github: 'https://github.com/mryagerr/Plex-data-mining',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Projects — Low Hanging Data"
+			description="Open-source tools and side projects built around data collection, processing, and analysis."
+		/>
+	</head>
+	<body>
+		<Header />
+
+		<main id="main-content">
+			<div class="page-header">
+				<p class="page-label">Open Source</p>
+				<h1 class="page-title">Projects</h1>
+				<p class="page-sub">Tools and side projects built around data collection, processing, and analysis.</p>
+			</div>
+
+			<div class="projects-list">
+				{projects.map((project) => (
+					<article class="project-card">
+						<div class="project-main">
+							<header class="project-header">
+								<h2 class="project-title">{project.title}</h2>
+								<p class="project-tagline">{project.tagline}</p>
+							</header>
+
+							<div class="project-body">
+								{project.description.split('\n\n').map((para) => (
+									<p>{para}</p>
+								))}
+							</div>
+
+							<ul class="project-highlights">
+								{project.highlights.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+
+							<div class="project-footer">
+								<div class="tech-stack">
+									{project.tech.map((t) => (
+										<span class="tech-tag">{t}</span>
+									))}
+								</div>
+								<a
+									href={project.github}
+									class="github-link"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									View on GitHub →
+								</a>
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</main>
+
+		<Footer />
+	</body>
+</html>
+
+<style>
+main {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 3.5rem clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ─── Page header ────────────────────────────────────────────────── */
+.page-header {
+	margin-bottom: 3rem;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid var(--rule);
+}
+
+.page-label {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 500;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin: 0 0 0.6rem;
+}
+
+.page-title {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 5vw, 3rem);
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	color: var(--ink);
+	margin: 0 0 0.75rem;
+}
+
+.page-sub {
+	font-size: 1rem;
+	color: var(--caption);
+	margin: 0;
+	max-width: 520px;
+}
+
+/* ─── Project card ───────────────────────────────────────────────── */
+.projects-list {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.project-card {
+	border: 1px solid var(--rule);
+	border-radius: 10px;
+	background: var(--paper);
+	overflow: hidden;
+	transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+	box-shadow: var(--box-shadow);
+	border-color: var(--accent-muted);
+}
+
+.project-main {
+	padding: 2rem 2.25rem;
+}
+
+.project-header {
+	margin-bottom: 1.25rem;
+}
+
+.project-title {
+	font-family: var(--font-display);
+	font-size: clamp(1.3rem, 3vw, 1.7rem);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	color: var(--ink);
+	margin: 0 0 0.5rem;
+}
+
+.project-tagline {
+	font-size: 1rem;
+	color: var(--caption);
+	margin: 0;
+	line-height: 1.5;
+	font-style: italic;
+}
+
+.project-body {
+	margin-bottom: 1.5rem;
+}
+
+.project-body p {
+	font-size: 0.95rem;
+	color: var(--ink);
+	line-height: 1.7;
+	margin: 0 0 0.9em;
+}
+
+.project-body p:last-child {
+	margin-bottom: 0;
+}
+
+/* ─── Highlights list ────────────────────────────────────────────── */
+.project-highlights {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+}
+
+.project-highlights li {
+	font-size: 0.88rem;
+	color: var(--caption);
+	line-height: 1.5;
+	padding-left: 1.3rem;
+	position: relative;
+}
+
+.project-highlights li::before {
+	content: '→';
+	position: absolute;
+	left: 0;
+	color: var(--accent);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	top: 0.1em;
+}
+
+/* ─── Footer row ─────────────────────────────────────────────────── */
+.project-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--rule);
+}
+
+.tech-stack {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.tech-tag {
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	padding: 0.2em 0.7em;
+	border-radius: 999px;
+	background: var(--accent-muted);
+	color: var(--accent-dark);
+}
+
+.github-link {
+	font-family: var(--font-mono);
+	font-size: 0.82rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: var(--accent);
+	text-decoration: none;
+	transition: color 0.15s ease;
+	white-space: nowrap;
+}
+
+.github-link:hover {
+	color: var(--accent-dark);
+	text-decoration: underline;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+	.project-main {
+		padding: 1.5rem 1.25rem;
+	}
+	.project-footer {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+@media (max-width: 480px) {
+	main {
+		padding: 2rem 0.75rem;
+	}
+}
+</style>
