@@ -63,7 +63,7 @@ astro-blog-starter-template/
 ├── src/
 │   ├── components/          # Reusable .astro components (5 files)
 │   ├── content/             # Markdown/MDX content files
-│   │   ├── blog/            # Technical articles (~34 files)
+│   │   ├── blog/            # Technical articles (~35 files)
 │   │   └── posts/           # Short blog posts (~3 files)
 │   ├── layouts/
 │   │   └── BlogPost.astro   # Shared layout for articles (with ToC, related posts, share bar)
@@ -75,9 +75,10 @@ astro-blog-starter-template/
 │   │   ├── terms.astro      # Terms of Use page
 │   │   ├── search.astro     # Site search page (SSR, prerender = false)
 │   │   ├── rss.xml.ts       # RSS feed endpoint (uses @astrojs/rss + blog collection)
-│   │   ├── sitemap.xml.ts   # Redirects /sitemap.xml → /sitemap-index.xml
+│   │   ├── sitemap.xml.ts   # Custom prerendered XML sitemap (all routes + lastmod)
 │   │   ├── 404.astro        # Custom 404 error page
 │   │   ├── article/         # Articles section (/article/*)
+│   │   ├── category/        # Tag/category pages (/category/{slug})
 │   │   └── posts/           # Blog posts section (/posts/*)
 │   ├── styles/
 │   │   └── global.css       # Global CSS (editorial minimalist palette)
@@ -140,6 +141,22 @@ export const TAG_LABELS: Record<Tag, string> = {
   culture: 'Culture & Communication',
   career: 'Career',
 };
+
+// URL-safe slugs for each tag (used in /category/{slug} routes)
+export const TAG_SLUGS: Record<Tag, string> = {
+  collection: 'collection',
+  preparation: 'preparation',
+  pipelines: 'pipelines',
+  analysis: 'analysis',
+  culture: 'culture-and-communication',  // note: hyphenated
+  career: 'career',
+};
+
+// Human-readable descriptions shown on category pages
+export const TAG_DESCRIPTIONS: Record<Tag, string> = { /* ... */ };
+
+// Reverse map: slug → Tag (used in category/[slug].astro)
+export const SLUG_TO_TAG: Record<string, Tag> = /* derived from TAG_SLUGS */;
 
 export const articleSchema = z.object({
   title: z.string(),           // Required
@@ -208,10 +225,10 @@ Located in `src/components/`. All are `.astro` files.
 
 | Component | Purpose |
 |---|---|
-| `BaseHead.astro` | `<head>` tags: charset, viewport, SEO meta, OG tags, Twitter cards, JSON-LD structured data, Google Fonts (progressive load), Atkinson font preloads, RSS auto-discovery, Google AdSense (article pages only). SVG images auto-fall back to `/blog-og-default.png`. |
+| `BaseHead.astro` | `<head>` tags: charset, viewport, SEO meta, OG tags, Twitter cards, JSON-LD structured data, Google Fonts (progressive load), Atkinson font preloads, RSS auto-discovery, Google Analytics (GA4), Google AdSense (article pages only). SVG images auto-fall back to `/blog-og-default.png`. Props: `title`, `description`, `image?`, `type?`, `pubDate?`, `updatedDate?`, `wordCount?`, `breadcrumb?`. |
 | `Header.astro` | Site header with 3 nav tabs (Home, Articles, About), integrated search form, and hamburger mobile menu |
 | `HeaderLink.astro` | Nav link that auto-applies active styles based on current route |
-| `Footer.astro` | Site footer with brand section, nav links (Home, Articles, About, Contact, Privacy, Terms, RSS Feed), and copyright |
+| `Footer.astro` | Site footer with brand section, nav links (Home, Articles, About, Contact, Privacy, Terms, RSS Feed, Sitemap), and copyright |
 | `FormattedDate.astro` | Renders a `Date` object as a `<time>` element (format: "Mar 03, 2025") |
 
 ### Component Pattern
@@ -245,6 +262,7 @@ The shared layout used by `/article/[...slug].astro` and `/posts/[...slug].astro
 ```typescript
 type Props = CollectionEntry<'blog'>['data'] & {
   readingTime?: number;          // Minutes to read (computed from word count)
+  wordCount?: number;            // Raw word count (displayed alongside reading time)
   headings?: MarkdownHeading[];  // Used to render Table of Contents
   relatedPosts?: RelatedPost[];  // Up to 3 related articles shown at bottom
   breadcrumb?: { href: string; label: string }; // Breadcrumb trail
@@ -272,17 +290,18 @@ Astro uses file-based routing from `src/pages/`.
 
 | File | Route | Description |
 |---|---|---|
-| `index.astro` | `/` | Homepage: hero section + Start Here list (4 curated articles) + Latest Articles grid (10 articles) + author bio |
+| `index.astro` | `/` | Homepage: hero section + Start Here list + Browse by Topic grid + Latest Articles grid (10 articles) + author bio |
 | `about.astro` | `/about` | Static about page (uses BlogPost layout) |
 | `contact.astro` | `/contact` | Static contact page (uses BlogPost layout) |
 | `privacy.astro` | `/privacy` | Privacy policy (uses BlogPost layout) |
 | `terms.astro` | `/terms` | Terms of use (uses BlogPost layout) |
 | `search.astro` | `/search` | Full-text search across blog + posts (SSR; `prerender = false`) |
 | `rss.xml.ts` | `/rss.xml` | RSS feed of blog collection (SSR, `prerender = false`; uses `@astrojs/rss`) |
-| `sitemap.xml.ts` | `/sitemap.xml` | 301 redirect → `/sitemap-index.xml` (generated by `@astrojs/sitemap`) |
+| `sitemap.xml.ts` | `/sitemap.xml` | Prerendered custom XML sitemap (all static + category + article + post routes with `<lastmod>`) |
 | `404.astro` | `/404` | Custom 404 error page |
-| `article/index.astro` | `/article` | Grid listing of all technical articles |
+| `article/index.astro` | `/article` | Grid listing of all technical articles with client-side tag filtering |
 | `article/[...slug].astro` | `/article/{id}` | Dynamic article page |
+| `category/[slug].astro` | `/category/{tag-slug}` | Tag/category listing (one route per VALID_TAG, slug from `TAG_SLUGS`) |
 | `posts/index.astro` | `/posts` | List of blog posts |
 | `posts/[...slug].astro` | `/posts/{id}` | Dynamic blog post page |
 
@@ -311,10 +330,11 @@ const { Content, headings } = await render(post);
 `/article/[...slug].astro` computes extra props before passing to the layout using extracted utilities:
 
 ```typescript
-import { calculateReadingTime } from '../../utils/readingTime';
+import { calculateReadingTime, calculateWordCount } from '../../utils/readingTime';
 import { findRelatedPosts } from '../../utils/relatedPosts';
 
 const readingTime = calculateReadingTime(post.body);
+const wordCount = calculateWordCount(post.body);
 
 const allPosts = sortByPubDateDesc(await getCollection('blog'));
 const relatedPosts = findRelatedPosts(
@@ -325,7 +345,15 @@ const relatedPosts = findRelatedPosts(
 );
 ```
 
-Related posts are ranked by shared tags first, then by recency (pubDate descending). The `findRelatedPosts()` function lives in `src/utils/relatedPosts.ts`.
+Related posts are scored by shared tags (2 pts each) plus adjacent-category tags (1 pt each), then sorted by score desc → pubDate desc → id alphabetical. The `findRelatedPosts()` function lives in `src/utils/relatedPosts.ts`.
+
+### Posts Page Enhancements
+
+`/posts/[...slug].astro` uses a simpler related-posts strategy: the 3 most recent posts from the `posts` collection (excluding the current one), with no tag-based scoring.
+
+### Category Pages
+
+`/category/[slug].astro` generates one page per tag using `getStaticPaths()` over `VALID_TAGS`. The URL slug comes from `TAG_SLUGS` (e.g., `culture` → `/category/culture-and-communication/`). Each page shows the tag's description, article count, navigation chips for all other categories, a featured first article, and a 2-column grid for the rest.
 
 ### Search Page
 
@@ -340,14 +368,17 @@ Located in `src/utils/`. All utilities have corresponding Vitest test files.
 ### `contentSchema.ts`
 
 ```typescript
-VALID_TAGS      // Const tuple of allowed tag values
-Tag             // Union type of valid tag strings
-TAG_LABELS      // Record mapping Tag → display label
-articleSchema   // Zod schema for content frontmatter (used by both collections)
-ArticleData     // Inferred TypeScript type from the schema
+VALID_TAGS         // Const tuple of allowed tag values
+Tag                // Union type of valid tag strings
+TAG_LABELS         // Record<Tag, string> — display label per tag
+TAG_SLUGS          // Record<Tag, string> — URL-safe slug per tag ('culture' → 'culture-and-communication')
+TAG_DESCRIPTIONS   // Record<Tag, string> — paragraph description per tag (used on category pages)
+SLUG_TO_TAG        // Record<string, Tag> — reverse map from slug back to Tag
+articleSchema      // Zod schema for content frontmatter (used by both collections)
+ArticleData        // Inferred TypeScript type from the schema
 ```
 
-Imported by `src/content.config.ts` for both the `blog` and `posts` collections. Extracting the schema here avoids Astro virtual module dependencies so it can be unit-tested directly.
+Imported by `src/content.config.ts` for both the `blog` and `posts` collections, and by `src/pages/category/[slug].astro` for route generation. Extracting the schema here avoids Astro virtual module dependencies so it can be unit-tested directly.
 
 ### `formatDate.ts`
 
@@ -387,8 +418,12 @@ getDifficultyClass(difficulty: 'low' | 'high'): string
 ### `readingTime.ts`
 
 ```typescript
+calculateWordCount(body: string | null | undefined): number
+// Splits on whitespace and counts non-empty tokens.
+
 calculateReadingTime(body: string | null | undefined): number
 // Calculates estimated reading time in minutes (~200 wpm). Always returns at least 1.
+// Calls calculateWordCount() internally.
 ```
 
 ### `rehypeResponsiveImages.ts`
@@ -404,6 +439,10 @@ Imported by `astro.config.mjs`. Extracted from the config file so it can be unit
 ### `relatedPosts.ts`
 
 ```typescript
+// Exported constant — tag adjacency pairs for cross-category fallback:
+//   Collection ↔ Preparation, Pipelines ↔ Analysis, Culture ↔ Career
+export const CATEGORY_ADJACENCY: Record<string, string[]>
+
 findRelatedPosts(
   currentId: string,
   currentTags: readonly string[],
@@ -411,7 +450,9 @@ findRelatedPosts(
   hrefPrefix: string,
   limit?: number,  // default: 3
 ): RelatedPostOutput[]
-// Scores posts by shared tags, falls back to pubDate desc. Returns up to `limit` results.
+// Scoring: 2 pts per shared direct tag + 1 pt per shared adjacent-category tag.
+// Sort order: score desc → pubDate desc → id alphabetical (deterministic tiebreaker).
+// Returns up to `limit` results as RelatedPostOutput[].
 ```
 
 ### `search.ts`
@@ -433,7 +474,7 @@ These are required behaviors. Do not remove or regress them.
 
 ### Homepage Start Here Section
 
-`index.astro` includes a **Start Here** section above the Latest Articles grid. It shows 4 curated onboarding articles in a numbered list, hardcoded by ID in `START_HERE_IDS`:
+`index.astro` includes a **Start Here** section above the Browse by Topic grid. It shows 4 curated onboarding articles in a numbered list, hardcoded by ID in `START_HERE_IDS`:
 
 ```typescript
 const START_HERE_IDS = [
@@ -445,6 +486,10 @@ const START_HERE_IDS = [
 ```
 
 Do not remove this section or change it to use dynamic/tag-based selection without updating the curated list intentionally.
+
+### Homepage Browse by Topic Grid
+
+`index.astro` includes a **Browse by Topic** section between Start Here and Latest Articles. It renders all 6 tags as clickable cards, each showing the tag label, article count, and description. Each card links to `/category/{TAG_SLUGS[tag]}/`. Do not remove this section.
 
 ### Header Navigation
 
@@ -539,7 +584,7 @@ The site deploys to **Cloudflare Workers** using `wrangler`.
 ```json
 {
   "name": "astro-blog-starter-template",
-  "compatibility_date": "2025-10-08",
+  "compatibility_date": "2026-04-18",
   "compatibility_flags": ["nodejs_compat"],
   "main": "./dist/_worker.js/index.js",
   "assets": { "directory": "./dist", "binding": "ASSETS" },
@@ -596,11 +641,13 @@ export const SITE_DESCRIPTION = 'Data analysis should be concise, transparent, a
 
 ### SEO
 
-`BaseHead.astro` handles all SEO metadata. Props: `title`, `description`, `image?`, `type?` (`'website'` | `'article'`, default `'website'`), `pubDate?`, `updatedDate?`. It generates:
+`BaseHead.astro` handles all SEO metadata. Props: `title`, `description`, `image?`, `type?` (`'website'` | `'article'`, default `'website'`), `pubDate?`, `updatedDate?`, `wordCount?`, `breadcrumb?`. It generates:
 - Canonical URL
 - OG + Twitter card meta tags
 - JSON-LD `Article` structured data (when `type === 'article'` and `pubDate` is set)
+- JSON-LD `BreadcrumbList` (when `breadcrumb` prop is passed)
 - RSS feed auto-discovery link
+- Google Analytics (GA4)
 - Google AdSense script (article pages only)
 - Google Fonts progressive load (`media="print"` → `"all"` + `<noscript>` fallback)
 
@@ -612,7 +659,7 @@ The RSS feed is served at `/rss.xml` via `src/pages/rss.xml.ts`. It is an **SSR 
 
 ### Sitemap
 
-`@astrojs/sitemap` auto-generates `/sitemap-index.xml`. The file `src/pages/sitemap.xml.ts` issues a 301 redirect from `/sitemap.xml` to `/sitemap-index.xml` for compatibility with crawlers that look for the standard path.
+`src/pages/sitemap.xml.ts` is a **prerendered** endpoint (`export const prerender = true`) that generates a custom XML sitemap served at `/sitemap.xml`. It includes all static pages, all category pages (using `TAG_SLUGS`), all article pages, and all post pages. Article and post entries include `<lastmod>` dates from their `pubDate`. Do not replace this with a redirect — the custom sitemap is intentional so that category routes are included.
 
 ---
 
@@ -657,3 +704,7 @@ The RSS feed is served at `/rss.xml` via `src/pages/rss.xml.ts`. It is an **SSR 
 - Do not remove the Table of Contents logic from `BlogPost.astro` — it activates automatically for articles with ≥3 headings.
 - Do not remove the `rehypeResponsiveImages` plugin from `astro.config.mjs` — it ensures all Markdown images are lazy-loaded.
 - Do not use SVG format for hero images — all hero images in `public/` must be **1200×630 PNG** files. SVG is not supported by social-media scrapers (Reddit, Twitter, etc.) and PNG is the required format for OG/hero images.
+- Do not remove `src/pages/category/[slug].astro` — category pages are linked from the homepage Browse by Topic grid, article cards, and the article listing page.
+- Do not remove the Browse by Topic section from `index.astro` — it links to all category pages and is a required navigation feature.
+- Do not replace `sitemap.xml.ts` with a redirect to `/sitemap-index.xml` — the custom sitemap is required to include category routes that `@astrojs/sitemap` does not automatically discover.
+- Do not define new tag slugs without updating both `TAG_SLUGS` and the route in `category/[slug].astro` — they must stay in sync.
