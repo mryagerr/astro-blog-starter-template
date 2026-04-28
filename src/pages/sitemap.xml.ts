@@ -17,7 +17,6 @@ function url(path: string, lastmod?: string): string {
 
 export async function GET() {
 	const articles = sortByPubDateDesc(await getCollection('blog'));
-	const posts = sortByPubDateDesc(await getCollection('posts'));
 
 	const staticPages = [
 		url('/'),
@@ -26,7 +25,6 @@ export async function GET() {
 		url('/contact/'),
 		url('/privacy/'),
 		url('/terms/'),
-		url('/ads.txt'),
 	];
 
 	const categoryPages = VALID_TAGS.map((tag) =>
@@ -37,11 +35,7 @@ export async function GET() {
 		url(`/article/${a.id}/`, toDate(a.data.pubDate)),
 	);
 
-	const postPages = posts.map((p) =>
-		url(`/posts/${p.id}/`, toDate(p.data.pubDate)),
-	);
-
-	const entries = [...staticPages, ...categoryPages, ...articlePages, ...postPages];
+	const entries = [...staticPages, ...categoryPages, ...articlePages];
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
