@@ -143,5 +143,7 @@ const image = (!rawImage || rawImage.endsWith('.svg')) ? OG_DEFAULT_PNG : rawIma
 	})} />
 )}
 
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8694735074564604" crossorigin="anonymous"></script>
+<!-- Google AdSense (article pages only) -->
+{type === 'article' && (
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8694735074564604" crossorigin="anonymous"></script>
+)}
