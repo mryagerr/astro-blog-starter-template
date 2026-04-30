@@ -2,7 +2,7 @@
 title: 'Stop Forcing Tools Into Jobs They Weren''t Built For'
 description: 'Most data pain is not a bad-tool problem. It is a phase-transition problem. A decision framework for four forks where teams pick wrong and stay wrong.'
 pubDate: 'Apr 24 2026'
-heroImage: '/blog-placeholder-1.png'
+heroImage: '/blog-tool-job-fit.png'
 difficulty: 'high'
 tags: ['pipelines']
 ---
