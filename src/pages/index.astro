@@ -14,10 +14,13 @@ import { VALID_TAGS, TAG_LABELS, TAG_SLUGS, TAG_DESCRIPTIONS, type Tag } from '.
 const allArticles = await getCollection('blog');
 const latestArticles = sortByPubDateDesc(allArticles).slice(0, 10);
 
+const latestPosts = sortByPubDateDesc(await getCollection('posts')).slice(0, 3);
+
 const tagCounts = new Map<Tag, number>();
 for (const post of allArticles) {
-	for (const tag of post.data.tags ?? []) {
-		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	const primaryTag = (post.data.tags ?? [])[0];
+	if (primaryTag) {
+		tagCounts.set(primaryTag, (tagCounts.get(primaryTag) ?? 0) + 1);
 	}
 }
 
@@ -136,6 +139,41 @@ const startHereArticles = START_HERE_IDS
 				</ul>
 			</section>
 
+
+			<hr />
+
+			<!-- ─── Project Writeups ────────────────────────────────────── -->
+			<section class="latest-articles">
+				<div class="section-header">
+					<h2 class="section-title">Project Writeups</h2>
+					<a href="/posts/" class="view-all">View all →</a>
+				</div>
+				<ul class="article-grid">
+					{latestPosts.map((post) => (
+						<li class="article-card">
+							<a href={`/posts/${post.id}/`} aria-label={post.data.title}>
+								<div class="card-img-wrap">
+									<img
+										width={720}
+										height={360}
+										src={post.data.heroImage ?? '/blog-og-default.png'}
+										alt={post.data.title}
+										loading="lazy"
+										decoding="async"
+									/>
+								</div>
+								<div class="card-body">
+									<p class="card-date label">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+									<h3 class="card-title">{post.data.title}</h3>
+									<p class="card-desc">{post.data.description}</p>
+								</div>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
 
 			<!-- ─── Author bio ─────────────────────────────────────────── -->
 			<div class="author-bio">
