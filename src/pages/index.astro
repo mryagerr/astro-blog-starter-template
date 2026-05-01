@@ -16,8 +16,9 @@ const latestArticles = sortByPubDateDesc(allArticles).slice(0, 10);
 
 const tagCounts = new Map<Tag, number>();
 for (const post of allArticles) {
-	for (const tag of post.data.tags ?? []) {
-		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	const primaryTag = (post.data.tags ?? [])[0];
+	if (primaryTag) {
+		tagCounts.set(primaryTag, (tagCounts.get(primaryTag) ?? 0) + 1);
 	}
 }
 
