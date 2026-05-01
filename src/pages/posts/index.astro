@@ -1,0 +1,205 @@
+---
+export const prerender = true;
+
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { sortByPubDateDesc } from '../../utils/sort';
+
+const posts = sortByPubDateDesc(await getCollection('posts'));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Posts — ${SITE_TITLE}`} description="Project write-ups, tool opinions, and observations from working with data." />
+	</head>
+	<body>
+		<Header />
+		<main id="main-content">
+			<div class="page-header">
+				<h1>Posts</h1>
+				<p class="page-sub">Project write-ups, tool opinions, and observations from real data work. For step-by-step technical guides, see <a href="/article/">Articles</a>.</p>
+			</div>
+
+			<ul class="post-grid">
+				{
+					posts.map((post, i) => (
+						<li class={`post-card${i === 0 ? ' post-card--featured' : ''}`}>
+							<a href={`/posts/${post.id}/`} aria-label={post.data.title}>
+								<div class="card-img-wrap">
+									<img
+										width={720}
+										height={360}
+										src={post.data.heroImage ?? '/blog-og-default.png'}
+										alt={post.data.title}
+										loading={i === 0 ? 'eager' : 'lazy'}
+										decoding="async"
+									/>
+								</div>
+								<div class="card-body">
+									<p class="card-date label">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+									<h2 class="card-title">{post.data.title}</h2>
+									<p class="card-desc">{post.data.description}</p>
+								</div>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 3rem clamp(1.5rem, 5vw, 4rem);
+	}
+
+	.page-header {
+		margin-bottom: 2.5rem;
+	}
+
+	.page-header h1 {
+		margin-bottom: 0.4rem;
+	}
+
+	.page-sub {
+		color: var(--caption);
+		font-size: 0.95rem;
+		margin: 0;
+	}
+
+	.post-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.post-card--featured {
+		grid-column: 1 / -1;
+	}
+
+	.post-card--featured .card-img-wrap img {
+		height: 340px;
+	}
+
+	.post-card--featured .card-title {
+		font-size: 1.6rem;
+	}
+
+	.post-card a {
+		display: block;
+		text-decoration: none;
+		border: 1px solid var(--rule);
+		border-radius: 8px;
+		overflow: hidden;
+		background: var(--paper);
+		transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+		position: relative;
+	}
+
+	.post-card a::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 3px;
+		background: var(--accent);
+		transform: scaleY(0);
+		transform-origin: top;
+		transition: transform 0.2s ease;
+		z-index: 1;
+	}
+
+	.post-card a:hover {
+		box-shadow: var(--box-shadow);
+		border-color: var(--accent-muted);
+		transform: translateY(-2px);
+		text-decoration: none;
+	}
+
+	.post-card a:hover::before {
+		transform: scaleY(1);
+	}
+
+	.card-img-wrap {
+		overflow: hidden;
+	}
+
+	.post-card img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.3s ease;
+	}
+
+	.post-card a:hover img {
+		transform: scale(1.03);
+	}
+
+	.card-body {
+		padding: 1rem 1.1rem 1.1rem;
+	}
+
+	.card-date {
+		margin: 0 0 0.35rem;
+		color: var(--caption);
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.card-title {
+		margin: 0 0 0.4rem;
+		font-family: var(--font-display);
+		font-size: 1.1rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		line-height: 1.3;
+		color: var(--ink);
+		transition: color 0.15s ease;
+	}
+
+	.post-card a:hover .card-title {
+		color: var(--accent);
+	}
+
+	.card-desc {
+		margin: 0;
+		font-size: 0.85rem;
+		color: var(--caption);
+		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	@media (max-width: 720px) {
+		.post-grid { grid-template-columns: 1fr; gap: 1rem; }
+		.post-card--featured { grid-column: unset; }
+		.post-card--featured .card-img-wrap img { height: 200px; }
+		.post-card--featured .card-title { font-size: 1.2rem; }
+	}
+
+	@media (max-width: 480px) {
+		main { padding: 2rem 0.75rem; }
+		.post-grid { gap: 0.75rem; }
+		.card-body { padding: 0.75rem 0.9rem; }
+	}
+</style>
