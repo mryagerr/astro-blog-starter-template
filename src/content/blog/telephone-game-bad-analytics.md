@@ -3,6 +3,7 @@ title: 'The Telephone Game Is How Analytics Goes Wrong'
 description: 'A request leaves the VP as one question, passes through four people, and arrives at the analyst as a different question entirely. The number that comes back answers the wrong thing — perfectly. Conversation, not tooling, is what stops this.'
 pubDate: 'May 02 2026'
 difficulty: 'low'
+heroImage: '/blog-telephone-game.png'
 tags: ['culture']
 ---
 
