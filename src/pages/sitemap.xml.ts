@@ -16,8 +16,12 @@ function url(path: string, lastmod?: string): string {
 }
 
 export async function GET() {
-	const articles = sortByPubDateDesc(await getCollection('blog'));
-	const posts = sortByPubDateDesc(await getCollection('posts'));
+	const [rawArticles, rawPosts] = await Promise.all([
+		getCollection('blog'),
+		getCollection('posts'),
+	]);
+	const articles = sortByPubDateDesc(rawArticles);
+	const posts = sortByPubDateDesc(rawPosts);
 
 	const staticPages = [
 		url('/'),
@@ -34,11 +38,11 @@ export async function GET() {
 	);
 
 	const articlePages = articles.map((a) =>
-		url(`/article/${a.id}/`, toDate(a.data.pubDate)),
+		url(`/article/${a.id}/`, toDate(a.data.updatedDate ?? a.data.pubDate)),
 	);
 
 	const postPages = posts.map((p) =>
-		url(`/posts/${p.id}/`, toDate(p.data.pubDate)),
+		url(`/posts/${p.id}/`, toDate(p.data.updatedDate ?? p.data.pubDate)),
 	);
 
 	const entries = [...staticPages, ...categoryPages, ...articlePages, ...postPages];

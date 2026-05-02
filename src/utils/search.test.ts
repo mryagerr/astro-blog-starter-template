@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fuzzyScore, highlightMatch } from './search';
+import { fuzzyScore, highlightMatch, buildHighlightRegex } from './search';
 
 describe('fuzzyScore', () => {
 	it('returns 0 when no terms match', () => {
@@ -125,5 +125,38 @@ describe('highlightMatch', () => {
 	it('handles pipe character in query', () => {
 		const result = highlightMatch('a|b or c', 'a|b');
 		expect(result).toBe('<mark>a|b</mark> or c');
+	});
+});
+
+describe('buildHighlightRegex', () => {
+	it('returns null for empty query', () => {
+		expect(buildHighlightRegex('')).toBeNull();
+	});
+
+	it('returns null for whitespace-only query', () => {
+		expect(buildHighlightRegex('   ')).toBeNull();
+	});
+
+	it('returns a case-insensitive global regex matching any term', () => {
+		const regex = buildHighlightRegex('data tutorial');
+		expect(regex).not.toBeNull();
+		expect(regex!.flags).toContain('g');
+		expect(regex!.flags).toContain('i');
+		expect('Data and tutorial'.replace(regex!, '<m>$1</m>')).toBe(
+			'<m>Data</m> and <m>tutorial</m>',
+		);
+	});
+
+	it('escapes regex metacharacters in terms', () => {
+		const regex = buildHighlightRegex('$100');
+		expect('price $100 (USD)'.replace(regex!, '<m>$1</m>')).toBe(
+			'price <m>$100</m> (USD)',
+		);
+	});
+
+	it('can be reused across many texts without rebuilding', () => {
+		const regex = buildHighlightRegex('data');
+		expect('data one'.replace(regex!, '<m>$1</m>')).toBe('<m>data</m> one');
+		expect('two data'.replace(regex!, '<m>$1</m>')).toBe('two <m>data</m>');
 	});
 });

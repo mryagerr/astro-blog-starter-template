@@ -6,7 +6,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { getCollection } from 'astro:content';
-import { fuzzyScore, highlightMatch } from '../utils/search';
+import { fuzzyScore, buildHighlightRegex } from '../utils/search';
 
 const query = (Astro.url.searchParams.get('q') || '').trim();
 const queryLower = query.toLowerCase();
@@ -22,30 +22,27 @@ interface Result {
 
 let results: Result[] = [];
 let searched = false;
+const highlightRegex = buildHighlightRegex(query);
+const highlight = (text: string) =>
+	highlightRegex ? text.replace(highlightRegex, '<mark>$1</mark>') : text;
 
 if (queryLower) {
 	searched = true;
 	const articles = await getCollection('blog');
-
 	const terms = queryLower.split(/\s+/).filter(Boolean);
 
-	const allContent = [
-		...articles.map((a) => ({
-			title: a.data.title,
-			description: a.data.description,
-			url: `/article/${a.id}/`,
-			pubDate: a.data.pubDate,
-			type: 'Article' as const,
-		})),
-	];
-
-	results = allContent
-		.map((entry) => {
-			const titleScore = fuzzyScore(entry.title, terms);
-			const descScore = fuzzyScore(entry.description, terms);
-			// Title matches are worth more
-			const score = titleScore * 2 + descScore;
-			return { ...entry, score };
+	results = articles
+		.map((a) => {
+			const titleScore = fuzzyScore(a.data.title, terms);
+			const descScore = fuzzyScore(a.data.description, terms);
+			return {
+				title: a.data.title,
+				description: a.data.description,
+				url: `/article/${a.id}/`,
+				pubDate: a.data.pubDate,
+				type: 'Article' as const,
+				score: titleScore * 2 + descScore,
+			};
 		})
 		.filter((entry) => entry.score > 0)
 		.sort((a, b) => b.score - a.score || b.pubDate.getTime() - a.pubDate.getTime());
@@ -100,8 +97,8 @@ if (queryLower) {
 												<span class="result-type">{r.type}</span>
 												<span class="result-date"><FormattedDate date={r.pubDate} /></span>
 											</div>
-											<h2 class="result-title" set:html={highlightMatch(r.title, query)} />
-											<p class="result-desc" set:html={highlightMatch(r.description, query)} />
+											<h2 class="result-title" set:html={highlight(r.title)} />
+											<p class="result-desc" set:html={highlight(r.description)} />
 										</a>
 									</li>
 								))}
