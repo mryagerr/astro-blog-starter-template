@@ -3,7 +3,6 @@ export const prerender = true;
 
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
-import { sortByPubDateDesc } from '../../utils/sort';
 import { calculateReadingTime, calculateWordCount } from '../../utils/readingTime';
 import { findRelatedPosts } from '../../utils/relatedPosts';
 
@@ -22,11 +21,10 @@ const { Content, headings } = await render(post);
 const readingTime = calculateReadingTime(post.body);
 const wordCount = calculateWordCount(post.body);
 
-const allPosts = sortByPubDateDesc(await getCollection('blog'));
 const relatedPosts = findRelatedPosts(
 	post.id,
 	post.data.tags ?? [],
-	allPosts,
+	await getCollection('blog'),
 	'/article/',
 );
 ---

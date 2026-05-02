@@ -43,7 +43,7 @@ export function findRelatedPosts(
 ): RelatedPostOutput[] {
 	const otherPosts = allPosts.filter((p) => p.id !== currentId);
 
-	// Build adjacent tag set for cross-category fallback
+	const currentTagSet = new Set<string>(currentTags);
 	const adjacentTags = new Set<string>();
 	for (const tag of currentTags) {
 		for (const adj of CATEGORY_ADJACENCY[tag] ?? []) {
@@ -54,7 +54,7 @@ export function findRelatedPosts(
 	// Score: 2 per shared direct tag, 1 per shared adjacent tag
 	const scored = otherPosts.map((p) => {
 		const postTags = p.data.tags ?? [];
-		const directScore = postTags.filter((t) => currentTags.includes(t)).length * 2;
+		const directScore = postTags.filter((t) => currentTagSet.has(t)).length * 2;
 		const adjacentScore = adjacentTags.size > 0
 			? postTags.filter((t) => adjacentTags.has(t)).length
 			: 0;

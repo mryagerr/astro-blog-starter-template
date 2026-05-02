@@ -18,15 +18,25 @@ export function fuzzyScore(text: string, terms: string[]): number {
 }
 
 /**
+ * Build a case-insensitive regex matching any term in the query, with regex
+ * special characters escaped. Returns null when the query has no usable terms.
+ * Hoist this out of render loops — `new RegExp` per result is the dominant
+ * cost in /search/.
+ */
+export function buildHighlightRegex(queryStr: string): RegExp | null {
+	if (!queryStr) return null;
+	const terms = queryStr.toLowerCase().split(/\s+/).filter(Boolean);
+	if (terms.length === 0) return null;
+	const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+	return new RegExp(`(${escaped.join('|')})`, 'gi');
+}
+
+/**
  * Highlight matching query terms in text by wrapping them in <mark> tags.
  * Query terms are regex-escaped to prevent injection.
  */
 export function highlightMatch(text: string, queryStr: string): string {
-	if (!queryStr) return text;
-	const terms = queryStr.toLowerCase().split(/\s+/).filter(Boolean);
-	if (terms.length === 0) return text;
-	// Build regex matching any term
-	const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-	const regex = new RegExp(`(${escaped.join('|')})`, 'gi');
+	const regex = buildHighlightRegex(queryStr);
+	if (!regex) return text;
 	return text.replace(regex, '<mark>$1</mark>');
 }
