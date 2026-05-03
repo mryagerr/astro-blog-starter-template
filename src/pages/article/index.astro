@@ -9,17 +9,11 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { sortByPubDateDesc } from '../../utils/sort';
 import { getDifficultyLabel, getDifficultyClass } from '../../utils/difficultyBadge';
-import { VALID_TAGS, TAG_LABELS, TAG_SLUGS, type Tag } from '../../utils/contentSchema';
+import { VALID_TAGS, TAG_LABELS, TAG_SLUGS } from '../../utils/contentSchema';
+import { countArticlesByTag } from '../../utils/tagCounts';
 
 const posts = sortByPubDateDesc(await getCollection('blog'));
-
-// Count articles per tag
-const tagCounts = new Map<Tag, number>();
-for (const post of posts) {
-	for (const tag of post.data.tags ?? []) {
-		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
-	}
-}
+const tagCounts = countArticlesByTag(posts);
 ---
 
 <!doctype html>
