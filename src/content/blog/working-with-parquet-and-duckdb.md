@@ -16,7 +16,7 @@ Parquet is a columnar file format originally developed for the Hadoop ecosystem.
 1. **Compression is much better.** Each column contains values of the same type, which compresses more efficiently than mixed-type rows. A 1 GB CSV often becomes 100–200 MB as Parquet.
 2. **Analytical queries are faster.** If you query only three columns from a 50-column dataset, Parquet reads only those three columns off disk. CSV must read the entire file.
 
-Parquet is the standard format for data lakes, Spark jobs, and analytical workloads. If you are storing more than a few million rows, Parquet should be your default.
+Parquet is the standard format for data lakes, Spark jobs, and analytical workloads. If you are storing more than a few million rows, Parquet should be your default. The compression numbers are not hypothetical: a 1 GB CSV of stock price data commonly compresses to 80–150 MB as Parquet with snappy. If you're paying for storage or transferring files regularly, the format switch pays for itself before you touch the query performance benefits.
 
 ## What is DuckDB?
 
@@ -59,7 +59,7 @@ table = pa.Table.from_pandas(df)
 pq.write_table(table, "data/parquet/prices.parquet", compression="snappy")
 ```
 
-`snappy` is the default compression — fast to decompress, moderate compression ratio. `zstd` gives better compression at a small speed cost.
+`snappy` is the default compression — fast to decompress, moderate compression ratio. `zstd` gives better compression at a small speed cost. The rule of thumb: use snappy when query speed matters most, use zstd when you're archiving or paying per GB of storage. The performance difference is small enough that you can switch later without rewriting your pipeline logic.
 
 ### Partitioned Parquet (for large datasets)
 
@@ -134,7 +134,7 @@ df = pd.read_csv("data/raw/prices.csv")
 result = duckdb.sql("SELECT ticker, MAX(close) FROM df GROUP BY ticker").df()
 ```
 
-This avoids loading the data twice. The DataFrame is never copied — DuckDB reads it zero-copy.
+This avoids loading the data twice. The DataFrame is never copied — DuckDB reads it zero-copy. This is the feature that surprises most pandas users: you can mix in-memory DataFrames and on-disk Parquet files in the same query. Partially processed data in memory, historical data in files — DuckDB treats them as the same thing.
 
 ### Window functions
 
@@ -167,7 +167,7 @@ On a 10M row dataset:
 | Filter + aggregate | 0.8s | 0.8s | 0.2s |
 | Peak memory | 1.8 GB | 800 MB | 120 MB |
 
-DuckDB uses streaming execution — it processes data in chunks and never holds the full dataset in memory, which is why memory usage is dramatically lower.
+DuckDB uses streaming execution — it processes data in chunks and never holds the full dataset in memory, which is why memory usage is dramatically lower. The memory number is the one that matters most in practice. Pandas loading 10M rows into 1.8 GB can kill a cloud function or a laptop with a browser open. DuckDB at 120 MB is the difference between "this works in production" and "this crashes at scale."
 
 ## A Practical Pattern: ETL to Parquet
 

@@ -23,7 +23,7 @@ Install them:
 pip install matplotlib seaborn plotly pandas
 ```
 
-Most data work starts with seaborn for quick exploration and graduates to plotly when you need interactivity or matplotlib when you need precise control.
+A practical default: start with seaborn. It has sensible defaults and the statistical plot types you'll reach for first. Switch to plotly when the output needs to be interactive or live in a browser. Reach for matplotlib directly only when you need control that seaborn can't give you — which is less often than you'd think. Most beginners reach for matplotlib first out of familiarity and spend twice as long fighting defaults that seaborn would have handled for free.
 
 ## matplotlib: The Foundation
 
@@ -73,7 +73,7 @@ plt.savefig("charts/grid.png", dpi=150)
 
 ## seaborn: Statistical Visualization
 
-seaborn sits on top of matplotlib and adds sensible defaults and statistical plot types. It is the fastest way to go from a DataFrame to a meaningful chart.
+seaborn sits on top of matplotlib and adds sensible defaults and statistical plot types. It is the fastest way to go from a DataFrame to a meaningful chart. The thing that trips up newcomers: when something doesn't look right and seaborn has no fix, you'll end up calling `plt.gca()` to get the underlying matplotlib `Axes` object and adjusting it directly. This is expected behavior, not a bug — seaborn delegates rendering to matplotlib, so they're always compatible. Knowing a bit of matplotlib is the unlock that makes seaborn fully usable.
 
 ### Distribution Plots
 
@@ -141,7 +141,7 @@ plt.savefig("charts/scatter.png", dpi=150)
 
 ## plotly: Interactive Charts
 
-Static PNGs are fine for reports and papers. For dashboards, notebooks, or any output that will be viewed in a browser, plotly's interactivity (hover tooltips, zoom, pan, click-to-filter) makes a significant difference.
+Static PNGs are fine for reports and papers. For dashboards, notebooks, or any output that will be viewed in a browser, plotly's interactivity (hover tooltips, zoom, pan, click-to-filter) makes a significant difference. One caveat: if the output is going into a PDF, slide deck, or email, most recipients won't open an `.html` file. Interactive charts are for audiences already in a browser — for everything else, export a static image.
 
 ```bash
 pip install plotly
@@ -278,7 +278,7 @@ A practical default: use seaborn for exploration and static export, switch to pl
 | How do many variables correlate? | Heatmap |
 | What is the price range over time? | Candlestick |
 
-Avoid pie charts for more than four categories — bar charts communicate proportions more accurately.
+Avoid pie charts. The only defensible case is two categories where the split is dramatic enough to be obvious at a glance. Anything else, use a bar chart — it communicates the same information with less visual distortion and makes comparisons across groups far easier. The pie chart is the chart type that looks like a choice and is usually a mistake.
 
 ## Colorblind-Friendly Palettes
 

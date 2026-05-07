@@ -32,13 +32,13 @@ Alice,"Engineer, writer, and occasional baker"
 
 **Newlines inside values** — A quoted field can span multiple lines. Most parsers handle this correctly; most manual string splits do not.
 
-**Encoding** — Older files are often ISO-8859-1 or Windows-1252, not UTF-8. You'll know when you hit a `UnicodeDecodeError`.
+**Encoding** — Older files are often ISO-8859-1 or Windows-1252, not UTF-8. You'll know when you hit a `UnicodeDecodeError`. When that happens, try `encoding='latin-1'` first — it covers both ISO-8859-1 and Windows-1252 and handles the vast majority of cases. Files from Excel, government databases, or anything generated on Windows before 2018 are the usual offenders.
 
 **Trailing whitespace / inconsistent quoting** — Real-world exports are messy. Columns may have extra spaces; some values may be quoted unnecessarily.
 
 ### Reading CSV in Python
 
-Always use the `csv` module or pandas rather than splitting on commas manually.
+Always use the `csv` module or pandas rather than splitting on commas manually. This is not a style preference — the moment a field contains a quoted comma, a manual split produces wrong results silently. The `csv` module exists precisely to handle these cases. Using `line.split(',')` on CSV data is the kind of thing that works fine in testing and fails in production when the first real-world export comes in.
 
 **With the standard library:**
 ```python
@@ -152,6 +152,8 @@ flat = {
 }
 ```
 
+`json_normalize()` handles the common case well, but it breaks down when the structure is inconsistent across records — some objects have a field, others don't, some nest it differently. In those cases, you're better off writing a small helper function that extracts exactly what you need than fighting `normalize`'s assumptions. Explicit is safer than clever when your data comes from the outside world.
+
 For deeply nested or variable structures, `pandas.json_normalize()` handles most cases:
 
 ```python
@@ -207,9 +209,9 @@ df.to_json("output.json", orient="records", indent=2)
 
 ---
 
-## A Note on Line-Delimited JSON (JSONL)
+## Line-Delimited JSON (JSONL)
 
-Some APIs and log systems emit one JSON object per line rather than a single array. This format is called JSONL (or ndjson):
+Some APIs and log systems emit one JSON object per line rather than a single array. This format is called JSONL (or ndjson). It's worth knowing because JSONL handles large files better than a standard JSON array: you can read it line by line without loading the whole thing into memory, and you can append new records without rewriting the file. If you're generating output that other tools will consume, JSONL is often the friendlier choice.
 
 ```
 {"id": 1, "name": "Alice"}

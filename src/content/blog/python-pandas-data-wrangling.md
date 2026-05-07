@@ -68,6 +68,8 @@ df.query("score > 70 and active == True")
 
 ## Handling Missing Values
 
+The most important thing to know about missing values is that there's no universal right answer — the correct strategy depends on why the data is missing. Dropping nulls is the easiest choice and often the wrong one. If 30% of your rows have a null in one column, dropping them doesn't clean your data; it removes 30% of your signal.
+
 ```python
 # Drop rows where any column is null
 df.dropna()
@@ -181,7 +183,11 @@ def categorize(row):
         return "C"
 
 df["grade"] = df.apply(categorize, axis=1)
+```
 
+`.apply()` with a Python function is the most expensive operation in pandas. It iterates row by row under the hood, bypassing the vectorized C code that makes pandas fast. Before reaching for `.apply()`, check whether there's a vectorized alternative: `.str` methods, arithmetic on the whole column, or `np.where()`. On a million rows, the difference between `.apply()` and a vectorized operation can be 100x.
+
+```python
 # Map values to new values
 status_map = {"active": 1, "inactive": 0, "pending": 0}
 df["is_active"] = df["status"].map(status_map)
@@ -207,7 +213,7 @@ summary.columns = ["status", "total_amount"]
 
 ## Merging DataFrames
 
-The pandas equivalent of a SQL JOIN:
+The pandas equivalent of a SQL JOIN — with one trap that catches almost everyone at least once: if both DataFrames have duplicate keys, `pd.merge()` produces a cartesian product of every matching pair. Three rows with `user_id=1` on the left and four rows with `user_id=1` on the right gives you twelve rows in the output — silently, with no warning. Always check `len(df)` before and after a merge until you're certain the keys are clean.
 
 ```python
 users = pd.read_csv("users.csv")

@@ -24,6 +24,8 @@ python3 -m venv .venv
 
 ## Activating the Environment
 
+This step is where most beginners go wrong. If you run `pip install` before activating the environment, you install into your global Python — no error, no warning, just a package that works on your machine and nowhere else. Make activation a reflex before touching `pip`.
+
 Activating modifies your shell's `PATH` so that `python` and `pip` point to the environment instead of the system installation.
 
 ```bash
@@ -64,6 +66,8 @@ To make your project reproducible, capture the exact versions of every package:
 ```bash
 pip freeze > requirements.txt
 ```
+
+One gotcha: `pip freeze` captures everything — including transitive dependencies you didn't install directly. Install `pandas` and you'll see `numpy`, `python-dateutil`, `pytz`, and several others in the output. That's intentional — it's what makes the environment fully reproducible — but it surprises people the first time. Treat the file as a lockfile, not a manifest.
 
 This produces a file like:
 
@@ -138,7 +142,7 @@ deactivate                  # when done
 
 `virtualenv` is a third-party tool that predates `venv` and adds a few features (faster creation, support for older Python versions). Not necessary for most projects.
 
-`conda` is a different beast — it manages Python itself plus non-Python packages (C libraries, etc.) and is common in data science. Use it if you need it, but for general Python work, `venv` is simpler.
+`conda` is a different beast — it manages Python itself plus non-Python packages (C libraries, etc.) and is common in data science. The data world has a tendency to reach for conda by default, but unless you genuinely need it — GPU libraries, compiled BLAS dependencies, R packages sitting alongside Python — `venv` is simpler, faster to set up, and less likely to produce environment solver headaches six months from now. Use it if you need it; don't install it just because someone's tutorial used it.
 
 ## Checking Which Python You're Using
 
