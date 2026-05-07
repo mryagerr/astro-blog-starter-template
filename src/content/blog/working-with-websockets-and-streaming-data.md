@@ -31,14 +31,14 @@ Server → { price: 182.49 }
 # ... continuously, until connection closes
 ```
 
-The difference matters for high-frequency data. Polling a REST endpoint every second creates 3,600 HTTP requests per hour per ticker. A single WebSocket connection delivers all updates with far less overhead.
+The difference matters for high-frequency data. Polling a REST endpoint every second creates 3,600 HTTP requests per hour per ticker. A single WebSocket connection delivers all updates with far less overhead. The request count is not just an efficiency concern — many APIs rate-limit by request count. A WebSocket subscription that streams every update uses one connection slot. The same data via polling can exhaust your daily API quota before lunch.
 
 ## Core Concepts
 
 - **Handshake** — A WebSocket connection starts as an HTTP request that is "upgraded" to a persistent WebSocket connection.
 - **Frame** — Data is sent in frames. Text frames carry JSON; binary frames carry raw bytes.
 - **Heartbeat / Ping-Pong** — Most servers send periodic pings to verify the connection is alive. Your client must respond with pongs, or the server will close the connection.
-- **Reconnection** — WebSocket connections drop. Real pipelines need automatic reconnection logic.
+- **Reconnection** — WebSocket connections drop. Real pipelines need automatic reconnection logic. The harder failure mode is a stalled connection — the WebSocket is technically open, the server thinks it's alive, but messages have stopped coming. This is why heartbeat monitoring is not optional; a stream that silently stops delivering data is worse than one that crashes loudly.
 
 ## Basic WebSocket Client
 
@@ -167,7 +167,9 @@ Pass your message-handling coroutine as `handler`. The outer loop handles all re
 
 ## Writing to a Database Instead of CSV
 
-CSV append is simple but creates large files with no query capability. SQLite works well for streaming data with a simple write loop.
+Start with CSV append. It requires no schema, no setup, and you can open the file in any tool immediately. Once you have data flowing and understand its shape, migrate to SQLite or a proper database. The temptation to engineer the storage layer before you understand the data is real — resist it. Many streaming projects never make it to production because they spent the first week on the wrong problem.
+
+That said, CSV append is simple but creates large files with no query capability. SQLite works well for streaming data with a simple write loop once you're ready to move on.
 
 ```python
 import sqlite3
@@ -269,7 +271,7 @@ Run `monitor_health()` as a background task alongside the main stream coroutine 
 | News and events as they happen | WebSocket or SSE |
 | IoT sensor streams | WebSocket or MQTT |
 
-WebSockets add operational complexity — reconnection logic, heartbeat handling, buffer management. Use them when the latency or efficiency of polling is genuinely a problem.
+WebSockets add operational complexity — reconnection logic, heartbeat handling, buffer management. Use them when the latency or efficiency of polling is genuinely a problem. The reconnection code in this article is largely copy-paste, so the operational overhead is lower than it sounds. The real question is whether your data genuinely changes faster than you can poll it. If you're polling once a minute and the data updates every 30 seconds, WebSockets are worth it. If you're polling once every 5 minutes, keep polling.
 
 ## Next Steps
 

@@ -128,6 +128,8 @@ GROUP  BY city
 HAVING COUNT(*) > 100;
 ```
 
+`HAVING` is where most SQL beginners hit a wall. The rule is simple: `WHERE` filters rows before grouping; `HAVING` filters groups after aggregating. If you try to put an aggregate function in a `WHERE` clause, you'll get an error — that's SQL telling you to use `HAVING` instead.
+
 ## Joining Tables
 
 Joins combine data from two tables based on a shared key. This is where SQL becomes powerful for organizing data.
@@ -153,7 +155,7 @@ FROM   users
 LEFT JOIN orders ON orders.user_id = users.id;
 ```
 
-Use `LEFT JOIN` when you want to keep rows even if there's no match — for example, users who have never placed an order.
+Use `LEFT JOIN` when you want to keep rows even if there's no match — for example, users who have never placed an order. In practice, most analytical joins should be `LEFT JOIN`. Using `INNER JOIN` to "clean up" nulls often hides data quality problems you actually want to know about. If 20% of your orders have no matching user record, that's not noise to filter away — it's a signal worth investigating.
 
 ### Practical Join Example
 
@@ -260,9 +262,11 @@ result = duckdb.query("""
 print(result)
 ```
 
-DuckDB is especially useful for ad-hoc queries on large files where you don't want to maintain a database.
+DuckDB is especially useful for ad-hoc queries on large files where you don't want to maintain a database. If you find yourself loading a CSV into SQLite just to run one query, try DuckDB first — the barrier is lower, the SQL is identical, and you skip the import step entirely.
 
 ## Indexes and Query Performance
+
+Indexes are the thing most people skip until a query starts taking minutes instead of seconds. Don't wait for the pain. If you're building a table you'll query repeatedly by a specific column, add the index when you create it — it takes one line and the cost of being wrong is nothing.
 
 As your tables grow, queries without indexes scan every row — which works fine at a few thousand rows but becomes noticeably slow at hundreds of thousands. An index lets the database jump directly to matching rows.
 
