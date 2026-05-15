@@ -27,6 +27,8 @@ export async function GET() {
 		url('/'),
 		url('/article/'),
 		url('/posts/'),
+		url('/projects/'),
+		url('/projects/stackoverflow-monitoring/'),
 		url('/about/'),
 		url('/contact/'),
 		url('/privacy/'),
