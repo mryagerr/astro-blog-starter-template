@@ -66,7 +66,9 @@ body {
 	overflow-wrap: break-word;
 	color: var(--ink);
 	font-size: 19px;
+	font-weight: 350;
 	line-height: 1.75;
+	letter-spacing: 0.015em;
 }
 
 main {
