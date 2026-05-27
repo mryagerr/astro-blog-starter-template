@@ -172,7 +172,7 @@ The ETL vocabulary isn't a fourth thing to build — it's just the name for what
 
 ## Next Steps
 
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — The code-level companion to this article: actual `extract.py`, `transform.py`, and `load.py` wired into a runnable pipeline.
+- **[Building Your First Data Pipeline](/article/building-a-data-pipeline/)** — The code-level companion to this article: actual `extract.py`, `transform.py`, and `load.py` wired into a runnable pipeline.
 - **[Scheduling and Automating Data Pipelines](/article/scheduling-and-automating-pipelines/)** — Going beyond a single cron line to retries, GitHub Actions, and orchestrators.
 - **[ETL vs ELT: Choosing the Right Pipeline Pattern](/article/etl-vs-elt/)** — When to transform before loading versus loading raw and transforming in the warehouse.
 </content>

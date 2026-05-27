@@ -9,6 +9,10 @@ import { rehypeResponsiveImages } from "./src/utils/rehypeResponsiveImages.ts";
 export default defineConfig({
 	site: "https://lowhangingdata.com",
 	trailingSlash: "always",
+	redirects: {
+		"/article/building-your-first-data-pipeline/":
+			"/article/building-a-data-pipeline/",
+	},
 	integrations: [mdx()],
 	markdown: {
 		rehypePlugins: [rehypeResponsiveImages],

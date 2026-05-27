@@ -221,6 +221,6 @@ Document assumptions where they live. Test what drives decisions. Version-contro
 
 ## Related Articles
 
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Learn how to structure a pipeline so there is less surface area for analytical debt to accumulate.
+- **[Building Your First Data Pipeline](/article/building-a-data-pipeline/)** — Learn how to structure a pipeline so there is less surface area for analytical debt to accumulate.
 - **[Data Cleaning and Validation](/article/data-cleaning-and-validation/)** — Testing transformations and validating assumptions before data reaches downstream analysis.
 - **[Fear the Black Box: Why Data Must Be Understood End to End](/article/fear-the-black-box/)** — The other side of analytical debt: accepting components you do not understand as ground truth.

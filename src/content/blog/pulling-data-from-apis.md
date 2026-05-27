@@ -261,4 +261,4 @@ Before writing code, explore the API manually:
 
 - **[Organizing Data with SQL](/article/organizing-data-with-sql/)** — Load your collected data into a database.
 - **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling/)** — Clean and reshape the data you've pulled.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Combining API collection with transformation and loading into a full automated workflow.
+- **[Building Your First Data Pipeline](/article/building-a-data-pipeline/)** — Combining API collection with transformation and loading into a full automated workflow.

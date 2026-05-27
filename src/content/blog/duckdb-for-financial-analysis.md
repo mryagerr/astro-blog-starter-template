@@ -381,4 +381,4 @@ This pattern — build the full feature matrix in SQL, hand off a clean DataFram
 
 - **[Working with Parquet and DuckDB](/article/working-with-parquet-and-duckdb/)** — Setup, file writes, and basic queries.
 - **[Low-Hanging Data Sources for Stock Prediction](/article/low-hanging-data-sources-for-stock-prediction/)** — What signals to add to the feature matrix built above.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Wrapping these queries in a reproducible pipeline.
+- **[Building Your First Data Pipeline](/article/building-a-data-pipeline/)** — Wrapping these queries in a reproducible pipeline.

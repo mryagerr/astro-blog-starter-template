@@ -160,5 +160,5 @@ Virtual environments are a small habit with a large payoff. Set one up at the st
 ## Next Steps
 
 - **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling/)** — The first thing to install in your new virtual environment: pandas for data manipulation.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Applying the project structure and dependency isolation from this article in a real end-to-end pipeline.
+- **[Building Your First Data Pipeline](/article/building-a-data-pipeline/)** — Applying the project structure and dependency isolation from this article in a real end-to-end pipeline.
 - **[Getting Started with Data Collection](/article/getting-started-with-data/)** — Where to begin once your Python environment is set up and you are ready to pull real data.

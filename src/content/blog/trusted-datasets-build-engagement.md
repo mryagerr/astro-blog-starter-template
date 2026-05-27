@@ -167,6 +167,6 @@ That verification — the moment they nod and say "yes, that matches what I'd ex
 ## Related Articles
 
 - **[Getting Started with Data Collection](/article/getting-started-with-data/)** — The workflow for pulling, storing, and organizing data from any source.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Automating the collection step so you stop pulling data by hand.
+- **[Building Your First Data Pipeline](/article/building-a-data-pipeline/)** — Automating the collection step so you stop pulling data by hand.
 - **[Scheduling and Automating Pipelines](/article/scheduling-and-automating-pipelines/)** — Keeping your data fresh without manual intervention.
 - **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise/)** — The strategic case for starting small and earning trust before expanding scope.
