@@ -11,13 +11,13 @@ This is a write-up of the stock prediction project — what we built, what worke
 
 ## What the Project Was
 
-The starting point was a 2020 paper by Petrillo: *Stock Change Prediction Utilizing Social Media Pools*. The paper built a support vector machine (SVM) classifier that predicted whether NYSE stocks would go up or down over a 30-minute window, using Reddit post sentiment as the primary signal.
+I built a support vector machine (SVM) classifier to predict whether NYSE stocks would go up or down over a 30-minute window, using Reddit post sentiment as the primary signal — alongside Google Trends and Wikipedia page-view data.
 
-The core hypothesis: Reddit discussion about a stock correlates with near-term price movement. Not because Reddit moves the market directly (most of the time), but because Reddit reflects the same information and mood that traders are already reacting to.
+The core hypothesis: Reddit discussion about a stock correlates with near-term price movement. Not because Reddit moves the market directly (most of the time), but because Reddit reflects the same information and mood that traders are already reacting to. Prior research supported the general direction — Bollen et al. (2011) demonstrated that Twitter mood predicted Dow Jones movement at multi-day horizons, and Preis et al. (2013) showed that finance-related Google searches preceded market downturns.
 
 The 10 tickers were: AAPL, AMZN, GOOG, MSFT, TSLA, JPM, NVDA, META, NFLX, and ^VIX as a macro fear gauge.
 
-Our goal was to reproduce the pipeline, understand where it was strong and weak, and identify the highest-leverage improvements.
+The goal: build the pipeline, understand where it was strong and weak, and identify the highest-leverage improvements.
 
 ---
 
