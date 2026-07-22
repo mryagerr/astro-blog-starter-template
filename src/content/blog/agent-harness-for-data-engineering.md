@@ -2,6 +2,7 @@
 title: 'Building an Agent Harness for Data Engineering'
 description: 'A harness is what turns an LLM from a chat window into something that can safely operate on your pipelines — scoped tools, approval gates, sandboxing, and an audit log.'
 pubDate: 'Jul 22 2026'
+heroImage: '/blog-agent-harness.png'
 difficulty: 'high'
 tags: ['pipelines']
 ---
