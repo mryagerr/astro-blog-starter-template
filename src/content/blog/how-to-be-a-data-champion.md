@@ -2,6 +2,7 @@
 title: 'How to Be a Data Champion'
 description: 'A data champion does not wait for perfect requirements, hoard certainty, or ship in the dark. They pull direction out of the business, buy room to experiment, make the case for telemetry, and sequence the whole thing crawl, walk, run.'
 pubDate: 'Jul 24 2026'
+heroImage: '/blog-data-champion.png'
 difficulty: 'high'
 tags: ['culture', 'career']
 ---
