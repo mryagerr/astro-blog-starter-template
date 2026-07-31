@@ -2,6 +2,7 @@
 title: 'Physics Has Models. Machine Learning Has Black Boxes.'
 description: 'A physics model can be worked out from first principles — derived, interrogated, and defended line by line. A machine learning model can only be trusted. The difference is not academic. It is the difference between analytics you can stand behind and analytics that runs on "trust me."'
 pubDate: 'Jul 31 2026'
+heroImage: '/blog-physics-black-box.png'
 difficulty: 'high'
 tags: ['analysis', 'culture']
 ---
