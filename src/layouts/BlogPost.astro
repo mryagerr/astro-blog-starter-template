@@ -406,51 +406,22 @@ const showToc = tocHeadings.length >= 3;
 				color: var(--caption);
 				margin: 0 0 1.1rem;
 			}
-			.newsletter-form {
-				display: flex;
-				gap: 0.5rem;
-				max-width: 380px;
-				margin: 0 auto;
-				flex-wrap: wrap;
-				justify-content: center;
-			}
-			.newsletter-form input[type="email"] {
-				flex: 1;
-				min-width: 180px;
-				padding: 0.5em 0.9em;
-				border: 1.5px solid var(--rule);
-				border-radius: 6px;
-				font-family: var(--font-body);
-				font-size: 0.9rem;
-				background: var(--paper);
-				color: var(--ink);
-				outline: none;
-				transition: border-color 0.18s;
-			}
-			.newsletter-form input[type="email"]:focus {
-				border-color: var(--accent);
-				box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.18);
-			}
-			.newsletter-form button {
-				padding: 0.5em 1.1em;
+			.newsletter-mailto {
+				display: inline-block;
+				padding: 0.5em 1.25em;
 				background: var(--accent);
 				color: #fff;
-				border: none;
 				border-radius: 6px;
 				font-family: var(--font-mono);
 				font-size: 0.85rem;
 				font-weight: 600;
-				cursor: pointer;
+				text-decoration: none;
 				transition: background 0.18s;
-				white-space: nowrap;
 			}
-			.newsletter-form button:hover {
+			.newsletter-mailto:hover {
 				background: var(--accent-dark);
-			}
-			.newsletter-confirm {
-				font-size: 0.88rem;
-				color: var(--accent-dark);
-				margin: 0.75rem 0 0;
+				color: #fff;
+				text-decoration: none;
 			}
 
 			/* ─── Responsive ──────────────────────────────────────── */
@@ -648,29 +619,8 @@ const showToc = tocHeadings.length >= 3;
 					<div class="newsletter-cta">
 						<p class="newsletter-heading">Get new articles by email</p>
 						<p class="newsletter-sub">Practical guides on data workflows, delivered when published. No spam.</p>
-						<form class="newsletter-form" id="newsletter-form">
-							<input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
-							<button type="submit">Subscribe →</button>
-						</form>
-						<p class="newsletter-confirm" id="newsletter-confirm" hidden>
-							Thanks! Opening your email client so you can confirm your subscription.
-						</p>
+						<a href="mailto:admin@lowhangingdata.com?subject=Subscribe%20to%20Low%20Hanging%20Data" class="newsletter-mailto">Email me to subscribe →</a>
 					</div>
-					<script>
-						const form = document.getElementById('newsletter-form') as HTMLFormElement;
-						const confirm = document.getElementById('newsletter-confirm') as HTMLElement;
-						form?.addEventListener('submit', (e) => {
-							e.preventDefault();
-							const email = new FormData(form).get('email') as string;
-							if (email) {
-								const subject = encodeURIComponent('Subscribe to Low Hanging Data');
-								const body = encodeURIComponent(`Hi,\n\nPlease add ${email} to the Low Hanging Data mailing list.\n\nThanks!`);
-								window.location.href = `mailto:admin@lowhangingdata.com?subject=${subject}&body=${body}`;
-								form.hidden = true;
-								confirm.hidden = false;
-							}
-						});
-					</script>
 
 					</div><!-- end .prose -->
 
