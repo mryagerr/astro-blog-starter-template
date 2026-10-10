@@ -11,8 +11,10 @@ describe('buildPersonSchema', () => {
 		expect(person.url).toBe('https://lowhangingdata.com/about/');
 	});
 
-	it('includes the GitHub profile in sameAs', () => {
-		expect(buildPersonSchema(SITE).sameAs).toContain('https://github.com/mryagerr');
+	it('includes the LinkedIn and GitHub profiles in sameAs', () => {
+		const { sameAs } = buildPersonSchema(SITE);
+		expect(sameAs).toContain('https://www.linkedin.com/in/michealpetrillo');
+		expect(sameAs).toContain('https://github.com/mryagerr');
 	});
 
 	it('returns a fresh sameAs array each call', () => {
