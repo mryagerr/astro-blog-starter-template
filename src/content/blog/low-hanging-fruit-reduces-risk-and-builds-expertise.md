@@ -13,6 +13,8 @@ These are legitimate end goals. They are poor starting points.
 
 In my experience, the data professionals and teams that consistently deliver measurable impact — and build the credibility to keep delivering it — usually start with smaller work. The reason is structural: **the failure mode of analytical work is rarely analytical. It is contextual. Analysis lands in the wrong decision window, delivered to stakeholders who do not yet trust the analyst or understand the output.**
 
+<!-- TODO(michael): EXPERIENCE — Confirm the "in my experience" claim above (teams that deliver impact usually start small). -->
+
 Low-hanging fruit addresses that structural problem directly. The underlying risk math is straightforward.
 
 ## The Risk Profile of High Hanging Fruit
