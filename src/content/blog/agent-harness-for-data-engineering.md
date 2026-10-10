@@ -8,24 +8,24 @@ difficulty: 'high'
 tags: ['pipelines']
 ---
 
-Pasting a stack trace into a chat window and pasting the fix back into your terminal is not automation — it's a human doing all the risky parts by hand while a model does the easy part. A **harness** is the system you build around a model so it can do more of the work directly: call real tools, read real schemas, propose real fixes — inside boundaries you define, with every action logged. This article covers what a harness is, why data engineering is a good and dangerous place to use one, and how to build a minimal version.
+Pasting a stack trace into a chat window and pasting the fix back into your terminal is not automation: it's a human doing all the risky parts by hand while a model does the easy part. A **harness** is the system you build around a model so it can do more of the work directly: call real tools, read real schemas, propose real fixes: inside boundaries you define, with every action logged. This article covers what a harness is, why data engineering is a good and dangerous place to use one, and how to build a minimal version.
 
 ## What "Harness" Means Here
 
 A harness is not the model. It's everything around the model that turns "generate some text" into "take a safe, bounded action on a real system":
 
-- **Tools** — a fixed set of functions the model is allowed to call, each with a narrow, explicit contract (`get_table_schema`, `run_diagnostic_query`, `propose_action`).
-- **Permission boundaries** — which tools are read-only, which are destructive, and which require a human to approve before they run.
-- **An execution environment** — where tool calls actually execute (sandboxed container, read replica, staging warehouse — never directly against production with no isolation).
-- **An audit log** — a durable record of every tool call, its arguments, and its result, independent of the model's own summary of what it did.
+- **Tools**: a fixed set of functions the model is allowed to call, each with a narrow, explicit contract (`get_table_schema`, `run_diagnostic_query`, `propose_action`).
+- **Permission boundaries**: which tools are read-only, which are destructive, and which require a human to approve before they run.
+- **An execution environment**: where tool calls actually execute (sandboxed container, read replica, staging warehouse: never directly against production with no isolation).
+- **An audit log**: a durable record of every tool call, its arguments, and its result, independent of the model's own summary of what it did.
 
-The model proposes actions. The harness decides what it's allowed to do, executes it, and writes down what happened. This separation is the entire point — it's what lets you trust the system without trusting the model's judgment on every single step.
+The model proposes actions. The harness decides what it's allowed to do, executes it, and writes down what happened. This separation is the entire point: it's what lets you trust the system without trusting the model's judgment on every single step.
 
 ## Why Data Engineering Is a Good Fit — and a Risky One
 
-Pipeline failures tend to be structured and diagnosable: a schema changed upstream, a null rate spiked, a watermark stalled, a join started fanning out. These are exactly the kind of pattern-matching-plus-tool-use tasks agents are good at — check the schema, run a diagnostic query, compare against the last known-good run, propose a fix.
+Pipeline failures tend to be structured and diagnosable: a schema changed upstream, a null rate spiked, a watermark stalled, a join started fanning out. These are exactly the kind of pattern-matching-plus-tool-use tasks agents are good at: check the schema, run a diagnostic query, compare against the last known-good run, propose a fix.
 
-They're also exactly the kind of task where a bad action is expensive. `DROP TABLE`, a backfill that reprocesses two years of data, a migration applied to the wrong environment, a credential pasted into a log line that gets forwarded to a third-party API — a harness that can act on your warehouse can also break it faster than a human would, because it doesn't get tired or hesitant. The design goal isn't "let the agent do everything" — it's "let the agent do the diagnostic and drafting work, and gate everything with side effects behind a human."
+They're also exactly the kind of task where a bad action is expensive. `DROP TABLE`, a backfill that reprocesses two years of data, a migration applied to the wrong environment, a credential pasted into a log line that gets forwarded to a third-party API: a harness that can act on your warehouse can also break it faster than a human would, because it doesn't get tired or hesitant. The design goal isn't "let the agent do everything": it's "let the agent do the diagnostic and drafting work, and gate everything with side effects behind a human."
 
 ## Anatomy of a Minimal Harness
 
@@ -45,7 +45,7 @@ Four pieces, in order of how a request flows through them:
 
 ### The Tool Layer
 
-Tools are the only interface between the model and your systems. Keep each one narrow — a tool that takes a raw SQL string and executes it against production is not a tool, it's a backdoor with extra steps.
+Tools are the only interface between the model and your systems. Keep each one narrow: a tool that takes a raw SQL string and executes it against production is not a tool, it's a backdoor with extra steps.
 
 ```python
 # harness/tools.py
@@ -92,7 +92,7 @@ Notice `propose_action` never touches the pipeline itself: it writes the exact t
 
 ### The Permission Boundary
 
-Every tool falls into one of two buckets, and the harness — not the model — enforces which bucket:
+Every tool falls into one of two buckets, and the harness, not the model, enforces which bucket:
 
 | Tool type | Examples | Executes |
 |---|---|---|
@@ -147,11 +147,11 @@ Three details in `dispatch` matter more than they look:
 
 ### Sandboxed Execution
 
-Diagnostic tools should run against a read replica or a warehouse role with `SELECT`-only grants — not because you don't trust the harness code, but because a bug in the harness shouldn't be able to become an outage. That grant is the actual safeguard; the `is_select_only` check in the tool is a second layer that produces friendlier errors. Anything that executes an approved fix should run in a staging environment first, and only reach production through the same deploy path a human change would use (migration tooling, CI, whatever you already have).
+Diagnostic tools should run against a read replica or a warehouse role with `SELECT`-only grants, not because you don't trust the harness code, but because a bug in the harness shouldn't be able to become an outage. That grant is the actual safeguard; the `is_select_only` check in the tool is a second layer that produces friendlier errors. Anything that executes an approved fix should run in a staging environment first, and only reach production through the same deploy path a human change would use (migration tooling, CI, whatever you already have).
 
 ### The Audit Log
 
-The model's own narration of what it did is not a source of truth — it's a summary that can be wrong or incomplete. Log every tool call independently of the model, from `dispatch`, and redact secrets before they reach the log:
+The model's own narration of what it did is not a source of truth: it's a summary that can be wrong or incomplete. Log every tool call independently of the model, from `dispatch`, and redact secrets before they reach the log:
 
 ```python
 # harness/audit.py
@@ -178,7 +178,7 @@ def log_tool_call(tool_name: str, args: dict, result: ToolResult, actor: str):
     append_to_durable_log(json.dumps(record))
 ```
 
-When something goes wrong three weeks later, this log — not the chat transcript — is what you use to reconstruct what actually happened. Key-name redaction is a floor, not a guarantee: a secret pasted into a free-text argument (a SQL string, a log query) won't match, so keep credentials out of tool arguments entirely where you can.
+When something goes wrong three weeks later, this log, not the chat transcript, is what you use to reconstruct what actually happened. Key-name redaction is a floor, not a guarantee: a secret pasted into a free-text argument (a SQL string, a log query) won't match, so keep credentials out of tool arguments entirely where you can.
 
 ## Guardrails Checklist
 
@@ -198,22 +198,22 @@ When something goes wrong three weeks later, this log — not the chat transcrip
 
 A harness like this is well suited to:
 
-- **Incident triage** — given an alert, pull the schema, run a few diagnostic queries, and summarize the likely cause before a human even opens a terminal.
-- **Schema drift detection** — compare today's schema against yesterday's snapshot and flag what changed.
-- **Backfill and fix proposals** — draft the SQL or migration, with rationale, and queue it for review.
-- **Runbook and documentation drafting** — turn a resolved incident's tool-call history into a first draft of a postmortem.
+- **Incident triage**: given an alert, pull the schema, run a few diagnostic queries, and summarize the likely cause before a human even opens a terminal.
+- **Schema drift detection**: compare today's schema against yesterday's snapshot and flag what changed.
+- **Backfill and fix proposals**: draft the SQL or migration, with rationale, and queue it for review.
+- **Runbook and documentation drafting**: turn a resolved incident's tool-call history into a first draft of a postmortem.
 
-It is not well suited to unattended production writes. The value isn't removing the human from pipeline maintenance — it's removing the tedious, mechanical parts of diagnosis so the human's time goes into the one decision that actually matters: whether to approve the fix.
+It is not well suited to unattended production writes. The value isn't removing the human from pipeline maintenance: it's removing the tedious, mechanical parts of diagnosis so the human's time goes into the one decision that actually matters: whether to approve the fix.
 
 ## Common Pitfalls
 
 - **One tool that does everything.** A `run_sql(query: str)` tool that accepts arbitrary statements collapses the whole permission boundary into a single string match. Split read and write into separate, narrowly-typed tools.
-- **No audit trail independent of the transcript.** If your only record of what happened is the model's chat log, you don't have an audit trail — you have the model's opinion of what it did.
+- **No audit trail independent of the transcript.** If your only record of what happened is the model's chat log, you don't have an audit trail: you have the model's opinion of what it did.
 - **Skipping the approval queue "just this once."** The queue is the boundary. The first time someone lets a destructive tool run without going through it is the time it matters most that it didn't.
-- **Treating diagnostic output as ground truth without row/time limits.** An unbounded query from an agent is the same risk as an unbounded query from a runaway script — cap it the same way you would for any other automated caller.
+- **Treating diagnostic output as ground truth without row/time limits.** An unbounded query from an agent is the same risk as an unbounded query from a runaway script: cap it the same way you would for any other automated caller.
 
 ## Related Articles
 
-- **[Fear the Black Box: Why Data Must Be Understood End to End](/article/fear-the-black-box/)** — The same argument for legibility applies doubly to a system that can act on your data, not just describe it.
-- **[Operational Telemetry, Explained](/article/operational-telemetry-explained/)** — The audit log described here is a form of telemetry; this article covers the broader pattern.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — The pipeline shape a harness like this is built to diagnose and maintain.
+- **[Fear the Black Box: Why Data Must Be Understood End to End](/article/fear-the-black-box/)**: The same argument for legibility applies doubly to a system that can act on your data, not just describe it.
+- **[Operational Telemetry, Explained](/article/operational-telemetry-explained/)**: The audit log described here is a form of telemetry; this article covers the broader pattern.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)**: The pipeline shape a harness like this is built to diagnose and maintain.

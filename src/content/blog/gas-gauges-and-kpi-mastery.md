@@ -9,11 +9,11 @@ tags: ['analysis']
 
 The gas gauge gets no respect in data circles. It shows up in dashboards built by people who "just want something simple." It gets replaced in redesigns by line charts and scatter plots that signal sophistication. Analysts fresh out of bootcamp learn to avoid it.
 
-This is exactly backwards. A gas gauge is not a sign that the builder did not know any better. It is a sign that the builder knew enough to pull it off.
+This is exactly backwards. A gas gauge signals that the builder knew enough to pull it off, rather than that they didn't know any better.
 
 ## What a Gas Gauge Actually Requires
 
-A gas gauge — a single needle on a dial, or a filled arc, or a colored progress bar — has exactly one job: tell you whether you are good, bad, or somewhere in between.
+A gas gauge (a single needle on a dial, or a filled arc, or a colored progress bar) has exactly one job: tell you whether you are good, bad, or somewhere in between.
 
 That job is harder than it looks. To build a gas gauge that means anything, you need to answer questions that most metrics never get:
 
@@ -25,7 +25,7 @@ That job is harder than it looks. To build a gas gauge that means anything, you 
 
 A line chart sidesteps all of these questions. It shows you what happened. It does not tell you how to feel about it. A gas gauge cannot sidestep them. The moment you drop a needle on a dial, you have committed to a point of view about what good looks like.
 
-If you do not have that point of view, the gauge is meaningless — and building it will expose that immediately.
+If you do not have that point of view, the gauge is meaningless, and building it will expose that immediately.
 
 ## The Line Chart Is Easier to Fake
 
@@ -35,7 +35,7 @@ A line chart of monthly active users is easy to make. Pull the data, plot the da
 
 But ask the person who built it: *Is this number good right now?*
 
-Watch what happens. They will point at the direction of the line. "It's going up." Okay — but is 42,000 monthly active users healthy for this product, at this stage, in this market? Is it ahead of where you need to be, or dangerously behind? What would 42,000 mean in February versus July?
+Watch what happens. They will point at the direction of the line. "It's going up." Okay, but is 42,000 monthly active users healthy for this product, at this stage, in this market? Is it ahead of where you need to be, or dangerously behind? What would 42,000 mean in February versus July?
 
 The line chart does not require you to have answers to those questions. The gas gauge does.
 
@@ -48,7 +48,7 @@ The first sentence is easy. The second one requires you to have done the work.
 
 ## When Thresholds Are Wrong, the Gauge Breaks
 
-The failure mode of a bad gas gauge is instructive. Set your thresholds arbitrarily — maybe you made "green" everything above 80% of some target, because 80% felt reasonable — and the gauge will lie to you.
+The failure mode of a bad gas gauge is instructive. Set your thresholds arbitrarily (maybe you made "green" everything above 80% of some target, because 80% felt reasonable) and the gauge will lie to you.
 
 It will show green when the business is in trouble, because the target was too low. It will show red when the team is performing well, because the threshold was calibrated to last year's scale. It will stop being read, because people learn that the gauge is not trustworthy.
 
@@ -79,7 +79,7 @@ The gauge in the second example is not a visualization. It is organizational kno
 
 ## Gas Gauges as a Test of KPI Maturity
 
-There is a useful exercise for any metric your team tracks. Ask the people responsible for it to build a gas gauge. Not to actually ship it — just to spec it out on paper.
+There is a useful exercise for any metric your team tracks. Ask the people responsible for it to build a gas gauge. Not to actually ship it, just to spec it out on paper.
 
 They have to answer:
 1. What is the current value?
@@ -87,7 +87,7 @@ They have to answer:
 3. At what value is this a problem we act on?
 4. At what value is this a crisis?
 
-If they can answer all four without hedging, the metric is well-understood. If they cannot — if the thresholds feel arbitrary, or if there is disagreement about what "crisis" means — then the metric is not actually being managed. It is just being tracked.
+If they can answer all four without hedging, the metric is well-understood. If they cannot (if the thresholds feel arbitrary, or if there is disagreement about what "crisis" means), then the metric is just being tracked, not managed.
 
 This is more common than it should be. Teams collect metrics they do not understand. They watch numbers go up and down without knowing what range is acceptable. They react to movement rather than position. They confuse "this looks different from last month" with "this is bad."
 
@@ -104,15 +104,15 @@ A gas gauge lives at Level 3. Most dashboards never get there.
 
 This is the part that makes gas gauges easy to underestimate. The output is simple: a position on a scale, a color, a single number. A junior analyst looks at it and thinks it was easy to make.
 
-The simplicity of the output is the point. The work is not in the rendering — it is in arriving at a shared, defensible answer to "what does good look like?"
+The simplicity of the output is the point. The work is not in the rendering: it is in arriving at a shared, defensible answer to "what does good look like?"
 
 Think about what goes into a well-calibrated gauge for something like customer support ticket backlog:
 
 - Historical data on what backlog levels preceded SLA breaches
-- Seasonality — backlog in January looks different from backlog in December
-- Team capacity — the threshold should adjust when headcount changes
-- Segment weighting — a backlog of enterprise tickets is not the same as a backlog of free-tier tickets
-- Escalation paths — who acts when the needle hits yellow, and what do they do?
+- Seasonality: backlog in January looks different from backlog in December
+- Team capacity: the threshold should adjust when headcount changes
+- Segment weighting: a backlog of enterprise tickets is not the same as a backlog of free-tier tickets
+- Escalation paths: who acts when the needle hits yellow, and what do they do?
 
 None of that shows up on the gauge. The gauge just shows a needle. But the needle is only meaningful because all of that work happened upstream. The simplicity of the output is earned by the complexity of the thinking.
 
@@ -122,7 +122,7 @@ Remove the thinking, and you have a needle pointed at a number that nobody belie
 
 The habits that make a good gas gauge are the same habits that make good data work in general.
 
-**Defining thresholds forces you to make decisions explicit.** Implicit thresholds — the kind that live in people's heads as vague feelings about whether a number is okay — are dangerous. They shift. They vary by person. They cannot be audited. A gas gauge requires you to write them down.
+**Defining thresholds forces you to make decisions explicit.** Implicit thresholds, the kind that live in people's heads as vague feelings about whether a number is okay, are dangerous. They shift. They vary by person. They cannot be audited. A gas gauge requires you to write them down.
 
 **Writing them down forces you to defend them.** Once a threshold is visible on a dashboard, people will challenge it. "Why is red below 75%?" That question is good. It starts the conversation about whether the threshold is right. Implicit thresholds never get challenged because nobody knows they exist.
 
@@ -132,7 +132,7 @@ The habits that make a good gas gauge are the same habits that make good data wo
 
 ## The Low Hanging Fruit
 
-If you have a metric that matters — something your team looks at weekly, something that feeds into decisions — try the gas gauge test.
+If you have a metric that matters (something your team looks at weekly, something that feeds into decisions), try the gas gauge test.
 
 Can you define the thresholds, in writing, with stakeholder sign-off?
 
@@ -140,12 +140,12 @@ If yes: build the gauge. It will be the most useful chart on your dashboard.
 
 If no: stop building charts for that metric until you can. A line chart of a number you do not understand is noise dressed up as signal. It will make your stakeholders feel informed while they are not.
 
-The gas gauge is dumb in the way that a one-sentence summary of a complex report is dumb — it collapses a lot of work into a simple output. That simplicity is a feature. It means the analysis is done. It means the insight is portable. It means anyone who looks at the dashboard knows, in two seconds, whether to be concerned.
+The gas gauge is dumb in the way that a one-sentence summary of a complex report is dumb: it collapses a lot of work into a simple output. That simplicity is a feature. It means the analysis is done. It means the insight is portable. It means anyone who looks at the dashboard knows, in two seconds, whether to be concerned.
 
 You either understand what is good or bad, or you cannot make a gas gauge. That is not a limitation of the chart type. It is the whole point.
 
 ## Related Articles
 
-- **[KPIs Are a Cultural Change, Not a Dashboard Project](/article/kpis-are-a-cultural-change/)** — Why defining thresholds is only half the work — the other half is organizational commitment to act on them.
-- **[Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame](/article/dashboards-are-waiting-rooms/)** — What comes after you build the gauge: automating the response when the needle moves.
-- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst/)** — The gas gauge is the right deliverable for a non-analyst audience — here is the broader principle behind that.
+- **[KPIs Are a Cultural Change, Not a Dashboard Project](/article/kpis-are-a-cultural-change/)**: Why defining thresholds is only half the work; the other half is organizational commitment to act on them.
+- **[Dashboards Are Waiting Rooms: Interconnectivity Is the Endgame](/article/dashboards-are-waiting-rooms/)**: What comes after you build the gauge: automating the response when the needle moves.
+- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst/)**: The gas gauge is the right deliverable for a non-analyst audience: here is the broader principle behind that.
