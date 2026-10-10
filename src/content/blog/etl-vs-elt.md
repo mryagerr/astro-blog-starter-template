@@ -2,6 +2,7 @@
 title: 'ETL vs ELT: Choosing the Right Pipeline Pattern'
 description: 'ETL and ELT both move data from source to destination, but they make very different trade-offs between cost, flexibility, and setup complexity.'
 pubDate: 'Jan 09 2026'
+updatedDate: 'Oct 10 2026'
 heroImage: '/blog-etl-vs-elt.png'
 difficulty: 'low'
 tags: ['pipelines']
@@ -26,7 +27,7 @@ The transformation step moves from outside the warehouse to inside it. That one 
 
 ## ETL: Transform Before You Store
 
-In a classic ETL setup, a dedicated transformation engine — a Python script, an Apache Spark job, or a tool like Apache Airflow — sits between your source and your destination. It reads raw data, applies business logic, cleans nulls, normalizes types, and only then writes clean records to the warehouse.
+In a classic ETL setup, a dedicated transformation step (a Python script, an Apache Spark job, or a dedicated ETL tool), usually scheduled by an orchestrator such as Apache Airflow, sits between your source and your destination. Airflow itself doesn't transform data; it decides when each step runs and in what order. It reads raw data, applies business logic, cleans nulls, normalizes types, and only then writes clean records to the warehouse.
 
 ### Advantages
 
@@ -38,19 +39,19 @@ In a classic ETL setup, a dedicated transformation engine — a Python script, a
 
 - **More infrastructure to maintain.** The transform layer is its own system. You need to run it, monitor it, version it, and debug it separately from the warehouse.
 - **Schema rigidity.** Because you define transformations before loading, schema changes at the source can break your pipeline mid-stream. You have to update the transform logic every time the source changes shape.
-- **Raw data is gone.** Once transformed, the original is discarded. If your transformation logic had a bug, you have to re-extract from the source to fix it — assuming the source still has the data.
+- **Raw data is gone unless you keep it on purpose.** By default only the transformed result is loaded, so if your transformation logic had a bug, you have to re-extract from the source to fix it, assuming the source still has the data. Many ETL pipelines archive raw extracts to cheap object storage for exactly this reason, but that's an extra step you have to build.
 
 ---
 
 ## ELT: Load Raw, Transform Later
 
-With ELT you load everything raw into a cloud data warehouse — Snowflake, BigQuery, Redshift, DuckDB — and then run SQL or a tool like **dbt** to build the clean models on top of the raw tables. The warehouse does the heavy lifting.
+With ELT you load everything raw into a warehouse (a cloud warehouse such as Snowflake, BigQuery or Redshift, or an embedded engine such as DuckDB for local and single-machine work, with MotherDuck as its hosted option) and then run SQL or a tool like **dbt** to build the clean models on top of the raw tables. The warehouse does the heavy lifting.
 
 ### Advantages
 
 - **Much easier to get started.** You do not need a separate transform engine. Load raw data with a simple connector (Fivetran, Airbyte, or even a curl command), then write SQL to shape it. Most teams can go from zero to working models in a day.
-- **Raw data is always there.** Because nothing is discarded on ingestion, you can re-run transformations at any time. Bug in your revenue model from six months ago? Re-run the dbt job. The raw data is still sitting in the warehouse.
-- **Schema flexibility.** When the source adds a column, the raw table gets the new column automatically. You decide later whether to use it in a downstream model. Nothing breaks on ingestion.
+- **Raw data stays available.** Because nothing is discarded on ingestion, you can re-run transformations at any time. Bug in your revenue model from six months ago? Re-run the dbt job, as long as the raw data is still sitting in the warehouse. Retention policies, deletion requests, and connectors that overwrite instead of append can all remove history, so check that yours actually keeps it.
+- **Schema flexibility.** When the source adds a column, most ELT connectors add it to the raw table automatically, and you decide later whether to use it in a downstream model. Ingestion is much less likely to break, though not immune: renamed or retyped columns, or a connector without schema evolution enabled, can still fail a load or break downstream models.
 - **Warehouse compute is powerful.** Modern cloud warehouses are built to process enormous datasets efficiently. SQL transformations at scale are often faster inside the warehouse than in a standalone Python job.
 
 ### Disadvantages

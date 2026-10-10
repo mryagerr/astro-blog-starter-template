@@ -11,7 +11,9 @@ A common failure pattern in data analytics is starting with sophisticated, high-
 
 These are legitimate end goals. They are poor starting points.
 
-The data professionals and teams that consistently deliver measurable impact — and build the credibility to keep delivering it — almost always start with smaller work. The reason is structural: **the failure mode of analytical work is rarely analytical. It is contextual. Analysis lands in the wrong decision window, delivered to stakeholders who do not yet trust the analyst or understand the output.**
+The data professionals and teams that consistently deliver measurable impact — and build the credibility to keep delivering it — usually start with smaller work. The reason is structural: **the failure mode of analytical work is rarely analytical. It is contextual. Analysis lands in the wrong decision window, delivered to stakeholders who do not yet trust the analyst or understand the output.**
+
+<!-- TODO(michael): EXPERIENCE — Confirm the claim above (teams that deliver impact usually start small). -->
 
 Low-hanging fruit addresses that structural problem directly. The underlying risk math is straightforward.
 

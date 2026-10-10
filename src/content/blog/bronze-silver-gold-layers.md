@@ -2,6 +2,7 @@
 title: 'Bronze, Silver, Gold: The Medallion Architecture Explained'
 description: 'The medallion architecture organizes a data pipeline into three refinement layers — bronze, silver, and gold — so raw data, cleaned data, and business-ready data never get confused with each other.'
 pubDate: 'Aug 20 2026'
+updatedDate: 'Oct 10 2026'
 heroImage: '/blog-bronze-silver-gold.png'
 difficulty: 'low'
 tags: ['pipelines', 'preparation']
@@ -30,7 +31,7 @@ The rule for bronze is simple: **do not transform.** Resist the urge to fix that
 
 - **It is your replay button.** When a downstream bug corrupts a report, you can rebuild everything from bronze without re-hitting the source API — which may be rate-limited, may have changed, or may no longer serve last month's data at all.
 - **It is your audit trail.** If a stakeholder insists the numbers are wrong, bronze is the evidence of what the source system said and when.
-- **It absorbs schema surprises.** Sources add columns, rename fields, and change formats without warning. Bronze catches all of it unfiltered, so a schema change becomes a visible event instead of a silent data-loss bug.
+- **It absorbs schema surprises.** Sources add columns, rename fields, and change formats without warning. Bronze stores all of it unfiltered, so nothing is silently dropped on the way in. Bronze doesn't *detect* the change, though. You still need a check (comparing each load's columns and types against the previous load, or a schema contract test) to turn the change into a visible event rather than something you discover when silver breaks.
 
 Bronze is cheap storage and high trust in *provenance*, not in *quality*. Nobody should build a dashboard directly on bronze.
 
@@ -63,7 +64,7 @@ The gold layer is built for a specific audience and a specific question. These a
 - **Denormalized.** Joins are already done and flattened so a BI tool can read one wide table fast, without the consumer needing to understand the underlying schema.
 - **Purpose-built.** A gold table for the finance dashboard and a gold table for the ML feature store may draw from the same silver tables but look completely different.
 
-Because gold is derived entirely from silver, it is *disposable*. If a new metric definition arrives, you rewrite the gold table — you never touch bronze or silver. This is what makes the architecture resilient: the expensive, trustworthy layers stay stable while the presentation layer changes as often as the business needs it to.
+Because gold is derived entirely from silver, it is *disposable*, as long as silver keeps the full history gold needs. If silver only holds the current state (latest row per customer, last 90 days), rebuilding a gold table with a new definition can't reproduce past periods, and gold quietly becomes the only copy of that history. Given full history in silver, a new metric definition means rewriting the gold table — you never touch bronze or silver. This is what makes the architecture resilient: the expensive, trustworthy layers stay stable while the presentation layer changes as often as the business needs it to.
 
 ---
 
@@ -89,6 +90,15 @@ The layers give every kind of change a single obvious home. That is the entire p
 - **Business logic in silver.** Revenue rules, KPI definitions, and audience-specific shaping leak upstream and force you to maintain the same logic in five places. Push them down to gold.
 - **Skipping silver.** Going bronze-straight-to-gold feels faster until two dashboards disagree because each re-cleaned the raw data slightly differently. Silver is the shared source of clean truth.
 - **Treating gold as sacred.** Gold tables are meant to be rewritten. If changing a metric feels scary, your business logic has probably crept into silver.
+
+## What This Doesn't Cover
+
+The three layers are a structure, not a complete data platform. Several hard problems sit alongside it:
+
+- **PII and deletion obligations in bronze.** "Keep everything raw, forever" collides with privacy law. If a customer asks to be deleted, that includes their rows in bronze. Plan for masking at ingestion or a way to purge raw records.
+- **Late-arriving data.** Records that show up days after the period they belong to need a rule for reprocessing the affected silver and gold partitions.
+- **Incremental loads.** Rebuilding every layer from scratch stops scaling at some point; incremental processing brings its own idempotency and backfill problems.
+- **Data tests.** Nothing about the layers checks that silver is actually clean. Row counts, uniqueness, null-rate and referential tests between layers are what make the "trust" in each layer earned.
 
 ---
 

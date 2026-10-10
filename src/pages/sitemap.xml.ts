@@ -16,17 +16,11 @@ function url(path: string, lastmod?: string): string {
 }
 
 export async function GET() {
-	const [rawArticles, rawPosts] = await Promise.all([
-		getCollection('blog'),
-		getCollection('posts'),
-	]);
-	const articles = sortByPubDateDesc(rawArticles);
-	const posts = sortByPubDateDesc(rawPosts);
+	const articles = sortByPubDateDesc(await getCollection('blog'));
 
 	const staticPages = [
 		url('/'),
 		url('/article/'),
-		url('/posts/'),
 		url('/projects/'),
 		url('/projects/stackoverflow-monitoring/'),
 		url('/about/'),
@@ -43,11 +37,7 @@ export async function GET() {
 		url(`/article/${a.id}/`, toDate(a.data.updatedDate ?? a.data.pubDate)),
 	);
 
-	const postPages = posts.map((p) =>
-		url(`/posts/${p.id}/`, toDate(p.data.updatedDate ?? p.data.pubDate)),
-	);
-
-	const entries = [...staticPages, ...categoryPages, ...articlePages, ...postPages];
+	const entries = [...staticPages, ...categoryPages, ...articlePages];
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

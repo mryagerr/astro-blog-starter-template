@@ -219,16 +219,17 @@ logger.info("Pipeline finished: %d rows written", row_count)
 Automated pipelines will run multiple times. Some will overlap or run twice due to bugs or retries. Write your pipeline so running it twice produces the same result as running it once.
 
 ```python
-# Idempotent insert: replace existing rows by primary key
-df.to_sql(
-    "prices",
-    con=engine,
-    if_exists="append",
-    index=False,
-    method="ignore",   # skip rows that already exist
+# Idempotent inserts in SQLite, keyed on the table's PRIMARY KEY.
+# (pandas' to_sql has no "skip existing rows" option: `method` only accepts
+# None, "multi", or a callable, so do this with SQL directly.)
+
+# Skip rows whose key already exists
+conn.executemany(
+    "INSERT OR IGNORE INTO prices (ticker, date, close) VALUES (?, ?, ?)",
+    rows,
 )
 
-# Or use INSERT OR REPLACE in SQLite
+# Or overwrite them with the new values
 conn.executemany(
     "INSERT OR REPLACE INTO prices (ticker, date, close) VALUES (?, ?, ?)",
     rows,
@@ -318,7 +319,7 @@ The principle in all cases is the same: secrets live in the environment, not in 
 | Multi-step pipeline, need retries + UI | Prefect |
 | Large team, complex dependencies | Airflow or Dagster |
 
-Start simple. Cron handles 80% of cases. Add complexity only when you hit a concrete limitation.
+Start simple. Cron handles most scheduled jobs. Add complexity only when you hit a concrete limitation.
 
 ## Next Steps
 

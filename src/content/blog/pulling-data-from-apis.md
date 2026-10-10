@@ -7,20 +7,20 @@ difficulty: 'low'
 tags: ['collection']
 ---
 
-REST APIs are the most common way to pull structured data from external services. Once you understand the pattern, you can collect data from virtually any source that exposes an HTTP endpoint — weather services, financial data providers, government databases, SaaS platforms, and more.
+REST APIs are the most common way to pull structured data from external services. Once you understand the pattern, you can collect data from virtually any source that exposes an HTTP endpoint: weather services, financial data providers, government databases, SaaS platforms, and more.
 
 ## What Is a REST API?
 
-A REST API accepts HTTP requests and returns structured data — almost always JSON. You send a `GET` request to a URL (the **endpoint**), and the server responds with data.
+A REST API accepts HTTP requests and returns structured data: almost always JSON. You send a `GET` request to a URL (the **endpoint**), and the server responds with data.
 
 ```
 GET https://api.example.com/users?limit=50&page=1
 ```
 
 The URL has three parts that matter:
-- **Base URL** — `https://api.example.com`
-- **Path** — `/users` (identifies the resource)
-- **Query parameters** — `?limit=50&page=1` (filters and options)
+- **Base URL**: `https://api.example.com`
+- **Path**: `/users` (identifies the resource)
+- **Query parameters**: `?limit=50&page=1` (filters and options)
 
 ## Making Your First Request
 
@@ -84,7 +84,7 @@ headers = {"Authorization": f"Bearer {API_KEY}"}
 
 ## Handling Pagination
 
-Most APIs won't return all records in one response. They paginate — splitting results across multiple pages. There are three common pagination styles:
+Most APIs won't return all records in one response. They paginate: splitting results across multiple pages. There are three common pagination styles:
 
 ### Page-Number Pagination
 
@@ -187,7 +187,7 @@ def get_with_retry(url, headers, max_retries=5):
     raise Exception(f"Failed after {max_retries} retries")
 ```
 
-Adding a small `time.sleep(0.1)` between every request is good practice even before you hit rate limits — it avoids hammering the server.
+Adding a small `time.sleep(0.1)` between every request is good practice even before you hit rate limits: it avoids hammering the server.
 
 ## A Complete Collection Script
 
@@ -253,12 +253,12 @@ if __name__ == "__main__":
 
 Before writing code, explore the API manually:
 
-- **curl** — Quick command-line requests: `curl -H "Authorization: Bearer KEY" https://api.example.com/users`
-- **httpie** — More readable CLI alternative: `http GET api.example.com/users Authorization:"Bearer KEY"`
-- **Postman / Insomnia** — GUI tools for building and testing requests
+- **curl**: Quick command-line requests: `curl -H "Authorization: Bearer KEY" https://api.example.com/users`
+- **httpie**: More readable CLI alternative: `http GET api.example.com/users Authorization:"Bearer KEY"`
+- **Postman / Insomnia**: GUI tools for building and testing requests
 
 ## Next Steps
 
-- **[Organizing Data with SQL](/article/organizing-data-with-sql/)** — Load your collected data into a database.
-- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling/)** — Clean and reshape the data you've pulled.
-- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)** — Combining API collection with transformation and loading into a full automated workflow.
+- **[Organizing Data with SQL](/article/organizing-data-with-sql/)**: Load your collected data into a database.
+- **[Python & Pandas for Data Wrangling](/article/python-pandas-data-wrangling/)**: Clean and reshape the data you've pulled.
+- **[Building Your First Data Pipeline](/article/building-your-first-data-pipeline/)**: Combining API collection with transformation and loading into a full automated workflow.

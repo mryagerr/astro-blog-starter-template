@@ -11,7 +11,7 @@ Your data looks fine. The joins don't produce duplicates. There are no nulls in 
 
 Now go sit down with the person who actually enters that data every day.
 
-There is a very high probability that within fifteen minutes, you will learn something that fundamentally changes how you interpret a field you thought you understood completely. This is not a failure of your analysis. It is how data quality work actually gets done.
+There is a good chance that within the first conversation, you will learn something that fundamentally changes how you interpret a field you thought you understood completely. This is not a failure of your analysis. It is how data quality work actually gets done.
 
 ## The Ivory Castle Problem
 

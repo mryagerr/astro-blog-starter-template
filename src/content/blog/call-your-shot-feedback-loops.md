@@ -89,18 +89,20 @@ Most organizations do step 2 constantly, step 3 occasionally, and steps 1 and 4 
 
 ---
 
+<!-- TODO(michael): EXPERIENCE — A time you (or a team) wrote a prediction down and missed. What was predicted, the actual result, and what you learned? -->
+
 ## Setting Up an Experiment You Can Actually Learn From
 
-You don't need an experimentation platform to start. You need a template and the discipline to fill it in *before* launch. Here is one that fits on an index card:
+You don't need an experimentation platform to start. You need a template and the discipline to fill it in *before* launch. Here is one that fits on an index card, shown as a hypothetical example after its window closed and the result was filled in:
 
 ```
-EXPERIMENT: Simplified pricing page
+EXPERIMENT: Simplified pricing page   (hypothetical example)
 OWNER:      Dana
-DATE CALLED: 2026-10-09   (must be before launch)
+DATE CALLED: 2025-10-09   (must be before launch)
 
 CHANGE:      Collapse 4 pricing tiers into 3
 METRIC:      Trial-to-paid conversion
-POPULATION:  New trials started Oct 15 – Nov 15
+POPULATION:  New trials started Oct 15 – Nov 15, 2025
 BASELINE:    11.2% (trailing 90 days)
 PREDICTION:  13.0%  (range I'd accept as "right": 12.0% – 14.0%)
 CONFIDENCE:  60%
@@ -109,7 +111,7 @@ WHY I THINK SO: Exit surveys say tier confusion is the #1 stall reason.
 GUARDRAIL:   Average contract value must not drop more than 5%
 KILL SWITCH: If conversion < 10% after 2 weeks, revert
 
---- filled in after ---
+--- filled in after the window closed ---
 ACTUAL:      11.9%
 RESULT:      MISS (below range)
 WHAT I LEARNED:

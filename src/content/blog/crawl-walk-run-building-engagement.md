@@ -11,15 +11,15 @@ A common failure pattern in analytical work resembles high standards but functio
 
 The outcome is consistent: work that does not land. The effort expended is real; the business impact is zero.
 
-The operational alternative is crawl, walk, run — a staging framework for delivering analytical work in sequenced increments. The premise: **an incomplete-but-useful deliverable, shipped today, generates more business value than a complete-but-delayed deliverable shipped months later.**
+The operational alternative is crawl, walk, run: a staging framework for delivering analytical work in sequenced increments. The premise: **an incomplete-but-useful deliverable, shipped today, generates more business value than a complete-but-delayed deliverable shipped months later.**
 
 ## What Crawl, Walk, Run Actually Means
 
-The framework comes from change management and product development, but it applies anywhere you are trying to build engagement — with stakeholders, audiences, teams, or customers.
+The framework comes from change management and product development, but it applies anywhere you are trying to build engagement, with stakeholders, audiences, teams, or customers.
 
 **Crawl** is the minimum viable version. It is small enough to ship today. It answers one question instead of five. It covers the most important thing and ignores everything else. A crawl deliverable is functional, honest about its limitations, and in front of actual users before it is fully formed.
 
-**Walk** is the version that incorporates what you learned from the crawl. It is better because you now know things you did not know before — what stakeholders actually cared about, what the data actually shows, what questions the first version raised that need answering. Walk is not just a bigger crawl. It is a smarter one.
+**Walk** is the version that incorporates what you learned from the crawl. It is better because you now know things you did not know before: what stakeholders actually cared about, what the data actually shows, what questions the first version raised that need answering. Walk is a smarter crawl as well as a bigger one.
 
 **Run** is where you are operating with enough feedback, trust, and domain knowledge to move fast and deliver high-confidence work. Run is not where you start. It is where accumulated crawls and walks take you.
 
@@ -36,7 +36,7 @@ In an analytical context, engagement means:
 - Collaborators who share early, because they know you will engage constructively
 - Decision makers who pull you into problems early, because your track record earns you that access
 
-None of this builds from a single polished deliverable. It accumulates through repeated interaction. Each piece of work — however incomplete — is a data point about reliability, capability, and whether subsequent outputs warrant attention.
+None of this builds from a single polished deliverable. It accumulates through repeated interaction. Each piece of work, however incomplete, is a data point about reliability, capability, and whether subsequent outputs warrant attention.
 
 A year of consistently shipping incomplete-but-useful work generates more engagement than a year spent perfecting one deliverable that ships in month twelve. The difference in compound trust is substantial.
 
@@ -53,7 +53,7 @@ Option B: 1 imperfect deliverable per month for 12 months
   → each subsequent deliverable arrives with more context and more credibility
 ```
 
-The engagement gap widens every month. By month twelve, Option B has an audience that has observed a full iteration cycle — learning, improvement, responsiveness. Option A has an audience meeting the work for the first time.
+The engagement gap widens every month. By month twelve, Option B has an audience that has observed a full iteration cycle: learning, improvement, responsiveness. Option A has an audience meeting the work for the first time.
 
 ## Why the First Version Is Incomplete by Design
 
@@ -61,13 +61,13 @@ The crawl stage is intentionally incomplete. Incomplete is distinct from careles
 
 Careless work is inaccurate, misleading, or poorly considered. Incomplete work is accurate and honest but deliberately scoped. It addresses one question well and does not attempt more.
 
-The crawl version must be incomplete because the information required to build the complete version does not yet exist. Which component the audience will actually use, which metric turns out to be the wrong one to track, which follow-up question the first analysis raises — none of this can be determined in advance. It only surfaces through exposure to actual stakeholders.
+The crawl version must be incomplete because the information required to build the complete version does not yet exist. Which component the audience will actually use, which metric turns out to be the wrong one to track, which follow-up question the first analysis raises: none of this can be determined in advance. It only surfaces through exposure to actual stakeholders.
 
-Every shipped version is an experiment. Faster experiments accumulate decision-relevant information faster. A rough draft improved through real feedback operates on better information than a three-month refinement that has never encountered reality. The incomplete work that ships is not the failure mode — it is the primary source of the information required to get the next version right.
+Every shipped version is an experiment. Faster experiments accumulate decision-relevant information faster. A rough draft improved through real feedback operates on better information than a three-month refinement that has never encountered reality. The incomplete work that ships is not the failure mode: it is the primary source of the information required to get the next version right.
 
 ## The Mechanics of Engagement
 
-The crawl-walk-run framework works because engagement is not a linear function of quality. It is a compound function of **frequency and improvement over time**.
+The crawl-walk-run framework works because engagement compounds with **frequency and improvement over time** instead of rising linearly with quality.
 
 Stakeholders do not evaluate each piece of work in isolation. They build a model of the person producing the work: Is this person reliable? Do successive outputs improve? Do they incorporate feedback? Is continued attention warranted?
 
@@ -75,11 +75,11 @@ Frequent, improving work answers those questions faster than infrequent perfect 
 
 The result is compound engagement. Early work reaches a small audience, which produces feedback, which improves the next iteration, which reaches a larger audience, which produces more feedback. Trust is built through repeated contact over time.
 
-A single polished piece, followed by a long gap, followed by another polished piece, is not a track record. It is two data points with a gap.
+A single polished piece, followed by a long gap, followed by another polished piece, is two data points with a gap, which falls short of a track record.
 
 ## The Practical Application: Stage Everything
 
-The crawl-walk-run principle is not just a philosophy. It is an operational method. Here is how it applies to common analytical work:
+The crawl-walk-run principle is an operational method as much as a philosophy. Here is how it applies to common analytical work:
 
 **Reports and dashboards:** Ship the core metric first. One number with context, delivered clearly. Let stakeholders use it before you add the secondary metrics, the trend lines, and the segmentation. Find out what they actually look at before you build the parts they will ignore.
 
@@ -99,7 +99,7 @@ When work is treated as a capability signal, incomplete work becomes costly to r
 
 When work is treated as communication, the relevant question shifts from "does this represent my best output?" to "does this move the decision forward?" Incomplete work becomes a useful object to put in front of stakeholders whose feedback improves the next version. Feedback becomes input to the iteration rather than a verdict on the practitioner.
 
-The crawl is not a rough draft released apologetically. It is the first move in a sequence, shipped specifically to generate the feedback required to build the second and third.
+The crawl is the first move in a sequence, shipped specifically to generate the feedback required to build the second and third, rather than a rough draft released apologetically.
 
 ## Volume Drives Quality
 
@@ -111,10 +111,10 @@ Crawl delivers the first data point and starts the feedback loop.
 Walk delivers the improved version informed by what the crawl surfaced.
 Run delivers the high-confidence version that is only possible after the first two.
 
-Run cannot be reached directly. Engagement does not begin after the practitioner feels ready to operate at the run stage — it begins at the crawl.
+Run cannot be reached directly. Engagement does not begin after the practitioner feels ready to operate at the run stage: it begins at the crawl.
 
 ## Related Articles
 
-- **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise/)** — The risk math behind starting small and iterating toward more complex analytical work.
-- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst/)** — Designing deliverables for the audience you are actually building engagement with.
-- **[KPIs Are a Cultural Change, Not a Dashboard Project](/article/kpis-are-a-cultural-change/)** — Why the crawl-walk-run principle applies to data culture as much as individual deliverables.
+- **[Low Hanging Fruit Reduces Risk and Builds the Expertise to Climb Higher](/article/low-hanging-fruit-reduces-risk-and-builds-expertise/)**: The risk math behind starting small and iterating toward more complex analytical work.
+- **[Not Everyone Is a Data Analyst](/article/not-everyone-is-a-data-analyst/)**: Designing deliverables for the audience you are actually building engagement with.
+- **[KPIs Are a Cultural Change, Not a Dashboard Project](/article/kpis-are-a-cultural-change/)**: Why the crawl-walk-run principle applies to data culture as much as individual deliverables.

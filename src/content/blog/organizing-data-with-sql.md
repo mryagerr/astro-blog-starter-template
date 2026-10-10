@@ -149,7 +149,8 @@ INNER JOIN users ON orders.user_id = users.id;
 Returns all rows from the left table, with NULLs where there's no match in the right:
 
 ```sql
--- All users, with their most recent order (or NULL if no orders)
+-- All users with each of their orders: one row per order,
+-- plus one row with NULL amount for users who have no orders
 SELECT users.name, orders.amount
 FROM   users
 LEFT JOIN orders ON orders.user_id = users.id;

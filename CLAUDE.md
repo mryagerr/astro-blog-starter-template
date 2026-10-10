@@ -34,7 +34,7 @@ npx vitest run -t "fuzzyScore"            # Filter by test name
 
 ### Content collections
 
-Defined in `src/content.config.ts`. **Two collections are registered — `blog` and `posts` — sharing the same `articleSchema`.** The schema lives in `src/utils/contentSchema.ts` (not in `content.config.ts`) so it can be unit-tested without depending on Astro's virtual modules.
+Defined in `src/content.config.ts`. **One collection is registered: `blog`.** (A separate `posts` collection existed until Oct 2026; its two real entries were merged into `blog` under the `projects` tag, and `/posts/…` URLs 301-redirect via `public/_redirects`.) The schema lives in `src/utils/contentSchema.ts` (not in `content.config.ts`) so it can be unit-tested without depending on Astro's virtual modules.
 
 ```typescript
 // src/content.config.ts
@@ -47,31 +47,26 @@ const blog = defineCollection({
   schema: articleSchema,
 });
 
-const posts = defineCollection({
-  loader: glob({ base: "./src/content/posts", pattern: "**/*.{md,mdx}" }),
-  schema: articleSchema,
-});
-
-export const collections = { blog, posts };
+export const collections = { blog };
 ```
 
 | Collection | Path on disk | URL prefix | Page file | Purpose |
 |---|---|---|---|---|
 | `blog` | `src/content/blog/` | `/article/{id}/` | `src/pages/article/[...slug].astro` | Step-by-step technical guides; tagged, categorized, searchable, in RSS |
-| `posts` | `src/content/posts/` | `/posts/{id}/` | `src/pages/posts/[...slug].astro` | Project write-ups, tool opinions, observations; NOT in RSS, search, or category pages |
 
-The filename becomes the URL slug for both. The two collections are intentionally kept separate even though they share a schema — only `blog` participates in tag categorization, RSS, and search.
+The filename becomes the URL slug. Project write-ups are ordinary `blog` entries tagged `projects` (category "Project Writeups", `/category/project-writeups/`).
 
 ### `contentSchema.ts` exports
 
 ```typescript
-VALID_TAGS         // ['collection', 'preparation', 'pipelines', 'analysis', 'culture', 'career'] as const
+VALID_TAGS         // ['collection', 'preparation', 'pipelines', 'analysis', 'culture', 'career', 'projects'] as const
 Tag                // typeof VALID_TAGS[number]
 TAG_LABELS         // Tag → display label
 TAG_SLUGS          // Tag → URL slug (e.g. culture → 'culture-and-communication')
 TAG_DESCRIPTIONS   // Tag → category-page intro text
 SLUG_TO_TAG        // Reverse of TAG_SLUGS
-articleSchema      // Zod schema (title, description, pubDate required; updatedDate, heroImage, difficulty 'low'|'high', tags optional)
+articleSchema      // Zod schema (title, description, pubDate required; updatedDate, heroImage, difficulty 'low'|'high', tags optional;
+                   //   author defaults to AUTHOR_NAME; financialDisclaimer defaults to false)
 ArticleData        // z.infer<typeof articleSchema>
 ```
 
@@ -97,18 +92,17 @@ File-based from `src/pages/`. SSR vs. prerender split is significant:
 
 | Route | File | Mode | Notes |
 |---|---|---|---|
-| `/` | `index.astro` | prerender | Hero + Start Here (4 articles hardcoded in `START_HERE_IDS`: `getting-started-with-data`, `excel-to-sql-low-hanging-fruit`, `organizing-data-with-sql`, `python-pandas-data-wrangling`) + Browse by Topic + Latest Articles (10 from `blog`) + Project Writeups (3 from `posts`) + bio |
+| `/` | `index.astro` | prerender | Hero + Start Here (4 articles hardcoded in `START_HERE_IDS`: `getting-started-with-data`, `excel-to-sql-low-hanging-fruit`, `organizing-data-with-sql`, `python-pandas-data-wrangling`) + Browse by Topic + Latest Articles (10 from `blog`) + Project Writeups (3 newest `blog` entries tagged `projects`) + bio |
 | `/article/` | `article/index.astro` | prerender | Listing of all `blog` entries |
 | `/article/{id}/` | `article/[...slug].astro` | prerender | Computes `readingTime`, `wordCount`, `relatedPosts` (over `blog` only), passes them to `BlogPost.astro` |
-| `/posts/` | `posts/index.astro` | prerender | Listing of all `posts` entries (project write-ups) |
-| `/posts/{id}/` | `posts/[...slug].astro` | prerender | Renders `posts` entries via `BlogPost.astro`; computes `readingTime`/`wordCount` but does NOT pass `relatedPosts` |
+| `/posts/…` | `public/_redirects` | static | 301s to `/article/…` (legacy Posts URLs) |
 | `/category/{slug}/` | `category/[slug].astro` | prerender | Per-tag landing page over `blog` only; `getStaticPaths` iterates `VALID_TAGS` and emits `TAG_SLUGS[tag]` |
 | `/projects/` | `projects/index.astro` | prerender | Hand-coded project list (not a collection) |
 | `/projects/stackoverflow-monitoring/` | `projects/stackoverflow-monitoring/index.astro` | prerender | Project deep-dive |
 | `/about/`, `/contact/`, `/privacy/`, `/terms/` | static `.astro` pages | prerender | Use `BlogPost.astro` layout for consistent styling |
 | `/search/` | `search.astro` | **SSR** (`prerender = false`) | Reads `?q=`, fuzzy-ranks **only the `blog` collection** (title score × 2 + description score), highlights matches via `<mark>` |
 | `/rss.xml` | `rss.xml.ts` | **SSR** (`prerender = false`) | `@astrojs/rss` over the `blog` collection — must stay SSR for the Worker runtime |
-| `/sitemap.xml` | `sitemap.xml.ts` | **prerender** | Hand-rolled XML emitting static pages (incl. `/posts/`), all `category/{slug}/` URLs from `TAG_SLUGS`, every `/article/{id}/` and every `/posts/{id}/` with `<lastmod>`. **Not** generated by `@astrojs/sitemap` (that integration was removed). |
+| `/sitemap.xml` | `sitemap.xml.ts` | **prerender** | Hand-rolled XML emitting static pages, all `category/{slug}/` URLs from `TAG_SLUGS`, and every `/article/{id}/` with `<lastmod>`. **Not** generated by `@astrojs/sitemap` (that integration was removed). |
 | `/404` | `404.astro` | prerender | Custom 404 |
 
 ### Layout: `BlogPost.astro`
@@ -128,15 +122,17 @@ type Props = ArticleData & {
 Required behaviors built in:
 - Scroll progress bar (3px, fixed, accent-colored).
 - Optional breadcrumb when `breadcrumb` prop is set.
-- Reading time + difficulty badge in meta line.
+- Byline under the H1 on article pages (`Byline.astro`: author linked to `/about/`, date, reading time).
+- Difficulty badge.
+- Financial disclaimer only when frontmatter sets `financialDisclaimer: true`.
 - Table of Contents — desktop sticky sidebar (200px, hidden ≤900px) + mobile collapsible `<details>`. Activates only when ≥3 headings at depth ≤3. Active heading highlighted via scroll listener.
 - Share bar (X/Twitter, LinkedIn).
 - Related articles grid (3 cards) at end of prose.
-- Newsletter CTA submitting to `/about/#contact`.
+- "Get new articles" CTA with RSS and email links (no signup form until a real email provider is set up).
 
 ### `BaseHead.astro`
 
-Single source of truth for `<head>`: SEO meta, OG/Twitter cards, JSON-LD `Article` (only when `type="article"` and `pubDate` is set), RSS auto-discovery, Google Fonts (progressive load), Atkinson font preloads, Google AdSense (article pages only). **If the `image` prop is an SVG or omitted, it auto-substitutes `/blog-og-default.png`** — never pass an SVG; pass a 1200×630 PNG or omit.
+Single source of truth for `<head>`: SEO meta, OG/Twitter cards, JSON-LD `Article` with a `Person` author (only when `type="article"` and `pubDate` is set; built by `src/utils/structuredData.ts`), standalone `Person` JSON-LD on `/about/`, RSS auto-discovery, Google Fonts (progressive load), Atkinson font preloads, Google AdSense (article pages only). **If the `image` prop is an SVG or omitted, it auto-substitutes `/blog-og-default.png`** — never pass an SVG; pass a 1200×630 PNG or omit.
 
 ### Markdown pipeline
 
@@ -162,6 +158,9 @@ Global site constants imported throughout the project:
 ```typescript
 SITE_TITLE        // "Low Hanging Data"
 SITE_DESCRIPTION  // One-line site tagline used in BaseHead and homepage
+AUTHOR_NAME       // "Michael Petrillo" (byline + JSON-LD)
+AUTHOR_PATH       // "/about/"
+AUTHOR_SAME_AS    // LinkedIn + GitHub profile URLs for schema.org sameAs
 ```
 
 ### Utilities (`src/utils/`)
@@ -180,6 +179,8 @@ Each `.ts` here has a sibling `.test.ts`. Adding a utility without a test is a c
 | `activeLink.ts` | `isActiveLink(href, pathname, baseUrl)` — strips `baseUrl`; root `/` only matches exactly |
 | `difficultyBadge.ts` | Maps `'low'`/`'high'` → label (with emoji) and CSS class |
 | `rehypeResponsiveImages.ts` | The rehype plugin imported by `astro.config.mjs` |
+| `structuredData.ts` | `buildPersonSchema()` / `buildArticleSchema()` for JSON-LD |
+| `groupByPrimaryTag.ts` | Groups articles by first tag (newest first) for the About page list |
 
 ### Other notable files
 
@@ -194,10 +195,10 @@ Each `.ts` here has a sibling `.test.ts`. Adding a utility without a test is a c
 
 These are project conventions enforced in code review — do not regress them:
 
-- **Header (`Header.astro`)** has exactly **4 tabs**: Home (`/`), Articles (`/article/`), Posts (`/posts/`), About (`/about/`). Plus an integrated search form (action `/search/`) and a hamburger button (mobile only). Contact lives in the footer, not the header.
+- **Header (`Header.astro`)** has exactly **3 tabs**: Home (`/`), Articles (`/article/`), About (`/about/`). Plus an integrated search form (action `/search/`) and a hamburger button (mobile only). Contact lives in the footer, not the header.
 - Header is `position: sticky; top: 0` with `backdrop-filter: blur(8px)` and `z-index: 100`. Do not use `position: fixed` (breaks SSR document flow).
 - All nav links must have visible `:hover` styles (the header uses an underline slide-in animation).
-- **Homepage (`index.astro`)** must keep: the Start Here section (4 articles by ID in `START_HERE_IDS`), the Browse by Topic grid (driven by `VALID_TAGS` × `TAG_SLUGS` × tag counts, computed from `blog` only), Latest Articles (10 from `blog`), and Project Writeups (3 from `posts`).
+- **Homepage (`index.astro`)** must keep: the Start Here section (4 articles by ID in `START_HERE_IDS`), the Browse by Topic grid (driven by `VALID_TAGS` × `TAG_SLUGS` × tag counts, computed from `blog` only), Latest Articles (10 from `blog`), and Project Writeups (3 from `blog` tagged `projects`).
 - **Article reading width** is capped at `max-width: 680px` on `.prose`; the outer `.article-layout` allows up to `960px` to fit the ToC. Do not widen `.prose`.
 - **Dark mode** is required: every CSS custom property added to `:root` in `src/styles/global.css` must have a counterpart inside the `@media (prefers-color-scheme: dark)` block.
 - The scroll progress bar and ToC behavior in `BlogPost.astro` are required — do not remove.
@@ -216,7 +217,7 @@ Always run `npm run check` before `npm run deploy`.
 
 ## What not to do
 
-- Do not add the `posts` collection to RSS, search, category pages, or related-post calculations — `posts` is intentionally limited to its own `/posts/` listing, the `/posts/{id}/` detail page, the homepage Project Writeups section, and the sitemap. Articles (`blog`) are the canonical taxonomy-bearing content.
+- Do not reintroduce a separate `posts` collection or `/posts/` routes; project write-ups are `blog` entries tagged `projects`. Keep the `/posts/…` 301s in `public/_redirects`.
 - Do not register `@astrojs/sitemap` as an Astro integration; the sitemap is generated by `src/pages/sitemap.xml.ts` so category URLs can be enumerated. The package exists in `package.json` but must remain unregistered.
 - Do not add `export const prerender = true` to `rss.xml.ts` or `search.astro` — both must remain SSR on the Worker.
 - Do not bypass `TAG_SLUGS` / `SLUG_TO_TAG` when building category URLs — slugs differ from tag values for `culture`.
@@ -225,9 +226,9 @@ Always run `npm run check` before `npm run deploy`.
 - Do not add a utility to `src/utils/` without a sibling `.test.ts`.
 - Do not add Tailwind or another CSS framework — this project uses plain CSS by design.
 - Do not pass an SVG to `BaseHead`'s `image` prop or use SVG hero images — social scrapers reject SVG; hero images must be 1200×630 PNG.
-- Do not change `Header.astro` to have more or fewer than 4 nav tabs, remove the search form, or remove the hamburger menu.
-- Do not add a GitHub link to `index.astro`, `Header.astro`, or `Footer.astro` (the projects page is the only place external repo links appear).
+- Do not change `Header.astro` to have more or fewer than 3 nav tabs, remove the search form, or remove the hamburger menu.
+- Do not add a GitHub link to `index.astro`, `Header.astro`, or `Footer.astro` (external repo links belong on the projects page or inside the article they relate to).
 - Do not change `astro.config.mjs`'s `site` URL without coordinating DNS.
 - Do not place test files outside the source's directory — `src/consts.test.ts` sits next to `src/consts.ts`; utility tests live in `src/utils/`.
-- Do not put new content outside `src/content/blog/` (technical articles) or `src/content/posts/` (project write-ups) — those are the only two registered collection directories.
+- Do not put new content outside `src/content/blog/`, the only registered collection directory.
 - Do not skip `npm run check` before deploying.
