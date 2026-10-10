@@ -60,7 +60,7 @@ Result:               The needle lives in green permanently.
                       Everyone blames the dashboard.
 ```
 
-Compare this to a gauge built on genuine understanding:
+Compare this to a gauge built on genuine understanding (an illustrative example; the dates and figures are made up):
 
 ```
 Good gauge threshold: "Below 90% of target is yellow. Below 75% is red.
@@ -74,6 +74,8 @@ Result:                The needle moves to yellow in February.
 ```
 
 The gauge in the second example is not a visualization. It is organizational knowledge made visible.
+
+<!-- TODO(michael): EXPERIENCE — A real KPI where defining the red/yellow/green thresholds exposed disagreement. Who disagreed and how was it resolved? -->
 
 ## Gas Gauges as a Test of KPI Maturity
 

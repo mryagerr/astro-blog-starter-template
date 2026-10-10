@@ -15,13 +15,15 @@ The problem is almost never the data. The problem is that you have been staring 
 
 ## The Brain Has Two Modes, and You Need Both
 
-Neuroscience has spent the last two decades studying what happens when the brain is not actively working on a problem. The research has settled into a reasonably clear picture.
+Neuroscience has spent the last two decades studying what happens when the brain is not actively working on a problem. The picture below is a simplified summary of that research.
+
+<!-- TODO(michael): SOURCE — Cite the default mode network research, or soften. Candidate to confirm: Raichle, M. E., et al. (2001), "A default mode of brain function," PNAS. -->
 
 When you are focused — reading a chart, writing a query, working through a model — the brain operates in what researchers call the **task-positive network**: a set of regions associated with directed attention, working memory, and executive function. This is the analytical mode. It is excellent at processing known information, applying defined rules, and catching errors.
 
 When you are not focused — walking, showering, letting your mind drift — the brain shifts into the **default mode network**: the regions associated with self-referential thought, imagination, and the integration of disparate memories. This is not idle time. It is consolidation time. The brain replays recent experiences, connects them to older knowledge, and surfaces patterns that directed attention misses because it was too busy looking in the wrong place.
 
-The creative insight — the one that tells you the real story in the data — almost always arrives in default mode, not in task-positive mode. It arrives in the shower, on the walk, in the moment between waking and getting out of bed. Not because those activities are magical, but because they give the brain permission to do the work that directed attention cannot.
+The creative insight — the one that tells you the real story in the data — often arrives in default mode, not in task-positive mode. It arrives in the shower, on the walk, in the moment between waking and getting out of bed. Not because those activities are magical, but because they give the brain permission to do the work that directed attention cannot.
 
 ## What This Costs Data Professionals Specifically
 
@@ -45,15 +47,19 @@ When you cannot arrive at a conclusion from a dataset you understand well, it is
 
 The first two are stakeholder problems worth solving. The third one is solved by rest.
 
-If you have spent more than three hours on a single analytical question with no progress, the probability that more analysis will help you is low. The probability that a walk around the block will help you is surprisingly high.
+My rule of thumb: if you have spent a few hours on a single analytical question with no progress, more of the same analysis is unlikely to help, and a walk around the block is worth trying. Research on "incubation" (setting a problem aside before returning to it) supports the general idea that breaks can help with problems that need a new approach.
+
+<!-- TODO(michael): SOURCE — Cite the incubation research. Candidate to confirm: Sio, U. N., & Ormerod, T. C. (2009), "Does incubation enhance problem solving? A meta-analytic review," Psychological Bulletin. -->
 
 ## The Mechanism: Sleep and Slow Thinking
 
 Sleep is not optional for data work. It is part of the pipeline.
 
+<!-- TODO(michael): SOURCE — Cite the sleep replay/consolidation and sleep-and-insight claims in this section. Candidate to confirm: Wagner, U., et al. (2004), "Sleep inspires insight," Nature. -->
+
 During slow-wave sleep, the hippocampus replays the day's experiences and transfers them into longer-term cortical storage. This is memory consolidation. Everything you encountered during the day — including the dataset you were staring at — gets processed, indexed, and connected to the broader network of things you already know.
 
-The connection that emerges from this process is often the insight you could not reach while awake. You worked on a problem for hours, went to sleep, and woke up with the answer. This is not coincidence. It is the system working as designed.
+The connection that emerges from this process is often the insight you could not reach while awake. You worked on a problem for hours, went to sleep, and woke up with the answer. That is probably not coincidence; it fits what sleep research describes.
 
 The same process, in attenuated form, happens during any low-intensity activity that lets the mind wander. Walking, showering, exercising without music, doing a familiar task that does not require conscious attention. These activities do not solve the problem directly. They create the neurological conditions in which the brain can solve it on its own.
 
@@ -73,7 +79,9 @@ Something that is not analysis and is not passive consumption. Walk. Exercise. C
 Look at what you documented before the break. The question you could not answer is often answerable now. If it is not, it is usually because the question itself needs to change — which is now easier to see.
 
 **End-of-day dump:**
-Before you stop for the day, write down every open question and unresolved hypothesis. Explicitly tell your brain what to work on while you sleep. This sounds like a mental trick, but there is evidence that problem-focused intention before sleep increases the likelihood of sleep-based consolidation for that specific problem.
+Before you stop for the day, write down every open question and unresolved hypothesis. Explicitly tell your brain what to work on while you sleep. This sounds like a mental trick, and the evidence for it is thinner than for sleep's general role in memory. There is some research suggesting that information people expect to need later is preferentially consolidated during sleep.
+
+<!-- TODO(michael): SOURCE — Find a citation for "intention before sleep improves consolidation for that problem", or cut the sentence. -->
 
 This is not a productivity hack. It is a recognition that the brain has a processing architecture with two phases, and that ignoring one of them does not increase your output — it just fills your hours with less valuable work.
 

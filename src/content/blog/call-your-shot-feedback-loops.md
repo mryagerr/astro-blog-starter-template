@@ -89,6 +89,8 @@ Most organizations do step 2 constantly, step 3 occasionally, and steps 1 and 4 
 
 ---
 
+<!-- TODO(michael): EXPERIENCE — A time you (or a team) wrote a prediction down and missed. What was predicted, the actual result, and what you learned? -->
+
 ## Setting Up an Experiment You Can Actually Learn From
 
 You don't need an experimentation platform to start. You need a template and the discipline to fill it in *before* launch. Here is one that fits on an index card, shown as a hypothetical example after its window closed and the result was filled in:

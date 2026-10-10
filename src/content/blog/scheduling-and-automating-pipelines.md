@@ -318,7 +318,7 @@ The principle in all cases is the same: secrets live in the environment, not in 
 | Multi-step pipeline, need retries + UI | Prefect |
 | Large team, complex dependencies | Airflow or Dagster |
 
-Start simple. Cron handles 80% of cases. Add complexity only when you hit a concrete limitation.
+Start simple. Cron handles most scheduled jobs. Add complexity only when you hit a concrete limitation.
 
 ## Next Steps
 

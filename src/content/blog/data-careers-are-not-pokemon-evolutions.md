@@ -19,7 +19,7 @@ The framing does not match how the roles actually operate.
 
 A linear progression assumes that each role is strictly more advanced than the one before it, that the skills required stack cleanly, and that the end-stage represents the highest expression of the craft. None of this holds up in practice.
 
-- A **Data Scientist** at a startup typically spends 60% of their time writing SQL and building ETL jobs — work often categorized as Analyst or Engineer scope at a larger company.
+- A **Data Scientist** at a startup often spends much of their time writing SQL and building ETL jobs — work often categorized as Analyst or Engineer scope at a larger company.
 - A **Data Engineer** at a hedge fund may require deeper statistical knowledge than a Data Scientist at a consumer app company.
 - A **Data Analyst** who owns end-to-end data infrastructure, builds dashboards, and runs experiments often has more scope than Data Scientists at larger organizations.
 
