@@ -7,20 +7,15 @@ Questions only Michael can answer. Each one is an invisible `<!-- TODO(michael):
 | Slug | Line | Type | Question |
 |---|---|---|---|
 | `article/agent-harness-for-data-engineering` | 195 | EXPERIENCE | Have you run an agent against a real pipeline? What did it catch, what scared you? |
-| `article/building-a-stock-prediction-svm` | 29 | SOURCE | Confirm the data behind this walkthrough: ticker list, 30-minute bars, and the 2020–2021 / 2022+ windows. yfinance only serves ~60 days of 30-minute history, and the 2020 thesis used Jan 30 to Apr 23, 2020 with a different ticker set (^GSPC, ^VIX, AAPL, DIS, TSLA, NFLX, BA, WMT, AMZN, NVDA). Where did multi-year 30-minute bars come from? |
-| `article/building-a-stock-prediction-svm` | 175 | SOURCE | Add a link to the thesis (PDF in public/ or an external URL). |
-| `article/building-a-stock-prediction-svm` | 206 | SOURCE | Is this classification report from a real run? If yes, share the notebook/output so the numbers can be cited; if not, label it illustrative or remove it. Same for "training accuracy is typically 60–65%". |
-| `article/building-a-stock-prediction-svm` | 332 | SOURCE | The ranking below was described as "typically" coming out this way. Was it from a real run, and with which method (train-set RF importances or validation permutation importance)? Replace with actual output or label it illustrative. |
-| `article/building-a-stock-prediction-svm` | 369 | SOURCE | The original text said "for most tickers and time periods, the p-values do not reject the null", but the code only tested AAPL. Paste the actual per-ticker p-value table from a training-period run, or keep the claim conditional as written below. |
 | `article/call-your-shot-feedback-loops` | 92 | EXPERIENCE | A time you (or a team) wrote a prediction down and missed. What was predicted, the actual result, and what you learned? |
 | `article/cdc-requires-roi-to-be-taken-seriously` | 93 | EXPERIENCE | A real CDC proposal you saw funded or killed, and the number that decided it. |
-| `article/data-product-decay` | 14 | EXPERIENCE | Confirm this is from your own experience. Then: a real orphaned dashboard or pipeline you found. How long was it wrong, and how was it caught? |
-| `article/from-cheerleader-to-quarterback` | 152 | EXPERIENCE | Confirm the claim above is from your experience. Then: the domain you learned on the job and the moment it changed an analysis. |
+| `article/data-product-decay` | 14 | EXPERIENCE | Confirm the claim above matches your experience. Then: a real orphaned dashboard or pipeline you found. How long was it wrong, and how was it caught? |
+| `article/from-cheerleader-to-quarterback` | 152 | EXPERIENCE | Confirm the claim above matches your experience. Then: the domain you learned on the job and the moment it changed an analysis. |
 | `article/gas-gauges-and-kpi-mastery` | 78 | EXPERIENCE | A real KPI where defining the red/yellow/green thresholds exposed disagreement. Who disagreed and how was it resolved? |
 | `article/low-hanging-data-sources-for-stock-prediction` | 80 | SOURCE | Re-verify NewsAPI free-tier limits (requests/day, delay, look-back, production use) against newsapi.org/pricing and confirm which publisher RSS feeds (Reuters, AP, MarketWatch) still exist. |
 | `article/low-hanging-data-sources-for-stock-prediction` | 99 | SOURCE | Add a citation for a replication attempt. Candidate to confirm: Lachanski, M., & Pav, S. (2017), "Shy of the Character Limit: 'Twitter Mood Predicts the Stock Market' Revisited," Econ Journal Watch 14(3). |
 | `article/low-hanging-data-sources-for-stock-prediction` | 103 | SOURCE | Re-verify current X API tiers and pricing (developer.x.com) and add the date checked. |
-| `article/low-hanging-fruit-reduces-risk-and-builds-expertise` | 16 | EXPERIENCE | Confirm the "in my experience" claim above (teams that deliver impact usually start small). |
+| `article/low-hanging-fruit-reduces-risk-and-builds-expertise` | 16 | EXPERIENCE | Confirm the claim above (teams that deliver impact usually start small). |
 | `article/telephone-game-bad-analytics` | 25 | EXPERIENCE | A real request that got distorted through handoffs. Original ask vs what got built. |
 | `article/the-golden-age-of-api-access-is-over` | 31 | SOURCE | Add dated links for each bullet: X API tier announcement and current pricing (developer.x.com), Reddit's April 2023 API announcement and the Apollo shutdown, Pushshift's May 2023 access removal, and Spotify's November 2024 Web API changes post. Verify the dates and dollar figures against them. |
 | `article/the-golden-age-of-api-access-is-over` | 65 | SOURCE | Link the Ninth Circuit's 2022 hiQ v. LinkedIn opinion and a report of the December 2022 settlement. |
@@ -30,22 +25,20 @@ Questions only Michael can answer. Each one is an invisible `<!-- TODO(michael):
 | `article/think-rest-create` | 84 | SOURCE | Find a citation for "intention before sleep improves consolidation for that problem", or cut the sentence. |
 | `article/tool-job-fit` | 60 | EXPERIENCE | Is the "$30,000/month for ~40 GB" case (and the "under two seconds on an m5.xlarge" benchmark) something you saw or ran? If yes, restore the specific numbers with context (anonymized company, query shape, how it was measured). |
 | `article/write-for-the-executive-survive-the-analyst` | 16 | EXPERIENCE | A real exec readout where a reviewer found a hole (or didn't). Anonymized numbers. |
-| `posts/stock-trader-project-writeup` | 18 | SOURCE | Add a link to the thesis (PDF in public/ or an external URL). The thesis also cites github.com/mryagerr/reddit_monitoring_capstone: is that repo public, and should it be linked here? |
-| `posts/stock-trader-project-writeup` | 24 | SOURCE | The thesis tracked ^GSPC, ^VIX, AAPL, DIS, TSLA, NFLX, BA, WMT, AMZN and NVDA over Jan 30 to Apr 23, 2020 (no META/FB, GOOG, MSFT or JPM). Is the list above from a later reproduction? If so, say when it was run; if not, replace it with the thesis list. |
-| `posts/stock-trader-project-writeup` | 36 | SOURCE | yfinance only serves about 60 days of 30-minute history (the thesis used exactly that window). The "3 years of 30-minute data" below can't have come from yfinance alone: was it accumulated with repeated pulls, or from another vendor? |
-| `posts/stock-trader-project-writeup` | 62 | SOURCE | Add the before/after numbers for the TextBlob → VADER swap (accuracy, majority-class baseline, test-set size), or remove "noticeably" if they aren't available. |
-| `posts/stock-trader-project-writeup` | 70 | SOURCE | Add the Granger results (tickers, lags, p-values, period), or soften to what was actually run. |
-| `page: index` | 48 | EXPERIENCE | Senior Staff data scientist; what you've built, in one line (for the hero). |
+| `page: index` | 47 | EXPERIENCE | Senior Staff data scientist; what you've built, in one line (for the hero). |
 
-Total: 30 (11 EXPERIENCE, 19 SOURCE).
-## Open questions (site-wide, not tied to one line)
+Total: 20 (11 EXPERIENCE, 9 SOURCE).
 
-1. **LinkedIn URL.** `/about/` links to `https://www.linkedin.com/in/michealpetrillo` ("Micheal"). Is that the correct, live profile? Once confirmed, add it to `AUTHOR_SAME_AS` in `src/consts.ts` so it appears in the Person JSON-LD `sameAs`.
-2. **MailerLite.** What is the embedded-form action URL (or account and form IDs), and do you want double opt-in? The "Subscribe →" form in `src/layouts/BlogPost.astro` still opens a `mailto:` until this is answered.
-3. **Posts vs Articles (A5).** Option 1: merge the two real posts into Articles under a "Project Writeups" category, 301-redirect `/posts/…`, delete "Welcome to Posts", and drop the Posts nav tab (this also means changing the CLAUDE.md rules that require exactly 4 header tabs and a separate `posts` collection). Option 2: keep Posts and fix only its intro copy.
-4. **Stock project data provenance (critical).** Where did the multi-year 30-minute bars in the SVM article and the stock writeup come from? yfinance only serves about 60 days of 30-minute history. The 2020 thesis used Jan 30 to Apr 23, 2020 and a different ticker set. Are the 54% accuracy, the 37,636-row test set, the feature ranking, and the Granger results from a real run (notebook or output available)? If not, the honest fix is to remove the numbers and say the evaluation is being redone.
-5. **Thesis PDF and repo.** May `Stock Change Prediction Utilizing Social Media Pools.pdf` (currently in the repo root, which isn't served) be copied to `public/` and linked from `/about/`, the SVM article, the data-sources article and the writeup? Is `github.com/mryagerr/reddit_monitoring_capstone` (cited in the thesis) public and OK to link?
-6. **bd-mpar post voice.** `posts/bd-mpar-aws-device-downtime` describes you in the third person ("Michael Petrillo — the same data scientist behind…") on your own site. Rewrite in the first person?
+## Site-wide decisions
+
+| Question | Answer | What was done |
+|---|---|---|
+| LinkedIn URL `linkedin.com/in/michealpetrillo` correct? | Yes | Added to `AUTHOR_SAME_AS` (Person JSON-LD `sameAs`) |
+| MailerLite form details? | Unknown | The fake form (a `mailto:` disguised as a signup) was replaced with plain RSS and email links. **Still open:** once a MailerLite form exists, replace the CTA in `src/layouts/BlogPost.astro` with a real `<form>` posting to it. |
+| Posts vs Articles | Option 1 | Posts merged into Articles under "Project Writeups" (`projects` tag), "Welcome to Posts" deleted, `/posts/…` 301-redirected (`public/_redirects`), Posts nav tab removed, CLAUDE.md updated |
+| Source of the multi-year 30-min data and the 54% / 37,636-row results? | Unknown | Unverifiable numbers, feature ranking and Granger conclusions removed from the SVM article and the write-up; both now say the evaluation is being redone. The write-up was rebuilt around the 2020 thesis, the one verifiable source. |
+| Publish the thesis PDF and link the repo? | Yes | `public/petrillo-2020-thesis.pdf`, linked from `/about/`, the SVM article, the data-sources article and the write-up; repo linked from the write-up |
+| First person? | No | bd-mpar post stays third person. First-person phrasing added in the earlier pass ("my thesis", "in my experience") and the homepage bio were converted to third person / neutral wording. First person that was already in older articles was left alone. |
 
 ## Unaudited — findings
 
