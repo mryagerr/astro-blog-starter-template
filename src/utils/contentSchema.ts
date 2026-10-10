@@ -2,7 +2,7 @@ import { z } from 'astro/zod';
 import { AUTHOR_NAME } from '../consts';
 
 /**
- * Shared Zod schema for both content collections (blog and posts).
+ * Zod schema for the blog content collection.
  * Extracted here so it can be imported and tested independently of Astro's
  * virtual modules (astro:content, astro/loaders).
  */
@@ -13,6 +13,7 @@ export const VALID_TAGS = [
 	'analysis',
 	'culture',
 	'career',
+	'projects',
 ] as const;
 
 export type Tag = typeof VALID_TAGS[number];
@@ -24,6 +25,7 @@ export const TAG_LABELS: Record<Tag, string> = {
 	analysis: 'Analysis',
 	culture: 'Culture & Communication',
 	career: 'Career',
+	projects: 'Project Writeups',
 };
 
 export const TAG_SLUGS: Record<Tag, string> = {
@@ -33,6 +35,7 @@ export const TAG_SLUGS: Record<Tag, string> = {
 	analysis: 'analysis',
 	culture: 'culture-and-communication',
 	career: 'career',
+	projects: 'project-writeups',
 };
 
 export const TAG_DESCRIPTIONS: Record<Tag, string> = {
@@ -42,6 +45,7 @@ export const TAG_DESCRIPTIONS: Record<Tag, string> = {
 	analysis: 'Extracting insight from clean data — from SQL aggregation and visualization to KPI design and ML experiments.',
 	culture: 'The human side of analytics: communicating findings, building trust in your numbers, and driving real decisions.',
 	career: 'Navigating the professional side of data work — roles, growth paths, and how to position yourself for impact.',
+	projects: 'Retrospectives on real projects: what was built, what it found, and what would be done differently.',
 };
 
 export const SLUG_TO_TAG: Record<string, Tag> = Object.fromEntries(

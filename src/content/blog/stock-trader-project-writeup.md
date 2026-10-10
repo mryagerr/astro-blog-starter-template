@@ -1,29 +1,31 @@
 ---
 title: 'Building a Stock Prediction Pipeline: What We Did and What We Learned'
-description: 'A project retrospective on combining Reddit sentiment, Google Trends, and US large-cap price data to predict short-term stock moves with an SVM classifier.'
+description: 'A project retrospective on predicting short-term stock moves from Reddit comment sentiment and 30-minute price data with an SVM classifier: what was built in 2020, what it found, and what a rebuild should change.'
 pubDate: 'Apr 02 2026'
 updatedDate: 'Oct 10 2026'
 heroImage: '/blog-stock-prediction.png'
+tags: ['projects', 'analysis']
 financialDisclaimer: true
 ---
 
-This is a write-up of the stock prediction project — what we built, what worked, what didn't, and what we'd do differently. The technical how-to lives in the [Articles](/article/) section. This is the version that explains the decisions.
+This is a write-up of the stock prediction project: what was built, what it found, where the design was weak, and what a rebuild should do differently. The technical how-to lives in the [Articles](/article/) section. This is the version that explains the decisions.
+
+> **A note on numbers.** An earlier version of this write-up described a later multi-year reproduction (different tickers, three years of 30-minute bars, Google Trends and Wikipedia features) along with results from it. Those details couldn't be traced back to a reproducible run, so they have been removed. Everything below comes from the original 2020 project, which is documented in the thesis linked below. A new evaluation is being done and will be written up separately.
 
 ---
 
 ## What the Project Was
 
-The starting point was my 2020 master's thesis at Colorado State University Global, *Stock Change Prediction Utilizing Social Media Pools*. It built a support vector machine (SVM) classifier on 30-minute market data and Reddit comment sentiment, predicting the next hour's price change for a set of US large caps and indexes as one of five classes (decline, minor decline, flat, minor growth, growth).
+The starting point was Michael Petrillo's 2020 master's thesis at Colorado State University Global, *Stock Change Prediction Utilizing Social Media Pools* ([PDF](/petrillo-2020-thesis.pdf); code at [github.com/mryagerr/reddit_monitoring_capstone](https://github.com/mryagerr/reddit_monitoring_capstone)).
 
-<!-- TODO(michael): SOURCE — Add a link to the thesis (PDF in public/ or an external URL). The thesis also cites github.com/mryagerr/reddit_monitoring_capstone: is that repo public, and should it be linked here? -->
+The question was narrow: does adding Reddit comment data to a support vector machine (SVM) classifier improve its accuracy at predicting short-term price changes, compared with the same model trained on price data alone?
 
-The core hypothesis: Reddit discussion about a stock correlates with near-term price movement. Not because Reddit moves the market directly (most of the time), but because Reddit reflects the same information and mood that traders are already reacting to.
+- **Universe:** 10 symbols: the S&P 500 index (^GSPC), the VIX (^VIX), AAPL, AMZN, BA, DIS, NFLX, NVDA, TSLA and WMT.
+- **Target:** the price change over the *next hour*, bucketed into five classes from −2 to +2 (decline, minor decline, flat, minor growth, growth). "Flat" covered −0.75% to +0.75%.
+- **Control:** the same price-derived features with no Reddit data.
+- **Experiment:** price features plus comment data from each of several finance subreddits, including r/investing, r/StockMarket and r/wallstreetbets, tested one subreddit (and combination) at a time.
 
-The 10 tickers were: AAPL, AMZN, GOOG, MSFT, TSLA, JPM, NVDA, META, NFLX, and ^VIX as a macro fear gauge.
-
-<!-- TODO(michael): SOURCE — The thesis tracked ^GSPC, ^VIX, AAPL, DIS, TSLA, NFLX, BA, WMT, AMZN and NVDA over Jan 30 to Apr 23, 2020 (no META/FB, GOOG, MSFT or JPM). Is the list above from a later reproduction? If so, say when it was run; if not, replace it with the thesis list. -->
-
-Our goal was to reproduce the pipeline, understand where it was strong and weak, and identify the highest-leverage improvements.
+The core hypothesis: Reddit discussion about a stock carries information about near-term price movement, if not because Reddit moves the market, then because it reflects the same information and mood traders are reacting to.
 
 ---
 
@@ -31,66 +33,62 @@ Our goal was to reproduce the pipeline, understand where it was strong and weak,
 
 ### Price data
 
-OHLCV data pulled via `yfinance` at 30-minute intervals.
+OHLCV data pulled with `yfinance` at 30-minute intervals, from January 30 to April 23, 2020. Yahoo only serves about 60 days of 30-minute history, so that window was the most intraday data available. Features were percentage changes between the current and previous bars (open-to-close deltas and a volume delta) over the trailing hour and a half.
 
-<!-- TODO(michael): SOURCE — yfinance only serves about 60 days of 30-minute history (the thesis used exactly that window). The "3 years of 30-minute data" below can't have come from yfinance alone: was it accumulated with repeated pulls, or from another vendor? --> Stored as Parquet files partitioned by ticker. DuckDB for all analytical queries against the price store — rolling averages, return calculations, the feature join with sentiment data. This was one of the better decisions: keeping the entire analysis layer in SQL made it easy to inspect intermediate results and swap out features without touching Python.
+### Reddit comments
 
-### Reddit sentiment
+PRAW to pull posts, comments and replies from the subreddits, keyed on Reddit's unique IDs so re-runs didn't create duplicates. TextBlob scored each item's polarity and subjectivity. Each comment was also tagged with whether it mentioned one of the 10 symbols and whether it talked about buying or selling.
 
-PRAW to pull posts and comments from finance subreddits (`r/stocks`, `r/investing`, `r/wallstreetbets`). TextBlob for sentiment scoring. Aggregated to 30-minute buckets aligned with the price intervals.
+### Storage and scheduling
 
-The thesis used TextBlob, whose default scorer is a general-purpose sentiment lexicon. We knew this was a limitation from the start: a word like *liability* or *tax* reads as negative to a general-purpose lexicon but is neutral in financial text. We matched the thesis methodology first before improving it.
-
-### Google Trends
-
-`pytrends` to pull hourly search interest for each ticker name. The Preis et al. (2013) paper showed that increases in finance-related search terms preceded market downturns. We added this as an additional feature column alongside the Reddit sentiment scores.
-
-### Wikipedia page views
-
-Wikimedia REST API for daily page views on each company's Wikipedia article (the per-article API doesn't offer hourly data). Another attention signal — when people are researching a company more than usual, something is happening. No API key required, easy to integrate.
+A Python 3.7 ETL script, triggered daily by Windows Task Scheduler, wrote everything to a local, password-protected MySQL database. Exploration and charts were done in Tableau.
 
 ---
 
-## What Worked
+## What the Thesis Found
 
-**DuckDB for the feature matrix.** The final feature matrix for model training was built in a single SQL query: price data joined with sentiment CSVs, window functions for rolling indicators, `LEAD()` for the target variable (next 30-minute return direction). Handing a clean DataFrame to sklearn from one DuckDB query, with no intermediate files, made iteration fast.
-
-**Partitioned Parquet for price data.** Storing prices as Parquet partitioned by ticker meant that queries filtering to a single stock read only that ticker's files. For 10 tickers over 3 years of 30-minute data, the full dataset fits in under 200MB compressed — fast to query, easy to version.
-
-**Switching TextBlob to VADER.** The first sentiment change was replacing TextBlob with VADER (Hutto & Gilbert, 2014), which is tuned for social media text (slang, capitalization, punctuation, emoji). It improved classification accuracy noticeably without changing anything else in the pipeline, and it was the best reward-for-effort improvement we made. VADER is still a general-purpose lexicon, though, so it doesn't fix the financial-vocabulary problem described below. That needs the Loughran-McDonald dictionary, which we never got to.
-
-<!-- TODO(michael): SOURCE — Add the before/after numbers for the TextBlob → VADER swap (accuracy, majority-class baseline, test-set size), or remove "noticeably" if they aren't available. -->
+- Three of the subreddits scored better on average than the price-only control group, so the Reddit data helped somewhat.
+- r/StockMarket, one of the *least* active subreddits, gave the best average accuracy. r/wallstreetbets, the most active, gave the worst.
+- Reddit data pushed the model to predict non-flat moves. The price-only model mostly predicted "flat", which was the safe bet for accuracy. The r/StockMarket model correctly predicted some negative moves the control model missed.
+- No configuration did well on the most volatile symbols: TSLA, the VIX and BA.
+- The best-scoring SVM used a polynomial kernel.
 
 ---
 
-## What Didn't Work
+## Where the Design Was Weak
 
-**Reddit as a real-time signal.** The thesis's timing assumption is that Reddit discussions in a 30-minute window predict the price change over the *next hour*. In practice, the lag is noisy. Reddit often reacts *to* price moves rather than predicting them, especially in `r/wallstreetbets`. The Granger causality tests we ran showed weak predictive power in most windows.
+Looking back, several choices limit how much weight those findings can carry:
 
-<!-- TODO(michael): SOURCE — Add the Granger results (tickers, lags, p-values, period), or soften to what was actually run. -->
+**Randomized train/test splits.** The thesis scored the model on scikit-learn's randomized train/test split. On time series, a random split lets the model train on bars from *after* the bars it is tested on, which inflates accuracy. A time-ordered split is the minimum for any result meant to say something about prediction.
 
-**General-purpose sentiment on financial text.** Loughran & McDonald (2011) showed that general-purpose dictionaries misclassify financial language systematically. Almost three-quarters of the words the Harvard dictionary tags as negative, such as *tax*, *cost*, *capital* and *liability*, are not negative in a financial context, so a lexicon built for everyday English sees pessimism in routine financial language. Neither TextBlob nor VADER corrects for that. We should have added a finance-specific lexicon earlier.
+**Very little data.** The price data amounted to 1,078 data points over 60 days. That's small for an SVM with this many features, and small enough that differences between subreddits could easily be noise. The thesis itself estimated that a regression model would need roughly 15 years of data at that rate.
 
-**A training window that didn't generalize across regimes.** The SVM trained on 2020–2021 data (high volatility, pandemic-era Reddit frenzy) generalized poorly to 2023–2024 data. The Reddit-price correlation that existed during meme stock mania wasn't there in calmer markets. That is distribution shift (the relationship itself changed between regimes) rather than classic overfitting (memorizing noise in the training set), and more regularization or tuning won't fix it.
+**A wide "flat" band.** With ±0.75% counted as flat, most one-hour moves land in the middle class, so a model can score well by rarely predicting anything else.
+
+**General-purpose sentiment.** TextBlob's default scorer is a general-purpose lexicon. Loughran & McDonald (2011) showed that general-purpose dictionaries misclassify financial language systematically: almost three-quarters of the words the Harvard dictionary tags as negative, such as *tax*, *cost*, *capital* and *liability*, are not negative in a financial context.
+
+**Reddit's sampling.** PRAW returns "top" and "hot" listings, not every comment, and scores and reply counts are snapshots taken at pull time.
 
 ---
 
-## What We'd Do Differently
+## What a Rebuild Should Change
 
-**Start with the signal quality question before building the pipeline.** We spent significant time building the data collection and storage layer before seriously asking: *does Reddit sentiment actually predict 30-minute stock moves?* Running the Granger causality test first would have reframed the project earlier.
+**Ask the signal-quality question first.** Before building collection and storage, test whether lagged sentiment helps predict returns at all, for example with a Granger causality test on a training period, per ticker. That answer should shape everything after it.
 
-**Use the LM financial dictionary from day one.** It's a free CSV download. VADER was the right fix for slang-heavy Reddit text, but for financial vocabulary (and for news headlines, below) LM is the better fit, and there was no good reason to start without it.
+**Use a time-ordered train/validation/test split.** Fit on the past, choose thresholds on a validation slice, and touch the test set once. The [classifier walkthrough](/article/building-a-stock-prediction-svm/) shows the pattern.
 
-**Longer prediction horizons.** 30-minute prediction is hard — the signal-to-noise ratio is terrible at that frequency. The Bollen et al. (2011) paper found predictive power at 2–6 *day* horizons. That's where social sentiment is more likely to add information.
+**Use a finance-aware lexicon.** VADER (Hutto & Gilbert, 2014) handles social-media text (slang, capitalization, emoji) better than TextBlob, and the Loughran-McDonald word lists handle financial vocabulary. They solve different problems, so it's worth testing both.
 
-**Add news headlines as a parallel signal.** Tetlock (2007) found that pessimistic language in a daily Wall Street Journal market column predicted next-day downward pressure on prices (followed by a reversal) and unusual trading volume. My expectation, not something we tested, is that professionally written headlines are a less noisy signal than forum posts. `feedparser` against publisher RSS feeds is a low-effort addition (check which publishers still offer them; several major outlets have retired public feeds).
+**Get more history.** Multi-year 30-minute bars need a different data vendor, or a collector that accumulates yfinance pulls every day going forward.
+
+**Consider longer horizons.** Bollen et al. (2011) reported their Twitter-mood signal at 2–6 *day* horizons. One-hour prediction may simply be too noisy for social sentiment.
+
+**Add parallel signals.** News headline sentiment (Tetlock, 2007, found that pessimistic language in a daily *Wall Street Journal* market column predicted next-day downward pressure on prices, followed by a reversal), Google Trends and Wikipedia page views are all candidates. The [data sources article](/article/low-hanging-data-sources-for-stock-prediction/) ranks them by integration effort and expected signal.
+
+**Store prices as Parquet and query with DuckDB.** Building the feature matrix in one SQL query, as in [DuckDB for Financial Analysis](/article/duckdb-for-financial-analysis/), keeps the transformation logic inspectable and makes it easy to swap features.
 
 ---
 
 ## What's Next
 
-The pipeline as built is a good foundation. The parts worth keeping: the Parquet/DuckDB price store, the VADER-based sentiment scoring, and the feature matrix construction pattern.
-
-The parts worth revisiting: the prediction horizon (move from 30 minutes to daily), the sentiment source mix (add headlines, reduce Reddit weight), and the model itself (an SVM with fixed kernel is a reasonable baseline but tree-based models handle the non-linear feature interactions better).
-
-The data sources article covers the full ranked list of what to add next, ordered by integration effort and expected signal quality.
+The 2020 project showed that the plumbing works and hinted that some subreddits carry more signal than others. It didn't establish a usable predictive edge, and its evaluation design couldn't have. The rebuild described above is the way to find out.
