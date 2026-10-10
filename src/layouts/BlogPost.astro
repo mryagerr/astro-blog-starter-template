@@ -4,6 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import Byline from '../components/Byline.astro';
 import { getDifficultyLabel, getDifficultyClass } from '../utils/difficultyBadge';
 import type { ArticleData } from '../utils/contentSchema';
 
@@ -16,7 +17,9 @@ type RelatedPost = {
 	href: string;
 };
 
-type Props = ArticleData & {
+type Props = Omit<ArticleData, 'author' | 'financialDisclaimer'> & {
+	author?: string;
+	financialDisclaimer?: boolean;
 	readingTime?: number;
 	wordCount?: number;
 	headings?: MarkdownHeading[];
@@ -24,7 +27,9 @@ type Props = ArticleData & {
 	breadcrumb?: { href: string; label: string };
 };
 
-const { title, description, pubDate, updatedDate, heroImage, difficulty, readingTime, wordCount, headings, relatedPosts, breadcrumb } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, difficulty, author, financialDisclaimer = false, readingTime, wordCount, headings, relatedPosts, breadcrumb } = Astro.props;
+// Content pages (articles and posts) pass readingTime; they get a full byline under the H1.
+const showByline = readingTime !== undefined;
 
 const tocHeadings = (headings ?? []).filter((h) => h.depth <= 3);
 const showToc = tocHeadings.length >= 3;
@@ -32,7 +37,7 @@ const showToc = tocHeadings.length >= 3;
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} type="article" pubDate={pubDate} updatedDate={updatedDate} wordCount={wordCount} breadcrumb={breadcrumb} />
+		<BaseHead title={title} description={description} image={heroImage} type="article" pubDate={pubDate} updatedDate={updatedDate} wordCount={wordCount} author={author} breadcrumb={breadcrumb} personSchema={Astro.url.pathname === '/about/'} />
 		<style>
 			main {
 				width: calc(100% - 2em);
@@ -144,9 +149,6 @@ const showToc = tocHeadings.length >= 3;
 				justify-content: center;
 				flex-wrap: wrap;
 				gap: 0 0.5rem;
-			}
-			.reading-time {
-				color: var(--caption);
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -537,15 +539,16 @@ const showToc = tocHeadings.length >= 3;
 						)}
 
 						<div class="title">
-							<div class="meta-line">
-								<FormattedDate date={pubDate} />
-								{readingTime && <span class="reading-time">· {readingTime} min read</span>}
-								{updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)}
-							</div>
+							{!showByline && (
+								<div class="meta-line">
+									<FormattedDate date={pubDate} />
+									{updatedDate && (
+										<div class="last-updated-on">
+											Last updated on <FormattedDate date={updatedDate} />
+										</div>
+									)}
+								</div>
+							)}
 							<svg class="article-character" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 90" width="64" height="72" aria-hidden="true">
 							<!-- Head -->
 							<circle cx="40" cy="18" r="10" fill="#fcd34d" stroke="#92400e" stroke-width="1.5"/>
@@ -577,6 +580,9 @@ const showToc = tocHeadings.length >= 3;
 							<ellipse cx="49" cy="70" rx="5" ry="2.5" fill="#1e293b"/>
 						</svg>
 						<h1>{title}</h1>
+							{showByline && (
+								<Byline author={author} pubDate={pubDate} updatedDate={updatedDate} readingTime={readingTime} />
+							)}
 							{difficulty && (
 								<p class={getDifficultyClass(difficulty)}>
 									{getDifficultyLabel(difficulty)}
@@ -614,10 +620,12 @@ const showToc = tocHeadings.length >= 3;
 
 					<slot />
 
-					<!-- Liability disclaimer -->
-					<aside class="disclaimer" role="note" aria-label="Disclaimer">
-						<strong>Disclaimer:</strong> The content on this site is provided for informational and educational purposes only. It does not constitute financial, investment, legal, tax, or other professional advice. Nothing in this article should be relied upon as the sole basis for any financial or investment decision. Past performance is not indicative of future results. Always consult a qualified professional before making financial decisions. The author and Low Hanging Data assume no liability for any losses, damages, or decisions made based on information presented here.
-					</aside>
+					<!-- Financial disclaimer: only on pages that opt in via frontmatter -->
+					{financialDisclaimer && (
+						<aside class="disclaimer" role="note" aria-label="Disclaimer">
+							<strong>Disclaimer:</strong> This page is provided for informational and educational purposes only. It does not constitute financial, investment, legal, tax, or other professional advice. Nothing on this page should be relied upon as the sole basis for any financial or investment decision. Past performance is not indicative of future results. Always consult a qualified professional before making financial decisions. The author and Low Hanging Data assume no liability for any losses, damages, or decisions made based on information presented here.
+						</aside>
+					)}
 
 					<!-- Related articles -->
 					{relatedPosts && relatedPosts.length > 0 && (

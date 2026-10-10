@@ -5,6 +5,7 @@ pubDate: 'Jul 05 2025'
 heroImage: '/blog-scikit-learn.png'
 difficulty: 'high'
 tags: ['analysis']
+financialDisclaimer: true
 ---
 
 This article covers the machine learning layer of the stock prediction pipeline — taking the feature matrix produced by DuckDB and training an SVM classifier to predict 30-minute price direction. The [DuckDB for Financial Analysis](/article/duckdb-for-financial-analysis/) article covers building the feature matrix; this one picks up from there.

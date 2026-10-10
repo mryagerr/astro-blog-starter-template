@@ -1,4 +1,5 @@
 import { z } from 'astro/zod';
+import { AUTHOR_NAME } from '../consts';
 
 /**
  * Shared Zod schema for both content collections (blog and posts).
@@ -55,6 +56,9 @@ export const articleSchema = z.object({
 	heroImage: z.string().optional(),
 	difficulty: z.enum(['low', 'high']).optional(),
 	tags: z.array(z.enum(VALID_TAGS)).optional(),
+	author: z.string().default(AUTHOR_NAME),
+	// Renders the investment/"past performance" disclaimer. Only finance pages set this.
+	financialDisclaimer: z.boolean().default(false),
 });
 
 export type ArticleData = z.infer<typeof articleSchema>;

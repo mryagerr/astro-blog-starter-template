@@ -1,0 +1,63 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import { AUTHOR_NAME, AUTHOR_PATH } from '../consts';
+
+interface Props {
+	author?: string;
+	pubDate: Date;
+	updatedDate?: Date;
+	readingTime?: number;
+}
+
+const { author = AUTHOR_NAME, pubDate, updatedDate, readingTime } = Astro.props;
+---
+
+<p class="byline">
+	<span>By <a href={AUTHOR_PATH} rel="author">{author}</a></span>
+	<span aria-hidden="true">·</span>
+	<FormattedDate date={pubDate} />
+	{readingTime && (
+		<>
+			<span aria-hidden="true">·</span>
+			<span>{readingTime} min read</span>
+		</>
+	)}
+	{updatedDate && (
+		<span class="byline-updated">Last updated on <FormattedDate date={updatedDate} /></span>
+	)}
+</p>
+
+<style>
+	.byline {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--caption);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0 0.5rem;
+		margin: 0.5em 0 0;
+	}
+	.byline a {
+		color: var(--accent-dark);
+		text-decoration: none;
+		border-bottom: 1px solid var(--accent-muted);
+	}
+	.byline a:hover {
+		color: var(--accent);
+		border-bottom-color: var(--accent);
+	}
+	.byline-updated {
+		width: 100%;
+		text-align: center;
+		font-family: var(--font-body);
+		font-style: italic;
+		letter-spacing: 0;
+		text-transform: none;
+		font-size: 0.85rem;
+		margin-top: 0.25em;
+	}
+</style>

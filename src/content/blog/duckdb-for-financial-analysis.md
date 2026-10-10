@@ -5,6 +5,7 @@ pubDate: 'Jun 18 2025'
 heroImage: '/blog-duckdb-finance.png'
 difficulty: 'high'
 tags: ['analysis']
+financialDisclaimer: true
 ---
 
 The [Parquet and DuckDB article](/article/working-with-parquet-and-duckdb/) covers the basics: installing DuckDB, writing Parquet files, running queries. This article goes further — it uses stock market data as the working example and covers the patterns that come up repeatedly in financial analysis: rolling windows, returns, rank filtering, multi-file queries, and exporting results for downstream use.

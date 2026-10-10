@@ -5,6 +5,7 @@ pubDate: 'Mar 24 2025'
 heroImage: '/blog-stock-data-sources.png'
 difficulty: 'high'
 tags: ['collection', 'analysis']
+financialDisclaimer: true
 ---
 
 When building a machine learning model around NYSE stock prediction — as explored in Petrillo (2020) *Stock Change Prediction Utilizing Social Media Pools* — the biggest gains often come from adding more signal before tuning model parameters. The sources below are all freely accessible, have Python libraries or APIs, and are backed by peer-reviewed research. They are ordered roughly by ease of integration.

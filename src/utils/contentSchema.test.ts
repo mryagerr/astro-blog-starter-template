@@ -341,3 +341,32 @@ describe('TAG_DESCRIPTIONS', () => {
 		}
 	});
 });
+
+describe('articleSchema author and financialDisclaimer', () => {
+	const base = { title: 'T', description: 'D', pubDate: '2024-03-15' };
+
+	it('defaults author to Michael Petrillo', () => {
+		const result = articleSchema.parse(base);
+		expect(result.author).toBe('Michael Petrillo');
+	});
+
+	it('accepts an explicit author', () => {
+		const result = articleSchema.parse({ ...base, author: 'Guest Writer' });
+		expect(result.author).toBe('Guest Writer');
+	});
+
+	it('defaults financialDisclaimer to false', () => {
+		const result = articleSchema.parse(base);
+		expect(result.financialDisclaimer).toBe(false);
+	});
+
+	it('accepts financialDisclaimer: true', () => {
+		const result = articleSchema.parse({ ...base, financialDisclaimer: true });
+		expect(result.financialDisclaimer).toBe(true);
+	});
+
+	it('rejects a non-boolean financialDisclaimer', () => {
+		const result = articleSchema.safeParse({ ...base, financialDisclaimer: 'yes' });
+		expect(result.success).toBe(false);
+	});
+});

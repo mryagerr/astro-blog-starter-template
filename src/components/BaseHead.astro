@@ -2,6 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
+import { buildArticleSchema, buildPersonSchema } from '../utils/structuredData';
 
 interface Props {
 	title: string;
@@ -11,7 +12,10 @@ interface Props {
 	pubDate?: Date;
 	updatedDate?: Date;
 	wordCount?: number;
+	author?: string;
 	breadcrumb?: { href: string; label: string };
+	/** Emit standalone Person JSON-LD for the author (used on /about/). */
+	personSchema?: boolean;
 }
 
 const rawPathname = Astro.url.pathname;
@@ -21,7 +25,7 @@ const normalizedPathname = /\.\w+$/.test(rawPathname)
 	: rawPathname.endsWith('/') ? rawPathname : rawPathname + '/';
 const canonicalURL = new URL(normalizedPathname, Astro.site);
 
-const { title, description, image: rawImage, type = 'website', pubDate, updatedDate, wordCount, breadcrumb } = Astro.props;
+const { title, description, image: rawImage, type = 'website', pubDate, updatedDate, wordCount, author, breadcrumb, personSchema = false } = Astro.props;
 
 // SVGs are not supported by social-media scrapers (Reddit/Embedly, Twitter, etc.).
 // Fall back to the PNG default whenever the image is an SVG or not provided.
@@ -86,34 +90,23 @@ const image = (!rawImage || rawImage.endsWith('.svg')) ? OG_DEFAULT_PNG : rawIma
 <meta name="twitter:image" content={new URL(image, Astro.site)} />
 
 <!-- JSON-LD Structured Data -->
-{type === 'article' && pubDate && (
+{type === 'article' && pubDate && Astro.site && (
+	<script type="application/ld+json" set:html={JSON.stringify(buildArticleSchema({
+		site: Astro.site,
+		canonicalURL,
+		title,
+		description,
+		image,
+		pubDate,
+		updatedDate,
+		author,
+		wordCount,
+	}))} />
+)}
+{personSchema && Astro.site && (
 	<script type="application/ld+json" set:html={JSON.stringify({
 		'@context': 'https://schema.org',
-		'@type': 'Article',
-		headline: title,
-		description: description,
-		image: new URL(image, Astro.site).toString(),
-		datePublished: pubDate.toISOString(),
-		dateModified: updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
-		author: {
-			'@type': 'Person',
-			name: 'Michael',
-			url: Astro.site?.toString(),
-		},
-		publisher: {
-			'@type': 'Organization',
-			name: 'Low Hanging Data',
-			url: Astro.site?.toString(),
-			logo: {
-				'@type': 'ImageObject',
-				url: new URL('/favicon.svg', Astro.site).toString(),
-			},
-		},
-		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': canonicalURL.toString(),
-		},
-		...(wordCount !== undefined ? { wordCount } : {}),
+		...buildPersonSchema(Astro.site),
 	})} />
 )}
 {type === 'article' && pubDate && breadcrumb && (
