@@ -60,15 +60,18 @@ df.dropna(inplace=True)
 threshold = len(df) * 0.8
 df.dropna(axis=1, thresh=threshold, inplace=True)
 
+# Assign the result back. `df["col"].fillna(..., inplace=True)` silently does
+# nothing under pandas Copy-on-Write (the default from pandas 3.0).
+
 # Fill numeric columns with the median (robust to outliers)
-df["price"].fillna(df["price"].median(), inplace=True)
+df["price"] = df["price"].fillna(df["price"].median())
 
 # Fill categorical columns with the mode
-df["category"].fillna(df["category"].mode()[0], inplace=True)
+df["category"] = df["category"].fillna(df["category"].mode()[0])
 
 # Flag missing values rather than imputing (preserves the information)
 df["price_missing"] = df["price"].isnull().astype(int)
-df["price"].fillna(0, inplace=True)
+df["price"] = df["price"].fillna(0)
 ```
 
 There is no universally correct approach. The right strategy depends on why the data is missing.
