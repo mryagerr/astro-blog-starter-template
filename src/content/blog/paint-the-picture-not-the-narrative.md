@@ -7,11 +7,11 @@ difficulty: 'low'
 tags: ['analysis', 'culture']
 ---
 
-The dashboard shows conversion rate up 18% quarter-over-quarter. Leadership is happy. The growth team writes a victory-lap memo. Two months later, revenue is down 12% and nobody can explain it.
+*Illustrative example:* the dashboard shows conversion rate up 18% quarter-over-quarter. Leadership is happy. The growth team writes a victory-lap memo. Two months later, revenue is down 12% and nobody can explain it.
 
 The conversion rate genuinely improved. The funnel got faster. The work was real.
 
-The trap: while everyone was optimizing the bottom of the funnel, the top was collapsing. Traffic dropped by a third. Conversion rate went up because the cohort still visiting the site was self-selecting harder — exactly the people who were already going to convert. The "win" was the survivorship bias of a shrinking audience.
+The trap: while everyone was optimizing the bottom of the funnel, the top was collapsing. Traffic dropped by a third. Conversion rate went up because the cohort still visiting the site was self-selecting harder — exactly the people who were already going to convert. The "win" was a composition effect: the mix of visitors shifted toward the high-intent ones, so the rate rose even though fewer people bought. It's a selection effect in the denominator, not an improvement in the funnel.
 
 A wider view would have shown that the moment somebody pulled it. Nobody pulled it, because the narrower view was already telling a story everyone liked.
 
@@ -92,7 +92,7 @@ A few places it shows up:
 
 - **Roadmaps built on the wrong driver.** Six months of engineering investment aimed at the metric that moved, while the metric that mattered drifted out of view.
 - **Vanity wins that mask underlying decline.** Conversion up, traffic down. Engagement up, audience smaller. Margins up, demand collapsing. Each pair tells a different story depending on which side of it you put on the slide.
-- **Stakeholders who stop trusting analytics entirely.** When the third "win" turns out to have been a survivorship-bias artifact, the executive team stops asking for analysis and starts going with their gut. The analytics function loses the room.
+- **Stakeholders who stop trusting analytics entirely.** When the third "win" turns out to have been a mix-shift artifact, the executive team stops asking for analysis and starts going with their gut. The analytics function loses the room.
 
 The last one is the worst, because it is irreversible on the timeline of most jobs. A team that has shipped two or three confidently wrong stories rarely gets a fourth swing.
 

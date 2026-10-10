@@ -2,6 +2,7 @@
 title: 'Operational Telemetry, Explained for the Person Reading the Dashboard'
 description: 'Why that little dashboard you check for two seconds a day exists — and how it lets one person keep tabs on far more systems than they could ever check by hand.'
 pubDate: 'Jul 14 2026'
+updatedDate: 'Oct 10 2026'
 heroImage: '/blog-operational-telemetry.png'
 difficulty: 'low'
 tags: ['pipelines', 'collection']
@@ -55,11 +56,13 @@ The flow is the same shape almost everywhere, even though the tool names differ:
 1. INSTRUMENT  — code emits a metric, log line, or trace span
 2. COLLECT     — an agent or library ships that data somewhere central
 3. STORE       — a time-series database or log store holds onto it
-4. VISUALIZE   — a dashboard turns raw numbers into something readable   ← what you actually see
-5. ALERT       — a rule watches the data and pages a human when it crosses a line   ← or this
+        │
+        ├──▶ 4a. VISUALIZE — a dashboard reads the stored data and draws it   ← what you actually see
+        └──▶ 4b. ALERT     — a rule evaluates the same stored data and pages
+                             a human when it crosses a line                ← or this
 ```
 
-Steps 1 through 3 happen entirely behind the scenes. As a consumer, your entire relationship with telemetry is steps 4 and 5 — a chart you glance at, or a notification that lands in your inbox.
+Steps 1 through 3 happen entirely behind the scenes. Dashboards and alerts are siblings, not a sequence: both read from the store independently, so an alert fires whether or not anyone has the dashboard open. As a consumer, your entire relationship with telemetry is steps 4 and 5 — a chart you glance at, or a notification that lands in your inbox.
 
 Here's a tiny, concrete example of what's running underneath a "system status: healthy" badge you might see on a page:
 
@@ -68,15 +71,16 @@ import requests
 import time
 
 def check_health(url):
-    start = time.time()
+    start = time.perf_counter()   # monotonic clock: safe for measuring durations
     try:
         response = requests.get(url, timeout=5)
-        latency_ms = (time.time() - start) * 1000
+        latency_ms = (time.perf_counter() - start) * 1000
         return {
             "url": url,
             "status_code": response.status_code,
             "latency_ms": round(latency_ms, 1),
             "healthy": response.status_code == 200,
+            "error": None,
         }
     except requests.exceptions.RequestException as e:
         return {"url": url, "status_code": None, "latency_ms": None, "healthy": False, "error": str(e)}
@@ -84,6 +88,10 @@ def check_health(url):
 result = check_health("https://lowhangingdata.com")
 print(result)
 ```
+
+`time.perf_counter()` is used instead of `time.time()` because the wall clock can jump (NTP corrections, daylight-saving changes), which would produce negative or wildly wrong latencies. Every return path has the same keys, so the stored records line up into one table.
+
+One honest caveat: HTTP 200 only proves the server answered. A page can return 200 while showing an error message, stale data, or an empty result. Real health checks often also verify something in the response body, or that a key value was updated recently.
 
 Run that once every minute, store the output, and plot `healthy` over time — that single green/red dot is the entire output of the loop above, quietly running thousands of times so you never have to run it yourself.
 
@@ -97,7 +105,7 @@ Here's the part that matters most, and it's about your time, not the engineer's.
 
 ### Put a number on it
 
-Say you're keeping tabs on 20 things you care about — pipelines, services, whatever feeds your reports. Manually checking each one — opening a tool, running a query, asking someone "is this still working?" — might take even a lean 2 minutes apiece. That's roughly 40 minutes a day just to *find out nothing's wrong*, before you've done any actual work with the results. Do that daily and it's over 170 hours a year spent looking, not doing.
+Say you're keeping tabs on 20 things you care about — pipelines, services, whatever feeds your reports. Manually checking each one — opening a tool, running a query, asking someone "is this still working?" — might take even a lean 2 minutes apiece. That's roughly 40 minutes a day just to *find out nothing's wrong*, before you've done any actual work with the results. Do that every working day (about 260 a year) and it's over 170 hours a year spent looking, not doing.
 
 A dashboard fed by telemetry collapses that to the same two-second glance whether you're watching 5 systems or 500 — the check time doesn't scale with how much you're responsible for, because a machine is doing the checking continuously in the background instead of you doing it in bursts. The 40 minutes doesn't get *faster*, it gets **deleted**, and it's replaced by the rare, well-timed alert that only interrupts you when something actually needs a human. That gap — hours of manual polling turned into seconds of glancing — is the entire economic case for telemetry.
 

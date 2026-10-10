@@ -1,7 +1,8 @@
 ---
 title: 'Physics Has Models. Machine Learning Has Black Boxes.'
-description: 'A physics model can be worked out from first principles — derived, interrogated, and defended line by line. A machine learning model can only be trusted. The difference is not academic. It is the difference between analytics you can stand behind and analytics that runs on "trust me."'
+description: 'A physics model can be worked out from first principles — derived, interrogated, and defended line by line. A black-box machine learning model mostly has to be trusted. The difference is not academic. It is the difference between analytics you can stand behind and analytics that runs on "trust me."'
 pubDate: 'Jul 31 2026'
+updatedDate: 'Oct 10 2026'
 heroImage: '/blog-physics-black-box.png'
 difficulty: 'high'
 tags: ['analysis', 'culture']
@@ -9,7 +10,9 @@ tags: ['analysis', 'culture']
 
 Physics gives us models. Not fits, not correlations — models. `F = ma`. Maxwell's equations. The ideal gas law. Each one is a compact statement about how the world works that you can pick up, turn over, and *work out*. You can derive it from something more fundamental. You can predict what it will do in a situation it has never seen. And when it is wrong, you can trace the wrongness back to a specific assumption you made and know exactly why it broke.
 
-A machine learning model is not this. A large language model is emphatically not this. They are extraordinary tools, but they are curve fits — high-dimensional interpolations over data someone collected. You cannot work them out. You can only run them and trust the output.
+A black-box machine learning model is not this. A large language model is emphatically not this. They are extraordinary tools, but they are curve fits — high-dimensional interpolations over data someone collected. You cannot work them out. Mostly, you run them and trust the output.
+
+To be fair to machine learning, the line isn't as clean as "physics good, ML bad". Physics models contain fitted parts too: `R`, `G` and every material constant were measured, not derived, and every law has a regime outside which it fails. And not all machine learning is opaque. Linear and logistic models, generalized additive models, and gradient-boosted trees with monotonic constraints can be read and checked term by term, and attribution methods (SHAP values, partial dependence plots) can explain a lot about what a more complex model responds to. The argument here is about *black-box* models used without that scaffolding, which describes a great deal of real-world analytics.
 
 That distinction is the whole game. Because analytics lives or dies on whether the people consuming your numbers can trust them, and trust comes from one thing: the ability to show your work, top to bottom, with no step that reduces to "trust me."
 
@@ -32,8 +35,10 @@ PV = nRT
 P = pressure        Assumption: particles are point masses (no volume)
 V = volume          Assumption: no intermolecular forces
 n = moles           Assumption: collisions are perfectly elastic
-R = gas constant    Known: fails at high pressure / low temperature
+R = gas constant    (measured, not derived)
 T = temperature
+
+Known regime: the equation breaks down at high pressure / low temperature
 ```
 
 The model tells you where it works and, just as importantly, where it stops working. When your real gas deviates from `PV = nRT`, you are not mystified. You know it is because the pressure got high enough that molecular volume matters, and you reach for the van der Waals correction. The failure is *diagnostic*. It points at the assumption that broke.
@@ -50,7 +55,7 @@ The practical consequences are specific:
 
 | Property | Physics Model | Machine Learning Model |
 |---|---|---|
-| **Can you derive it?** | Yes — from first principles | No — it is fit, not derived |
+| **Can you derive it?** | Yes — from first principles (plus measured constants) | No — it is fit, not derived |
 | **Does it extrapolate?** | Yes, within stated regime | Unreliably; degrades outside training distribution |
 | **Why did it fail?** | Traceable to a named assumption | Often unknowable without deep investigation |
 | **Can a stakeholder check it?** | Yes, line by line | No — feature importances at best, and those can mislead |
@@ -58,7 +63,7 @@ The practical consequences are specific:
 
 None of this makes machine learning bad. It makes it a *black box* — and a black box is not a neutral abstraction. It is a component you trust without being able to interrogate. The moment your inferences outrun your understanding of the box, you are exposed. (This is the compounding-debt argument I made in [Fear the Black Box](/article/fear-the-black-box/); the physics comparison is why the debt is so much steeper than it looks.)
 
-The failure mode has a name: distribution shift. A model trained on last year's data quietly starts scoring this year's data, which is subtly different, and the predictions drift wrong for months before anyone notices. A physics model does not do this, because it does not depend on the data staying the same — it depends on the *mechanism* staying the same, which it does. `F = ma` does not degrade because you drove somewhere new.
+The failure mode has a name: distribution shift. A model trained on last year's data quietly starts scoring this year's data, which is subtly different, and the predictions drift wrong for months before anyone notices. A physics model does not do this, because it does not depend on the data staying the same — it depends on the *mechanism* staying the same, which it does. `F = ma` does not degrade because you drove somewhere new. It does fail if you leave its regime (near light speed), but that boundary is stated in advance rather than discovered in production.
 
 ## Why This Matters for Analytics
 

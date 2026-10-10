@@ -2,6 +2,7 @@
 title: 'The Golden Age of API Access Is Over'
 description: 'Free, open, and generous API access was a brief anomaly. Understand what changed, why it happened, and how to adapt your data collection strategies.'
 pubDate: 'Aug 08 2025'
+updatedDate: 'Oct 10 2026'
 heroImage: '/blog-golden-age-api.png'
 difficulty: 'low'
 tags: ['collection']
@@ -19,12 +20,15 @@ But the structural causes run deeper. The "free API as growth hack" strategy tha
 
 The result is a cascade of changes that have made API access more expensive, more restricted, or simply gone:
 
-- **Twitter/X** killed free API access entirely and charges thousands of dollars per month for meaningful volume.
-- **Reddit** raised API prices to levels that forced out third-party clients and most research uses.
+- **Twitter/X** ended free *read* access in 2023. The free tier that remained is essentially write-only (posting, no meaningful reading or search). Reading tweets moved to paid tiers: Basic launched in 2023 at about $100/month with tight monthly read caps, the higher tiers cost thousands of dollars per month, and prices have gone up since.
+- **Reddit** announced paid API access in April 2023, with pricing that took effect that July. The cost forced out most third-party clients (Apollo and others shut down on June 30, 2023) and triggered the subreddit blackouts that June.
+- **Pushshift**, the Reddit archive that a large body of academic research depended on, lost its Reddit API access in May 2023. It was later restored only for approved subreddit moderators, which effectively ended it as a general research dataset. For data researchers, this was the most consequential casualty of the Reddit change.
 - **LinkedIn** has never had a public API worth using and actively blocks scraping.
 - **Google** has progressively narrowed free tiers and raised prices across its API portfolio.
-- **Spotify** locked down its audio features API, removing data that researchers had used for years.
+- **Spotify** cut off new apps' access to its audio features, audio analysis and recommendations endpoints in November 2024, removing data that researchers had used for years.
 - **Instagram** has been in steady API retreat since the Cambridge Analytica fallout.
+
+<!-- TODO(michael): SOURCE — Add dated links for each bullet: X API tier announcement and current pricing (developer.x.com), Reddit's April 2023 API announcement and the Apollo shutdown, Pushshift's May 2023 access removal, and Spotify's November 2024 Web API changes post. Verify the dates and dollar figures against them. -->
 
 Each individual decision had its own reasoning. The cumulative effect is a data landscape that looks nothing like it did five years ago.
 
@@ -56,7 +60,9 @@ If your problem can be approached with public data, that's increasingly the smar
 
 ### Web Scraping Has a New Risk Profile
 
-Scraping data directly from websites has become more fraught. Legal exposure from terms of service violations has increased. Anti-bot systems are more sophisticated. The `hiQ v. LinkedIn` and related cases have shaped a legal landscape where scraping public data is technically permissible but practically contested.
+Scraping data directly from websites has become more fraught. Anti-bot systems are more sophisticated, and the legal exposure has shifted rather than disappeared. *hiQ Labs v. LinkedIn* is the case usually cited. The Ninth Circuit held (in 2019, and again in 2022 after a Supreme Court remand) that scraping publicly accessible pages likely isn't "access without authorization" under the federal Computer Fraud and Abuse Act. But that wasn't the end of it: in late 2022 the district court found that hiQ had breached LinkedIn's user agreement, and the case settled with hiQ agreeing to stop scraping. The practical lesson is that public data may be outside anti-hacking law, but scraping it against a site's terms can still lose you a contract case.
+
+<!-- TODO(michael): SOURCE — Link the Ninth Circuit's 2022 hiQ v. LinkedIn opinion and a report of the December 2022 settlement. -->
 
 Scraping still works for many use cases, but it's not a permanent solution. It's a tactic that works until it doesn't, and you should build your pipelines to expect that instability.
 

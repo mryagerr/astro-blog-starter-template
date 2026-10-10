@@ -9,6 +9,8 @@ tags: ['culture', 'analysis']
 
 If you own a business, you already own an ontology. You just have not written it down. Every time you say "that's not really a customer yet" or "we don't count a deal until the contract is signed," you are stating a rule about what your words mean. An **ontology** is nothing more exotic than the collected set of those rules — the definitions of the concepts your business runs on, written down where everyone can see them.
 
+A note on terms: in data engineering, "ontology" usually means something more formal, a model of classes, relationships and constraints, often in a language like OWL, that software can reason over. What this article describes is the business glossary that seeds one: plain-language definitions a business owner can write and maintain. The formal version, and how it relates to the semantic layer in your data stack, is covered in [Ontology vs Semantic Layer](/article/ontology-vs-semantic-layer/).
+
 The word sounds like something that belongs to a data team or a philosophy department, and the technical version can get complicated. But the version that matters to a business owner is not technical at all. It is a document. It says what a *customer* is, when a *sale* counts, what makes a lead *qualified*, and what *active* means when someone says "active accounts." Maintaining it is a business responsibility, not a coding one — and if you leave it to whoever happens to write the next dashboard query, you have handed one of the most important decisions in your company to whoever is closest to the keyboard.
 
 This article is about how to start owning that document, in plain terms, without touching a database.
@@ -25,7 +27,7 @@ The person who should decide what "active customer" means is the person who unde
 
 You do not begin by mapping your entire business. You begin with the handful of words that cause confusion, because those are the ones already costing you money.
 
-Listen for the moments in meetings when two people use the same word and clearly mean different things. Sales says "we closed 40 deals"; finance says "we recognized 31." Marketing reports "2,000 leads"; sales says "we got maybe 300 real ones." Nobody is lying. They are using different definitions of *closed*, *deal*, and *lead*, and no written definition exists to settle it. Every one of those disagreements is a candidate for your ontology.
+Listen for the moments in meetings when two people use the same word and clearly mean different things. Consider a hypothetical month: sales says "we closed 40 deals"; finance says "we recognized 31." Marketing reports "2,000 leads"; sales says "we got maybe 300 real ones." Nobody is lying. They are using different definitions of *closed*, *deal*, and *lead*, and no written definition exists to settle it. Every one of those disagreements is a candidate for your ontology.
 
 A good starting list for most businesses is short:
 

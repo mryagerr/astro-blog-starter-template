@@ -56,7 +56,7 @@ A semantic layer scopes itself to what can be asked and answered against the war
 
 An ontology is, by design, technology-independent. The same ontology should be valid whether your warehouse is Snowflake today and Databricks tomorrow. It does not assume the existence of a particular table or column.
 
-A semantic layer is tightly coupled to a specific warehouse, a specific tool, and a specific physical model. Move from Snowflake to BigQuery and the semantic layer must be re-pointed, often re-implemented. The metric *concept* survives the move. Its semantic-layer implementation does not.
+A semantic layer is always coupled to a specific physical model (the tables and columns its definitions reference), and often to a specific warehouse or BI tool as well. Warehouse-agnostic tools such as Cube and AtScale loosen the warehouse coupling, but not the physical-model coupling. Move from Snowflake to BigQuery and the semantic layer must at least be re-pointed, and with tool-specific layers (LookML, a warehouse's built-in metrics) often re-implemented. The metric *concept* survives the move. Its semantic-layer implementation does not.
 
 ### 3. Authorship
 
@@ -72,11 +72,11 @@ A semantic layer is almost always authored by analytics engineers. It is a softw
 |---|---|---|
 | What it is | A formal model of meaning | A software layer in the data stack |
 | Lives in | Documents, diagrams, RDF/OWL, prose | YAML / DSL / a metrics service |
-| Coupled to a warehouse | No | Yes |
+| Coupled to a warehouse | No | Often (and always to the physical model) |
 | Authored by | Business + data architects | Analytics engineers |
 | Scope | All concepts in the domain | Concepts you can query in the warehouse |
-| Includes rules and axioms | Yes | Rarely — mostly metrics, dimensions, joins |
-| Survives a warehouse migration | Yes | No |
+| Includes business rules and axioms | Yes | Rarely — mostly metrics, dimensions, joins, plus access rules |
+| Survives a warehouse migration | Yes | Partially — needs re-pointing at minimum |
 | Output | Definitions, diagrams, constraints | Consistent metric values across consumers |
 | Failure mode when missing | Tribal knowledge, conflicting definitions | Every BI tool computes the same metric differently |
 
@@ -84,7 +84,7 @@ A semantic layer is almost always authored by analytics engineers. It is a softw
 
 ## What Goes Wrong Without an Ontology
 
-When a team builds a semantic layer with no underlying ontology, the semantic layer becomes a record of whatever definitions the analytics engineer encoded the day they wrote the YAML. That is usually fine for the first three metrics. By the fortieth, the metric definitions disagree with each other — `active_user` excludes trial accounts in one metric and includes them in another — and there is no upstream document anyone can point to as the source of truth. The semantic layer is internally consistent in the trivial sense that the code runs, but it has stopped being a faithful representation of the business.
+When a team builds a semantic layer with no underlying ontology, the semantic layer becomes a record of whatever definitions the analytics engineer encoded the day they wrote the YAML. That is usually fine for the first three metrics. By the fortieth, the metric definitions disagree with each other — `active_users` excludes trial accounts in one metric and includes them in another — and there is no upstream document anyone can point to as the source of truth. The semantic layer is internally consistent in the trivial sense that the code runs, but it has stopped being a faithful representation of the business.
 
 The other common failure: the semantic layer encodes a definition the business never actually agreed to. Someone made a judgment call about edge cases at metric-writing time, and now that judgment is being multiplied across every dashboard. No one notices until a quarterly review surfaces a number that disagrees with what the operating team is measuring on the ground.
 

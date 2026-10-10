@@ -2,12 +2,13 @@
 title: 'The Telephone Game Is How Analytics Goes Wrong'
 description: 'A request leaves the VP as one question, passes through four people, and arrives at the analyst as a different question entirely. The number that comes back answers the wrong thing — perfectly. Conversation, not tooling, is what stops this.'
 pubDate: 'May 02 2026'
+updatedDate: 'Oct 10 2026'
 difficulty: 'low'
 heroImage: '/blog-telephone-game.png'
 tags: ['culture']
 ---
 
-A VP asks a director: *"How are our enterprise customers doing this quarter?"*
+*Illustrative example:* a VP asks a director, *"How are our enterprise customers doing this quarter?"*
 
 The director asks a manager: *"Can you pull enterprise customer health for Q2?"*
 
@@ -19,18 +20,23 @@ The data analyst opens a ticket and writes: *"Build enterprise health dashboard.
 
 By the time the work begins, the original question has been replaced by a deliverable. The number that comes back will be impressive, well-formatted, and irrelevant to whatever the VP was actually trying to decide.
 
-This is the analytics telephone game. It is the most common and least discussed source of bad analytics in any organization larger than ten people.
+This is the analytics telephone game. In my view it is one of the most common and least discussed sources of bad analytics, and it shows up as soon as an organization has more than a couple of layers between the person asking and the person answering.
+
+<!-- TODO(michael): EXPERIENCE — A real request that got distorted through handoffs. Original ask vs what got built. -->
 
 ## What Gets Lost at Each Hop
 
 The classic playground game distorts a message word by word. The corporate version is more interesting: the words often stay close to correct. What gets stripped at each hop is the *context* — the reason the question is being asked at all.
 
-| Hop | What Gets Preserved | What Gets Lost |
+| Hop | What Gets Preserved | What Gets Lost or Changed |
 |---|---|---|
-| VP → Director | The general topic | The decision the answer feeds into |
-| Director → Manager | The deliverable shape | The time horizon and definition of "enterprise" |
-| Manager → Analyst | The list of metrics | Whether those metrics actually answer the question |
-| Analyst → Engineer | The data sources | Any awareness that the question even exists |
+| VP → Director | The topic and "this quarter" | The decision the answer feeds into |
+| Director → Manager | The topic, with the quarter translated to "Q2" | The open question, which becomes a request to "pull" something |
+| Manager → Senior analyst | "Enterprise customer health" | The time horizon (Q2 is replaced by a Friday deadline) |
+| Senior analyst → Data analyst | The topic | The deliverable's form: a report becomes a dashboard |
+| Data analyst → Ticket | A list of metrics | Any awareness of the question, and whether those metrics answer it |
+
+Nobody in the chain ever defines "enterprise". Each person assumes the next one knows.
 
 The original question — *"How are our enterprise customers doing?"* — was asked because the VP is preparing for a board meeting where they need to defend the enterprise segment investment. They need one number with a story. They got a four-tab dashboard.
 
@@ -96,7 +102,7 @@ If those three things are clear, the analyst can build something useful even if 
 
 Most analysts cannot restructure the org chart. They can, however, change how they handle a request that arrives from upstream. Two practices, applied consistently, prevent most telephone-game failures:
 
-**Write the question back.** Before any work starts, restate the request in your own words and send it back up the chain. *"My understanding is that you need X to decide Y by Z. The output will be A. If that is not right, please push back before I start."* About a third of the time, this surfaces a misalignment that would have cost a week of work. The other two-thirds, you have a written agreement to point at when the requirements shift.
+**Write the question back.** Before any work starts, restate the request in your own words and send it back up the chain. *"My understanding is that you need X to decide Y by Z. The output will be A. If that is not right, please push back before I start."* Often enough to be worth the two minutes, this surfaces a misalignment that would have cost a week of work. When it doesn't, you still have a written agreement to point at when the requirements shift.
 
 **Ask for the originator.** When a request has clearly been translated through multiple people, ask who originally raised it and whether you can get fifteen minutes with them. Frame it as protecting their time: *"I want to make sure I'm building something that answers the actual question. Can I get a brief check-in with the requester before I scope this?"* People rarely refuse this when it is framed as quality control rather than chain-jumping.
 

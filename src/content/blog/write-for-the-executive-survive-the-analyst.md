@@ -1,6 +1,6 @@
 ---
 title: 'Write for the Executive. Survive the Analyst.'
-description: 'The best executive-facing analysis does two contradictory things at once: it collapses to a single clear recommendation fast enough to drive a decision, and it holds up under days of scrutiny from the team sent to stress-test it. Those two requirements are not in tension. One earns the other.'
+description: 'The best executive-facing analysis does two contradictory things at once: it collapses to a single clear recommendation fast enough to drive a decision, and it holds up under days of scrutiny from the team sent to stress-test it. Those two requirements pull against each other, but they can be reconciled, because one earns the other.'
 pubDate: 'Apr 27 2025'
 heroImage: '/blog-write-executive.png'
 difficulty: 'low'
@@ -12,6 +12,8 @@ One version of executive analysis gets read, acted on, and then dismantled by th
 Another version gets read, acted on, and survives three days of senior analysts pressure-testing it — emerging with more organizational trust than it had on arrival.
 
 The difference is not the recommendation. It is the structure.
+
+<!-- TODO(michael): EXPERIENCE — A real exec readout where a reviewer found a hole (or didn't). Anonymized numbers. -->
 
 ## How Executives Use Analysis
 
@@ -45,7 +47,7 @@ The structure is not complicated, but it requires discipline:
 
 **One number anchors the recommendation.** Not seven numbers. One. The number that, if wrong, changes the recommendation. If you cannot identify that number, you have not finished the analysis.
 
-**The key assumption is visible.** Every recommendation rests on at least one assumption that could be wrong. Name it explicitly. "This holds if churn stays below 8%. If it exceeds 8%, the ROI inverts." The executive needs to know the condition under which the recommendation breaks.
+**The key assumption is visible.** Every recommendation rests on at least one assumption that could be wrong. Name it explicitly. For example (illustrative numbers): "This holds if churn stays below 8%. If it exceeds 8%, the ROI inverts." The executive needs to know the condition under which the recommendation breaks.
 
 **The detail is accessible but not in the way.** Supporting data, methodology, and sensitivity analysis go in an appendix, a backup deck, or a linked document. The team will find it. The executive should not have to wade through it.
 
@@ -121,13 +123,13 @@ The weak version is not wrong. Every number in it might be accurate. But the exe
 
 **The buried lead.** The most important finding is in paragraph four. The executive reads paragraph one, forms a wrong impression, and acts on it. By the time the review team gets there, the decision is made. Put the recommendation first. Every time.
 
-**The hedge that is not a hedge.** "We believe, with moderate confidence, that this approach will likely produce results consistent with our projections, assuming conditions remain roughly similar." This sentence communicates nothing. If there is genuine uncertainty, quantify it: "If acquisition cost rises above $42, this investment breaks even rather than producing a return."
+**The hedge that is not a hedge.** "We believe, with moderate confidence, that this approach will likely produce results consistent with our projections, assuming conditions remain roughly similar." This sentence communicates nothing. If there is genuine uncertainty, quantify it, as in this illustrative example: "If acquisition cost rises above $42, this investment breaks even rather than producing a return."
 
 **The number that cannot be found.** The executive cites a figure from the analysis in a meeting. A team member asks where it came from. Nobody can find it in the document. This ends credibility immediately. Every number in the summary must trace directly to a source in the detail.
 
 **The missing comparison.** "Sales are up 8%" means nothing without context. Up 8% versus what? The prior period? The plan? The industry? A number without a comparison is not a finding.
 
-**The sensitivity that was not done.** The recommendation is based on projected customer lifetime value of $180. The team reviewer asks: what happens at $140? If you do not have an answer prepared, the review will pause the entire initiative while someone finds out.
+**The sensitivity that was not done.** Suppose (hypothetically) the recommendation is based on projected customer lifetime value of $180. The team reviewer asks: what happens at $140? If you do not have an answer prepared, the review will pause the entire initiative while someone finds out.
 
 ## What This Requires from the Analyst
 

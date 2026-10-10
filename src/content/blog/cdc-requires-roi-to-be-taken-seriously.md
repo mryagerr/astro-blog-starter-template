@@ -2,6 +2,7 @@
 title: 'Change Data Capture Requires an ROI to Be Taken Seriously'
 description: 'CDC is powerful infrastructure, but it carries real costs in complexity, maintenance, and operational overhead. If you cannot articulate the return, you will not get buy-in — and you probably should not build it.'
 pubDate: 'Jul 22 2025'
+updatedDate: 'Oct 10 2026'
 heroImage: '/blog-cdc.png'
 difficulty: 'high'
 tags: ['pipelines', 'culture']
@@ -21,13 +22,15 @@ The costs are not hidden, but they are underestimated:
 
 **Operational complexity.** CDC pipelines have more moving parts than batch ETL. You're managing a connector, a message broker, schema evolution, consumer lag, and failure modes that don't exist in a world where you just `SELECT *` on a schedule. Each of those components can fail independently.
 
-**Schema evolution.** When the source schema changes — a column is added, a type is altered, a table is renamed — your CDC pipeline needs to handle it gracefully. This is harder than it sounds. Debezium has schema history topics for a reason, and the reason is that schema changes break things in ways that are painful to diagnose.
+**Schema evolution.** When the source schema changes — a column is added, a type is altered, a table is renamed — your CDC pipeline needs to handle it gracefully. This is harder than it sounds. For MySQL and SQL Server sources, Debezium keeps a separate schema history topic so it can interpret old log entries against the schema that was current when they were written. PostgreSQL's logical decoding sends table metadata along with the changes, so the Postgres connector doesn't need one, but it has its own sharp edges (DDL isn't replicated, so consumers only learn about a change when rows in the new shape arrive). Either way, schema changes break things in ways that are painful to diagnose.
 
 **Infrastructure cost.** Running Kafka (or Confluent, or MSK, or Redpanda) for CDC is not free. The managed services make it easier, but the cost is real. For small data volumes, it's expensive infrastructure for a modest benefit.
 
-**Expertise requirements.** CDC systems require people who understand distributed systems, database internals, and stream processing. That's a narrower skill set than "person who writes SQL and Python." When something goes wrong at 2am, you need someone who can read a Kafka consumer group lag graph and understand what a `TOAST` overflow means for PostgreSQL replication.
+**Expertise requirements.** CDC systems require people who understand distributed systems, database internals, and stream processing. That's a narrower skill set than "person who writes SQL and Python." When something goes wrong at 2am, you need someone who can read a Kafka consumer group lag graph and knows PostgreSQL quirks like this one: when an update doesn't touch a large ("TOASTed") column, logical decoding omits that column's value from the change event unless the table uses `REPLICA IDENTITY FULL`. Debezium then emits a placeholder instead of the value, and a naive consumer overwrites real data with it.
 
 **Source database impact.** Reading from the replication slot keeps the WAL alive until the slot is consumed. A stalled consumer can cause WAL accumulation that fills your disk and takes down the database. This is not a theoretical risk.
+
+**Delivery semantics.** Most CDC pipelines are at-least-once: after a connector restart or a rebalance, some events are delivered again. Every consumer has to be idempotent, or you double-count. Deletes arrive as delete events and tombstones that each consumer must handle deliberately. And every new table starts with an initial snapshot, a full read of the existing rows, which has its own load and ordering issues before streaming even begins.
 
 ## Why CDC Projects Stall
 
@@ -70,7 +73,7 @@ The pattern in each case: there is a real, existing cost to data latency that a 
 
 Fraud losses attributable to detection latency. Percentage of customer service tickets that involve stale data. Number of oversell events per month and average cost per event. Estimated revenue impact of product quality issues caused by cache staleness.
 
-These numbers don't have to be precise. A rough estimate — "we lose approximately $40,000/month in fraud that earlier detection would prevent" — is enough to work with. The point is that you're anchoring the ROI conversation to something real.
+These numbers don't have to be precise. A rough estimate is enough to work with. As an illustrative example (not a real figure): "we lose approximately $40,000/month in fraud that earlier detection would prevent". The point is that you're anchoring the ROI conversation to something real.
 
 If you can't find a number, it's worth asking whether the problem is real enough to justify the investment.
 
@@ -80,12 +83,14 @@ Once you have a problem and a cost, you need the other side of the equation: wha
 
 A realistic estimate includes:
 
-- Engineering time to implement (connector setup, schema handling, consumer development, testing) — typically 4–12 weeks for a first production deployment
+- Engineering time to implement (connector setup, schema handling, consumer development, testing). Expect weeks, not days, for a first production deployment, and estimate it from your own team's experience with comparable infrastructure work.
 - Ongoing engineering time for maintenance — schema evolution events, incident response, capacity management
 - Infrastructure costs — Kafka cluster or managed service, additional monitoring
 - On-call burden — CDC pipelines need monitoring and someone responsible for them
 
-If your problem costs $40,000/month and CDC costs $8,000/month in infrastructure and engineering overhead, the ROI is clear. If your problem is a vague improvement in "data freshness" with no attached cost, and CDC would cost $8,000/month, the project is not going to get funded — and shouldn't.
+Continuing the illustrative example: if your problem costs $40,000/month and CDC costs $8,000/month in infrastructure and engineering overhead, the ROI is clear. If your problem is a vague improvement in "data freshness" with no attached cost, and CDC would cost $8,000/month, the project is not going to get funded — and shouldn't.
+
+<!-- TODO(michael): EXPERIENCE — A real CDC proposal you saw funded or killed, and the number that decided it. -->
 
 ## The Conversation You're Actually Having
 
@@ -93,7 +98,12 @@ Presenting a CDC project to engineering leadership or a business stakeholder is,
 
 The questions that will come up:
 
-**"Why can't we just run the batch job more frequently?"** — This is a legitimate question. If running your ETL every five minutes instead of every hour solves the problem, that's a much cheaper answer. CDC is justified when more-frequent batching doesn't work: because it still introduces too much latency, because it creates too much load on the source, or because you need event-level granularity (not just the latest state).
+**"Why can't we just run the batch job more frequently?"** — This is a legitimate question, and it has cheaper cousins worth considering before log-based CDC:
+
+- **Query-based CDC**: poll each table for rows where `updated_at` is newer than the last high-water mark. No replication slots, no Kafka, just a scheduled query. It misses hard deletes and depends on the application maintaining `updated_at` reliably, but for many tables that's acceptable.
+- **Trigger-based CDC**: database triggers write each change to an audit table that a batch job reads. It captures deletes and doesn't need log access, at the cost of extra write load on the source.
+
+If one of these meets the latency requirement, it is almost always cheaper than log-based CDC, and that comparison makes your ROI case stronger: you're showing you priced the alternatives. If running your ETL every five minutes instead of every hour solves the problem, that's a much cheaper answer. CDC is justified when more-frequent batching doesn't work: because it still introduces too much latency, because it creates too much load on the source, or because you need event-level granularity (not just the latest state).
 
 **"What happens when this breaks?"** — Have an answer. Who gets paged? What's the runbook? What's the fallback if the CDC pipeline is down for four hours? If you can't answer this, the project will be seen as a liability.
 

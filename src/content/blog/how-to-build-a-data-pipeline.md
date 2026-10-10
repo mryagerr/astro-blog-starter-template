@@ -2,6 +2,7 @@
 title: 'How to Build a Data Pipeline'
 description: 'Every data pipeline comes down to three decisions: where the work runs, what triggers it, and where the data lands. Get compute, a scheduler, and storage right, and you can reframe the whole thing as a textbook ETL.'
 pubDate: 'May 27 2026'
+updatedDate: 'Oct 10 2026'
 heroImage: '/blog-build-data-pipeline.png'
 difficulty: 'low'
 tags: ['pipelines']
@@ -59,7 +60,7 @@ Three things make compute *designated* rather than incidental:
 - **It's isolated from you.** It runs whether or not you're logged in. That's the whole point of moving off the laptop.
 - **It's sized for the job.** A pipeline that loads ten thousand rows wants a tiny box. One that reshapes ten million rows in memory wants more RAM than a free tier gives you. Match the machine to the work, not to the logo on the invoice.
 
-For a first real pipeline, a small always-on VM or a scheduled GitHub Actions runner is plenty. Don't reach for a cluster to move a spreadsheet.
+For a first real pipeline, a small always-on VM or a scheduled GitHub Actions runner is plenty. One caveat on GitHub Actions: `schedule:` cron expressions run in UTC, and scheduled runs can be delayed during periods of high load, or occasionally dropped. That's fine for "sometime this morning", not for "exactly at 6:00". Don't reach for a cluster to move a spreadsheet.
 
 ## 2. A Scheduler (Cron Is the Basic Example)
 
@@ -104,7 +105,7 @@ An asterisk means "every." So `0 6 * * *` reads as *minute 0, hour 6, every day,
 Two details that trip people up on their first cron job:
 
 - **Cron has almost no environment.** It doesn't load your shell profile, so `$PATH` is minimal and your virtualenv isn't active. Use absolute paths (`/usr/bin/python3`, the full path to `run.py`) or activate the environment inside the command.
-- **Redirect the output.** `>> run.log 2>&1` appends both normal output and errors to a log file. Without it, cron emails the output into a void you'll never check, and a silent failure is the worst kind.
+- **Redirect the output.** `>> run.log 2>&1` appends both normal output and errors to a log file. Without it, cron tries to email the output to the crontab's owner, which only works if a mail transfer agent is installed and `MAILTO` points somewhere you read. On most modern servers and containers neither is true, so the output (including the error that explains a failure) is simply lost. A silent failure is the worst kind.
 
 Cron is the basic example on purpose — it's the floor, not the ceiling. When you outgrow it (you need retries, dependencies between jobs, backfills, or a dashboard of what ran), you graduate to an orchestrator like Airflow, Dagster, or Prefect. But they all do the same fundamental job cron does: decide *when* the compute runs. Learn cron first; the concepts transfer directly.
 
@@ -118,8 +119,10 @@ There's no single right storage layer — there's a right one for each *stage* o
 |---|---|---|
 | Object storage | S3, R2, GCS, a local `data/raw/` folder | Raw, untouched source data — the landing zone |
 | Relational database | PostgreSQL, SQLite, MySQL | Clean, queryable rows your apps and analysts hit |
-| Data warehouse | Snowflake, BigQuery, DuckDB | Analytical queries over large, columnar tables |
-| File formats | CSV, JSON, Parquet | Handoff between stages and tools |
+| Data warehouse | Snowflake, BigQuery, Redshift | Analytical queries over large, columnar tables, as a managed service |
+| Embedded analytical engine | DuckDB (MotherDuck for a hosted version) | Warehouse-style SQL over local files or a single database file, no server |
+
+File formats (CSV, JSON, Parquet) are a separate choice from these storage systems: they describe how the bytes are laid out, and most of the systems above can read or write them. Parquet in object storage, queried by DuckDB, is a perfectly good small-scale "warehouse".
 
 The single most useful storage habit is to **separate raw from processed**:
 
@@ -131,7 +134,7 @@ data/
 
 Keeping a pristine copy of the raw data is what lets you re-run the rest of the pipeline without re-fetching from a rate-limited API. Your cleaning logic *will* change as you learn more about the data; when it does, you replay the transform against the raw files you already saved instead of going back to the source.
 
-The other habit worth building in from day one is **idempotency** — running the pipeline twice should not double your data. Replacing a table wholesale, or upserting on a primary key, both achieve this. It's the difference between a pipeline you can safely re-run after a failure and one that corrupts itself every time it hiccups.
+The other habit worth building in from day one is **idempotency** — running the pipeline twice should not double your data. Replacing a table wholesale, or upserting on a key, both achieve this, provided the key is stable and actually unique. An upsert keyed on something that changes between runs (a load timestamp, a generated row number) just inserts duplicates. It's the difference between a pipeline you can safely re-run after a failure and one that corrupts itself every time it hiccups.
 
 ## Translating the Pipeline to an ETL
 
