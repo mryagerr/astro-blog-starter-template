@@ -28,7 +28,7 @@ type Props = Omit<ArticleData, 'author' | 'financialDisclaimer'> & {
 };
 
 const { title, description, pubDate, updatedDate, heroImage, difficulty, author, financialDisclaimer = false, readingTime, wordCount, headings, relatedPosts, breadcrumb } = Astro.props;
-// Content pages (articles and posts) pass readingTime; they get a full byline under the H1.
+// Article pages pass readingTime; they get a full byline under the H1.
 const showByline = readingTime !== undefined;
 
 const tocHeadings = (headings ?? []).filter((h) => h.depth <= 3);
@@ -406,53 +406,7 @@ const showToc = tocHeadings.length >= 3;
 			.newsletter-sub {
 				font-size: 0.9rem;
 				color: var(--caption);
-				margin: 0 0 1.1rem;
-			}
-			.newsletter-form {
-				display: flex;
-				gap: 0.5rem;
-				max-width: 380px;
-				margin: 0 auto;
-				flex-wrap: wrap;
-				justify-content: center;
-			}
-			.newsletter-form input[type="email"] {
-				flex: 1;
-				min-width: 180px;
-				padding: 0.5em 0.9em;
-				border: 1.5px solid var(--rule);
-				border-radius: 6px;
-				font-family: var(--font-body);
-				font-size: 0.9rem;
-				background: var(--paper);
-				color: var(--ink);
-				outline: none;
-				transition: border-color 0.18s;
-			}
-			.newsletter-form input[type="email"]:focus {
-				border-color: var(--accent);
-				box-shadow: 0 0 0 2px rgba(8, 145, 178, 0.18);
-			}
-			.newsletter-form button {
-				padding: 0.5em 1.1em;
-				background: var(--accent);
-				color: #fff;
-				border: none;
-				border-radius: 6px;
-				font-family: var(--font-mono);
-				font-size: 0.85rem;
-				font-weight: 600;
-				cursor: pointer;
-				transition: background 0.18s;
-				white-space: nowrap;
-			}
-			.newsletter-form button:hover {
-				background: var(--accent-dark);
-			}
-			.newsletter-confirm {
-				font-size: 0.88rem;
-				color: var(--accent-dark);
-				margin: 0.75rem 0 0;
+				margin: 0;
 			}
 
 			/* ─── Responsive ──────────────────────────────────────── */
@@ -652,33 +606,14 @@ const showToc = tocHeadings.length >= 3;
 						</div>
 					)}
 
-					<!-- Newsletter CTA -->
+					<!-- Newsletter CTA: plain links until a real signup form (e.g. MailerLite) is set up -->
 					<div class="newsletter-cta">
-						<p class="newsletter-heading">Get new articles by email</p>
-						<p class="newsletter-sub">Practical guides on data workflows, delivered when published. No spam.</p>
-						<form class="newsletter-form" id="newsletter-form">
-							<input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
-							<button type="submit">Subscribe →</button>
-						</form>
-						<p class="newsletter-confirm" id="newsletter-confirm" hidden>
-							Thanks! Opening your email client so you can confirm your subscription.
+						<p class="newsletter-heading">Get new articles as they publish</p>
+						<p class="newsletter-sub">
+							Follow the <a href="/rss.xml">RSS feed</a>, or
+							<a href="mailto:admin@lowhangingdata.com?subject=Subscribe%20to%20Low%20Hanging%20Data">email to ask to be added to the mailing list</a>.
 						</p>
 					</div>
-					<script>
-						const form = document.getElementById('newsletter-form') as HTMLFormElement;
-						const confirm = document.getElementById('newsletter-confirm') as HTMLElement;
-						form?.addEventListener('submit', (e) => {
-							e.preventDefault();
-							const email = new FormData(form).get('email') as string;
-							if (email) {
-								const subject = encodeURIComponent('Subscribe to Low Hanging Data');
-								const body = encodeURIComponent(`Hi,\n\nPlease add ${email} to the Low Hanging Data mailing list.\n\nThanks!`);
-								window.location.href = `mailto:admin@lowhangingdata.com?subject=${subject}&body=${body}`;
-								form.hidden = true;
-								confirm.hidden = false;
-							}
-						});
-					</script>
 
 					</div><!-- end .prose -->
 
