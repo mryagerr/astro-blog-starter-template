@@ -9,7 +9,7 @@ tags: ['collection', 'analysis']
 financialDisclaimer: true
 ---
 
-When building a machine learning model for short-term stock prediction, as I did in my 2020 master's thesis (*Stock Change Prediction Utilizing Social Media Pools*), the biggest gains often come from adding more signal before tuning model parameters. The sources below are accessible with Python libraries or APIs, and each is paired with published research (peer-reviewed papers, plus my own unreviewed thesis where it's referenced). They are ordered to match the priority ranking at the end, which weighs integration effort against expected lift.
+When building a machine learning model for short-term stock prediction, as in Michael Petrillo's 2020 master's thesis (*Stock Change Prediction Utilizing Social Media Pools*, [PDF](/petrillo-2020-thesis.pdf)), the biggest gains often come from adding more signal before tuning model parameters. The sources below are accessible with Python libraries or APIs, and each is paired with published research (peer-reviewed papers, plus that thesis, which is not peer-reviewed, where it's referenced). They are ordered to match the priority ranking at the end, which weighs integration effort against expected lift.
 
 ---
 
@@ -17,7 +17,7 @@ When building a machine learning model for short-term stock prediction, as I did
 
 **Core reference:** Loughran, T., & McDonald, B. (2011). *When is a liability not a liability? Textual analysis, dictionaries, and 10-Ks.* Journal of Finance, 66(1), 35–65.
 
-My 2020 thesis used TextBlob for sentiment analysis. TextBlob's default scorer is a general-purpose lexicon, not one built for financial language. Loughran and McDonald's central finding is that general-purpose dictionaries misfire on financial text: almost three-quarters of the words the widely used Harvard dictionary classifies as negative (words like *tax*, *cost*, *capital* and *liability*) are not negative in a financial context. A 10-K that discusses "tax liability" isn't expressing pessimism. The Loughran-McDonald (LM) dictionary was purpose-built for financial documents, with separate negative, positive, uncertainty and litigious word lists.
+The 2020 thesis used TextBlob for sentiment analysis. TextBlob's default scorer is a general-purpose lexicon, not one built for financial language. Loughran and McDonald's central finding is that general-purpose dictionaries misfire on financial text: almost three-quarters of the words the widely used Harvard dictionary classifies as negative (words like *tax*, *cost*, *capital* and *liability*) are not negative in a financial context. A 10-K that discusses "tax liability" isn't expressing pessimism. The Loughran-McDonald (LM) dictionary was purpose-built for financial documents, with separate negative, positive, uncertainty and litigious word lists.
 
 **Why it's low-hanging:** The LM dictionary is freely downloadable as a CSV. Integrating it is a drop-in replacement — load the word lists, score each Reddit comment against them, and replace the `polarity` column.
 
@@ -73,7 +73,7 @@ data = response.json()["items"]   # one dict per day: {"timestamp": ..., "views"
 
 **Core reference:** Tetlock, P. C. (2007). *Giving content to investor sentiment: The role of media in the stock market.* Journal of Finance, 62(3), 1139–1168.
 
-Tetlock found that high media pessimism (the fraction of negative words in the Wall Street Journal's "Abreast of the Market" column) predicted downward pressure on next-day market prices followed by a reversal, and that unusually high or low pessimism predicted high trading volume. My own view, not Tetlock's finding, is that professionally written headlines are likely a less noisy signal than forum posts.
+Tetlock found that high media pessimism (the fraction of negative words in the Wall Street Journal's "Abreast of the Market" column) predicted downward pressure on next-day market prices followed by a reversal, and that unusually high or low pessimism predicted high trading volume. Separately from Tetlock's finding, professionally written headlines are arguably a less noisy signal than forum posts; that is an editorial judgment here, not a tested result.
 
 **Why it's low-hanging:** `newsapi.org` offers a free developer tier with keyword search over article headlines and descriptions. It does not return full article text (content is truncated), and as of October 2026 the free tier was limited to about 100 requests per day, delayed results, a short look-back window, and non-production use. The `feedparser` library can also pull publishers' RSS feeds without authentication, where feeds are still offered.
 
@@ -108,7 +108,7 @@ One of the most cited papers in computational finance. The authors ran Granger c
 
 ## 6. VIX and Macro Fear Indicators
 
-**Already in the dataset:** my 2020 thesis includes `^VIX` as one of the 10 tracked symbols. The research below supports expanding how it is used:
+**Already in the dataset:** the 2020 thesis includes `^VIX` as one of the 10 tracked symbols. The research below supports expanding how it is used:
 
 **Core reference:** Whaley, R. E. (2009). *Understanding the VIX.* Journal of Portfolio Management, 35(3), 98–105.
 

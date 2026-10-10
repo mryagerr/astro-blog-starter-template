@@ -147,9 +147,9 @@ For most data professionals frustrated with the impact of their work, the constr
 
 Pick one domain — the current industry, the company's business model, or a specific function being supported — and invest in it with the same discipline applied to technical skills. Read what operators read. Spend time with the people who generate the data. Build hypotheses. Form defensible opinions. Predict outcomes before looking at the data.
 
-Domain expertise built in one organization does not transfer perfectly to the next. The habit of investing in domain expertise does. In my experience, data professionals who develop that habit end up with more influence than technically equivalent peers, because they earn the trust that positions them to influence decisions rather than report on them.
+Domain expertise built in one organization does not transfer perfectly to the next. The habit of investing in domain expertise does. Data professionals who develop that habit tend to end up with more influence than technically equivalent peers, because they earn the trust that positions them to influence decisions rather than report on them.
 
-<!-- TODO(michael): EXPERIENCE — Confirm the claim above is from your experience. Then: the domain you learned on the job and the moment it changed an analysis. -->
+<!-- TODO(michael): EXPERIENCE — Confirm the claim above matches your experience. Then: the domain you learned on the job and the moment it changed an analysis. -->
 
 Half subject matter expert is not a consolation prize. It is the specific combination — technical rigor plus domain fluency — that produces analysis the business acts on.
 

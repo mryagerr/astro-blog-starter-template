@@ -26,13 +26,15 @@ The target is binary: does a given stock's price go **up or down** over the next
 
 This is a classification problem, not regression. Predicting direction is more tractable than predicting magnitude, and direction is what matters for a trading signal.
 
-<!-- TODO(michael): SOURCE — Confirm the data behind this walkthrough: ticker list, 30-minute bars, and the 2020–2021 / 2022+ windows. yfinance only serves ~60 days of 30-minute history, and the 2020 thesis used Jan 30 to Apr 23, 2020 with a different ticker set (^GSPC, ^VIX, AAPL, DIS, TSLA, NFLX, BA, WMT, AMZN, NVDA). Where did multi-year 30-minute bars come from? -->
+> **A note on data and results.** This article walks through a pipeline configuration and the evaluation method; it does not report a completed evaluation. An earlier version included a classification report (54% accuracy on a 37,636-row test set), a feature-importance ranking and Granger test conclusions that couldn't be traced back to a reproducible run, so they have been removed. A new evaluation is being done.
+>
+> One practical constraint shapes the configuration below: yfinance only serves about 60 days of 30-minute history. Multi-year 30-minute bars like the training and test windows here need a different data vendor, or a collector that accumulates pulls over time.
 
 **Prediction universe (9 tickers):** AAPL, AMZN, GOOG, MSFT, TSLA, JPM, NVDA, META, NFLX
 **Macro feature:** ^VIX (used as an input feature only, never as a prediction target)
 **Interval:** 30-minute OHLCV bars
-**Training window:** 2020–2021
-**Test window:** 2022 forward
+**Training window (example configuration):** 2020–2021
+**Test window (example configuration):** 2022 forward
 
 ---
 
@@ -170,9 +172,7 @@ Fit the scaler on training data only. Fitting on the combined dataset would be a
 
 ## Training the SVM
 
-My 2020 master's thesis (*Stock Change Prediction Utilizing Social Media Pools*, Colorado State University Global) also used scikit-learn's `SVC`, though for a five-class target, and its best-scoring configuration there was a polynomial kernel. This walkthrough uses a radial basis function (RBF) kernel instead, a reasonable default for a non-linear binary classification problem with a modest feature count.
-
-<!-- TODO(michael): SOURCE — Add a link to the thesis (PDF in public/ or an external URL). -->
+Michael Petrillo's 2020 master's thesis (*Stock Change Prediction Utilizing Social Media Pools*, Colorado State University Global, [PDF](/petrillo-2020-thesis.pdf)) also used scikit-learn's `SVC`, though for a five-class target, and its best-scoring configuration there was a polynomial kernel. This walkthrough uses a radial basis function (RBF) kernel instead, a reasonable default for a non-linear binary classification problem with a modest feature count.
 
 ```python
 from sklearn.svm import SVC
@@ -203,23 +203,11 @@ print("\nConfusion matrix:")
 print(confusion_matrix(y_test, y_pred))
 ```
 
-<!-- TODO(michael): SOURCE — Is this classification report from a real run? If yes, share the notebook/output so the numbers can be cited; if not, label it illustrative or remove it. Same for "training accuracy is typically 60–65%". -->
+### Judge accuracy against the right baseline
 
-Output reported for this pipeline:
+The number to report is out-of-sample accuracy on the test set, but 50% is the wrong comparison. Up and Down are rarely exactly balanced. If 51% of test rows are Up, a model that always predicts Up scores 51% without learning anything. The bar to beat is the **majority-class baseline**.
 
-```
-              precision    recall  f1-score   support
-
-        Down       0.54      0.51      0.52     18432
-          Up       0.54      0.57      0.55     19204
-
-    accuracy                           0.54     37636
-   macro avg       0.54      0.54      0.54     37636
-```
-
-**54% accuracy** is the out-of-sample number, but 50% is the wrong comparison. In this test set, Up is 19,204 of 37,636 rows (51.0%), so a model that always predicts Up scores 51.0%. The bar to beat is the **majority-class baseline**, and the edge over it is about 3 percentage points.
-
-A rough binomial standard error for 54% on 37,636 rows is √(0.54 × 0.46 / 37,636) ≈ 0.26 points, which makes a 3-point edge look very solid. It isn't quite that solid: the rows are not independent. Consecutive bars for one ticker are autocorrelated, and all tickers move together with the market at the same timestamp, so the effective sample size is much smaller than 37,636 and the real uncertainty is wider.
+Then ask how big the edge is relative to its uncertainty. A binomial standard error, √(p × (1 − p) / n), gives a first estimate, but it will be optimistic here: the rows are not independent. Consecutive bars for one ticker are autocorrelated, and all tickers move together with the market at the same timestamp, so the effective sample size is much smaller than the row count and the real uncertainty is wider.
 
 Compute the baseline in code rather than assuming 50%:
 
@@ -228,9 +216,7 @@ majority = y_test.value_counts(normalize=True).max()
 print(f"Majority-class baseline: {majority:.1%}")
 ```
 
-The training accuracy is typically 60–65%, a sign of overfitting that a time-series split makes visible.
-
-For context: 54% accuracy on every 30-minute trade, if trades were sized correctly and transaction costs were manageable, could theoretically be profitable. In practice, the variance is high enough that it is not.
+Compare training accuracy with test accuracy as well. A large gap is a sign of overfitting that a time-ordered split makes visible. And even a real edge of a few points on 30-minute bars isn't a trading strategy until it survives transaction costs and position sizing.
 
 ---
 
@@ -329,21 +315,7 @@ print(importances.sort_values(ascending=False))
 
 Importances near zero (or negative) mean shuffling the feature didn't hurt: the model isn't getting usable signal from it on held-out data.
 
-<!-- TODO(michael): SOURCE — The ranking below was described as "typically" coming out this way. Was it from a real run, and with which method (train-set RF importances or validation permutation importance)? Replace with actual output or label it illustrative. -->
-
-In this pipeline, the ranking reported was:
-
-1. `ret_1d` — momentum
-2. `vol_20` — volatility regime
-3. `dist_sma20` — mean reversion signal
-4. `vix_level` — macro context
-5. `ret_5d`
-6. `reddit_sentiment` — noticeably lower than price features
-7. `google_trends`
-8. `wiki_views`
-9. `reddit_volume`
-
-Price features dominate. Reddit and attention signals have measurable but modest importance.
+Price features usually dominate in setups like this. If the Reddit and attention features sit near zero on validation, the model isn't using them, whatever their importance on the training set.
 
 ### Granger causality test
 
@@ -366,9 +338,7 @@ print(pd.DataFrame(rows).set_index("ticker").round(3))
 
 The column order matters: `grangercausalitytests` tests whether the **second** column helps predict the **first**. Report the p-values for every ticker rather than summarizing. With 9 tickers × 4 lags = 36 tests, a couple of p-values under 0.05 are expected by chance alone.
 
-<!-- TODO(michael): SOURCE — The original text said "for most tickers and time periods, the p-values do not reject the null", but the code only tested AAPL. Paste the actual per-ticker p-value table from a training-period run, or keep the claim conditional as written below. -->
-
-If the p-values don't reject the null at a 5% level for most tickers, sentiment does not reliably Granger-cause returns. Reddit often reacts to moves rather than predicting them, especially in `r/wallstreetbets`. The feature contributes noise as often as it contributes signal.
+If the p-values don't reject the null at a 5% level for most tickers, sentiment does not reliably Granger-cause returns, and the feature may contribute noise as often as signal. One plausible reason is that Reddit often reacts *to* price moves rather than anticipating them. Consistent with that, the 2020 thesis found r/wallstreetbets, the most active subreddit, gave the *worst* accuracy of the subreddits tested.
 
 This test is worth running before spending time on sentiment collection infrastructure.
 
@@ -437,14 +407,16 @@ predictions  = svm_loaded.predict(X_new_scaled)   # 1 = Up, 0 = Down/flat
 
 ---
 
-## What the Numbers Tell You
+## What the 2020 Thesis Found, and What to Look For Here
 
-The model gets to ~54% accuracy on unseen data with this feature set. That tells you a few things:
+The thesis this walkthrough builds on (1,078 data points over 60 days, five classes, randomized train/test splits) found that three subreddits scored better on average than a price-only control. The smaller, stock-focused r/StockMarket did best and r/wallstreetbets worst, and no configuration did well on the most volatile symbols (TSLA, the VIX, BA). The randomized splits mean those accuracies are likely optimistic for time-series data, which is why this walkthrough uses time-ordered splits.
 
-**There may be a little signal in the data.** 54% is about 3 points above the 51% majority-class baseline on a 37,000-row test set. Autocorrelation makes the true uncertainty wider than the row count suggests, so treat that edge as suggestive rather than proven. Price-based features (momentum, volatility) are doing most of the work.
+When you run the pipeline above, three things are worth checking:
 
-**The Reddit signal is weak at 30-minute horizons.** Granger causality confirms this. The Bollen et al. (2011) Twitter paper found predictive power at 2–6 *day* horizons — a much longer window where social sentiment has time to influence actual trades.
+**Is there an edge over the majority-class baseline?** Compare against the share of Up rows in your test set, not 50%, and remember that autocorrelation widens the uncertainty.
 
-**The training era didn't generalize.** Training on 2020–2021 (meme stocks, pandemic volatility, high Reddit engagement) and testing on 2022+ (calmer markets, lower retail sentiment influence) produces a distribution shift (non-stationarity) that no hyperparameter tuning will fix. That is different from classic overfitting, where a model memorizes noise in the training set. The features themselves had different predictive properties in those two periods.
+**Does the Reddit signal survive at 30-minute horizons?** Check the Granger p-values and the validation permutation importance. Bollen et al. (2011) reported their Twitter-mood signal at 2–6 *day* horizons, a much longer window where social sentiment has time to influence actual trades.
 
-The pipeline as built is a solid baseline. The improvements with the highest expected return — longer prediction horizons, news headline sentiment via the LM dictionary, tree-based models — are covered in the [data sources article](/article/low-hanging-data-sources-for-stock-prediction/) and the [project retrospective](/posts/stock-trader-project-writeup/).
+**Does the training era generalize?** Training on 2020–2021 (meme stocks, pandemic volatility, high Reddit engagement) and testing on 2022+ (calmer markets) risks distribution shift (non-stationarity) that no hyperparameter tuning will fix. That is different from classic overfitting, where a model memorizes noise in the training set. Comparing validation and test performance is one way to see it.
+
+The pipeline as built is a reasonable baseline. The improvements most likely to help — longer prediction horizons, news headline sentiment via the LM dictionary, tree-based models — are covered in the [data sources article](/article/low-hanging-data-sources-for-stock-prediction/) and the [project retrospective](/article/stock-trader-project-writeup/).

@@ -9,9 +9,9 @@ tags: ['pipelines', 'analysis', 'culture']
 
 A dashboard that was the centerpiece of a quarterly business review eighteen months ago sits unused today. The underlying Snowflake query still executes on schedule. The Airflow DAG still logs successful runs. The warehouse bill still arrives. The stakeholders who commissioned the product have stopped trusting the output — not because of a specific failure, but because the numbers no longer align with their operating reality. That divergence has not been communicated explicitly, and the pipeline has no mechanism to detect it.
 
-This is the default trajectory of a data product decoupled from the business process it was built to serve. In my experience it is a very common pattern in enterprise data estates.
+This is the default trajectory of a data product decoupled from the business process it was built to serve. It is a very common pattern in enterprise data estates.
 
-<!-- TODO(michael): EXPERIENCE — Confirm this is from your own experience. Then: a real orphaned dashboard or pipeline you found. How long was it wrong, and how was it caught? -->
+<!-- TODO(michael): EXPERIENCE — Confirm the claim above matches your experience. Then: a real orphaned dashboard or pipeline you found. How long was it wrong, and how was it caught? -->
 
 ## The Decay Is Not Technical — It Is Temporal
 

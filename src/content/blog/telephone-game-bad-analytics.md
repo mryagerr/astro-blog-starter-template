@@ -20,7 +20,7 @@ The data analyst opens a ticket and writes: *"Build enterprise health dashboard.
 
 By the time the work begins, the original question has been replaced by a deliverable. The number that comes back will be impressive, well-formatted, and irrelevant to whatever the VP was actually trying to decide.
 
-This is the analytics telephone game. In my view it is one of the most common and least discussed sources of bad analytics, and it shows up as soon as an organization has more than a couple of layers between the person asking and the person answering.
+This is the analytics telephone game. It is arguably one of the most common and least discussed sources of bad analytics, and it shows up as soon as an organization has more than a couple of layers between the person asking and the person answering.
 
 <!-- TODO(michael): EXPERIENCE — A real request that got distorted through handoffs. Original ask vs what got built. -->
 

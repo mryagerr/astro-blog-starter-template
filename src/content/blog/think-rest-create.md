@@ -47,7 +47,7 @@ When you cannot arrive at a conclusion from a dataset you understand well, it is
 
 The first two are stakeholder problems worth solving. The third one is solved by rest.
 
-My rule of thumb: if you have spent a few hours on a single analytical question with no progress, more of the same analysis is unlikely to help, and a walk around the block is worth trying. Research on "incubation" (setting a problem aside before returning to it) supports the general idea that breaks can help with problems that need a new approach.
+A rule of thumb: if you have spent a few hours on a single analytical question with no progress, more of the same analysis is unlikely to help, and a walk around the block is worth trying. Research on "incubation" (setting a problem aside before returning to it) supports the general idea that breaks can help with problems that need a new approach.
 
 <!-- TODO(michael): SOURCE — Cite the incubation research. Candidate to confirm: Sio, U. N., & Ormerod, T. C. (2009), "Does incubation enhance problem solving? A meta-analytic review," Psychological Bulletin. -->
 

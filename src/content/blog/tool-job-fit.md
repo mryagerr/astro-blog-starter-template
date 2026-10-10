@@ -55,7 +55,7 @@ A cloud warehouse, whether Snowflake, BigQuery, or Redshift, is built for a diff
 
 The transition tells for needing a warehouse are specific, not rhetorical. Dozens of analysts are hitting the same tables concurrently. You have real compliance requirements: row-level security, audit logs, data-masking policies you cannot fake with filesystem permissions. Your datasets are in the multi-terabyte range after compression, not before. Without two or more of those conditions, you are likely paying warehouse prices for a laptop-sized workload.
 
-In my experience, it is not unusual to see companies paying tens of thousands of dollars a month to Snowflake to run queries over a few dozen gigabytes of data, because "that is what data teams use." A workload that size can typically be handled by a single mid-sized VM running DuckDB over Parquet in object storage. My view is that this describes a large share of analytical workloads at mid-sized companies, not an edge case.
+It is not unusual to see companies paying tens of thousands of dollars a month to Snowflake to run queries over a few dozen gigabytes of data, because "that is what data teams use." A workload that size can typically be handled by a single mid-sized VM running DuckDB over Parquet in object storage. This plausibly describes a large share of analytical workloads at mid-sized companies, not an edge case.
 
 <!-- TODO(michael): EXPERIENCE — Is the "$30,000/month for ~40 GB" case (and the "under two seconds on an m5.xlarge" benchmark) something you saw or ran? If yes, restore the specific numbers with context (anonymized company, query shape, how it was measured). -->
 
