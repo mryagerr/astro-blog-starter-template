@@ -9,6 +9,7 @@ Questions only Michael can answer. Each one is an invisible `<!-- TODO(michael):
 | `article/agent-harness-for-data-engineering` | 195 | EXPERIENCE | Have you run an agent against a real pipeline? What did it catch, what scared you? |
 | `article/call-your-shot-feedback-loops` | 92 | EXPERIENCE | A time you (or a team) wrote a prediction down and missed. What was predicted, the actual result, and what you learned? |
 | `article/cdc-requires-roi-to-be-taken-seriously` | 93 | EXPERIENCE | A real CDC proposal you saw funded or killed, and the number that decided it. |
+| `article/data-can-just-be-data` | 59 | EXPERIENCE | A time you saw an embedded or business-owned analyst (or yourself) pressured, explicitly or implicitly, to land a number. What was the metric, what was the pressure, and how did it resolve? |
 | `article/data-product-decay` | 14 | EXPERIENCE | Confirm the claim above matches your experience. Then: a real orphaned dashboard or pipeline you found. How long was it wrong, and how was it caught? |
 | `article/from-cheerleader-to-quarterback` | 152 | EXPERIENCE | Confirm the claim above matches your experience. Then: the domain you learned on the job and the moment it changed an analysis. |
 | `article/gas-gauges-and-kpi-mastery` | 78 | EXPERIENCE | A real KPI where defining the red/yellow/green thresholds exposed disagreement. Who disagreed and how was it resolved? |
@@ -27,7 +28,7 @@ Questions only Michael can answer. Each one is an invisible `<!-- TODO(michael):
 | `article/write-for-the-executive-survive-the-analyst` | 16 | EXPERIENCE | A real exec readout where a reviewer found a hole (or didn't). Anonymized numbers. |
 | `page: index` | 47 | EXPERIENCE | Senior Staff data scientist; what you've built, in one line (for the hero). |
 
-Total: 20 (11 EXPERIENCE, 9 SOURCE).
+Total: 21 (12 EXPERIENCE, 9 SOURCE).
 
 ## Site-wide decisions
 
